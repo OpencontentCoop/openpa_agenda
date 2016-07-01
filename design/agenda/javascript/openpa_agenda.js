@@ -202,7 +202,7 @@ $(document).ready(function () {
         clearSelectType();
         var currentType = getFilter('type');
         $.each(response.facets, function(){
-           if (this.name = 'tipo_evento'){
+           if (this.name == 'tipo_evento'){
                $.each(this.data, function(value,count){
                    $('li a[data-value="'+value+'"]', typeList).html(value +' ('+count+')');
                });
