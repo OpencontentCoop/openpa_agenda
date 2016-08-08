@@ -2,20 +2,46 @@ $(document).ready(function () {
 
     var tools = $.opendataTools;
 
-    var map =tools.initMap(
+    var map = tools.initMap(
         'map',
         function (response) {
             return L.geoJson(response, {
                 pointToLayer: function (feature, latlng) {
-                customIcon = L.MakiMarkers.icon({icon: "circle", size: "l"});
-                return L.marker(latlng, {icon: customIcon});
+                    customIcon = L.MakiMarkers.icon({icon: "circle", size: "l"});
+                    return L.marker(latlng, {icon: customIcon});
                 },
                 onEachFeature: function (feature, layer) {
-                    var popupDefault = '<p><a href="' + tools.settings('accessPath') + '/agenda/event/' + feature.properties.mainNodeId + '" target="_blank">';
+                    var popupDefault = '<p class="text-center"><i class="fa fa-circle-o-notch fa-spin"></i></p><p><a href="' + tools.settings('accessPath') + '/agenda/event/' + feature.properties.mainNodeId + '" target="_blank">';
                     popupDefault += feature.properties.name;
                     popupDefault += '</a></p>';
                     var popup = new L.Popup({maxHeight: 360});
                     popup.setContent(popupDefault);
+                    layer.on('click', function(e) {
+
+                        tools.findOne('id = '+ e.target.feature.properties.id, function(data){
+                            var template = $.templates("#tpl-event");
+                            $.views.helpers({
+                                'formatDate': function (date, format) {
+                                    return moment(new Date(date)).format(format);
+                                },
+                                'agendaUrl': function (id) {
+                                    return tools.settings('accessPath') + '/agenda/event/' + id;
+                                },
+                                'filterUrl': function (fullUrl) {
+                                    if ($.isFunction(tools.settings('filterUrl'))) {
+                                        fullUrl = tools.settings('filterUrl')(fullUrl);
+                                    }
+                                    return fullUrl;
+                                },
+                                'settings': function (setting) {
+                                    return tools.settings(setting);
+                                },
+                                'language': tools.settings('language')
+                            });
+                            var htmlOutput = template.render([data]).replace('col-md-4','');
+                            popup.setContent(htmlOutput);popup.update();
+                        })
+                    });
                     layer.bindPopup(popup);
                 }
             });
@@ -151,7 +177,7 @@ $(document).ready(function () {
         var currentDate = getFilter('date');
         if (currentDatepicker) {
             var currentMoment = moment(new Date(currentDatepicker));
-            query += ' calendar[] = [' + currentMoment.set('hour', 0).set('minute', 0).format('YYYY-MM-DD') + ',' + currentMoment.set('hour', 23).set('minute', 59).format('YYYY-MM-DD') + '] and ';
+            //query += ' calendar[] = [' + currentMoment.set('hour', 0).set('minute', 0).format('YYYY-MM-DD') + ',' + currentMoment.set('hour', 23).set('minute', 59).format('YYYY-MM-DD') + '] and ';
         } else if (currentDate) {
             var start;
             var end;
@@ -174,7 +200,7 @@ $(document).ready(function () {
                     break;
             }
 
-            query += 'calendar[] = [' + start.set('hour', 0).set('minute', 0).format('YYYY-MM-DD') + ',' + end.set('hour', 23).set('minute', 59).format('YYYY-MM-DD') + '] and ';
+            //query += 'calendar[] = [' + start.set('hour', 0).set('minute', 0).format('YYYY-MM-DD') + ',' + end.set('hour', 23).set('minute', 59).format('YYYY-MM-DD') + '] and ';
         }
         var currentType = getFilter('type');
         if (currentType && currentType != 'all') {
@@ -213,7 +239,7 @@ $(document).ready(function () {
 
     var parseSearchHits = function (response, append) {
         if (response.totalCount > 0) {
-            sessionStorage.setItem('openpa_agenda', JSON.stringify(filters));
+            //sessionStorage.setItem('openpa_agenda', JSON.stringify(filters));
             var template = $.templates("#tpl-event");
             $.views.helpers({
                 'formatDate': function (date, format) {
@@ -228,6 +254,9 @@ $(document).ready(function () {
                     }
                     return fullUrl;
                 },
+                'settings': function (setting) {
+                    return tools.settings(setting);
+                },
                 'language': tools.settings('language')
             });
             var htmlOutput = template.render(response.searchHits);
@@ -237,7 +266,15 @@ $(document).ready(function () {
                 resultContainer.html(htmlOutput);
             }
             if (response.nextPageQuery) {
-                //@todo
+                var loadMore = $('<a href="#" class="btn btn-primary btn-lg">Carica altri eventi</a>');
+                loadMore.bind('click',function(e){
+                    tools.find(response.nextPageQuery, function (response) {
+                        parseSearchHits(response, true);
+                        loadMore.remove();
+                    });
+                    e.preventDefault();
+                });
+                resultContainer.append(loadMore)
             }
         }else {
             resultContainer.html('<em>Nessun evento trovato...</em>');
@@ -263,7 +300,7 @@ $(document).ready(function () {
 
 
         if (sessionStorage.getItem('openpa_agenda')) {
-            filters = JSON.parse(sessionStorage.getItem('openpa_agenda'));
+            //filters = JSON.parse(sessionStorage.getItem('openpa_agenda'));
             var currentDatepicker = getFilter('datepicker');
             if (currentDatepicker) {
                 clearSelectDate();

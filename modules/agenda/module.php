@@ -24,6 +24,12 @@ $ViewList['config'] = array(
     'functions' => array('config')
 );
 
+$ViewList['comment'] = array(
+    'script' =>	'comment.php',
+    'params' => array( 'ForumID', 'ForumReplyID' ),
+    'functions' => array( 'use' )
+);
+
 $FunctionList = array();
 $FunctionList['use'] = array();
 $FunctionList['config'] = array();

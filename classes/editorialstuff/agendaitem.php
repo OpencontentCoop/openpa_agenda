@@ -24,7 +24,7 @@ class AgendaItem extends OCEditorialStuffPostDefault
                 'template_uri' => "design:{$templatePath}/parts/content.tpl"
             )
         );
-        if ( $currentUser->hasAccessTo( 'editorialstuff', 'media' ) && in_array( 'image', $this->factory->attributeIdentifiers() ) )
+        if ( $currentUser->hasAccessTo( 'editorialstuff', 'media' ) && in_array( 'images', $this->factory->attributeIdentifiers() ) )
         {
             $tabs[] = array(
                 'identifier' => 'media',

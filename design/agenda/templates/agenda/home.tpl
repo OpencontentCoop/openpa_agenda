@@ -1,27 +1,27 @@
+{def $settings = hash(
+    'columns_number', 3
+)}
 <section class="hgroup noborder">
 
     <div class="row home-teaser">
         <div class="col-sm-4">
             <div class="service_teaser vertical">
                 <div class="service_photo">
-                    <figure style="background-image:url({'images/sample1.jpg'|ezdesign(no)})"></figure>
-                    <h2 class="section_header gradient-background"><a href=""><b>Luglio</b>2016</a> <small>Scarica il programma mensile in pdf</small></h2>
+                    <h2 class="section_header gradient-background"><a href="{'agenda/download/'|ezurl(no)}"><b>Programma</b></a> <small>Scarica il programma mensile in pdf</small></h2>
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="service_teaser vertical">
                 <div class="service_photo">
-                    <figure style="background-image:url({'images/sample2.jpg'|ezdesign(no)})"></figure>
-                    <h2 class="section_header gradient-background"><a href=""><b>Teaser</b></a>Element<small>has many styles!</small></h2>
+                    <h2 class="section_header gradient-background"><a href="{'agenda/associazioni/'|ezurl(no)}"><b>Rubrica</b> Associazioni</a> <small>Registrate presso il comune</small></h2>
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="service_teaser vertical">
                 <div class="service_photo">
-                    <figure style="background-image:url({'images/sample3.jpg'|ezdesign(no)})"></figure>
-                    <h2 class="section_header gradient-background"><a href=""><b>Teaser</b></a>Element<small>has many styles!</small></h2>
+                    <h2 class="section_header gradient-background"><a href="{'info/terms/'|ezurl(no)}">I <b>tuoi</b> eventi</a> <small>Scopri come partecipare</small></h2>
                 </div>
             </div>
         </div>
@@ -33,8 +33,8 @@
         <div class="col-sm-9">
 
             <div class="tab-content">
-                <div id="table" class="tab-pane active">
-                    <section class="service_teasers"></section>
+                <div id="list" class="tab-pane active">
+                    <section class="service_teasers row"></section>
                 </div>
                 <div id="geo" class="tab-pane">
                     <div id="map" style="width: 100%; height: 700px"></div>
@@ -47,7 +47,7 @@
 
             <aside>
             <ul class="nav nav-pills">
-                <li class="active"><a data-toggle="tab" href="#table">Lista</a></li>
+                <li class="active"><a data-toggle="tab" href="#list">Lista</a></li>
                 <li><a data-toggle="tab" href="#geo">Mappa</a></li>
             </ul>
             </aside>
@@ -93,7 +93,7 @@
 {ezscript_require( array(
     'ezjsc::jquery',
     'jquery.opendataTools.js',
-    'moment.min.js',
+    'moment-with-locales.min.js',
     'bootstrap-datepicker/bootstrap-datepicker.js',
     'bootstrap-datepicker/locales/bootstrap-datepicker.it.min.js',
     'leaflet.js',
@@ -103,21 +103,25 @@
     'jsrender.js'
 ))}
 {ezcss_require(array(
-    'bootstrap-datepicker/bootstrap-datepicker.min.css',
-    'leaflet.css',
-    'MarkerCluster.css',
-    'MarkerCluster.Default.css',
-    'openpa_agenda.css'
+    'bootstrap-datepicker/bootstrap-datepicker.min.css'
 ))}
 
 
 <script>
+    moment.locale('it');
+    $.opendataTools.settings('event-listitem-exclude-types', ["Evento singolo4"]);
     $.opendataTools.settings('accessPath', "{$access_path}");
     $.opendataTools.settings('language', "{$current_language}");
     $.opendataTools.settings('filterUrl', function(url){ldelim} return url.replace("http://www.comune.ala.tn.it/", "http://ala.opencontent.it/"){rdelim} );
 </script>
 
 {literal}
+<style>
+    .type-499{
+        display: none;
+    }
+</style>
+
 <script id="tpl-spinner" type="text/x-jsrender">
 <div class="spinner text-center col-md-12">
     <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
@@ -125,27 +129,50 @@
 </div>
 </script>
 <script id="tpl-event" type="text/x-jsrender">
-<div class="service_teaser">
-    <div class="row">
+<div class="col-md-4">
+    <div class="service_teaser calendar_teaser vertical">
+
         {{if data[~language].image}}
-        <div class="service_photo col-sm-4 col-md-4">
+        <div class="service_photo">
             <figure style="background-image:url({{:~filterUrl(data[~language].image.url)}})"></figure>
         </div>
         {{/if}}
-        <div class="service_details {{if data[~language].image}}col-sm-8 col-md-8{{else}}col-sm-12 col-md-12{{/if}}">
-            <small>
-                {{:~formatDate(data[~language].from_time,'YYYY-MM-DD')}}
-                {{:~formatDate(data[~language].to_time,'YYYY-MM-DD')}}
-            </small>
-            <h2 class="section_header skincolored">
-                <a href="{{:~agendaUrl(metadata.mainNodeId)}}">
-                    <b>{{:data[~language].titolo}}</b>
-                </a>
-            </h2>
-            <small>{{:data[~language].luogo_svolgimento}}</small>
-            <small>{{:data[~language].orario_svolgimento}}</small>
-            <small>{{:data[~language].periodo_svolgimento}}</small>
-            <p>{{:data[~language].abstract}}</p>
+        <div class="service_details">
+
+            <div class="media">
+                <div class="media-left">
+                    <div class="calendar-date">
+                      <span class="month">{{:~formatDate(data[~language].from_time,'MMM')}}</span>
+                      <span class="day">{{:~formatDate(data[~language].from_time,'D')}}</span>
+                    </div>
+                </div>
+                <div class="media-body">
+                     <h2 class="section_header skincolored">
+                        <a href="{{:~agendaUrl(metadata.mainNodeId)}}">
+                            <b>{{:data[~language].titolo}}</b>
+                            <small>{{:data[~language].luogo_svolgimento}} {{:data[~language].orario_svolgimento}}</small>
+                        </a>
+                    </h2>
+                </div>
+            </div>
+
+            <p>
+                <small class="periodo_svolgimento">
+                    {{:data[~language].periodo_svolgimento}}
+                </small>
+                {{:data[~language].abstract}}
+            </p>
+
+            <p class="text-right">
+                <small class="tipo_evento">
+                {{for data[~language].tipo_evento}}
+                    <span class="label label-default type-{{>id}}">
+                        {{>name[~language]}}
+                    </span>
+                {{/for}}
+                </small>
+            </p>
+
         </div>
     </div>
 </div>

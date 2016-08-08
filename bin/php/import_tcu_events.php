@@ -28,9 +28,10 @@ eZUser::setCurrentlyLoggedInUser( $user , $user->attribute( 'contentobject_id' )
 
 
 $host = 'https://www.cultura.trentino.it/';
-$client = new HttpClient($host);
 
 try {
+
+    $client = new HttpClient($host);
 
     if (!$options['query']){
         throw new Exception( "Specifica la query" );
