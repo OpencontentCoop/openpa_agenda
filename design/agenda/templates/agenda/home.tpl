@@ -1,6 +1,3 @@
-{def $settings = hash(
-    'columns_number', 3
-)}
 <section class="hgroup noborder">
 
     <div class="row home-teaser">
@@ -21,7 +18,7 @@
         <div class="col-sm-4">
             <div class="service_teaser vertical">
                 <div class="service_photo">
-                    <h2 class="section_header gradient-background"><a href="{'info/terms/'|ezurl(no)}">I <b>tuoi</b> eventi</a> <small>Scopri come partecipare</small></h2>
+                    <h2 class="section_header gradient-background"><a href="{'info/terms/'|ezurl(no)}"">I <b>tuoi</b> eventi</a> <small>Scopri come partecipare</small></h2>
                 </div>
             </div>
         </div>

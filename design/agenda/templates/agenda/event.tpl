@@ -1,8 +1,8 @@
 {ezcss_require( 'star_rating.css' )}
 {ezscript_require( array( 'ezjsc::jquery', 'ezjsc::jqueryio', 'ezstarrating_jquery.js', 'readmore.min.js' ) )}
 {def $reply_limit=20
-$reply_tree_count = fetch('content','tree_count', hash( parent_node_id, $node.node_id ) )
-$reply_count=fetch('content','list_count', hash( parent_node_id, $node.node_id ) )}
+     $reply_tree_count = fetch('content','tree_count', hash( parent_node_id, $node.node_id ) )
+     $reply_count=fetch('content','list_count', hash( parent_node_id, $node.node_id ) )}
 
 
 <div class="agenda-view-full">
@@ -214,9 +214,9 @@ $reply_count=fetch('content','list_count', hash( parent_node_id, $node.node_id )
                         </script>
 
                     {/if}
-
+                    {undef $attribute}
                 {/if}
-                {undef $attribute}
+
             {/if}
         </div>
 

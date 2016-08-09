@@ -30,6 +30,12 @@ $ViewList['comment'] = array(
     'functions' => array( 'use' )
 );
 
+$ViewList['associazioni'] = array(
+    'script' => 'associazioni.php',
+    'params' => array('NodeId'),
+    'functions' => array('use')
+);
+
 $FunctionList = array();
 $FunctionList['use'] = array();
 $FunctionList['config'] = array();

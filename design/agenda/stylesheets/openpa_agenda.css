@@ -132,7 +132,7 @@
     margin-top: 10px;
 }
 
-.agenda-view-full .space{
+.space{
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -256,4 +256,8 @@
 {
     z-index: 1;
     background-position: left center;
+}
+
+.form-inline .form-group {
+    margin: 0 20px 20px 0;
 }
