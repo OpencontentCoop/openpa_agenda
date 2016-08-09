@@ -47,7 +47,7 @@
 }
 
 #list .service_teasers > .col-md-4 {
-    /*display: inline-block;*/
+    display: inline-block;
     padding:  .33rem;
     width:  100%;
     float:none;
