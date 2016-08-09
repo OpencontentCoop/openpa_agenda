@@ -28,7 +28,7 @@ class AgendaItem extends OCEditorialStuffPostDefault
         {
             $tabs[] = array(
                 'identifier' => 'media',
-                'name' => 'Media',
+                'name' => 'Immagini',
                 'template_uri' => "design:{$templatePath}/parts/media.tpl"
             );
         }

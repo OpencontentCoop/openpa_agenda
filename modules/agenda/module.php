@@ -36,6 +36,27 @@ $ViewList['associazioni'] = array(
     'functions' => array('use')
 );
 
+$ViewList['moderatecomment'] = array(
+    'script' => 'moderatecomment.php',
+    'params' => array('Id','Current'),
+    'functions' => array('use')
+);
+
+$ViewList['qrcode'] = array(
+    'script' => 'qrcode.php',
+    'params' => array('NodeId'),
+    'functions' => array('qrcode')
+);
+
+$ViewList['download'] = array(
+    'script' => 'download.php',
+    'params' => array('Params'),
+    'functions' => array('download')
+);
+
+
 $FunctionList = array();
 $FunctionList['use'] = array();
 $FunctionList['config'] = array();
+$FunctionList['qrcode'] = array();
+$FunctionList['download'] = array();

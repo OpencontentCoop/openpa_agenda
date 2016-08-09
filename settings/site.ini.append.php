@@ -19,5 +19,9 @@ id=agenda
 tags[]=template
 path=agenda
 
+[RoleSettings]
+PolicyOmitList[]=agenda/qrcode
+PolicyOmitList[]=agenda/download
+
 
 */ ?>
