@@ -109,7 +109,7 @@
     $.opendataTools.settings('event-listitem-exclude-types', ["Evento singolo4"]);
     $.opendataTools.settings('accessPath', "{$access_path}");
     $.opendataTools.settings('language', "{$current_language}");
-    $.opendataTools.settings('filterUrl', function(url){ldelim} return url.replace("http://www.comune.ala.tn.it/", "http://ala.opencontent.it/"){rdelim} );
+    $.opendataTools.settings('filterUrl', function(url){ldelim} return url{rdelim} );
 </script>
 
 {literal}
