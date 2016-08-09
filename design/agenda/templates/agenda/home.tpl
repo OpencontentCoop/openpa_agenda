@@ -174,6 +174,9 @@
     </div>
 </div>
 </script>
+<script>
+    $.opendataTools.settings('session_key','aa');
+</script>
 
 
 {/literal}
