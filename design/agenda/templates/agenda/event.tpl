@@ -310,6 +310,8 @@
                 <input type="hidden" name="ClassIdentifier" value="comment" />
                 <input type="hidden" name="ContentLanguageCode" value="{ezini( 'RegionalSettings', 'ContentObjectLocale', 'site.ini')}" />
             </form>
+        {else}
+            <p><em>Per poter commentare devi essere autenticato</em></p>
         {/if}
 
         </div>
