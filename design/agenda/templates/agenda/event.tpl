@@ -19,9 +19,11 @@
                 <div class="col-md-9">
                     <h1>
                         {$node.data_map.titolo.content|wash()}
+                        {if $node.object.can_edit}
                         <a href="{concat('editorialstuff/edit/agenda/',$node.contentobject_id)|ezurl('no')}">
                             <i class="fa fa-edit"></i>
                         </a>
+                        {/if}
                     </h1>
                 </div>
                 <div class="col-md-2">
@@ -41,7 +43,7 @@
                                 <p id="ezsr_has_rated_{$attribute.id}" class="ezsr-has-rated hide">Hai già votato!</p>*}
                             </div>
                         {/if}
-                    
+
 
                     {undef $rating}
                     {undef $attribute}

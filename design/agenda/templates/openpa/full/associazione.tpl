@@ -6,9 +6,11 @@
                 <div class="col-md-10">
                     <h1>
                         {$node.data_map.titolo.content|wash()}
+                        {if $node.object.can_edit}
                         <a href="{concat('editorialstuff/edit/associazione/',$node.contentobject_id)|ezurl('no')}">
                             <i class="fa fa-edit"></i>
                         </a>
+                        {/if}
                     </h1>
                 </div>
                 <div class="col-md-2">

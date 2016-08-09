@@ -1,0 +1,10 @@
+content.ini
+
+[ClassAttributeSettings]
+CategoryList[geo]=Dove
+CategoryList[time]=Quando
+
+ezfind.ini
+
+[IndexExclude]
+#ClassIdentifierList[]=comment
