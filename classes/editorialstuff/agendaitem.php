@@ -40,7 +40,7 @@ class AgendaItem extends OCEditorialStuffPostDefault
 //                'template_uri' => "design:{$templatePath}/parts/mail.tpl"
 //            );
 //        }
-        //if ( eZINI::instance( 'ngpush.ini' )->hasVariable( 'PushNodeSettings', 'Blocks' ) && $currentUser->hasAccessTo( 'push', '*' ) )
+        if ( eZINI::instance( 'ngpush.ini' )->hasVariable( 'PushNodeSettings', 'Blocks' ) && $currentUser->hasAccessTo( 'push', '*' ) )
         {
             $tabs[] = array(
                 'identifier' => 'social',

@@ -107,15 +107,7 @@ class OpenPAAgendaPageDataHandler implements OCPageDataHandlerInterface
             )
         );
 
-        $menu = array(
-            array(
-                'name' => ezpI18n::tr( 'agenda/menu', 'Informazioni' ),
-                'url' => 'agenda/info',
-                'highlight' => false,
-                'has_children' => true,
-                'children' => $infoChildren
-            )
-        );
+        $menu = array();
 
         $menu[] = array(
             'name' => ezpI18n::tr( 'agenda/menu', 'Agenda' ),
@@ -147,6 +139,14 @@ class OpenPAAgendaPageDataHandler implements OCPageDataHandlerInterface
                 'has_children' => false
             );
         }
+        
+        $menu[] = array(
+            'name' => ezpI18n::tr( 'agenda/menu', 'Informazioni' ),
+            'url' => 'agenda/info',
+            'highlight' => false,
+            'has_children' => true,
+            'children' => $infoChildren
+        );
 
         return $menu;
     }

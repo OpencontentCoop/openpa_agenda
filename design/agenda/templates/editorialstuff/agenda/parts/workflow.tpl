@@ -12,7 +12,7 @@
     </span>
   {else}
     {if $post.object.allowed_assign_state_id_list|contains($state.id)}
-    <a title="Clicca per impostare lo stato a {$state.current_translation.name|wash}" data-toggle="tooltip" data-placement="top" class="btn btn-info btn-block  btn-lg has-tooltip" href="{concat('editorialstuff/state_assign/', $factory_identifier, '/', $key, "/", $post.object.id )|ezurl(no)}" style="overflow: hidden; text-overflow: ellipsis;">
+    <a title="Clicca per impostare lo stato a {$state.current_translation.name|wash}" class="btn btn-info btn-block  btn-lg" href="{concat('editorialstuff/state_assign/', $factory_identifier, '/', $key, "/", $post.object.id )|ezurl(no)}" style="overflow: hidden; text-overflow: ellipsis;">
       {$state.current_translation.name|wash}
     </a>
     {else}

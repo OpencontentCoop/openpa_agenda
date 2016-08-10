@@ -206,7 +206,7 @@ $(document).ready(function () {
         if (currentType && currentType != 'all') {
             query += 'tipo_evento.name in [' + currentType + '] and ';
         }
-        query += ' classes [event] sort [from_time=>asc] facets [tipo_evento|alpha|100]';
+        query += ' classes [event] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100]';
         console.log(query);
         return query;
     };
@@ -320,7 +320,7 @@ $(document).ready(function () {
         doFind();
     };
 
-    tools.cacheAll('classes [tipo_evento] sort [name=>asc]', function (response) {
+    tools.cacheAll('classes [tipo_evento] and raw[meta_depth_si] = 4 sort [name=>asc]', function (response) {
         $.each(response,function(){
             var li = $('<li><a href="#" data-value="'+this.metadata.name[tools.settings('language')]+'">'+this.metadata.name[tools.settings('language')]+'</a></li>');
             typeList.append(li);

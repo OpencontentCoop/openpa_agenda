@@ -1,6 +1,6 @@
 <section class="hgroup noborder">
 
-    <div class="row home-teaser">
+    <div class="row home-teaser hidden-xs">
         <div class="col-sm-4">
             <div class="service_teaser vertical">
                 <div class="service_photo">
@@ -11,14 +11,14 @@
         <div class="col-sm-4">
             <div class="service_teaser vertical">
                 <div class="service_photo">
-                    <h2 class="section_header gradient-background"><a href="{'agenda/associazioni/'|ezurl(no)}"><b>Rubrica</b> Associazioni</a> <small>Registrate presso il comune</small></h2>
+                    <h2 class="section_header gradient-background"><a href="{'agenda/associazioni/'|ezurl(no)}"><b>Rubrica</b> associazioni</a> <small>Registro ufficiale del comune</small></h2>
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="service_teaser vertical">
                 <div class="service_photo">
-                    <h2 class="section_header gradient-background"><a href="{'info/terms/'|ezurl(no)}"">I <b>tuoi</b> eventi</a> <small>Scopri come partecipare</small></h2>
+                    <h2 class="section_header gradient-background"><a href="{'agenda/info/terms/'|ezurl(no)}"">Sei un'<b>associazione</b>?</a> <small>Scopri come partecipare!</small></h2>
                 </div>
             </div>
         </div>
@@ -44,14 +44,14 @@
 
             <aside>
             <ul class="nav nav-pills">
-                <li class="active"><a data-toggle="tab" href="#list">Lista</a></li>
-                <li><a data-toggle="tab" href="#geo">Mappa</a></li>
+                <li class="active"><a data-toggle="tab" href="#list">Calendario</a></li>
+                <li><a data-toggle="tab" href="#geo">Sulla mappa</a></li>
             </ul>
             </aside>
 
             <hr />
 
-            <aside class="widget" data-filter="q">
+            <aside class="widget" data-filter="q" style="display: none">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Cerca nel titolo o nel testo" name="srch-term" id="srch-term">
                     <div class="input-group-btn">
@@ -63,8 +63,8 @@
             <hr />
 
             <aside class="widget" data-filter="date">
-                <h4>Per data</h4>
-                <div class="datepicker" id="datepicker"></div>
+                <h4>Quando?</h4>
+                <div class="datepicker" id="datepicker" style="display: none"></div>
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="#" data-value="today">Oggi</a></li>
                     <li><a href="#" data-value="weekend">Questo fine settimana</a></li>
@@ -76,7 +76,7 @@
             <hr />
 
             <aside class="widget" data-filter="type">
-                <h4>Per tipo</h4>
+                <h4>Cosa?</h4>
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="#" data-value="all">Tutti</a></li>
                 </ul>
