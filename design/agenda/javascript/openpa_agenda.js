@@ -59,6 +59,7 @@ $(document).ready(function () {
     var filters = [];
     var typeList = $('.widget[data-filter="type"] ul');
     var dateList = $('.widget[data-filter="date"] ul');
+    var targetList = $('.widget[data-filter="target"] ul');
     var searchInput = $('.widget[data-filter="q"] input');
 
     var datepicker = $("#datepicker");
@@ -68,6 +69,7 @@ $(document).ready(function () {
         todayHighlight: true
     }).on('changeDate', function (e) {
         resetSelectType();
+        resetSelectTarget();
         clearSelectDate();
         var now = new Date();
         if (now.toDateString() == e.date.toDateString()) {
@@ -112,6 +114,8 @@ $(document).ready(function () {
         var currentFilter = currentWidget.data('filter');
         if (currentFilter == 'type') {
             clearSelectType();
+        } else if (currentFilter == 'target') {
+            clearSelectTarget();
         } else {
             clearSelectDate();
             datepicker.datepicker('update', '');
@@ -126,11 +130,15 @@ $(document).ready(function () {
     });
 
     var clearSelectType = function () {
-        $('li', typeList).removeClass('active');
+        $('li', typeList).removeClass('active').hide();
     };
 
     var clearSelectDate = function () {
         $('li', dateList).removeClass('active');
+    };
+
+    var clearSelectTarget = function () {
+        $('li', targetList).removeClass('active').hide();
     };
 
     var resetSelectType = function () {
@@ -141,6 +149,11 @@ $(document).ready(function () {
     var resetDateType = function () {
         clearSelectDate();
         $('li a[data-value="next 30 days"]', dateList).parent().addClass('active');
+    };
+
+    var resetSelectTarget = function () {
+        clearSelectTarget();
+        $('li a[data-value="all"]', targetList).parent().addClass('active');
     };
 
     var readFilters = function () {
@@ -162,6 +175,7 @@ $(document).ready(function () {
                 value: currentDatepicker.toDateString()
             });
         }
+        //console.log(filters);
         return filters;
     };
 
@@ -198,15 +212,30 @@ $(document).ready(function () {
                     start = moment();
                     end = moment().add(30, 'days');
                     break;
+                case 'all':
+                    start = moment();
+                    end = '*';
+                    break;
             }
 
-            query += 'calendar[] = [' + start.set('hour', 0).set('minute', 0).format('YYYY-MM-DD') + ',' + end.set('hour', 23).set('minute', 59).format('YYYY-MM-DD') + '] and ';
+            if (end == '*') {
+                query += 'calendar[] = [' + start.set('hour', 0).set('minute', 0).format('YYYY-MM-DD') + ',*] and ';
+            } else {
+                query += 'calendar[] = [' + start.set('hour', 0).set('minute', 0).format('YYYY-MM-DD') + ',' + end.set('hour', 23).set('minute', 59).format('YYYY-MM-DD') + '] and ';
+            }
         }
+        // Tipo di evento
         var currentType = getFilter('type');
         if (currentType && currentType != 'all') {
             query += 'tipo_evento.name in [' + currentType + '] and ';
         }
-        query += ' classes [event] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100]';
+        // Target dell'evento
+        var currentTarget = getFilter('target');
+        if (currentTarget && currentTarget != 'all') {
+            query += 'target in [' + currentTarget + '] and ';
+        }
+
+        query += ' classes [event] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100, target|alpha|10]';
         console.log(query);
         return query;
     };
@@ -226,15 +255,32 @@ $(document).ready(function () {
 
     var parseFacets = function (response) {
         clearSelectType();
-        var currentType = getFilter('type');
+        clearSelectTarget();
+        var currentType = getFilter('type'),
+            currentTarget = getFilter('target');
+        //console.log(currentTarget);
+        $('li a[data-value="all"]').parent().show();
         $.each(response.facets, function(){
            if (this.name == 'tipo_evento'){
                $.each(this.data, function(value,count){
-                   $('li a[data-value="'+value+'"]', typeList).html(value +' ('+count+')');
+                   $('li a[data-value="'+value+'"]', typeList).html(value +' ('+count+')').parent().show();
                });
                $('li a[data-value="'+currentType+'"]', typeList).parent().addClass('active');
+           } else if (this.name == 'target') {
+               $.each(this.data, function(value,count){
+                   if (value != '') {
+                       if ($('li a[data-value="'+value+'"]', targetList).length) {
+                           $('li a[data-value="'+value+'"]', targetList).html(value +' ('+count+')').parent().show();
+                       } else {
+                           var li = $('<li><a href="#" data-value="'+value+'">'+value+' ('+count+')'+'</a></li>');
+                           targetList.append(li);
+                       }
+                   }
+               });
+               $('li a[data-value="'+currentTarget+'"]', targetList).parent().addClass('active');
            }
         });
+
     };
 
     var parseSearchHits = function (response, append) {
@@ -297,6 +343,7 @@ $(document).ready(function () {
 
         resetSelectType();
         resetDateType();
+        resetSelectTarget();
 
 
         if (sessionStorage.getItem(tools.settings('session_key'))) {
@@ -323,6 +370,7 @@ $(document).ready(function () {
     tools.cacheAll('classes [tipo_evento] and raw[meta_depth_si] = 4 sort [name=>asc]', function (response) {
         $.each(response,function(){
             var li = $('<li><a href="#" data-value="'+this.metadata.name[tools.settings('language')]+'">'+this.metadata.name[tools.settings('language')]+'</a></li>');
+            li.hide();
             typeList.append(li);
         });
         init();

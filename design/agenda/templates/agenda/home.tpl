@@ -70,6 +70,7 @@
                     <li><a href="#" data-value="weekend">Questo fine settimana</a></li>
                     <li><a href="#" data-value="next 7 days">I prossimi 7 giorni</a></li>
                     <li><a href="#" data-value="next 30 days">I prossimi 30 giorni</a></li>
+                    <li><a href="#" data-value="all">Tutti</a></li>
                 </ul>
             </aside>
 
@@ -77,6 +78,15 @@
 
             <aside class="widget" data-filter="type">
                 <h4>Cosa?</h4>
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="#" data-value="all">Tutti</a></li>
+                </ul>
+            </aside>
+
+            <hr />
+
+            <aside class="widget" data-filter="target">
+                <h4>Chi sei?</h4>
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="#" data-value="all">Tutti</a></li>
                 </ul>
