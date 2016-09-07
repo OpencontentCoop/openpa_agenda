@@ -294,6 +294,9 @@ $(document).ready(function () {
                 'agendaUrl': function (nodeId) {
                     return tools.settings('accessPath') + '/agenda/event/' + nodeId;
                 },
+                'associazioneUrl': function (objectId) {
+                    return tools.settings('accessPath') + '/agenda/associazioni/' + objectId;
+                },
                 'filterUrl': function (fullUrl) {
                     if ($.isFunction(tools.settings('filterUrl'))) {
                         fullUrl = tools.settings('filterUrl')(fullUrl);
@@ -305,6 +308,9 @@ $(document).ready(function () {
                 },
                 'language': tools.settings('language')
             });
+
+            console.log(response.searchHits);
+
             var htmlOutput = template.render(response.searchHits);
             if (append) {
                 resultContainer.append(htmlOutput);

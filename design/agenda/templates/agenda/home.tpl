@@ -44,8 +44,8 @@
 
             <aside>
             <ul class="nav nav-pills">
-                <li class="active"><a data-toggle="tab" href="#list">Calendario</a></li>
-                <li><a data-toggle="tab" href="#geo">Sulla mappa</a></li>
+                <li class="active"><a data-toggle="tab" href="#list"><i class="fa fa-calendar" aria-hidden="true"></i> Calendario</a></li>
+                <li><a data-toggle="tab" href="#geo"><i class="fa fa-map-marker" aria-hidden="true"></i> Sulla mappa</a></li>
             </ul>
             </aside>
 
@@ -176,6 +176,15 @@
                     <span class="label label-default type-{{>id}}">
                         {{>name[~language]}}
                     </span>
+                {{/for}}
+                </small>
+            </p>
+            <p class="text-right">
+                <small>
+                {{for data[~language].associazione}}
+                    <a class="brn btn-success btn-xs type-{{>id}}" href="{{:~associazioneUrl(id)}}">
+                        {{>name[~language]}}
+                    </a>
                 {{/for}}
                 </small>
             </p>

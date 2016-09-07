@@ -164,8 +164,8 @@
     <div class="content-main" style="display: none">
         <div class="clearfix">
             <ul class="nav nav-pills space pull-left">
-                <li class="active"><a data-toggle="tab" href="#table">Lista</a></li>
-                <li><a data-toggle="tab" href="#geo">Mappa</a></li>
+                <li class="active"><a data-toggle="tab" href="#table"><i class="fa fa-list" aria-hidden="true"></i> Lista</a></li>
+                <li><a data-toggle="tab" href="#geo"><i class="fa fa-map-marker" aria-hidden="true"></i> Mappa</a></li>
             </ul>
             <div class="nav-section space pull-right" style="display: none"></div>
         </div>

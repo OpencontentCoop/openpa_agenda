@@ -7,6 +7,13 @@ class AssociazioneFactory extends OCEditorialStuffPostDefaultFactory
     {
         parent::__construct($configuration);
         $rootNodeId = OpenPAAgenda::instance()->rootObject()->attribute('main_node_id');
+
+        $containerObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::rootRemoteId() . '_associations' );
+        if ($containerObject instanceof eZContentObject)
+        {
+            $rootNodeId = $containerObject->attribute('main_node_id');
+        }
+
         $this->configuration['CreationRepositoryNode'] = $rootNodeId;
         $this->configuration['RepositoryNodes'] = array(1,$rootNodeId);
     }
