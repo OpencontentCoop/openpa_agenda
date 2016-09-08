@@ -241,7 +241,6 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
 
     protected static function installRoles( eZSection $section, array $states )
     {
-        //OpenPALog::error('Metodo non ancora implemetato ' . __METHOD__);
         $roles = array(
             "Agenda Associations" => array(
                 array(

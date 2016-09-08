@@ -118,6 +118,81 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
             eZExecution::cleanExit();
 
         }
+        else if ( $actionIdentifier == 'BrowseEvent' )
+        {
+            $startNodeId = OpenPAAgenda::instance()->rootObject()->attribute('main_node_id');
+            $containerObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::rootRemoteId() . '_agenda_container' );
+            if ($containerObject instanceof eZContentObject)
+            {
+                $startNodeId = $containerObject->attribute('main_node_id');
+            }
+
+            eZContentBrowse::browse(
+                array(
+                    'action_name' => 'AddSelectedEvent',
+                    'selection'   => 'multiple',
+                    'from_page'   => '/editorialstuff/action/programma_eventi/' . $this->getObject()->ID . '#tab_leaflet',
+                    'class_array' => array( 'event' ),
+                    'start_node'  => $startNodeId,
+                    'cancel_page' => '/editorialstuff/edit/programma_eventi/' . $this->getObject()->ID . '#tab_leaflet',
+                    'persistent_data' => array(
+                        'ActionIdentifier' => 'AddSelectedEvent',
+                        'AddSelectedEvent' => 'true'
+                    )
+                ),
+                $module
+            );
+        }
+        else if ( $actionIdentifier == 'AddSelectedEvent' )
+        {
+            $http = eZHTTPTool::instance();
+            if ( $http->hasPostVariable( 'SelectedNodeIDArray' ) && !empty( $http->postVariable( 'SelectedNodeIDArray' ) ) )
+            {
+                $selected = $http->postVariable( 'SelectedNodeIDArray' );
+                $dataMap = $this->getObject()->dataMap();
+                $events = explode( '-', $dataMap['events']->toString());
+
+                foreach ($selected as $s)
+                {
+                    /** @var eZContentObjectTreeNode $node */
+                    $node = eZContentObjectTreeNode::fetch($s);
+                    if (!in_array($node->ContentObjectID, $events))
+                    {
+                        $events []= $node->ContentObjectID;
+                    }
+                }
+
+                $params = array();
+                $params['attributes'] = array(
+                    'events' => implode( '-', $events )
+                );
+                eZContentFunctions::updateAndPublishObject( $this->getObject(), $params );
+            }
+        }
+        else if ( $actionIdentifier == 'DeleteSelected' )
+        {
+            $http = eZHTTPTool::instance();
+            if ( $http->hasPostVariable( 'SelectedEvents' ) && !empty( $http->postVariable( 'SelectedEvents' ) ) )
+            {
+                $selected = explode( '-', $http->postVariable( 'SelectedEvents' ));
+                $dataMap = $this->getObject()->dataMap();
+                $events = explode( '-', $dataMap['events']->toString());
+
+                foreach ($events as $k => $v)
+                {
+                    if (in_array($v, $selected))
+                    {
+                        unset($events[$k]);
+                    }
+                }
+
+                $params = array();
+                $params['attributes'] = array(
+                    'events' => implode( '-', $events )
+                );
+                eZContentFunctions::updateAndPublishObject( $this->getObject(), $params );
+            }
+        }
     }
 
 
@@ -175,7 +250,6 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
             ksort( $events );
             $this->events = $events;
         }
-
         return $this->events;
     }
 

@@ -295,7 +295,7 @@ $(document).ready(function () {
                     return tools.settings('accessPath') + '/agenda/event/' + nodeId;
                 },
                 'associazioneUrl': function (objectId) {
-                    return tools.settings('accessPath') + '/agenda/associazioni/' + objectId;
+                    return tools.settings('accessPath') + '/openpa/object/' + objectId;
                 },
                 'filterUrl': function (fullUrl) {
                     if ($.isFunction(tools.settings('filterUrl'))) {

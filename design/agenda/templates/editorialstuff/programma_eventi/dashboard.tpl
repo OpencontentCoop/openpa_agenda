@@ -1,5 +1,5 @@
 <section class="hgroup">
-    <h1>Gestisci eventi</h1>
+    <h1>Gestisci programma eventi</h1>
 </section>
 
 <div class="row">
