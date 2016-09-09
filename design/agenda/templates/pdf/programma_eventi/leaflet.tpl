@@ -1,4 +1,4 @@
-{def $per_page = 5
+{def $per_page = $programma_eventi.events_per_page
      $offset = 0
      $last_page_columns = $columns|sub(1)}
 

@@ -32,20 +32,17 @@
                     <div class="alert alert-info" role="alert">
                         Scegli il layout per il volantino.
                     </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="Columns" value="2" checked="checked">
-                            <img src="{'2-columns.png'|ezimage(no)}" title="2 colonne">
-                            2 colonne
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="Columns" value="3">
-                            <img src="{'3-columns.png'|ezimage(no)}" title="3 colonne">
-                            3 colonne
-                        </label>
-                    </div>
+                    {def $count = 0}
+                    {foreach $post.layouts as $l}
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="Columns" value="{$l}"{if $count|eq(0)} checked="checked"{/if}>
+                                <img src="{concat($l, '-columns.png')|ezimage(no)}" title="{$l} colonne">
+                                {$l} colonne ({$l|mul($post.events_per_page)} eventi)
+                            </label>
+                        </div>
+                        {set $count = $count|sum(1)}
+                    {/foreach}
                 </div>
             </div>
             <hr />

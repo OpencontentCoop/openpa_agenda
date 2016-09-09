@@ -4,6 +4,8 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
 {
 
     protected $abstract_length = 270;
+    protected $layouts = array(2, 3);
+    protected $events_per_page = 6;
     protected $events = array();
 
     public function onCreate()
@@ -20,6 +22,8 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
     {
         $attributes = parent::attributes();
         $attributes[] = 'abstract_length';
+        $attributes[] = 'layouts';
+        $attributes[] = 'events_per_page';
         $attributes[] = 'events';
         return $attributes;
     }
@@ -32,6 +36,16 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         if ( $property == 'abstract_length' )
         {
             return $this->abstract_length;
+        }
+
+        if ( $property == 'layouts' )
+        {
+            return $this->layouts;
+        }
+
+        if ( $property == 'events_per_page' )
+        {
+            return $this->events_per_page;
         }
 
         if ( $property == 'events' )
