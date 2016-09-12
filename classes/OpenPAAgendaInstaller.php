@@ -373,7 +373,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                 ),
                 array(
                     'ModuleName' => 'editorialstuff',
-                    'FunctionName' => 'full_dashboard'
+                    'FunctionName' => 'dashboard'
                 ),
                 array(
                     'ModuleName' => 'editorialstuff',
@@ -483,7 +483,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                 ),
                 array(
                     'ModuleName' => 'editorialstuff',
-                    'FunctionName' => 'dashboard'
+                    'FunctionName' => 'full_dashboard'
                 ),
                 array(
                     'ModuleName' => 'editorialstuff',
@@ -526,7 +526,6 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                         'Class' => array(
                             eZContentClass::classIDByIdentifier( 'associazione' )
                         ),
-                        'Section' => $section->attribute( 'id' ),
                         'StateGroup_privacy' => array(
                             $states['privacy.public']->attribute( 'id' )
                         )
@@ -576,7 +575,18 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                     'Limitation' => array(
                         'SiteAccess' => eZSys::ezcrc32( OpenPABase::getCustomSiteaccessName( 'agenda', false ) )
                     )
-                )
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'read',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'image' ),
+                            eZContentClass::classIDByIdentifier( 'argomento' ),
+                            eZContentClass::classIDByIdentifier( 'tipo_evento' )
+                        )
+                    )
+                ),
             )
         );
 
