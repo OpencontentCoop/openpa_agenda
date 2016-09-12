@@ -92,6 +92,8 @@
                 </ul>
             </aside>
 
+            <hr />
+
             <aside class="widget" data-filter="iniziativa">
                 <h4>Manifestazione</h4>
                 <ul class="nav nav-pills nav-stacked">

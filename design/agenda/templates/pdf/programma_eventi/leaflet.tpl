@@ -150,7 +150,7 @@
                 </td>
                 {set $offset = $offset|sum($per_page)}
             {/for}
-            <td class="col50 text-center">
+            <td class="columns-{$columns} text-center">
                 <h1>{$programma_eventi.object.data_map.title.content}</h1>
                 <hr />
                 <h3>{$programma_eventi.object.data_map.subtitle.content}</h3>

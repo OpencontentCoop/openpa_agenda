@@ -7,7 +7,7 @@ body {
 @page {
     /*size: a4 portrait;*/
     size: a4 landscape;
-    margin: .25in;
+    margin: .05in;
     @top-left {
         content: element(header);
     }
