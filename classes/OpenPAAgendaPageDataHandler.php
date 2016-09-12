@@ -131,13 +131,7 @@ class OpenPAAgendaPageDataHandler implements OCPageDataHandlerInterface
                 'url' => 'editorialstuff/dashboard/agenda',
                 'highlight' => false,
                 'has_children' => false
-            );
-            $menu[] = array(
-                'name' => ezpI18n::tr( 'agenda/menu', 'Gestisci associazioni' ),
-                'url' => 'editorialstuff/dashboard/associazione',
-                'highlight' => false,
-                'has_children' => false
-            );
+            );            
         }
         
         $menu[] = array(
@@ -174,6 +168,18 @@ class OpenPAAgendaPageDataHandler implements OCPageDataHandlerInterface
             $userMenu[] = array(
                 'name' => ezpI18n::tr( 'agenda/menu', 'Settings' ),
                 'url' => 'agenda/config',
+                'highlight' => false,
+                'has_children' => false
+            );
+            $userMenu[] = array(
+                'name' => ezpI18n::tr( 'agenda/menu', 'Gestisci associazioni' ),
+                'url' => 'editorialstuff/dashboard/associazione',
+                'highlight' => false,
+                'has_children' => false
+            );
+            $userMenu[] = array(
+                'name' => ezpI18n::tr( 'agenda/menu', 'Gestisci programma in pdf' ),
+                'url' => 'editorialstuff/dashboard/programma_eventi',
                 'highlight' => false,
                 'has_children' => false
             );

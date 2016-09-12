@@ -14,16 +14,16 @@
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" class="event"  value="{$event.id}">
-                                <h4>{$event.name}</h4>
+                                <h4>{$event.name} <a data-target="#preview" href="#" data-remote-target="#preview .modal-content" data-load-remote="{concat('layout/set/modal/content/view/full/',$event.main_node_id)|ezurl(no)}" data-toggle="modal" class="btn btn-info btn-xs">Anteprima</a></h4>
                             </label>
                         </div>
                         <div class="form-group">
 
                             <textarea class="form-control" name="Events[{$event.id}]" rows="3">{$event.abstract}</textarea>
                             {if $event.auto}
-                                <span class="text-warning">Abstract generato automaticamente - </span>
+                                <span class="text-warning">Abstract generato automaticamente</span>
                             {/if}
-                            <span class="text-info"><strong class="chars">{$post.abstract_length|sub($$event.abstract|count_chars())}</strong> caratteri mancanti.</span>
+                            <span class="text-info"><strong class="chars"></strong>.</span>
                         </div>
                     {/foreach}
                 </div>
@@ -42,7 +42,7 @@
                             </label>
                         </div>
                         {set $count = $count|sum(1)}
-                    {/foreach}
+                    {/foreach}                    
                 </div>
             </div>
             <hr />
@@ -80,11 +80,16 @@
     {literal}
     var maxLength = {/literal}{$post.abstract_length}{literal};
     var checkedEvents= [];
-    $('textarea').keyup(function() {
-        var length = $(this).val().length;
+    var countChars = function(element) {        
+        var length = element.val().length;
         var length = maxLength-length;
-        $('.chars', $(this).parent()).text(length);
-    });
+        var text = length > 0 ? ' caratteri mancanti' : ' caratteri in eccesso';
+        console.log(length);
+        length = Math.abs(length).toString();        
+        $('.chars', element.parent()).text(length+text);
+    };
+    $('textarea').each(function(){countChars($(this))});
+    $('textarea').keyup(function(){countChars($(this))});
     $('#EventsDeleteForm').submit( function() {
         $("input.event:checked").each(function (i) {
            checkedEvents.push($(this).val());
