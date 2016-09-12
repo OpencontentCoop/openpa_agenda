@@ -2,7 +2,7 @@
 
     {if $post.object.can_edit}
             <form action="{concat('editorialstuff/action/programma_eventi/', $post.object_id)|ezurl(no)}" enctype="multipart/form-data" method="post" class="clearfix">
-            <input type="hidden" name="ActionIdentifier" value="SaveAndGetLeaflet" />
+            <input type="hidden" name="ActionIdentifier" value="SaveAndGetProgram" />
             <div class="row">
                 <div class="col-md-8">
                     <h2>Eventi</h2>
@@ -48,7 +48,7 @@
             <hr />
             <div class="row">
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-info btn-lg" name="SaveAndGetLeaflet"><i class="fa fa-download" aria-hidden="true"></i> Salva e scarica volantino</button>
+                    <button type="submit" class="btn btn-info btn-lg" name="SaveAndGetProgram"><i class="fa fa-download" aria-hidden="true"></i> Salva e scarica volantino</button>
                 </div>
             </form>
                 <div class="col-md-3">

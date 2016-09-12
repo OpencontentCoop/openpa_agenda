@@ -25,11 +25,13 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         $attributes[] = 'layouts';
         $attributes[] = 'events_per_page';
         $attributes[] = 'events';
+        $attributes[] = 'file_attribute';
         return $attributes;
     }
 
     /**
      * @param $property
+     * @return mixed
      */
     public function attribute($property)
     {
@@ -53,84 +55,77 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
             return $this->getEvents();
         }
 
+        if ( $property == 'file_attribute' )
+        {
+            return $this->getFileAttribute();
+        }
+
         return parent::attribute( $property );
     }
 
+    protected function getFileAttribute()
+    {
+        if (isset($this->dataMap['file'])) {
+            return $this->dataMap['file'];
+        }
+        return false;
+    }
+
+    private function saveProgram()
+    {
+        $httpTool = eZHTTPTool::instance();
+        $events = array();
+        $inputEvents = $httpTool->postVariable('Events', false);
+        if ($inputEvents)
+        {
+            foreach ($inputEvents as $k => $v)
+            {
+                if (trim($v) != '')
+                {
+                    $events []= implode('|', array($k, trim($v)));
+                }
+            }
+        }
+        $params = array();
+        $params['attributes'] = array(
+            'events_layout' => implode( '&', $events )
+        );
+        eZContentFunctions::updateAndPublishObject( $this->getObject(), $params );
+        $this->flushObject();
+        $this->dataMap = $this->getObject()->attribute( 'data_map' );
+
+        $rootNode = eZContentObjectTreeNode::fetch( OpenPAAgenda::instance()->rootObject()->attribute('main_node_id'));
+
+        $tpl = eZTemplate::factory();
+        $tpl->resetVariables();
+        $tpl->setVariable( 'root_node', $rootNode );
+        $tpl->setVariable( 'programma_eventi', $this );
+        $tpl->setVariable( 'columns', $httpTool->postVariable('Columns', 2) );
+        $content = $tpl->fetch( 'design:pdf/programma_eventi/leaflet.tpl' );
+
+        /** @var eZContentClass $objectClass */
+        $objectClass = $this->getObject()->attribute( 'content_class' );
+        $languageCode = eZContentObject::defaultLanguage();
+        $fileName = $objectClass->urlAliasName( $this->getObject(), false, $languageCode );
+        $fileName = eZURLAliasML::convertToAlias( $fileName ) . '.pdf';
+
+        $paradoxPdf = new ParadoxPDF();
+        $pdfContent = $paradoxPdf->generatePDF($content);
+        eZFile::create($fileName, eZSys::cacheDirectory(),$pdfContent);
+        if ( isset($this->dataMap['file']) ){
+            $this->dataMap['file']->fromString(eZSys::cacheDirectory().'/'.$fileName);
+            $this->dataMap['file']->store();
+            $this->flushObject();
+        }
+    }
 
     public function executeAction($actionIdentifier, $actionParameters, eZModule $module = null)
     {
-        if ( $actionIdentifier == 'SaveAndGetLeaflet' )
+        if ( $actionIdentifier == 'SaveAndGetProgram' )
         {
-            $httpTool = eZHTTPTool::instance();
-            $events = array();
-            $inputEvents = $httpTool->postVariable('Events', false);
-            if ($inputEvents)
-            {
-                foreach ($inputEvents as $k => $v)
-                {
-                    if (trim($v) != '')
-                    {
-                        $events []= implode('|', array($k, trim($v)));
-                    }
-                }
-            }
-            $params = array();
-            $params['attributes'] = array(
-                'events_layout' => implode( '&', $events )
-            );
-            eZContentFunctions::updateAndPublishObject( $this->getObject(), $params );
-
-            $rootNode = eZContentObjectTreeNode::fetch( OpenPAAgenda::instance()->rootObject()->attribute('main_node_id'));
-
-            $tpl = eZTemplate::factory();
-            $tpl->resetVariables();
-            $tpl->setVariable( 'root_node', $rootNode );
-            $tpl->setVariable( 'programma_eventi', $this );
-            $tpl->setVariable( 'columns', $httpTool->postVariable('Columns', 2) );
-            $content = $tpl->fetch( 'design:pdf/programma_eventi/leaflet.tpl' );
-
-            /** @var eZContentClass $objectClass */
-            $objectClass = $this->getObject()->attribute( 'content_class' );
-            $languageCode = eZContentObject::defaultLanguage();
-            $fileName = $objectClass->urlAliasName( $this->getObject(), false, $languageCode );
-            $fileName = eZURLAliasML::convertToAlias( $fileName ) . '.pdf';
-
-            $parameters = array(
-                'exporter' => 'paradox',
-                'cache' => array(
-                    'keys' => array(),
-                    'subtree_expiry' => '',
-                    'expiry' => -1,
-                    'ignore_content_expiry' => false
-                )
-            );
-
-            $paradoxPdf = new ParadoxPDF();
-            if ( eZINI::instance()->variable( 'DebugSettings', 'DebugOutput' ) == 'enabled' )
-            {
-                echo $content;
-                exit;
-                echo '<pre>' . htmlentities($paradoxPdf->generatePDF( $content ));
-                /*array(
-                    'content' => $paradoxPdf->generatePDF( $content ),
-                    'exporter' => $paradoxPdf
-                )*/
-                eZDisplayDebug();
-            }
-            else
-            {
-                $paradoxPdf->exportPDF(
-                    $content,
-                    $fileName,
-                    $parameters['cache']['keys'],
-                    $parameters['cache']['subtree_expiry'],
-                    $parameters['cache']['expiry'],
-                    $parameters['cache']['ignore_content_expiry']
-                );
-                return true;
-            }
-            eZExecution::cleanExit();
-
+            $this->saveProgram();
+            $fileHandler = eZBinaryFileHandler::instance();
+            $fileHandler->handleDownload( $this->getObject(), $this->getFileAttribute(), eZBinaryFileHandler::TYPE_FILE );
         }
         else if ( $actionIdentifier == 'BrowseEvent' )
         {
@@ -211,7 +206,7 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
 
 
     /**
-     * @return Events[]
+     * @return array[]
      */
     public function getEvents()
     {
@@ -279,49 +274,12 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
                 'template_uri' => "design:{$templatePath}/parts/content.tpl"
             )
         );
-        /*if ( $currentUser->hasAccessTo( 'editorialstuff', 'media' ) && in_array( 'images', $this->factory->attributeIdentifiers() ) )
-        {
-            $tabs[] = array(
-                'identifier' => 'media',
-                'name' => 'Galleria immagini',
-                'template_uri' => "design:{$templatePath}/parts/media.tpl"
-            );
-        }
-        if ( $currentUser->hasAccessTo( 'editorialstuff', 'mail' ) )
-        {
-            $tabs[] = array(
-                'identifier' => 'mail',
-                'name' => 'Mail',
-                'template_uri' => "design:{$templatePath}/parts/mail.tpl"
-            );
-        }
-        if ( eZINI::instance( 'ngpush.ini' )->hasVariable( 'PushNodeSettings', 'Blocks' ) && $currentUser->hasAccessTo( 'push', '*' ) )
-        {
-            $tabs[] = array(
-                'identifier' => 'social',
-                'name' => 'Social Network',
-                'template_uri' => "design:{$templatePath}/parts/social.tpl"
-            );
-        }*/
 
         $tabs[] = array(
             'identifier' => 'leaflet',
             'name' => 'Volantino',
             'template_uri' => "design:{$templatePath}/parts/leaflet.tpl"
         );
-
-
-        /*$tabs[] = array(
-            'identifier' => 'comments',
-            'name' => 'Commenti',
-            'template_uri' => "design:{$templatePath}/parts/public_comments.tpl"
-        );
-
-        $tabs[] = array(
-            'identifier' => 'tools',
-            'name' => 'Press kit',
-            'template_uri' => "design:{$templatePath}/parts/tools.tpl"
-        );*/
 
         $tabs[] = array(
             'identifier' => 'history',

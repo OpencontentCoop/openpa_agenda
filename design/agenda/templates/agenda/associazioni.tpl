@@ -22,6 +22,12 @@
 <script type="text/javascript" language="javascript" class="init">
 	var baseUri = '{'/'|ezurl(no)}';
     var mainQuery = 'classes [associazione]';
+    $.opendataTools.settings('accessPath', "{'/'|ezurl(no)}");
+    $.opendataTools.settings('endpoint',{ldelim}
+        geo: {'/opendata/api/geo/search/'|ezurl()},
+        search: {'/opendata/api/content/search/'|ezurl()},
+        class: {'/opendata/api/classes/'|ezurl()}
+    {rdelim});
     {literal}
 
     var facets = [
@@ -46,9 +52,9 @@
                             return L.marker(latlng, {icon: customIcon});
                         },
                         onEachFeature: function (feature, layer) {
-                            var popupDefault = '<p><a href="/content/view/full/' + feature.properties.mainNodeId + '" target="_blank">';
+                            var popupDefault = '<h4><a href="' + tools.settings('accessPath') + '/content/view/full/' + feature.properties.mainNodeId + '" target="_blank">';
                             popupDefault += feature.properties.name;
-                            popupDefault += '</a></p>';
+                            popupDefault += '</a></h4>';
                             var popup = new L.Popup({maxHeight: 360});
                             popup.setContent(popupDefault);
                             layer.bindPopup(popup);
@@ -65,7 +71,10 @@
                         "query": mainQuery
                     },
                     "datatable":{
-						"ajax": {
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Italian.json"
+                        },
+                        "ajax": {
                             url: baseUri+"/opendata/api/datatable/search/"
                         },
                         "columns": [

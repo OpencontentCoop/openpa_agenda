@@ -1,5 +1,14 @@
 <?php /* #?ini charset="utf-8"?
 
+
+[AvailableActions]
+Actions[]=NotifyEventOwner
+
+[NotifyEventOwner]
+ClassName=OpenPAAgenda
+MethodName=notifyEventOwner
+
+
 [AvailableFactories]
 Identifiers[]=agenda
 Identifiers[]=associazione
@@ -19,8 +28,9 @@ States[skipped]=Non necessita di moderazione
 States[waiting]=In attesa di moderazione
 States[accepted]=Accettato
 States[refused]=Rifiutato
-NotificationAttributeIdentifiers[]
-
+Actions[]
+Actions[waiting-accepted]=NotifyEventOwner
+Actions[waiting-refused]=NotifyEventOwner
 
 [associazione]
 ClassName=AssociazioneFactory
@@ -29,9 +39,8 @@ CreationButtonText=Crea una nuova associazione
 AttributeIdentifiers[]
 StateGroup=privacy
 States[public]=Pubblico
-States[provate]=Privato
+States[private]=Privato
 NotificationAttributeIdentifiers[]
-
 
 [programma_eventi]
 ClassName=ProgrammaEventiFactory
@@ -41,5 +50,6 @@ AttributeIdentifiers[]
 StateGroup=programma_eventi
 StateGroup=privacy
 States[public]=Pubblico
-States[provate]=Privato
+States[private]=Privato
 NotificationAttributeIdentifiers[]
+

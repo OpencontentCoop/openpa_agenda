@@ -116,6 +116,16 @@
 
 <script>
     moment.locale('it');
+    $.opendataTools.settings('onError', function(errorCode,errorMessage,jqXHR){ldelim}
+        console.log(errorMessage + ' (error: '+errorCode+')');
+    {rdelim});
+    $.opendataTools.settings('calendar_node_id', "{$calendar_node_id}");
+    $.opendataTools.settings('endpoint',{ldelim}
+        geo: {'/opendata/api/geo/search/'|ezurl()},
+        search: {'/opendata/api/content/search/'|ezurl()},
+        class: {'/opendata/api/classes/'|ezurl()}
+    {rdelim});
+    $.opendataTools.settings('session_key','agenda-{$site_identifier}');
     $.opendataTools.settings('event-listitem-exclude-types', ["Evento singolo4"]);
     $.opendataTools.settings('accessPath', "{$access_path}");
     $.opendataTools.settings('language', "{$current_language}");
@@ -192,9 +202,6 @@
         </div>
     </div>
 </div>
-</script>
-<script>
-    $.opendataTools.settings('session_key','aa');
 </script>
 
 

@@ -11,7 +11,19 @@ class OpenPAAgenda
         'skipped' => "Non necessita di moderazione",
         'waiting' => "In attesa di moderazione",
         'accepted' => "Accettato",
-        'refused' => "Rifiutato"
+        'accepted' => "Rifiutato"
+    );
+
+    public static $programStateGroupIdentifier = 'programma_eventi';
+    public static $programStateIdentifiers = array(
+        'public' => "Pubblico",
+        'private' => "Privato"
+    );
+
+    public static $privacyStateGroupIdentifier = 'privacy';
+    public static $privacyStateIdentifiers = array(
+        'public' => "Pubblico",
+        'private' => "Privato"
     );
 
     /**
@@ -77,6 +89,56 @@ class OpenPAAgenda
     public static function rootRemoteId()
     {
         return OpenPABase::getCurrentSiteaccessIdentifier() . '_openpa_agenda';
+    }
+
+    private static function getNodeIdFromRemoteId($remote)
+    {
+        $db = eZDB::instance();
+        $results = $db->arrayQuery("SELECT ezcotn.main_node_id, ezco.remote_id FROM ezcontentobject_tree as ezcotn, ezcontentobject as ezco WHERE ezco.id = ezcotn.contentobject_id AND ezco.remote_id = '{$remote}'");
+        foreach($results as $result){
+            return $result['main_node_id'];
+        }
+        return OpenPAAppSectionHelper::instance()->rootNode()->attribute('node_id');
+    }
+
+    public static function calendarRemoteId()
+    {
+        return OpenPAAgenda::rootRemoteId() . '_agenda_container';
+    }
+
+    public static function calendarNodeId()
+    {
+        return self::getNodeIdFromRemoteId(self::calendarRemoteId());
+    }
+
+    public static function programRemoteId()
+    {
+        return OpenPAAgenda::rootRemoteId() . '_programs_container';
+    }
+
+    public static function programNodeId()
+    {
+        return self::getNodeIdFromRemoteId(self::programRemoteId());
+    }
+
+    public static function associationsRemoteId()
+    {
+        return OpenPAAgenda::rootRemoteId() . '_associations';
+    }
+
+    public static function associationsNodeId()
+    {
+        return self::getNodeIdFromRemoteId(self::associationsRemoteId());
+    }
+
+    public static function moderatorGroupRemoteId()
+    {
+        return OpenPAAgenda::rootRemoteId() . '_moderators';
+    }
+
+    public static function moderatorGroupNodeId()
+    {
+        return self::getNodeIdFromRemoteId(self::moderatorGroupRemoteId());
     }
 
     public static function classIdentifiers()
@@ -173,5 +235,105 @@ class OpenPAAgenda
         $string = str_replace(']', '</strong>', $string);
 
         return $string;
+    }
+
+    public static function notifyEventOwner( OCEditorialStuffPost $post )
+    {
+        $object = $post->getObject();
+        if ( $object instanceof eZContentObject )
+        {
+            $owner = $object->owner();
+            if ( $owner instanceof eZContentObject )
+            {
+                /** @var eZUser $user */
+                $user = eZUser::fetch( $owner->attribute( 'id' ) );
+                if ( $user instanceof eZUser )
+                {
+                    $templatePath = 'design:agenda/mail/notify_owner.tpl';
+                    if ( !OCEditorialStuffActionHandler::sendMail(
+                        $post,
+                        array( $user ),
+                        $templatePath,
+                        array(
+                            'post' => $post
+                        )
+                    ) )
+                    {
+                        eZDebug::writeError( "Fail sending mail", __METHOD__ );
+                    }
+                }
+                else
+                {
+                    eZDebug::writeError( "Owner user not found", __METHOD__ );
+                }
+            }
+            else
+            {
+                eZDebug::writeError( "Owner object not found", __METHOD__ );
+            }
+        }
+        else
+        {
+            eZDebug::writeError( "Object not found", __METHOD__ );
+        }
+    }
+
+    public static function notifyModerationGroup( OCEditorialStuffPost $post )
+    {
+        $object = $post->getObject();
+        if ( $object instanceof eZContentObject )
+        {
+            $users = array();
+            $userClasses = eZUser::contentClassIDs();
+            $children = eZContentObjectTreeNode::subTreeByNodeID(
+                array(
+                    'ClassFilterType' => 'include',
+                    'ClassFilterArray' => $userClasses,
+                    'Limitation' => array(),
+                    'AsObject' => false
+                ), self::moderatorGroupNodeId()
+            );
+            foreach ( $children as $child )
+            {
+                $id = isset( $child['contentobject_id'] ) ? $child['contentobject_id'] : $child['id'];
+                $user = eZUser::fetch( $id );
+                if ( $user instanceof eZUser )
+                {
+                    $users[] = $user;
+                }
+                else
+                {
+                    eZDebug::writeError(
+                        "User {$id} not found",
+                        __METHOD__
+                    );
+                }
+            }
+
+            if ( !empty( $users ) )
+            {
+                $templatePath = 'design:agenda/mail/notify_moderators.tpl';
+                if ( !OCEditorialStuffActionHandler::sendMail(
+                    $post,
+                    $users,
+                    $templatePath,
+                    array(
+                        'post' => $post
+                    )
+                ) )
+                {
+                    eZDebug::writeError( "Fail sending mail", __METHOD__ );
+                }
+            }
+            else
+            {
+                eZDebug::writeError( "Users not found", __METHOD__ );
+            }
+
+        }
+        else
+        {
+            eZDebug::writeError( "Object not found", __METHOD__ );
+        }
     }
 }

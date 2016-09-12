@@ -13,12 +13,12 @@
                 <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
             </div>
         </div>
-        <div class="col-xs-6 col-md-2">
+        {*<div class="col-xs-6 col-md-2">
             <a class="btn btn-info btn-lg"
                href="{concat('editorialstuff/media/', $factory_identifier, '/browse/', $post.object.id )|ezurl(no)}">
                 Libreria
             </a>
-        </div>
+        </div>*}
     </div>
 
     <div id="data">

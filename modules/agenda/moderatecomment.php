@@ -5,7 +5,7 @@ $current = $Params['Current'];
 
 $object = eZContentObject::fetch($id);
 
-if ($object instanceof eZContentObject && $object->attribute('can_edit')){
+if ($object instanceof eZContentObject){
 
     $stateGroupIdentifier = OpenPAAgenda::$stateGroupIdentifier;
     $stateIdentifiers = OpenPAAgenda::$stateIdentifiers;

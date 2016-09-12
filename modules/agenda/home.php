@@ -6,6 +6,9 @@ $tpl = eZTemplate::factory();
 $tpl->setVariable( 'agenda_home', true );
 $tpl->setVariable( 'access_path', eZSys::indexDir() );
 $tpl->setVariable( 'current_language', eZLocale::currentLocaleCode() );
+$tpl->setVariable( 'current_user', eZUser::currentUser() );
+$tpl->setVariable( 'site_identifier', OpenPABase::getCurrentSiteaccessIdentifier() );
+$tpl->setVariable( 'calendar_node_id', OpenPAAgenda::calendarNodeId() );
 
 $currentUser = eZUser::currentUser();
 

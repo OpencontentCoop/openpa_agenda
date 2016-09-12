@@ -44,4 +44,14 @@ class Associazione extends OCEditorialStuffPostDefault
         );
         return $tabs;
     }
+
+    public function onCreate()
+    {
+        OpenPAAgenda::notifyModerationGroup($this);
+    }
+
+    public function onUpdate()
+    {
+        OpenPAAgenda::notifyModerationGroup($this);
+    }
 }

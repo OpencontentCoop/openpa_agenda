@@ -234,8 +234,8 @@ $(document).ready(function () {
         if (currentTarget && currentTarget != 'all') {
             query += 'target in [' + currentTarget + '] and ';
         }
-
-        query += ' classes [event] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100, target|alpha|10]';
+        var calendar_node_id = tools.settings('calendar_node_id');
+        query += ' classes [event] and subtree ['+calendar_node_id+'] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100, target|alpha|10]';
         console.log(query);
         return query;
     };

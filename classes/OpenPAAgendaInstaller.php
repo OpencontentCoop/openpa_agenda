@@ -16,7 +16,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
             '[parent-node:][step:][sa_suffix:]',
             '',
             array(
-                'parent-node' => 'Nodo id contenitore di sensor (Applicazioni di default)',
+                'parent-node' => 'Nodo id contenitore di agenda (Applicazioni di default)',
                 'step'        => 'Esegue solo lo step selezionato: gli step possibili sono' . implode( ', ', $this->steps ),
                 'sa_suffix'   => 'Suffisso del siteaccess (default: eventi)'
             )
@@ -52,8 +52,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
 
         OpenPALog::warning( "Controllo stati" );
         $states = self::installStates();
-
-        OpenPALog::warning( "Installazione Sensor root" );
+        OpenPALog::warning( "Installazione Agenda root" );
         if ( isset( $this->options['parent-node'] ) ) {
             $parentNodeId = $this->options['parent-node'];
         }
@@ -67,7 +66,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
         if ( ( $this->installOnlyStep !== null && $this->installOnlyStep == 'a' ) || $this->installOnlyStep === null )
         {
             OpenPALog::warning( "Installazione Alberatura" );
-            self::installSensorPostStuff( $root, $section, $this->installOnlyStep === null );
+            self::installAgendaStuff( $root, $section, $this->installOnlyStep === null );
         }
 
         // Ruoli
@@ -106,7 +105,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                 'parent_node_id' => $parentNodeId,
                 'section_id' => $section->attribute( 'id' ),
                 'remote_id' => OpenPAAgenda::rootRemoteId(),
-                'class_identifier' => 'sensor_root',
+                'class_identifier' => 'agenda_root',
                 'attributes' => array(
                     'name' => 'Agenda',
                     'logo' => 'extension/openpa_agenda/doc/default/logo.png',
@@ -126,7 +125,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
             $rootObject = eZContentFunctions::createAndPublishObject( $params );
             if( !$rootObject instanceof eZContentObject )
             {
-                throw new Exception( 'Failed creating Sensor root node' );
+                throw new Exception( 'Failed creating Agenda root node' );
             }
         }
         return $rootObject;
@@ -144,23 +143,33 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
 
     protected static function installStates()
     {
-        return OpenPABase::initStateGroup(
-            OpenPAAgenda::$stateGroupIdentifier,
-            OpenPAAgenda::$stateIdentifiers
+        return array_merge(
+            OpenPABase::initStateGroup(
+                OpenPAAgenda::$stateGroupIdentifier,
+                OpenPAAgenda::$stateIdentifiers
+            ),
+            OpenPABase::initStateGroup(
+                OpenPAAgenda::$programStateGroupIdentifier,
+                OpenPAAgenda::$programStateIdentifiers
+            ),
+            OpenPABase::initStateGroup(
+                OpenPAAgenda::$privacyStateGroupIdentifier,
+                OpenPAAgenda::$privacyStateIdentifiers
+            )
         );
     }
 
-    protected static function installSensorPostStuff( eZContentObject $rootObject, eZSection $section, $installDemoContent = true )
+    protected static function installAgendaStuff( eZContentObject $rootObject, eZSection $section, $installDemoContent = true )
     {
         // Events Container
-        $containerObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::rootRemoteId() . '_agenda_container' );
+        $containerObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::calendarRemoteId() );
         if ( !$containerObject instanceof eZContentObject )
         {
             $params = array(
                 'parent_node_id' => $rootObject->attribute( 'main_node_id' ),
                 'section_id' => $section->attribute( 'id' ),
-                'remote_id' => OpenPAAgenda::rootRemoteId() . '_agenda_container',
-                'class_identifier' => 'folder',
+                'remote_id' => OpenPAAgenda::calendarRemoteId(),
+                'class_identifier' => 'event_calendar',
                 'attributes' => array(
                     'name' => 'Eventi',
                     'short_description' => 'short_description',
@@ -185,7 +194,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
             );
 
             $conversionFunctions = new conversionFunctions();
-            $containerObject = $conversionFunctions->convertObject( $containerObject->attribute('id'), eZContentClass::classIDByIdentifier( 'sensor_post_root' ), $mapping );
+            $containerObject = $conversionFunctions->convertObject( $containerObject->attribute('id'), eZContentClass::classIDByIdentifier( 'agenda_post_root' ), $mapping );
             if ( !$containerObject )
             {
                 throw new Exception( "Errore nella conversione dell'oggetto contentitore" );
@@ -193,13 +202,13 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
         }*/
 
         // Programs Container
-        $containerObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::rootRemoteId() . '_programs_container' );
+        $containerObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::programRemoteId() );
         if ( !$containerObject instanceof eZContentObject )
         {
             $params = array(
                 'parent_node_id' => $rootObject->attribute( 'main_node_id' ),
                 'section_id' => $section->attribute( 'id' ),
-                'remote_id' => OpenPAAgenda::rootRemoteId() . '_programs_container',
+                'remote_id' => OpenPAAgenda::programRemoteId(),
                 'class_identifier' => 'folder',
                 'attributes' => array(
                     'name' => 'Programmi',
@@ -217,13 +226,13 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
         }
 
 
-        $groupObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::rootRemoteId() . '_associations' );
+        $groupObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::associationsRemoteId() );
         if ( !$groupObject instanceof eZContentObject )
         {
             $params = array(
                 'parent_node_id' => $rootObject->attribute( 'main_node_id' ),
                 'section_id' => $section->attribute( 'id' ),
-                'remote_id' => OpenPAAgenda::rootRemoteId() . '_associations',
+                'remote_id' => OpenPAAgenda::associationsRemoteId(),
                 'class_identifier' => 'user_group',
                 'attributes' => array(
                     'name' => 'Associazioni'
@@ -236,11 +245,40 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                 throw new Exception( 'Failed creating Association group node' );
             }
         }
+
+        $groupObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::moderatorGroupRemoteId() );
+        if ( !$groupObject instanceof eZContentObject )
+        {
+            $params = array(
+                'parent_node_id' => $rootObject->attribute( 'main_node_id' ),
+                'section_id' => $section->attribute( 'id' ),
+                'remote_id' => OpenPAAgenda::moderatorGroupRemoteId(),
+                'class_identifier' => 'user_group',
+                'attributes' => array(
+                    'name' => 'Moderatori'
+                )
+            );
+            /** @var eZContentObject $groupObject */
+            $groupObject = eZContentFunctions::createAndPublishObject( $params );
+            if( !$groupObject instanceof eZContentObject )
+            {
+                throw new Exception( 'Failed creating Moderatori group node' );
+            }
+        }
     }
 
-
+    /**
+     * @param eZSection $section
+     * @param eZContentObjectState[] $states
+     *
+     * @throws Exception
+     */
     protected static function installRoles( eZSection $section, array $states )
     {
+        $mediaSectionId = eZContentObjectTreeNode::fetch(
+            eZINI::instance('content.ini')->variable('NodeSettings','MediaRootNode')
+        )->attribute('object')->attribute('section_id');
+
         $roles = array(
             "Agenda Associations" => array(
                 array(
@@ -254,6 +292,198 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                 array(
                     'ModuleName' => 'user',
                     'FunctionName' => 'selfedit'
+                ),
+                array(
+                    'ModuleName' => 'ezoe',
+                    'FunctionName' => 'editor'
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'create',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'event' )
+                        ),
+                        'Section' => $section->attribute( 'id' )
+                    )
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'create',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'image' )
+                        ),
+                        'Section' => $mediaSectionId
+                    )
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'edit',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'associazione' )
+                        ),
+                        'Owner' => 1
+                    )
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'edit',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'event' )
+                        ),
+                        'Owner' => 1,
+                        'Section' => $section->attribute( 'id' ),
+                        'StateGroup_moderation' => array(
+                            $states['moderation.waiting']->attribute( 'id' )
+                        )
+                    )
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'read',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'comment' )
+                        ),
+                        'Section' => $section->attribute( 'id' )
+                    )
+                ),
+                array(
+                    'ModuleName' => 'state',
+                    'FunctionName' => 'assign',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'comment' )
+                        ),
+                        'Section' => $section->attribute( 'id' ),
+                        'NewState' => array(
+                            $states['moderation.skipped']->attribute( 'id' ),
+                            $states['moderation.waiting']->attribute( 'id' ),
+                            $states['moderation.accepted']->attribute( 'id' ),
+                            $states['moderation.accepted']->attribute( 'id' )
+                        )
+                    )
+                ),
+                array(
+                    'ModuleName' => 'editorialstuff',
+                    'FunctionName' => 'full_dashboard'
+                ),
+                array(
+                    'ModuleName' => 'editorialstuff',
+                    'FunctionName' => 'media'
+                )
+            ),
+            "Agenda Moderators" => array(
+                array(
+                    'ModuleName' => 'user',
+                    'FunctionName' => 'password'
+                ),
+                array(
+                    'ModuleName' => 'user',
+                    'FunctionName' => 'preferences'
+                ),
+                array(
+                    'ModuleName' => 'user',
+                    'FunctionName' => 'selfedit'
+                ),
+                array(
+                    'ModuleName' => 'agenda',
+                    'FunctionName' => 'moderate'
+                ),
+                array(
+                    'ModuleName' => 'ezoe',
+                    'FunctionName' => 'editor'
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'create',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'event' ),
+                            eZContentClass::classIDByIdentifier( 'programma_eventi' ),
+                            eZContentClass::classIDByIdentifier( 'associazione' ),
+                            eZContentClass::classIDByIdentifier( 'comment' )
+                        ),
+                        'Section' => $section->attribute( 'id' )
+                    )
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'create',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'image' )
+                        ),
+                        'Section' => $mediaSectionId
+                    )
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'edit',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'programma_eventi' ),
+                            eZContentClass::classIDByIdentifier( 'associazione' ),
+                            eZContentClass::classIDByIdentifier( 'event' ),
+                            eZContentClass::classIDByIdentifier( 'comment' )
+                        ),
+                        'Section' => $section->attribute( 'id' )
+                    )
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'read',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'programma_eventi' ),
+                            eZContentClass::classIDByIdentifier( 'associazione' ),
+                            eZContentClass::classIDByIdentifier( 'event' ),
+                            eZContentClass::classIDByIdentifier( 'comment' )
+                        ),
+                        'Section' => $section->attribute( 'id' )
+                    )
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'read',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'associazione' )
+                        )
+                    )
+                ),
+                array(
+                    'ModuleName' => 'state',
+                    'FunctionName' => 'assign',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'associazione' )
+                        )
+                    )
+                ),
+                array(
+                    'ModuleName' => 'state',
+                    'FunctionName' => 'assign',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'programma_eventi' ),
+                            eZContentClass::classIDByIdentifier( 'associazione' ),
+                            eZContentClass::classIDByIdentifier( 'comment' ),
+                            eZContentClass::classIDByIdentifier( 'event' ),
+                        ),
+                        'Section' => $section->attribute( 'id' )
+                    )
+                ),
+                array(
+                    'ModuleName' => 'editorialstuff',
+                    'FunctionName' => 'dashboard'
+                ),
+                array(
+                    'ModuleName' => 'editorialstuff',
+                    'FunctionName' => 'media'
                 )
             ),
             "Agenda Anonymous" => array(
@@ -263,8 +493,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                     'Limitation' => array(
                         'Class' => array(
                             eZContentClass::classIDByIdentifier( 'comment' ),
-                            eZContentClass::classIDByIdentifier( 'event' ),
-                            eZContentClass::classIDByIdentifier( 'associazione' )
+                            eZContentClass::classIDByIdentifier( 'event' )
                         ),
                         'Section' => $section->attribute( 'id' ),
                         'StateGroup_moderation' => array(
@@ -272,6 +501,40 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                             $states['moderation.accepted']->attribute( 'id' )
                         )
                     )
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'read',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'programma_eventi' )
+                        ),
+                        'Section' => $section->attribute( 'id' ),
+                        'StateGroup_programma_eventi' => array(
+                            $states['programma_eventi.public']->attribute( 'id' )
+                        )
+                    )
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'read',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'associazione' )
+                        ),
+                        'Section' => $section->attribute( 'id' ),
+                        'StateGroup_privacy' => array(
+                            $states['privacy.public']->attribute( 'id' )
+                        )
+                    )
+                ),
+                array(
+                    'ModuleName' => 'social_user',
+                    'FunctionName' => 'signup'
+                ),
+                array(
+                    'ModuleName' => 'user',
+                    'FunctionName' => 'selfedit'
                 ),
                 array(
                     'ModuleName' => 'agenda',
@@ -287,9 +550,9 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                 ),
                 array(
                     'ModuleName' => 'ezjscore',
-                    'FunctionName' => ' call ',
+                    'FunctionName' => 'call',
                     'Limitation' => array(
-                        'FunctionList' => 'ezstarrating_rate'
+                        'FunctionList' => array('ezstarrating_rate')
                     )
                 ),
                 array(
@@ -298,7 +561,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                 ),
                 array(
                     'ModuleName' => 'opendata',
-                    'FunctionName' => ' environment',
+                    'FunctionName' => 'environment',
                     'Limitation' => array(
                         'PresetList' => array('content', 'datatable', 'geo')
                     )
@@ -307,7 +570,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                     'ModuleName' => 'user',
                     'FunctionName' => 'login',
                     'Limitation' => array(
-                        'SiteAccess' => eZSys::ezcrc32( OpenPABase::getCustomSiteaccessName( 'eventi', false ) )
+                        'SiteAccess' => eZSys::ezcrc32( OpenPABase::getCustomSiteaccessName( 'agenda', false ) )
                     )
                 )
             )
@@ -327,15 +590,26 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
         }
         $anonymousRole->assignToUser( $anonymousUserId );
 
-        $groupObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::rootRemoteId() . '_associations' );
-        /** @var eZRole $operatorRole */
-        $operatorRole = eZRole::fetchByName( "Agenda Associations" );
-        if ( !$operatorRole instanceof eZRole )
+        $groupObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::associationsRemoteId() );
+        /** @var eZRole $associationRole */
+        $associationRole = eZRole::fetchByName( "Agenda Associations" );
+        if ( !$associationRole instanceof eZRole )
         {
             throw new Exception( "Error: problem with roles" );
         }
         $anonymousRole->assignToUser( $groupObject->attribute( 'id' ) );
-        $operatorRole->assignToUser( $groupObject->attribute( 'id' ) );
+        $associationRole->assignToUser( $groupObject->attribute( 'id' ) );
+
+        $groupObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::moderatorGroupRemoteId() );
+        /** @var eZRole $moderatorRole */
+        $moderatorRole = eZRole::fetchByName( "Agenda Moderators" );
+        if ( !$moderatorRole instanceof eZRole )
+        {
+            throw new Exception( "Error: problem with roles" );
+        }
+        $anonymousRole->assignToUser( $groupObject->attribute( 'id' ) );
+        $associationRole->assignToUser( $groupObject->attribute( 'id' ) );
+        $moderatorRole->assignToUser( $groupObject->attribute( 'id' ) );
 
     }
 

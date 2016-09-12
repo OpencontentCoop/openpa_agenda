@@ -57,7 +57,10 @@
                         "query": mainQuery
                     },
                     "datatable":{
-						"ajax": {
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Italian.json"
+                        },
+                        "ajax": {
                             url: baseUri+"/opendata/api/datatable/search/"
                         },
                         "order": [ 0, 'desc' ],

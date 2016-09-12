@@ -11,6 +11,12 @@ class AgendaItem extends OCEditorialStuffPostDefault
                 $this->getObject()->assignState($states[$default]);
             }
         }
+        OpenPAAgenda::notifyModerationGroup($this);
+    }
+
+    public function onUpdate()
+    {
+        OpenPAAgenda::notifyModerationGroup($this);
     }
 
     public function tabs()
@@ -68,4 +74,5 @@ class AgendaItem extends OCEditorialStuffPostDefault
         );
         return $tabs;
     }
+
 }

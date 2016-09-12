@@ -163,14 +163,17 @@ class OpenPAAgendaPageDataHandler implements OCPageDataHandlerInterface
         );
 
         $hasAccess = eZUser::currentUser()->hasAccessTo( 'agenda', 'config' );
-        if ( $hasAccess['accessWord'] == 'yes' )
-        {
+        if ( $hasAccess['accessWord'] == 'yes' ) {
             $userMenu[] = array(
-                'name' => ezpI18n::tr( 'agenda/menu', 'Settings' ),
+                'name' => ezpI18n::tr('agenda/menu', 'Settings'),
                 'url' => 'agenda/config',
                 'highlight' => false,
                 'has_children' => false
             );
+        }
+        $hasAccess = eZUser::currentUser()->hasAccessTo( 'agenda', 'moderate' );
+        if ( $hasAccess['accessWord'] == 'yes' )
+        {
             $userMenu[] = array(
                 'name' => ezpI18n::tr( 'agenda/menu', 'Gestisci associazioni' ),
                 'url' => 'editorialstuff/dashboard/associazione',

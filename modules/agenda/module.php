@@ -21,6 +21,8 @@ $ViewList['event'] = array(
 
 $ViewList['config'] = array(
     'script' => 'config.php',
+    'params' => array("Part"),
+    'unordered_params' => array('offset' => 'Offset'),
     'functions' => array('config')
 );
 
@@ -58,5 +60,6 @@ $ViewList['download'] = array(
 $FunctionList = array();
 $FunctionList['use'] = array();
 $FunctionList['config'] = array();
+$FunctionList['moderate'] = array();
 $FunctionList['qrcode'] = array();
 $FunctionList['download'] = array();
