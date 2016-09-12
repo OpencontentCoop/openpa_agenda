@@ -60,6 +60,7 @@ $(document).ready(function () {
     var typeList = $('.widget[data-filter="type"] ul');
     var dateList = $('.widget[data-filter="date"] ul');
     var targetList = $('.widget[data-filter="target"] ul');
+    var iniziativaList = $('.widget[data-filter="iniziativa"] ul');
     var searchInput = $('.widget[data-filter="q"] input');
 
     var datepicker = $("#datepicker");
@@ -116,6 +117,8 @@ $(document).ready(function () {
             clearSelectType();
         } else if (currentFilter == 'target') {
             clearSelectTarget();
+        } else if (currentFilter == 'iniziativa') {
+            clearSelectIniziativa();
         } else {
             clearSelectDate();
             datepicker.datepicker('update', '');
@@ -141,6 +144,10 @@ $(document).ready(function () {
         $('li', targetList).removeClass('active').hide();
     };
 
+    var clearSelectIniziativa = function () {
+        $('li', iniziativaList).removeClass('active').hide();
+    };
+
     var resetSelectType = function () {
         clearSelectType();
         $('li a[data-value="all"]', typeList).parent().addClass('active');
@@ -154,6 +161,11 @@ $(document).ready(function () {
     var resetSelectTarget = function () {
         clearSelectTarget();
         $('li a[data-value="all"]', targetList).parent().addClass('active');
+    };
+
+    var resetSelectIniziativa = function () {
+        clearSelectIniziativa();
+        $('li a[data-value="all"]', iniziativaList).parent().addClass('active');
     };
 
     var readFilters = function () {
@@ -234,9 +246,14 @@ $(document).ready(function () {
         if (currentTarget && currentTarget != 'all') {
             query += 'target in [' + currentTarget + '] and ';
         }
+        // Iniziativa dell'evento
+        var currentIniziativa = getFilter('iniziativa');
+        if (currentIniziativa && currentIniziativa != 'all') {
+            query += 'iniziativa in [' + currentIniziativa + '] and ';
+        }
         var calendar_node_id = tools.settings('calendar_node_id');
-        query += ' classes [event] and subtree ['+calendar_node_id+'] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100, target|alpha|10]';
-        console.log(query);
+        query += ' classes [event] and subtree ['+calendar_node_id+'] and iniziativa !in [Manifestazione] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100,target|alpha|10,iniziativa|count|10]';
+        //console.log(query);
         return query;
     };
 
@@ -256,9 +273,11 @@ $(document).ready(function () {
     var parseFacets = function (response) {
         clearSelectType();
         clearSelectTarget();
+        clearSelectIniziativa();
         var currentType = getFilter('type'),
-            currentTarget = getFilter('target');
-        //console.log(currentTarget);
+            currentTarget = getFilter('target'),
+            currentIniziativa = getFilter('iniziativa');
+
         $('li a[data-value="all"]').parent().show();
         $.each(response.facets, function(){
            if (this.name == 'tipo_evento'){
@@ -269,15 +288,29 @@ $(document).ready(function () {
            } else if (this.name == 'target') {
                $.each(this.data, function(value,count){
                    if (value != '') {
-                       if ($('li a[data-value="'+value+'"]', targetList).length) {
-                           $('li a[data-value="'+value+'"]', targetList).html(value +' ('+count+')').parent().show();
+                       var quotedValue = value;
+                       if ($('li a[data-value="'+quotedValue+'"]', targetList).length) {
+                           $('li a[data-value="'+quotedValue+'"]', targetList).html(value +' ('+count+')').parent().show();
                        } else {
-                           var li = $('<li><a href="#" data-value="'+value+'">'+value+' ('+count+')'+'</a></li>');
+                           var li = $('<li><a href="#" data-value="'+quotedValue+'">'+value+' ('+count+')'+'</a></li>');
                            targetList.append(li);
                        }
                    }
                });
                $('li a[data-value="'+currentTarget+'"]', targetList).parent().addClass('active');
+           } else if (this.name == 'iniziativa') {
+               $.each(this.data, function(value,count){
+                   if (value != '') {
+                       var quotedValue = value;
+                       if ($('li a[data-value="'+quotedValue+'"]', iniziativaList).length) {
+                           $('li a[data-value="'+quotedValue+'"]', iniziativaList).html(value +' ('+count+')').parent().show();
+                       } else {
+                           var li = $('<li><a href="#" data-value="'+quotedValue+'">'+value+' ('+count+')'+'</a></li>');
+                           iniziativaList.append(li);
+                       }
+                   }
+               });
+               $('li a[data-value="'+currentIniziativa+'"]', iniziativaList).parent().addClass('active');
            }
         });
 
@@ -308,8 +341,6 @@ $(document).ready(function () {
                 },
                 'language': tools.settings('language')
             });
-
-            console.log(response.searchHits);
 
             var htmlOutput = template.render(response.searchHits);
             if (append) {
@@ -350,6 +381,7 @@ $(document).ready(function () {
         resetSelectType();
         resetDateType();
         resetSelectTarget();
+        resetSelectIniziativa();
 
 
         if (sessionStorage.getItem(tools.settings('session_key'))) {

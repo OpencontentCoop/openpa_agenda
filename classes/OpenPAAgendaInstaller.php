@@ -294,6 +294,10 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                     'FunctionName' => 'selfedit'
                 ),
                 array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'browse'
+                ),
+                array(
                     'ModuleName' => 'ezoe',
                     'FunctionName' => 'editor'
                 ),
