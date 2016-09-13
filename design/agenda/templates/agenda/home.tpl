@@ -126,7 +126,7 @@
     {rdelim});
     $.opendataTools.settings('session_key','agenda-{$site_identifier}');
     $.opendataTools.settings('event-listitem-exclude-types', ["Evento singolo4"]);
-    $.opendataTools.settings('accessPath', "{$access_path}");
+    $.opendataTools.settings('accessPath', "{''|ezurl(no,full)}");
     $.opendataTools.settings('language', "{$current_language}");
     $.opendataTools.settings('filterUrl', function(url){ldelim} return url{rdelim} );
 </script>
