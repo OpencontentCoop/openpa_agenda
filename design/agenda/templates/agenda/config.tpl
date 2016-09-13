@@ -31,7 +31,7 @@
                   <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
                 </form>
                 {include name=users_table uri='design:agenda/config/moderators_table.tpl' view_parameters=$view_parameters moderator_parent_node_id=$moderators_parent_node_id}
-                <div class="pull-right"><a class="btn btn-danger" href="{concat('add/new/user/?parent=',$moderator_parent_node_id)|ezurl(no)}"><i class="fa fa-plus"></i> {'Aggiungi moderatore'|i18n('agenda/config')}</a>
+                <div class="pull-right"><a class="btn btn-danger" href="{concat('add/new/user/?parent=',$moderators_parent_node_id)|ezurl(no)}"><i class="fa fa-plus"></i> {'Aggiungi moderatore'|i18n('agenda/config')}</a>
                   <form class="form-inline" style="display: inline" action="{'agenda/config/moderators'|ezurl(no)}" method="post">
                     <button class="btn btn-danger" name="AddModeratorLocation" type="submit"><i class="fa fa-plus"></i> {'Aggiungi utente esistente'|i18n('agenda/config')}</button>
                   </form>

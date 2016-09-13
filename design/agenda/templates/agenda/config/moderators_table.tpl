@@ -1,3 +1,4 @@
+{def $locales = fetch( 'content', 'translation_list' )}
 {def $item_limit=20}
 {def $query = false()}
 {if $view_parameters.query}
