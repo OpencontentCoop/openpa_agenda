@@ -30,7 +30,8 @@ class AgendaItem extends OCEditorialStuffPostDefault
                 'template_uri' => "design:{$templatePath}/parts/content.tpl"
             )
         );
-        if ( $currentUser->hasAccessTo( 'editorialstuff', 'media' ) && in_array( 'images', $this->factory->attributeIdentifiers() ) )
+        $access = $currentUser->hasAccessTo( 'editorialstuff', 'media' );
+        if ( $access['accessWord'] == 'yes' && in_array( 'images', $this->factory->attributeIdentifiers() ) )
         {
             $tabs[] = array(
                 'identifier' => 'media',
@@ -46,7 +47,8 @@ class AgendaItem extends OCEditorialStuffPostDefault
 //                'template_uri' => "design:{$templatePath}/parts/mail.tpl"
 //            );
 //        }
-        if ( eZINI::instance( 'ngpush.ini' )->hasVariable( 'PushNodeSettings', 'Blocks' ) && $currentUser->hasAccessTo( 'push', '*' ) )
+        $access = $currentUser->hasAccessTo( 'push', '*' );
+        if ( eZINI::instance( 'ngpush.ini' )->hasVariable( 'PushNodeSettings', 'Blocks' ) && $access['accessWord'] == 'yes' )
         {
             $tabs[] = array(
                 'identifier' => 'social',
