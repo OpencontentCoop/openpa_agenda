@@ -103,8 +103,8 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         $tpl->setVariable('layout', $currentLayout);
         $content = $tpl->fetch('design:pdf/programma_eventi/leaflet.tpl');
 
-        echo $content;
-        eZExecution::cleanExit();
+        //echo $content;
+        //eZExecution::cleanExit();
 
         /** @var eZContentClass $objectClass */
         $objectClass = $this->getObject()->attribute('content_class');

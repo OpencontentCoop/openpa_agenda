@@ -1,5 +1,8 @@
 <?php
 
+/** @var eZModule $module */
+$Module = $Params['Module'];
+
 $programmi = eZContentObjectTreeNode::subTreeByNodeID(array(
     'SortBy' => array('published', false),
     'ClassFilterType' => 'include',

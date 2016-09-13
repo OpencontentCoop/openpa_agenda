@@ -11,11 +11,13 @@ class AgendaItem extends OCEditorialStuffPostDefault
                 $this->getObject()->assignState($states[$default]);
             }
         }
-        OpenPAAgenda::notifyModerationGroup($this);
+        eZSearch::addObject( $this->object, true );
+        OpenPAAgenda::notifyModerationGroup($this);        
     }
 
     public function onUpdate()
     {
+        eZSearch::addObject( $this->object, true );
         OpenPAAgenda::notifyModerationGroup($this);
     }
 

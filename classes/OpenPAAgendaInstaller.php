@@ -171,10 +171,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                 'remote_id' => OpenPAAgenda::calendarRemoteId(),
                 'class_identifier' => 'event_calendar',
                 'attributes' => array(
-                    'name' => 'Eventi',
-                    'short_description' => 'short_description',
-                    'description' => 'description',
-                    'image' => ''
+                    'title' => 'Eventi'
                 )
             );
             /** @var eZContentObject $containerObject */
@@ -352,6 +349,17 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                         'Class' => array(
                             eZContentClass::classIDByIdentifier( 'comment' )
                         ),
+                        'Section' => $section->attribute( 'id' )
+                    )
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'read',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'event' )
+                        ),
+                        'Owner' => 1,
                         'Section' => $section->attribute( 'id' )
                     )
                 ),

@@ -11,6 +11,8 @@ $currentUser = eZUser::currentUser();
 
 $root = OpenPAAgenda::instance()->rootNode();
 
+if ( $Http->hasVariable( 's' ) )
+    $viewParameters['query'] = $Http->variable( 's' );
 
 if ( $Http->hasPostVariable( 'AddModeratorLocation' ) )
 {
