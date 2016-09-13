@@ -237,19 +237,19 @@ $(document).ready(function () {
             }
         }
         // Tipo di evento
-        var currentType = getFilter('type');
+        var currentType = getFilter('type');        
         if (currentType && currentType != 'all') {
-            query += 'tipo_evento.name in [' + currentType + '] and ';
+            query += 'tipo_evento.name in [\'' + currentType + '\'] and ';
         }
         // Target dell'evento
         var currentTarget = getFilter('target');
         if (currentTarget && currentTarget != 'all') {
-            query += 'target in [' + currentTarget + '] and ';
+            query += 'target in [\'' + currentTarget + '\'] and ';
         }
         // Iniziativa dell'evento
         var currentIniziativa = getFilter('iniziativa');
         if (currentIniziativa && currentIniziativa != 'all') {
-            query += 'iniziativa in [' + currentIniziativa + '] and ';
+            query += 'iniziativa in [\'' + currentIniziativa + '\'] and ';
         }
         var calendar_node_id = tools.settings('calendar_node_id');
         query += ' classes [event] and subtree ['+calendar_node_id+'] and iniziativa !in [Manifestazione] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100,target|alpha|10,iniziativa|count|10]';
@@ -264,6 +264,9 @@ $(document).ready(function () {
     var find = function (query) {
         resultContainer.html(spinner);
         tools.find(query, function (response) {
+            if (response.totalCount > 0) {
+              sessionStorage.setItem(tools.settings('session_key'), JSON.stringify(filters));
+            }
             parseFacets(response);
             parseSearchHits(response);
             tools.loadMarkersInMap(query);
@@ -279,8 +282,8 @@ $(document).ready(function () {
             currentIniziativa = getFilter('iniziativa');
 
         $('li a[data-value="all"]').parent().show();
-        $.each(response.facets, function(){
-            $('[data-filter="'+this.name+'"]').show();
+        $.each(response.facets, function(){            
+            var name = this.name;
             if (this.name == 'tipo_evento'){
                $.each(this.data, function(value,count){
                    $('li a[data-value="'+value+'"]', typeList).html(value +' ('+count+')').parent().show();
@@ -291,11 +294,12 @@ $(document).ready(function () {
                    if (value != '') {
                        var quotedValue = value;
                        if ($('li a[data-value="'+quotedValue+'"]', targetList).length) {
-                           $('li a[data-value="'+quotedValue+'"]', targetList).html(value +' ('+count+')').parent().show();
+                           $('li a[data-value="'+quotedValue+'"]', targetList).html(value +' ('+count+')').parent().show();                           
                        } else {
                            var li = $('<li><a href="#" data-value="'+quotedValue+'">'+value+' ('+count+')'+'</a></li>');
-                           targetList.append(li);
+                           targetList.append(li);                           
                        }
+                       $('[data-filter="'+name+'"]').show();
                    }
                });
                $('li a[data-value="'+currentTarget+'"]', targetList).parent().addClass('active');
@@ -309,6 +313,8 @@ $(document).ready(function () {
                            var li = $('<li><a href="#" data-value="'+quotedValue+'">'+value+' ('+count+')'+'</a></li>');
                            iniziativaList.append(li);
                        }
+                      $('[data-filter="'+name+'"]').show();
+
                    }
                });
                $('li a[data-value="'+currentIniziativa+'"]', iniziativaList).parent().addClass('active');
@@ -318,8 +324,7 @@ $(document).ready(function () {
     };
 
     var parseSearchHits = function (response, append) {
-        if (response.totalCount > 0) {
-            sessionStorage.setItem(tools.settings('session_key'), JSON.stringify(filters));
+        if (response.totalCount > 0) {            
             var template = $.templates("#tpl-event");
             $.views.helpers({
                 'formatDate': function (date, format) {
@@ -365,11 +370,12 @@ $(document).ready(function () {
         }
     };
 
-    var getFilter = function (name) {
+    var getFilter = function (name) {        
         var filter = null;
         $.each(filters, function () {
-            if (this.name == name) {
-                filter = this.value;
+            if (this.name == name && filter == null) {
+                value = this.value.replace('\'', '\\\'');
+                filter = value;
             }
         });
         return filter;
@@ -406,7 +412,7 @@ $(document).ready(function () {
         doFind();
     };
 
-    tools.cacheAll('classes [tipo_evento] and raw[meta_depth_si] = 4 sort [name=>asc]', function (response) {
+    tools.findAll('classes [tipo_evento] sort [name=>asc]', function (response) {
         $.each(response,function(){
             var li = $('<li><a href="#" data-value="'+this.metadata.name[tools.settings('language')]+'">'+this.metadata.name[tools.settings('language')]+'</a></li>');
             li.hide();

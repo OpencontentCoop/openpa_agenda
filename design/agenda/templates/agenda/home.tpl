@@ -179,16 +179,16 @@
                 {{:data[~language].abstract}}
             </p>
 
-            <p class="text-right">
+            <p class="pull-left">
                 <small class="tipo_evento">
                 {{for data[~language].tipo_evento}}
-                    <span class="label label-default type-{{>id}}">
+                    <span class="type-{{>id}}">
                         {{>name[~language]}}
                     </span>
                 {{/for}}
                 </small>
             </p>
-            <p class="text-right">
+            <p class="pull-right">
                 <small>
                 {{for data[~language].associazione}}
                     <a class="brn btn-success btn-xs type-{{>id}}" href="{{:~associazioneUrl(id)}}">
