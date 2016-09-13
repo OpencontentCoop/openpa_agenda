@@ -1,4 +1,4 @@
-<section class="hgroup noborder">
+<section class="hgroup noborder home-agenda">
 
     <div class="row home-teaser hidden-xs">
         <div class="col-sm-4">
@@ -49,8 +49,6 @@
             </ul>
             </aside>
 
-            <hr />
-
             <aside class="widget" data-filter="q" style="display: none">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Cerca nel titolo o nel testo" name="srch-term" id="srch-term">
@@ -59,8 +57,6 @@
                     </div>
                 </div>
             </aside>
-
-            <hr />
 
             <aside class="widget" data-filter="date">
                 <h4>Quando?</h4>
@@ -74,8 +70,6 @@
                 </ul>
             </aside>
 
-            <hr />
-
             <aside class="widget" data-filter="type">
                 <h4>Cosa?</h4>
                 <ul class="nav nav-pills nav-stacked">
@@ -83,18 +77,14 @@
                 </ul>
             </aside>
 
-            <hr />
-
-            <aside class="widget" data-filter="target">
+            <aside class="widget" data-filter="target" style="display: none">
                 <h4>Chi sei?</h4>
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="#" data-value="all">Tutti</a></li>
                 </ul>
             </aside>
 
-            <hr />
-
-            <aside class="widget" data-filter="iniziativa">
+            <aside class="widget" data-filter="iniziativa" style="display: none">
                 <h4>Manifestazione</h4>
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="#" data-value="all">Tutte</a></li>

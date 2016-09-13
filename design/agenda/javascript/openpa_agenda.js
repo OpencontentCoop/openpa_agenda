@@ -280,7 +280,8 @@ $(document).ready(function () {
 
         $('li a[data-value="all"]').parent().show();
         $.each(response.facets, function(){
-           if (this.name == 'tipo_evento'){
+            $('[data-filter="'+this.name+'"]').show();
+            if (this.name == 'tipo_evento'){
                $.each(this.data, function(value,count){
                    $('li a[data-value="'+value+'"]', typeList).html(value +' ('+count+')').parent().show();
                });

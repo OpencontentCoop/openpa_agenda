@@ -1,6 +1,6 @@
-{def $per_page = $programma_eventi.events_per_page
+{def $per_page = $layout.events_per_page
      $offset = 0
-     $last_page_columns = $columns|sub(1)}
+     $last_page_columns = $layout.columns|sub(1)}
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -17,8 +17,8 @@
 <div id="second-page" class="page-break-after">
     <table>
         <tr>
-            {for 1 to $columns as $counter}
-                <td class="columns-{$columns}">
+            {for 1 to $layout.columns as $counter}
+                <td class="columns-{$layout.columns}">
                     <table class="table event-container">
                         {foreach $programma_eventi.events as $event max $per_page offset $offset}
                             <tr>
@@ -56,7 +56,7 @@
 
                                     <h4>{$event.name}</h4>
                                     {if $event.abstract}
-                                        {$event.abstract}
+                                        <div class="event-abstract"> {$event.abstract}</div>
                                     {/if}
 
                                     {*if $event.associazione}
@@ -88,7 +88,7 @@
     <table>
         <tr>
             {for 1 to $last_page_columns as $counter}
-                <td class="columns-{$columns}">
+                <td class="columns-{$layout.columns}">
                     <table class="table event-container">
                         {foreach $programma_eventi.events as $event max $per_page offset $offset}
                             <tr>
@@ -126,7 +126,7 @@
 
                                     <h4>{$event.name}</h4>
                                     {if $event.abstract}
-                                        {$event.abstract}
+                                        <div class="event-abstract"> {$event.abstract}</div>
                                     {/if}
 
                                     {*if $event.associazione}
@@ -150,7 +150,7 @@
                 </td>
                 {set $offset = $offset|sum($per_page)}
             {/for}
-            <td class="columns-{$columns} text-center">
+            <td class="columns-{$layout.columns} text-center">
                 <h1>{$programma_eventi.object.data_map.title.content}</h1>
                 <hr />
                 <h3>{$programma_eventi.object.data_map.subtitle.content}</h3>

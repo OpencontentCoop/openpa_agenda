@@ -418,3 +418,6 @@ h1{
 .text-center {
     text-align: center;
 }
+.event-abstract{
+    font-size: .8em;
+}

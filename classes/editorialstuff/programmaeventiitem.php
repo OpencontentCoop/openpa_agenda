@@ -3,14 +3,17 @@
 class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEditorialStuffPostInputActionInterface
 {
 
-    protected $abstract_length = 270;
-    protected $layouts = array(2, 3);
-    protected $events_per_page = 6;
+    protected $abstract_length = 220;
+    protected $layouts = array(
+        array( 'id' => 2, 'columns' => 2, 'events_per_page' => 6, 'title' => 'Due colonne (18 eventi)'),
+        array( 'id' => 3, 'columns' => 3, 'events_per_page' => 4, 'title' => 'Tre colonne (20 eventi)')
+    );
+
     protected $events = array();
 
     public function onCreate()
     {
-        if ( $this->getObject()->attribute('current_version') == 1 ){
+        if ($this->getObject()->attribute('current_version') == 1) {
             $states = $this->states();
         }
     }
@@ -23,51 +26,44 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         $attributes = parent::attributes();
         $attributes[] = 'abstract_length';
         $attributes[] = 'layouts';
-        $attributes[] = 'events_per_page';
         $attributes[] = 'events';
         $attributes[] = 'file_attribute';
+
         return $attributes;
     }
 
     /**
      * @param $property
+     *
      * @return mixed
      */
     public function attribute($property)
     {
-        if ( $property == 'abstract_length' )
-        {
+        if ($property == 'abstract_length') {
             return $this->abstract_length;
         }
 
-        if ( $property == 'layouts' )
-        {
+        if ($property == 'layouts') {
             return $this->layouts;
         }
 
-        if ( $property == 'events_per_page' )
-        {
-            return $this->events_per_page;
-        }
-
-        if ( $property == 'events' )
-        {
+        if ($property == 'events') {
             return $this->getEvents();
         }
 
-        if ( $property == 'file_attribute' )
-        {
+        if ($property == 'file_attribute') {
             return $this->getFileAttribute();
         }
 
-        return parent::attribute( $property );
+        return parent::attribute($property);
     }
 
     protected function getFileAttribute()
     {
-        if (isset($this->dataMap['file'])) {
+        if (isset( $this->dataMap['file'] )) {
             return $this->dataMap['file'];
         }
+
         return false;
     }
 
@@ -76,44 +72,51 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         $httpTool = eZHTTPTool::instance();
         $events = array();
         $inputEvents = $httpTool->postVariable('Events', false);
-        if ($inputEvents)
-        {
-            foreach ($inputEvents as $k => $v)
-            {
-                if (trim($v) != '')
-                {
-                    $events []= implode('|', array($k, trim($v)));
+        if ($inputEvents) {
+            foreach ($inputEvents as $k => $v) {
+                if (trim($v) != '') {
+                    $events [] = implode('|', array($k, trim($v)));
                 }
             }
         }
         $params = array();
         $params['attributes'] = array(
-            'events_layout' => implode( '&', $events )
+            'events_layout' => implode('&', $events)
         );
-        eZContentFunctions::updateAndPublishObject( $this->getObject(), $params );
+        eZContentFunctions::updateAndPublishObject($this->getObject(), $params);
         $this->flushObject();
-        $this->dataMap = $this->getObject()->attribute( 'data_map' );
+        $this->dataMap = $this->getObject()->attribute('data_map');
 
-        $rootNode = eZContentObjectTreeNode::fetch( OpenPAAgenda::instance()->rootObject()->attribute('main_node_id'));
+        $rootNode = eZContentObjectTreeNode::fetch(OpenPAAgenda::instance()->rootObject()->attribute('main_node_id'));
+
+        $currentLayout = $httpTool->postVariable('layout');
+        foreach($this->layouts as $layout){
+            if ($layout['id'] == $currentLayout){
+                $currentLayout = $layout;
+            }
+        }
 
         $tpl = eZTemplate::factory();
         $tpl->resetVariables();
-        $tpl->setVariable( 'root_node', $rootNode );
-        $tpl->setVariable( 'programma_eventi', $this );
-        $tpl->setVariable( 'columns', $httpTool->postVariable('Columns', 2) );
-        $content = $tpl->fetch( 'design:pdf/programma_eventi/leaflet.tpl' );
+        $tpl->setVariable('root_node', $rootNode);
+        $tpl->setVariable('programma_eventi', $this);
+        $tpl->setVariable('layout', $currentLayout);
+        $content = $tpl->fetch('design:pdf/programma_eventi/leaflet.tpl');
+
+        echo $content;
+        eZExecution::cleanExit();
 
         /** @var eZContentClass $objectClass */
-        $objectClass = $this->getObject()->attribute( 'content_class' );
+        $objectClass = $this->getObject()->attribute('content_class');
         $languageCode = eZContentObject::defaultLanguage();
-        $fileName = $objectClass->urlAliasName( $this->getObject(), false, $languageCode );
-        $fileName = eZURLAliasML::convertToAlias( $fileName ) . '.pdf';
+        $fileName = $objectClass->urlAliasName($this->getObject(), false, $languageCode);
+        $fileName = eZURLAliasML::convertToAlias($fileName) . '.pdf';
 
         $paradoxPdf = new ParadoxPDF();
         $pdfContent = $paradoxPdf->generatePDF($content);
-        eZFile::create($fileName, eZSys::cacheDirectory(),$pdfContent);
-        if ( isset($this->dataMap['file']) ){
-            $this->dataMap['file']->fromString(eZSys::cacheDirectory().'/'.$fileName);
+        eZFile::create($fileName, eZSys::cacheDirectory(), $pdfContent);
+        if (isset( $this->dataMap['file'] )) {
+            $this->dataMap['file']->fromString(eZSys::cacheDirectory() . '/' . $fileName);
             $this->dataMap['file']->store();
             $this->flushObject();
         }
@@ -121,28 +124,30 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
 
     public function executeAction($actionIdentifier, $actionParameters, eZModule $module = null)
     {
-        if ( $actionIdentifier == 'SaveAndGetProgram' )
-        {
+        $http = eZHTTPTool::instance();
+        $subActionIdentifier = $http->postVariable($actionIdentifier);
+
+        if ($subActionIdentifier == 'SaveAndGetProgram') {
+
             $this->saveProgram();
             $fileHandler = eZBinaryFileHandler::instance();
-            $fileHandler->handleDownload( $this->getObject(), $this->getFileAttribute(), eZBinaryFileHandler::TYPE_FILE );
-        }
-        else if ( $actionIdentifier == 'BrowseEvent' )
-        {
+            $fileHandler->handleDownload($this->getObject(), $this->getFileAttribute(), eZBinaryFileHandler::TYPE_FILE);
+
+        } elseif ($subActionIdentifier == 'BrowseEvent') {
+
             $startNodeId = OpenPAAgenda::instance()->rootObject()->attribute('main_node_id');
-            $containerObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::rootRemoteId() . '_agenda_container' );
-            if ($containerObject instanceof eZContentObject)
-            {
+            $containerObject = eZContentObject::fetchByRemoteID(OpenPAAgenda::rootRemoteId() . '_agenda_container');
+            if ($containerObject instanceof eZContentObject) {
                 $startNodeId = $containerObject->attribute('main_node_id');
             }
 
             eZContentBrowse::browse(
                 array(
                     'action_name' => 'AddSelectedEvent',
-                    'selection'   => 'multiple',
-                    'from_page'   => '/editorialstuff/action/programma_eventi/' . $this->getObject()->ID . '#tab_leaflet',
-                    'class_array' => array( 'event' ),
-                    'start_node'  => $startNodeId,
+                    'selection' => 'multiple',
+                    'from_page' => '/editorialstuff/action/programma_eventi/' . $this->getObject()->ID . '#tab_leaflet',
+                    'class_array' => array('event'),
+                    'start_node' => $startNodeId,
                     'cancel_page' => '/editorialstuff/edit/programma_eventi/' . $this->getObject()->ID . '#tab_leaflet',
                     'persistent_data' => array(
                         'ActionIdentifier' => 'AddSelectedEvent',
@@ -151,55 +156,46 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
                 ),
                 $module
             );
-        }
-        else if ( $actionIdentifier == 'AddSelectedEvent' )
-        {
-            $http = eZHTTPTool::instance();
-            if ( $http->hasPostVariable( 'SelectedNodeIDArray' ) && !empty( $http->postVariable( 'SelectedNodeIDArray' ) ) )
-            {
-                $selected = $http->postVariable( 'SelectedNodeIDArray' );
-                $dataMap = $this->getObject()->dataMap();
-                $events = explode( '-', $dataMap['events']->toString());
+        } elseif ($subActionIdentifier == 'DeleteSelected') {
 
-                foreach ($selected as $s)
-                {
-                    /** @var eZContentObjectTreeNode $node */
-                    $node = eZContentObjectTreeNode::fetch($s);
-                    if (!in_array($node->ContentObjectID, $events))
-                    {
-                        $events []= $node->ContentObjectID;
+            if ($http->hasPostVariable('SelectEvent') && !empty( $http->postVariable('SelectEvent') )) {
+                $selected = $http->postVariable('SelectEvent');
+                $dataMap = $this->getObject()->dataMap();
+                $events = explode('-', $dataMap['events']->toString());
+
+                foreach ($events as $k => $v) {
+                    if (in_array($v, $selected)) {
+                        unset( $events[$k] );
                     }
                 }
 
                 $params = array();
                 $params['attributes'] = array(
-                    'events' => implode( '-', $events )
+                    'events' => implode('-', $events)
                 );
-                eZContentFunctions::updateAndPublishObject( $this->getObject(), $params );
+                eZContentFunctions::updateAndPublishObject($this->getObject(), $params);
             }
         }
-        else if ( $actionIdentifier == 'DeleteSelected' )
-        {
-            $http = eZHTTPTool::instance();
-            if ( $http->hasPostVariable( 'SelectedEvents' ) && !empty( $http->postVariable( 'SelectedEvents' ) ) )
-            {
-                $selected = explode( '-', $http->postVariable( 'SelectedEvents' ));
-                $dataMap = $this->getObject()->dataMap();
-                $events = explode( '-', $dataMap['events']->toString());
 
-                foreach ($events as $k => $v)
-                {
-                    if (in_array($v, $selected))
-                    {
-                        unset($events[$k]);
+        if ($actionIdentifier == 'AddSelectedEvent') {
+
+            if ($http->hasPostVariable('SelectedNodeIDArray') && !empty( $http->postVariable('SelectedNodeIDArray') )) {
+                $selected = $http->postVariable('SelectedNodeIDArray');
+                $dataMap = $this->getObject()->dataMap();
+                $events = explode('-', $dataMap['events']->toString());
+
+                foreach ($selected as $s) {
+                    /** @var eZContentObjectTreeNode $node */
+                    $node = eZContentObjectTreeNode::fetch($s);
+                    if (!in_array($node->attribute('contentobject_id'), $events)) {
+                        $events [] = $node->attribute('contentobject_id');
                     }
                 }
-
                 $params = array();
                 $params['attributes'] = array(
-                    'events' => implode( '-', $events )
+                    'events' => implode('-', $events)
                 );
-                eZContentFunctions::updateAndPublishObject( $this->getObject(), $params );
+                eZContentFunctions::updateAndPublishObject($this->getObject(), $params);
             }
         }
     }
@@ -211,33 +207,31 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
     public function getEvents()
     {
 
-        if ( empty( $this->events ) )
-        {
+        if (empty( $this->events )) {
             $events = array();
             $data_map = $this->getObject()->dataMap();
-            $related_events = $data_map['events']->content();
-            $events_array = $related_events['relation_list'];
+            $relatedEvents = $data_map['events']->content();
+            $relationList = $relatedEvents['relation_list'];
 
             /** @var eZMatrix $eventsLayout */
             $eventsLayout = $data_map['events_layout']->content();
             $layoutRows = $eventsLayout->attribute('rows');
 
-            $customEentsAttributes = array();
-            foreach ($layoutRows['sequential'] as $row)
-            {
-                $customEentsAttributes[$row['columns'][0]] = array(
+            $customEventsAttributes = array();
+            foreach ($layoutRows['sequential'] as $row) {
+                $customEventsAttributes[$row['columns'][0]] = array(
                     'abstract' => $row['columns'][1]
                 );
             }
 
-            foreach ($events_array as $event){
+            foreach ($relationList as $index => $event) {
                 /** @var eZContentObject $objectEvent */
                 $objectEvent = eZContentObject::fetch($event['contentobject_id']);
                 $eventDataMap = $objectEvent->dataMap();
-                $key = $eventDataMap['from_time']->toString() . '-' . $objectEvent->ID;
+                $key = $eventDataMap['from_time']->toString() . '.' . $objectEvent->ID;
 
-                $events [$key] = array(
-                    'id'   => $objectEvent->ID,
+                $events[$key] = array(
+                    'id' => $objectEvent->ID,
                     'main_node_id' => $objectEvent->mainNodeID(),
                     'name' => $objectEvent->attribute('name'),
                     'periodo_svolgimento' => $eventDataMap['periodo_svolgimento']->toString(),
@@ -246,19 +240,22 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
                     'orario_svolgimento' => $eventDataMap['periodo_svolgimento']->toString(),
                     'durata' => $eventDataMap['durata']->toString(),
                     'luogo_svolgimento' => $eventDataMap['luogo_svolgimento']->toString(),
-                    'abstract' => substr(strip_tags($eventDataMap['abstract']->hasContent() ? $eventDataMap['abstract']->toString() : $eventDataMap['text']->toString()), 0, $this->abstract_length),
-                    'auto' => true
+                    'abstract' => substr(strip_tags($eventDataMap['abstract']->hasContent() ? $eventDataMap['abstract']->toString() : $eventDataMap['text']->toString()),
+                        0, $this->abstract_length),
+                    'auto' => true,
+                    'index' => $index,
+                    'key' => $key
                 );
 
-                if (isset($customEentsAttributes[$objectEvent->ID]) && !empty($customEentsAttributes[$objectEvent->ID]['abstract']))
-                {
-                    $events [$key]['abstract'] = $customEentsAttributes[$objectEvent->ID]['abstract'];
-                    $events [$key]['auto'] = false;
+                if (isset( $customEventsAttributes[$objectEvent->ID] ) && !empty( $customEventsAttributes[$objectEvent->ID]['abstract'] )) {
+                    $events[$key]['abstract'] = $customEventsAttributes[$objectEvent->ID]['abstract'];
+                    $events[$key]['auto'] = false;
                 }
             }
-            ksort( $events );
+            ksort($events);
             $this->events = $events;
         }
+
         return $this->events;
     }
 
@@ -275,17 +272,20 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
             )
         );
 
-        $tabs[] = array(
-            'identifier' => 'leaflet',
-            'name' => 'Volantino',
-            'template_uri' => "design:{$templatePath}/parts/leaflet.tpl"
-        );
+        if ($this->getObject()->canEdit()) {
+            $tabs[] = array(
+                'identifier' => 'leaflet',
+                'name' => 'Volantino',
+                'template_uri' => "design:{$templatePath}/parts/leaflet.tpl"
+            );
+        }
 
         $tabs[] = array(
             'identifier' => 'history',
             'name' => 'Cronologia',
             'template_uri' => "design:{$templatePath}/parts/history.tpl"
         );
+
         return $tabs;
     }
 
