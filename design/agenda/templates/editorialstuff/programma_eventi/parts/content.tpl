@@ -44,15 +44,15 @@
 
 
     <div class="row edit-row">
-        <div class="col-md-3"><strong><em>Autore</em></strong></div>
-        <div class="col-md-9">
+        <div class="col-md-2"><strong><em>Autore</em></strong></div>
+        <div class="col-md-10">
             {if $post.object.owner}{$post.object.owner.name|wash()}{else}?{/if}
         </div>
     </div>
 
     <div class="row edit-row">
-        <div class="col-md-3"><strong><em>Data di pubblicazione</em></strong></div>
-        <div class="col-md-9">
+        <div class="col-md-2"><strong><em>Data di pubblicazione</em></strong></div>
+        <div class="col-md-10">
             <p>{$post.object.published|l10n(shortdatetime)}</p>
             {if $post.object.current_version|gt(1)}
                 <small>Ultima modifica di <a
@@ -64,8 +64,8 @@
 
 
     <div class="row edit-row">
-        <div class="col-md-3"><strong><em>Collocazioni</em></strong></div>
-        <div class="col-md-9">
+        <div class="col-md-2"><strong><em>Collocazioni</em></strong></div>
+        <div class="col-md-10">
             <ul class="list-unstyled">
                 {foreach $post.object.assigned_nodes as $item}
                     <li>
@@ -77,11 +77,18 @@
         </div>
     </div>
 
-    {foreach $post.content_attributes as $identifier => $attribute}
-        <div class="row edit-row">
-            <div class="col-md-3"><strong>{$attribute.contentclass_attribute_name}</strong></div>
-            <div class="col-md-9">
-                {attribute_view_gui attribute=$attribute image_class=medium}
+	{def $attribute_categories = ezini( 'ClassAttributeSettings', 'CategoryList', 'content.ini' )}
+    {foreach $post.content_attributes_grouped_data_map as $category => $attributes}
+        {if $category|eq('hidden')}{skip}{/if}
+		<div class="row edit-row">
+            <div class="col-md-2"><strong>{$attribute_categories[$category]}</strong></div>
+            <div class="col-md-10">
+				{foreach $attributes as $attribute}
+				<div class="row edit-row">
+				  <div class="col-md-2"><strong>{$attribute.contentclass_attribute_name}</strong></div>
+				  <div class="col-md-10">{attribute_view_gui attribute=$attribute image_class=medium}</div>
+				</div>
+				{/foreach}
             </div>
         </div>
     {/foreach}
