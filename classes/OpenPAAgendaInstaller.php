@@ -675,7 +675,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
             throw new Exception( "Error: problem with roles" );
         }
         $anonymousRole->assignToUser( $groupObject->attribute( 'id' ) );
-        $memberRole->assignToUser( $members->attribute( 'id' ) );
+        $memberRole->assignToUser( $groupObject->attribute( 'id' ) );
         $associationRole->assignToUser( $groupObject->attribute( 'id' ) );        
 
         $groupObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::moderatorGroupRemoteId() );
@@ -686,7 +686,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
             throw new Exception( "Error: problem with roles" );
         }
         $anonymousRole->assignToUser( $groupObject->attribute( 'id' ) );
-        $memberRole->assignToUser( $members->attribute( 'id' ) );
+        $memberRole->assignToUser( $groupObject->attribute( 'id' ) );
         $associationRole->assignToUser( $groupObject->attribute( 'id' ) );
         $moderatorRole->assignToUser( $groupObject->attribute( 'id' ) );
 
