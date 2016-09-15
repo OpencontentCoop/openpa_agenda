@@ -654,7 +654,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
         $anonymousRole->assignToUser( $anonymousUserId );
         
         /** @var eZRole $memberRole */
-        $memberRole = eZRole::fetchByName( "Sensor Reporter" );
+        $memberRole = eZRole::fetchByName( "Agenda Member" );
         if ( !$memberRole instanceof eZRole )
         {
             throw new Exception( "Error: problem with roles" );
