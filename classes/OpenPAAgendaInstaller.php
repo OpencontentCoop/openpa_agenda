@@ -591,6 +591,51 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                         )
                     )
                 ),
+            ),
+            "Agenda Member" => array(
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'create',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'comment' )
+                        ),
+                        'Section' => $section->attribute( 'id' ),
+                        'ParentClass' => array(
+                            eZContentClass::classIDByIdentifier( 'event' )
+                        )
+                    )
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'read',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'comment' )
+                        ),
+                        'Owner' => 1,
+                        'Section' => $section->attribute( 'id' )
+                    ),
+                    'StateGroup_moderation' => array(
+                        $states['moderation.skipped']->attribute( 'id' ),
+                        $states['moderation.waiting']->attribute( 'id' ),
+                        $states['moderation.accepted']->attribute( 'id' )
+                    )
+                ),
+                array(
+                    'ModuleName' => 'content',
+                    'FunctionName' => 'edit',
+                    'Limitation' => array(
+                        'Class' => array(
+                            eZContentClass::classIDByIdentifier( 'comment' )
+                        ),
+                        'Owner' => 1,
+                        'Section' => $section->attribute( 'id' )
+                    ),
+                    'StateGroup_moderation' => array(                        
+                        $states['moderation.waiting']->attribute( 'id' )
+                    )
+                )
             )
         );
 
@@ -607,6 +652,20 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
             throw new Exception( "Error: problem with roles" );
         }
         $anonymousRole->assignToUser( $anonymousUserId );
+        
+        /** @var eZRole $memberRole */
+        $memberRole = eZRole::fetchByName( "Sensor Reporter" );
+        if ( !$memberRole instanceof eZRole )
+        {
+            throw new Exception( "Error: problem with roles" );
+        }
+        $memberNodeId = eZINI::instance()->variable( 'UserSettings', 'DefaultUserPlacement' );
+        $members = eZContentObject::fetchByNodeID( $memberNodeId );
+        if ( $members instanceof eZContentObject )
+        {
+            $anonymousRole->assignToUser( $members->attribute( 'id' ) );
+            $memberRole->assignToUser( $members->attribute( 'id' ) );
+        }
 
         $groupObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::associationsRemoteId() );
         /** @var eZRole $associationRole */
@@ -616,7 +675,8 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
             throw new Exception( "Error: problem with roles" );
         }
         $anonymousRole->assignToUser( $groupObject->attribute( 'id' ) );
-        $associationRole->assignToUser( $groupObject->attribute( 'id' ) );
+        $memberRole->assignToUser( $members->attribute( 'id' ) );
+        $associationRole->assignToUser( $groupObject->attribute( 'id' ) );        
 
         $groupObject = eZContentObject::fetchByRemoteID( OpenPAAgenda::moderatorGroupRemoteId() );
         /** @var eZRole $moderatorRole */
@@ -626,6 +686,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
             throw new Exception( "Error: problem with roles" );
         }
         $anonymousRole->assignToUser( $groupObject->attribute( 'id' ) );
+        $memberRole->assignToUser( $members->attribute( 'id' ) );
         $associationRole->assignToUser( $groupObject->attribute( 'id' ) );
         $moderatorRole->assignToUser( $groupObject->attribute( 'id' ) );
 
@@ -635,6 +696,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
     {
         OpenPALog::warning( 'Salvo configurazioni' );
         OpenPALog::error('Metodo non ancora implemetato ' . __METHOD__);
+        OpenPALog::error('Attiva workflow editorial stuff (occhio ad attivare l\'estensione anche in backend)' . __METHOD__);
     }
 
 }
