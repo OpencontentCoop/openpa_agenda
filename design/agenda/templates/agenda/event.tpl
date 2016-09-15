@@ -189,7 +189,9 @@
 
         <div class="col-md-4">
             <ul class="list-group">
-                <li class="list-group-item"><i class="fa fa-group"></i> {foreach $node.data_map.associazione.content.relation_list as $item}{def $object = fetch(content, object, hash(object_id, $item.contentobject_id))}<a href="{concat('content/view/full/',$object.main_node_id)|ezurl(no)}">{$object.name|wash()}</a>{undef $object}{delimiter}, {/delimiter}{/foreach}</li>
+                {def $itemObject = false()}
+                <li class="list-group-item"><i class="fa fa-group"></i> {foreach $node.data_map.associazione.content.relation_list as $item}{set $itemObject = fetch(content, object, hash(object_id, $item.contentobject_id))}<a href="{concat('content/view/full/',$itemObject.main_node_id)|ezurl(no)}">{$itemObject.name|wash()}</a>{delimiter}, {/delimiter}{/foreach}</li>
+                {undef $itemObject}
                 {if $node|has_attribute( 'telefono' )}
                     <li class="list-group-item"><i class="fa fa-phone"></i> {attribute_view_gui attribute=$node.data_map.telefono}</li>
                 {/if}

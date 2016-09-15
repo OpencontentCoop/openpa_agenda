@@ -400,11 +400,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                 array(
                     'ModuleName' => 'user',
                     'FunctionName' => 'selfedit'
-                ),
-                array(
-                    'ModuleName' => 'agenda',
-                    'FunctionName' => 'moderate'
-                ),
+                ),                
                 array(
                     'ModuleName' => 'ezoe',
                     'FunctionName' => 'editor'

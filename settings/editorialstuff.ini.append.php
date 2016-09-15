@@ -3,16 +3,22 @@
 
 [AvailableActions]
 Actions[]=NotifyEventOwner
+Actions[]=NotifyCommentOwner
 
 [NotifyEventOwner]
 ClassName=OpenPAAgenda
 MethodName=notifyEventOwner
+
+[NotifyCommentOwner]
+ClassName=OpenPAAgenda
+MethodName=notifyCommentOwner
 
 
 [AvailableFactories]
 Identifiers[]=agenda
 Identifiers[]=associazione
 Identifiers[]=programma_eventi
+Identifiers[]=commenti
 
 [agenda]
 ClassName=AgendaFactory
@@ -52,4 +58,17 @@ StateGroup=privacy
 States[public]=Pubblico
 States[private]=Privato
 NotificationAttributeIdentifiers[]
+
+[commenti]
+ClassName=CommentoFactory
+ClassIdentifier=comment
+AttributeIdentifiers[]
+StateGroup=moderation
+States[skipped]=Non necessita di moderazione
+States[waiting]=In attesa di moderazione
+States[accepted]=Accettato
+States[refused]=Rifiutato
+NotificationAttributeIdentifiers[]
+Actions[]
+AttributeIdentifiers[]
 

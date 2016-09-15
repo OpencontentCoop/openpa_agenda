@@ -15,7 +15,7 @@
             {if $comment_form|not()}
                 <div class="pull-right">
                     {include name=edit uri='design:parts/toolbar/node_edit.tpl' current_node=$reply}
-                    {include name=trash uri='design:parts/toolbar/node_trash.tpl' current_node=$reply}
+                    {include name=trash uri='design:parts/toolbar/node_trash.tpl' current_node=$reply}                    
                 </div>
             {/if}
 
@@ -28,6 +28,9 @@
         </div>
         <div class="comment_date">
             <i class="fa fa-clock-o"></i> {$reply.object.published|datetime( 'custom', '%l, %d %F %Y %H:%i' )} {if $reply.object.current_version|gt(1)}<em> <i class="fa fa-pencil"></i> Modificato</em>{/if}
+            {if $reply.object.state_identifier_array|contains('moderation/waiting')}
+              <em>{'In attesa di moderazione'|i18n( 'agenda/states' )}</em>
+            {/if}
         </div>
 
         <div class="the_comment">

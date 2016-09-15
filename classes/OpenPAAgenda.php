@@ -11,7 +11,7 @@ class OpenPAAgenda
         'skipped' => "Non necessita di moderazione",
         'waiting' => "In attesa di moderazione",
         'accepted' => "Accettato",
-        'accepted' => "Rifiutato"
+        'refused' => "Rifiutato"
     );
 
     public static $programStateGroupIdentifier = 'programma_eventi';
@@ -75,6 +75,11 @@ class OpenPAAgenda
         return $this->root->attribute('main_node');
     }
 
+    public function needModeration(eZContentObject $contentObject)
+    {
+        //@todo
+        return $contentObject->attribute('current_version') == 1;
+    }
 
     public function rootHasAttribute($identifier)
     {
@@ -255,7 +260,9 @@ class OpenPAAgenda
                         array( $user ),
                         $templatePath,
                         array(
-                            'post' => $post
+                            'post' => $post,
+                            'is_comment' => $post->getObject()->attribute('class_identifier') == 'comment',
+                            'event' => $post->getObject()->attribute('class_identifier') == 'comment' ? eZContentObjectTreeNode::fetch( $post->getObject()->attribute('main_parent_node_id') ) : null
                         )
                     ) )
                     {
@@ -330,6 +337,48 @@ class OpenPAAgenda
                 eZDebug::writeError( "Users not found", __METHOD__ );
             }
 
+        }
+        else
+        {
+            eZDebug::writeError( "Object not found", __METHOD__ );
+        }
+    }
+    
+    public static function notifyCommentOwner( OCEditorialStuffPost $post )
+    {
+        $object = $post->getObject();
+        if ( $object instanceof eZContentObject )
+        {
+            $owner = $object->owner();
+            if ( $owner instanceof eZContentObject )
+            {
+                /** @var eZUser $user */
+                $user = eZUser::fetch( $owner->attribute( 'id' ) );
+                if ( $user instanceof eZUser )
+                {
+                    $templatePath = 'design:agenda/mail/notify_comment_owner.tpl';
+                    if ( !OCEditorialStuffActionHandler::sendMail(
+                        $post,
+                        array( $user ),
+                        $templatePath,
+                        array(
+                            'post' => $post,
+                            'event' => eZContentObjectTreeNode::fetch( $post->getObject()->attribute('main_parent_node_id') )
+                        )
+                    ) )
+                    {
+                        eZDebug::writeError( "Fail sending mail", __METHOD__ );
+                    }
+                }
+                else
+                {
+                    eZDebug::writeError( "Owner user not found", __METHOD__ );
+                }
+            }
+            else
+            {
+                eZDebug::writeError( "Owner object not found", __METHOD__ );
+            }
         }
         else
         {

@@ -11,7 +11,7 @@
 ))}
 
 <script type="text/javascript" language="javascript" class="init">
-	var baseUri = '{'/'|ezurl(no)}';
+	var baseUri = '{'/'|ezurl(no,full)}';
     var mainQuery = 'classes [comment] subtree [{$post.node.node_id}]';
     {literal}
 
@@ -19,6 +19,29 @@
 
         var tools = $.opendataTools;
 
+        var states = [
+          {
+            label: 'Non necessita di moderazione',
+            identifier: 'skipped',
+            cssClass: 'primary'
+          },
+          {
+            label: 'In attesa di moderazione',
+            identifier: 'waiting',
+            cssClass: 'warning'
+          },
+          {
+            label: 'Accettato',
+            identifier: 'accepted',
+            cssClass: 'success'
+          },
+          {
+            label: 'Rifiutato',
+            identifier: 'refused',
+            cssClass: 'danger'
+          }
+        ]
+        
         var defStatus = function(statusIdentifier){
             var state = {
                 label: 'Sconosciuto',
@@ -94,30 +117,48 @@
                             {
                                 "render": function (data, type, row, meta) {
                                     var stateIdentifiers = row.metadata.stateIdentifiers;
-
-                                    var stateDefinition = defStatus();
-
+                                    var currentStateIdentifier;
                                     $.each(stateIdentifiers, function(key,value){
                                         var parts = value.split('.');
                                         if (parts[0] == 'moderation'){
-                                            stateDefinition = defStatus(parts[1]);
+                                            currentStateIdentifier = parts[1];
                                         }
                                     });
-                                    var state = $('<span class="changeState" data-commentid="'+row.metadata.id+'" data-moderation="'+stateDefinition.identifier+'">')
-                                            .addClass('label label-'+stateDefinition.cssClass)
-                                            .text(stateDefinition.label);
-                                    var container = $('<div />').append(state);
-                                    return container.html();
+                                    return currentStateIdentifier;
                                 },
                                 "targets": [3],
                                 "createdCell": function (td, cellData, rowData, row, col) {
-                                    var span = $(td).find('span').css('cursor','pointer');
-                                    span.bind('click', function(){
-                                        $.get(baseUri+'/agenda/moderatecomment/'+rowData.metadata.id+'/'+span.data('moderation'),function(response){
-                                            var stateDefinition = defStatus(response);
-                                            span.text(stateDefinition.label).data('moderation', stateDefinition.identifier).removeClass().addClass('label label-'+stateDefinition.cssClass);
-                                        })
+                                    var stateIdentifiers = rowData.metadata.stateIdentifiers;
+                                    var currentStateIdentifier;
+                                    $.each(stateIdentifiers, function(key,value){
+                                        var parts = value.split('.');
+                                        if (parts[0] == 'moderation'){
+                                            currentStateIdentifier = parts[1];
+                                        }
                                     });
+                                    var container = $('<div />')
+                                    var state, cssClass;
+                                    $.each(states, function(){
+                                      cssClass = this.identifier == currentStateIdentifier ? this.cssClass : 'default';                                      
+                                      state = $('<span class="moderate '+this.identifier+'" data-commentid="'+rowData.metadata.id+'" data-moderation="'+this.identifier+'">')
+                                            .addClass('label label-'+cssClass )
+                                            .text(this.label);
+                                      container.append(state);
+                                    });                                    
+                                    var $td = $(td).html(container);
+                                    var span = $(td).find('span.moderate').css('cursor','pointer');                                    
+                                    span.bind('click', function(){                                      
+                                        var newStateIdentifier = $(this).data('moderation');
+                                        $.get(baseUri+'/editorialstuff/state_assign/commenti/moderation.'+newStateIdentifier+'/'+rowData.metadata.id+'/?Ajax=1',function(response){                                                                                        
+                                            $.each(states, function(){
+                                              cssClass = response.result == 'success' && this.identifier == newStateIdentifier ? this.cssClass : 'default';                                      
+                                              $(td)
+                                                .find('span.'+this.identifier)                                                
+                                                .removeClass('label-'+this.cssClass)
+                                                .addClass('label-'+cssClass);
+                                            });
+                                        });
+                                    });                                            
                                 }
                             }
                         ]
@@ -144,6 +185,7 @@
 {literal}
     <style>
         .chosen-search input, .chosen-container-multi input{height: auto !important}
+        span.moderate{margin-left:10px;}
     </style>
 {/literal}
 

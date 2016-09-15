@@ -1,7 +1,7 @@
 <?php
 
 
-class AgendaFactory extends OCEditorialStuffPostDefaultFactory
+class CommentoFactory extends OCEditorialStuffPostDefaultFactory
 {
     public function __construct($configuration)
     {
@@ -13,19 +13,12 @@ class AgendaFactory extends OCEditorialStuffPostDefaultFactory
         {
             $rootNodeId = $containerObject->attribute('main_node_id');
         }
-
-        $this->configuration['CreationRepositoryNode'] = $rootNodeId;
+        
         $this->configuration['RepositoryNodes'] = array($rootNodeId);
     }
-
+    
     public function instancePost( $data )
     {
-        return new AgendaItem( $data, $this );
+        return new Commento( $data, $this );
     }
-
-    public function getTemplateDirectory()
-    {
-        return 'editorialstuff/agenda';
-    }
-
 }

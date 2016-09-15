@@ -80,7 +80,7 @@
         <th><small>Data</small></th>
           {if $states|count()}<th><small>Stato</small></th>{/if}
         <th><small>Titolo</small></th>
-        {*<th><small></small></th>*}
+        <th></th>
       </tr>
     {foreach $posts as $post}
       <tr>
@@ -107,6 +107,10 @@
           
           <td>
             <a data-toggle="modal" data-load-remote="{concat( 'layout/set/modal/content/view/full/', $post.object.main_node_id )|ezurl('no')}" data-remote-target="#preview .modal-content" href="#{*$post.url*}" data-target="#preview">{$post.object.name}</a>
+          </td>
+          
+          <td>
+            {include uri='design:parts/toolbar/node_trash.tpl' current_node=$post.node redirect_if_cancel=concat('editorialstuff/dashboard/', $factory_identifier ) redirect_after_remove=concat('editorialstuff/dashboard/', $factory_identifier ) }
           </td>
       
       </tr>

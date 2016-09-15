@@ -4,7 +4,7 @@
         <div class="col-sm-4">
             <div class="service_teaser vertical">
                 <div class="service_photo">
-                    <h2 class="section_header gradient-background"><a href="{'agenda/download/'|ezurl(no)}"><b>Programma</b></a> <small>Scarica il programma mensile in pdf</small></h2>
+                    <h2 class="section_header gradient-background"><a href="{'agenda/download/'|ezurl(no)}"><b>Programma</b></a> <small>Scarica il programma in pdf</small></h2>
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
         <div class="col-sm-4">
             <div class="service_teaser vertical">
                 <div class="service_photo">
-                    <h2 class="section_header gradient-background"><a href="{'agenda/info/terms/'|ezurl(no)}"">Sei un'<b>associazione</b>?</a> <small>Scopri come partecipare!</small></h2>
+                    <h2 class="section_header gradient-background"><a href="{'agenda/info/faq/'|ezurl(no)}"">Sei un'<b>associazione</b>?</a> <small>Scopri come partecipare!</small></h2>
                 </div>
             </div>
         </div>
@@ -120,12 +120,11 @@
     {rdelim});
     $.opendataTools.settings('calendar_node_id', "{$calendar_node_id}");
     $.opendataTools.settings('endpoint',{ldelim}
-        geo: {'/opendata/api/geo/search/'|ezurl()},
-        search: {'/opendata/api/content/search/'|ezurl()},
-        class: {'/opendata/api/classes/'|ezurl()}
-    {rdelim});
-    $.opendataTools.settings('session_key','agenda-{$site_identifier}');
-    $.opendataTools.settings('event-listitem-exclude-types', ["Evento singolo4"]);
+      geo: '{'/opendata/api/geo/search/'|ezurl(no,full)}',
+      search: '{'/opendata/api/content/search/'|ezurl(no,full)}',
+      class: '{'/opendata/api/classes/'|ezurl(no,full)}'
+    {rdelim});  
+    $.opendataTools.settings('session_key','agenda-{$site_identifier}');    
     $.opendataTools.settings('accessPath', "{''|ezurl(no,full)}");
     $.opendataTools.settings('language', "{$current_language}");
     $.opendataTools.settings('filterUrl', function(url){ldelim} return url{rdelim} );
