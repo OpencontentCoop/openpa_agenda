@@ -54,7 +54,7 @@ $(document).ready(function () {
                   "columnDefs": [
                       {
                           "render": function ( data, type, row ) {
-                              return '<a href="/agenda/associazioni/'+row.metadata.mainNodeId+'">'+data+'</a>';
+                              return '<a href="'+tools.settings('accessPath')+'/agenda/associazioni/'+row.metadata.mainNodeId+'">'+data+'</a>';
                           },
                           "targets": [0]
                       }
