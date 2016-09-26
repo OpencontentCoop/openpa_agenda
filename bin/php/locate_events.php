@@ -1,7 +1,7 @@
 <?php
 require 'autoload.php';
 
-$script = eZScript::instance( array( 'description' => ( "OpenPA Agenda Locate associations \n\n" ),
+$script = eZScript::instance( array( 'description' => ( "OpenPA Agenda Locate events \n\n" ),
                                      'use-session' => false,
                                      'use-modules' => true,
                                      'use-extensions' => true ) );
@@ -24,17 +24,17 @@ try
     $user = eZUser::fetchByName( 'admin' );
     eZUser::setCurrentlyLoggedInUser( $user , $user->attribute( 'contentobject_id' ) );
 
-    /** @var eZContentObjectTreeNode[] $associazioni */
-    $associazioni = eZContentObjectTreeNode::subTreeByNodeID(array(
+    /** @var eZContentObjectTreeNode[] $events */
+    $events = eZContentObjectTreeNode::subTreeByNodeID(array(
         'ClassFilterType' => 'include',
-        'ClassFilterArray' => array('associazione')
+        'ClassFilterArray' => array('event')
     ),1);
 
-    foreach($associazioni as $associazione){
-        $cli->warning("Add assignment to " . $associazione->attribute('name'));
-        $mainNodeID = $associazione->attribute('main_node_id');
-        $objectId = $associazione->attribute('contentobject_id');
-        $targetNodeId = OpenPAAgenda::associationsNodeId();
+    foreach($events as $event){
+        $cli->warning("Add assignment to " . $event->attribute('name'));
+        $mainNodeID = $event->attribute('main_node_id');
+        $objectId = $event->attribute('contentobject_id');
+        $targetNodeId = OpenPAAgenda::calendarNodeId();
         eZContentOperationCollection::addAssignment( $mainNodeID, $objectId, array($targetNodeId) );
     }
 
