@@ -225,15 +225,17 @@ $(document).ready(function () {
                     end = moment().add(30, 'days');
                     break;
                 case 'all':
-                    start = moment();
+                    start = '*';
                     end = '*';
                     break;
             }
 
-            if (end == '*') {
-                query += 'calendar[] = [' + start.set('hour', 0).set('minute', 0).format('YYYY-MM-DD') + ',*] and ';
-            } else {
-                query += 'calendar[] = [' + start.set('hour', 0).set('minute', 0).format('YYYY-MM-DD') + ',' + end.set('hour', 23).set('minute', 59).format('YYYY-MM-DD') + '] and ';
+            if (start != '*'){
+                if (end == '*') {
+                    query += 'calendar[] = [' + start.set('hour', 0).set('minute', 0).format('YYYY-MM-DD') + ',*] and ';
+                } else {
+                    query += 'calendar[] = [' + start.set('hour', 0).set('minute', 0).format('YYYY-MM-DD') + ',' + end.set('hour', 23).set('minute', 59).format('YYYY-MM-DD') + '] and ';
+                }
             }
         }
         // Tipo di evento

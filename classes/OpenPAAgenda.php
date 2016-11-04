@@ -58,11 +58,7 @@ class OpenPAAgenda
     public function checkAccess($nodeId)
     {
         //@todo
-        $result = eZDB::instance()->arrayQuery("SELECT path_string FROM ezcontentobject_tree WHERE node_id = " . intval($nodeId));
-        if (isset($result[0]['path_string'])){
-            return strpos( $result[0]['path_string'], '/'.$this->rootNode()->attribute('node_id').'/') !== false;
-        }
-        return false;
+        return true;
     }
 
     public function rootObject()
