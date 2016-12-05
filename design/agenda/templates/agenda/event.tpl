@@ -60,11 +60,13 @@
 
     <div class="row">
         <div class="col-md-12">
-            {if is_set( $openpa.content_main.parts.image )}
-                <div class="text-center">
-                    {include uri='design:atoms/image.tpl' item=$node image_class=imagefull alignment="center" image_css_class="img-responsive"}
-                </div>
+            <div class="text-center">
+            {if $node|has_attribute( 'images' )}
+                {include uri='design:atoms/image.tpl' item=fetch(content,object,hash(object_id, $node|attribute('images').content.relation_list[0].contentobject_id)) image_class=imagefull alignment="center" image_css_class="img-responsive"}
+            {elseif $node|has_attribute( 'image' )}
+                {include uri='design:atoms/image.tpl' item=$node image_class=imagefull alignment="center" image_css_class="img-responsive"}
             {/if}
+            </div>
         </div>
     </div>
 
@@ -189,9 +191,11 @@
 
         <div class="col-md-4">
             <ul class="list-group">
+                {if $node|has_attribute( 'organizzazione' )}
                 {def $itemObject = false()}
-                <li class="list-group-item"><i class="fa fa-group"></i> {foreach $node.data_map.associazione.content.relation_list as $item}{set $itemObject = fetch(content, object, hash(object_id, $item.contentobject_id))}<a href="{concat('content/view/full/',$itemObject.main_node_id)|ezurl(no)}">{$itemObject.name|wash()}</a>{delimiter}, {/delimiter}{/foreach}</li>
+                <li class="list-group-item"><i class="fa fa-group"></i> {foreach $node.data_map.organizzazione.content.relation_list as $item}{set $itemObject = fetch(content, object, hash(object_id, $item.contentobject_id))}<a href="{concat('content/view/full/',$itemObject.main_node_id)|ezurl(no)}">{$itemObject.name|wash()}</a>{delimiter}, {/delimiter}{/foreach}</li>
                 {undef $itemObject}
+                {/if}
                 {if $node|has_attribute( 'telefono' )}
                     <li class="list-group-item"><i class="fa fa-phone"></i> {attribute_view_gui attribute=$node.data_map.telefono}</li>
                 {/if}
@@ -203,6 +207,14 @@
                 {/if}
                 {if $node|has_attribute( 'url' )}
                     <li class="list-group-item"><i class="fa fa-globe"></i> {attribute_view_gui attribute=$node.data_map.url}</li>
+                {/if}
+                {if $node|has_attribute( 'iniziativa' )}
+                    {foreach $node|attribute( 'iniziativa' ).content.relation_list as $item}
+                            {def $obj = fetch(content,object, hash(object_id, $item['contentobject_id']))}
+                            {if $obj.can_read}
+                                <li class="list-group-item"><i class="fa fa-star"></i> <a href="{concat('agenda/event/',$obj.main_node_id)|ezurl(no)}">{$obj.name|wash()}</a></li>{/if}
+                            {undef $obj}
+                    {/foreach}
                 {/if}
             </ul>
         </div>
@@ -238,7 +250,8 @@
         <div class="col-md-12">
             {if $node|has_attribute('images')}
                 {def $images = array()}
-                {foreach $node|attribute('images').content.relation_list as $item}
+                {foreach $node|attribute('images').content.relation_list as $index => $item}
+                    {if $index|eq(0)}{skip}{/if}
                     {set $images = $images|append(fetch(content,node, hash(node_id, $item.node_id)))}
                 {/foreach}
                 <div class="widget">
@@ -251,9 +264,16 @@
     </div>
 
 
+    <div class="row space">
+        <div class="col-md-12">
+            <section id="calendar" class="service_teasers row"></section>
+        </div>
+    </div>
+
+    {if is_comment_enabled()}
     <div class="service_teaser">
         <div class="service_details comments clearfix">
-            <h2><i class="fa fa-comments"></i> Commenti</h2>
+            <h2><i class="fa fa-comments"></i> {'Commenti'|i18n('agenda')}</h2>
         {if $reply_count}
             {include uri='design:agenda/comments/comments.tpl'}
         {/if}
@@ -277,11 +297,102 @@
                 <input type="hidden" name="ContentLanguageCode" value="{ezini( 'RegionalSettings', 'ContentObjectLocale', 'site.ini')}" />
             </form>
         {else}
-            <p><em>Per poter commentare devi essere autenticato</em></p>
+            <p><em>{'Per poter commentare devi essere autenticato'|i18n('agenda')}</em></p>
         {/if}
 
         </div>
     </div>
+    {/if}
 
 
 </div>
+
+
+<script>
+    $.opendataTools.settings('is_collaboration_enabled', {cond(is_collaboration_enabled(), 'true', 'false')});
+</script>
+{literal}
+<script id="tpl-spinner" type="text/x-jsrender"></script>
+
+<script id="tpl-empty" type="text/x-jsrender"></script>
+
+<script id="tpl-load-other" type="text/x-jsrender">
+<div class="col-sm-12 text-center">
+  <a href="#" class="btn btn-primary btn-lg">{/literal}{'Carica altri eventi'|i18n('agenda')}{literal}</a>
+</div>
+</script>
+
+<script id="tpl-event" type="text/x-jsrender">
+<div class="col-md-6 space">
+    <div class="service_teaser calendar_teaser vertical">
+      {{if ~i18n(data,'image')}}
+      <div class="service_photo">
+          <figure style="background-image:url({{:~mainImageUrl(data)}})"></figure>
+      </div>
+      {{/if}}
+      <div class="service_details">
+          <div class="media">
+
+              {{if ~formatDate(~i18n(data,'to_time'),'yyyy.MM.dd') == ~formatDate(~i18n(data,'from_time'),'yyyy.MM.dd')}}
+                  <div class="media-left">
+                      <div class="calendar-date">
+                        <span class="month">{{:~formatDate(~i18n(data,'from_time'),'MMM')}}</span>
+                        <span class="day">{{:~formatDate(~i18n(data,'from_time'),'D')}}</span>
+                      </div>
+                  </div>
+             {{/if}}
+
+              <div class="media-body">
+                  {{if ~formatDate(~i18n(data,'to_time'),'yyyy.MM.dd') !== ~formatDate(~i18n(data,'from_time'),'yyyy.MM.dd')}}
+                    <i class="fa fa-calendar"></i> {{:~formatDate(~i18n(data,'from_time'),'D MMMM')}} - {{:~formatDate(~i18n(data,'to_time'),'D MMMM')}}
+                  {{/if}}
+                   <h2 class="section_header skincolored">
+                      <a href="{{:~agendaUrl(metadata.mainNodeId)}}">
+                          <b>{{:~i18n(data,'titolo')}}</b>
+                          <small>{{:~i18n(data,'luogo_svolgimento')}} {{:~i18n(data,'orario_svolgimento')}}</small>
+                      </a>
+                  </h2>
+              </div>
+          </div>
+
+          {{if ~i18n(data,'periodo_svolgimento')}}
+              <small class="periodo_svolgimento">
+                  {{:~i18n(data,'periodo_svolgimento')}}
+              </small>
+          {{/if}}
+          {{if ~i18n(data,'abstract')}}
+              {{:~i18n(data,'abstract')}}
+          {{/if}}
+
+          <p class="pull-left">
+              <small class="tipo_evento">
+              {{for ~i18n(data,'tipo_evento')}}
+                  <span class="type-{{>id}}">
+                      {{>~i18n(name)}}
+                  </span>
+              {{/for}}
+              </small>
+          </p>
+          {{if ~settings('is_collaboration_enabled')}}
+          <p class="pull-right">
+              <small>
+              {{for ~i18n(data,'organizzazione')}}
+                  <a class="btn btn-success btn-xs type-{{>id}}" href="{{:~associazioneUrl(id)}}">
+                      {{>~i18n(name)}}
+                  </a>
+              {{/for}}
+              </small>
+          </p>
+          {{/if}}
+
+      </div>
+    </div>
+</div>
+</script>
+{/literal}
+
+{include
+    uri='design:agenda/parts/calendar.tpl'
+    current_language=$node.object.current_language
+    base_query=concat('classes [event] and subtree [', $calendar_node_id, '] and iniziativa.id in [', $node.contentobject_id, '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100,target|alpha|10,iniziativa|count|10]')
+}

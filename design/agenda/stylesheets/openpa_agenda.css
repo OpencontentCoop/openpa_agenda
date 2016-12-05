@@ -37,7 +37,7 @@
 
 #list *, #list *:before, #list *:after {box-sizing:  border-box !important;}
 
-
+/*
 #list .service_teasers {
     -moz-column-width: 25em;
     -webkit-column-width: 25em;
@@ -45,12 +45,20 @@
     -webkit-column-gap:1em;
 
 }
+*/
+
+/*
 
 #list .service_teasers > .col-md-4 {
     display: inline-block;
     padding:  .33rem;
     width:  100%;
     float:none;
+}
+*/
+
+#list .service_teasers > .col-md-6:nth-child(odd){
+    clear: left;
 }
 
 #list .service_teasers > .col-md-12 {
@@ -270,3 +278,6 @@ form.edit {
 .home-agenda aside{
     margin-bottom: 20px;
 }
+
+footer a {color: #aaa;}
+footer a:hover {color: #eeeeee;}

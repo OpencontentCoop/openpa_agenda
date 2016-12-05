@@ -381,4 +381,14 @@ class OpenPAAgenda
             eZDebug::writeError( "Object not found", __METHOD__ );
         }
     }
+
+    public function isCollaborationModeEnabled()
+    {
+        return (bool)$this->getAttributeString('collaboration_mode') == 1;
+    }
+
+    public function isCommentEnabled()
+    {
+        return (bool)$this->getAttributeString('enable_comment') == 1;
+    }
 }

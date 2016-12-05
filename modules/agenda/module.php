@@ -19,6 +19,12 @@ $ViewList['event'] = array(
     'functions' => array('use')
 );
 
+$ViewList['image'] = array(
+    'script' => 'image.php',
+    'params' => array('ObjectId'),
+    'functions' => array('use')
+);
+
 $ViewList['config'] = array(
     'script' => 'config.php',
     'params' => array("Part"),

@@ -1,37 +1,49 @@
 <section class="hgroup noborder home-agenda">
 
+{if is_collaboration_enabled()}
     <div class="row home-teaser hidden-xs">
         <div class="col-sm-4">
             <div class="service_teaser vertical">
                 <div class="service_photo">
-                    <h2 class="section_header gradient-background"><a href="{'agenda/download/'|ezurl(no)}"><b>Programma</b></a> <small>Scarica il programma in pdf</small></h2>
+                    <h2 class="section_header gradient-background"><a href="{'agenda/download/'|ezurl(no)}"><b>{'Programma'|i18n('agenda')}</b></a> <small>{'Scarica il programma in pdf'|i18n('agenda')}</small></h2>
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="service_teaser vertical">
                 <div class="service_photo">
-                    <h2 class="section_header gradient-background"><a href="{'agenda/associazioni/'|ezurl(no)}"><b>Rubrica</b> associazioni</a> <small>Registro ufficiale del comune</small></h2>
+                    <h2 class="section_header gradient-background"><a href="{'agenda/associazioni/'|ezurl(no)}"><b>{'Rubrica'|i18n('agenda')}</b> {'associazioni'|i18n('agenda')}</a> <small>{'Registro ufficiale del comune'|i18n('agenda')}</small></h2>
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="service_teaser vertical">
                 <div class="service_photo">
-                    <h2 class="section_header gradient-background"><a href="{'agenda/info/faq/'|ezurl(no)}"">Sei un'<b>associazione</b>?</a> <small>Scopri come partecipare!</small></h2>
+                    <h2 class="section_header gradient-background"><a href="{'agenda/info/faq/'|ezurl(no)}"">{"Sei un'<b>associazione</b>?"|i18n('agenda')}</a> <small>{'Scopri come partecipare!'|i18n('agenda')}</small></h2>
                 </div>
             </div>
         </div>
     </div>
 
+{else}
+
+    <div class="text-center">
+        <a class="btn btn-success btn-lg" href="{'agenda/download/'|ezurl(no)}">
+            <strong>{'Programma'|i18n('agenda')}</strong><br />
+            <small>{'Scarica il programma in pdf'|i18n('agenda')}</small>
+        </a>
+    </div>
+
+{/if}
     <hr />
 
     <div class="row">
         <div class="col-sm-9">
 
-            <div class="tab-content">
+
+            <div class="tab-content" style="margin-bottom: 40px;">
                 <div id="list" class="tab-pane active">
-                    <section class="service_teasers row"></section>
+                    <section id="calendar" class="service_teasers row"></section>
                 </div>
                 <div id="geo" class="tab-pane">
                     <div id="map" style="width: 100%; height: 700px"></div>
@@ -44,8 +56,8 @@
 
             <aside>
             <ul class="nav nav-pills">
-                <li class="active"><a data-toggle="tab" href="#list"><i class="fa fa-calendar" aria-hidden="true"></i> Calendario</a></li>
-                <li><a data-toggle="tab" href="#geo"><i class="fa fa-map-marker" aria-hidden="true"></i> Sulla mappa</a></li>
+                <li class="active"><a data-toggle="tab" href="#list"><i class="fa fa-calendar" aria-hidden="true"></i> {'Calendario'|i18n('agenda')}</a></li>
+                <li><a data-toggle="tab" href="#geo"><i class="fa fa-map-marker" aria-hidden="true"></i> {'Sulla mappa'|i18n('agenda')}</a></li>
             </ul>
             </aside>
 
@@ -59,35 +71,35 @@
             </aside>
 
             <aside class="widget" data-filter="date">
-                <h4>Quando?</h4>
+                <h4>{'Quando?'|i18n('agenda')}</h4>
                 <div class="datepicker" id="datepicker" style="display: none"></div>
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#" data-value="today">Oggi</a></li>
-                    <li><a href="#" data-value="weekend">Questo fine settimana</a></li>
-                    <li><a href="#" data-value="next 7 days">I prossimi 7 giorni</a></li>
-                    <li><a href="#" data-value="next 30 days">I prossimi 30 giorni</a></li>
-                    <li><a href="#" data-value="all">Tutti</a></li>
+                    <li><a href="#" data-value="today">{'Oggi'|i18n('agenda')}</a></li>
+                    <li><a href="#" data-value="weekend">{'Questo fine settimana'|i18n('agenda')}</a></li>
+                    <li><a href="#" data-value="next 7 days">{'I prossimi 7 giorni'|i18n('agenda')}</a></li>
+                    <li><a href="#" data-value="next 30 days">{'I prossimi 30 giorni'|i18n('agenda')}</a></li>
+                    <li><a href="#" data-value="all">{'Tutti'|i18n('agenda')}</a></li>
                 </ul>
             </aside>
 
             <aside class="widget" data-filter="type">
-                <h4>Cosa?</h4>
+                <h4>{'Cosa?'|i18n('agenda')}</h4>
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#" data-value="all">Tutti</a></li>
+                    <li><a href="#" data-value="all">{'Tutti'|i18n('agenda')}</a></li>
                 </ul>
             </aside>
 
             <aside class="widget" data-filter="target" style="display: none">
-                <h4>Chi sei?</h4>
+                <h4>{'Chi sei?'|i18n('agenda')}</h4>
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#" data-value="all">Tutti</a></li>
+                    <li><a href="#" data-value="all">{'Tutti'|i18n('agenda')}</a></li>
                 </ul>
             </aside>
 
             <aside class="widget" data-filter="iniziativa" style="display: none">
-                <h4>Manifestazione</h4>
+                <h4>{'Manifestazione'|i18n('agenda')}</h4>
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#" data-value="all">Tutte</a></li>
+                    <li><a href="#" data-value="all">{'Tutte'|i18n('agenda')}</a></li>
                 </ul>
             </aside>
 
@@ -96,111 +108,100 @@
     </div>
 </section>
 
-{ezscript_require( array(
-    'ezjsc::jquery',
-    'jquery.opendataTools.js',
-    'moment-with-locales.min.js',
-    'bootstrap-datepicker/bootstrap-datepicker.js',
-    'bootstrap-datepicker/locales/bootstrap-datepicker.it.min.js',
-    'leaflet.js',
-    'leaflet.markercluster.js',
-    'leaflet.makimarkers.js',
-    'openpa_agenda.js',
-    'jsrender.js'
-))}
-{ezcss_require(array(
-    'bootstrap-datepicker/bootstrap-datepicker.min.css'
-))}
-
-
 <script>
-    moment.locale('it');
-    $.opendataTools.settings('onError', function(errorCode,errorMessage,jqXHR){ldelim}
-        console.log(errorMessage + ' (error: '+errorCode+')');
-    {rdelim});
-    $.opendataTools.settings('calendar_node_id', "{$calendar_node_id}");
-    $.opendataTools.settings('endpoint',{ldelim}
-      geo: '{'/opendata/api/geo/search/'|ezurl(no,full)}',
-      search: '{'/opendata/api/content/search/'|ezurl(no,full)}',
-      class: '{'/opendata/api/classes/'|ezurl(no,full)}'
-    {rdelim});  
-    $.opendataTools.settings('session_key','agenda-{$site_identifier}');    
-    $.opendataTools.settings('accessPath', "{''|ezurl(no,full)}");
-    $.opendataTools.settings('language', "{$current_language}");
-    $.opendataTools.settings('filterUrl', function(url){ldelim} return url{rdelim} );
+    $.opendataTools.settings('is_collaboration_enabled', {cond(is_collaboration_enabled(), 'true', 'false')});
 </script>
-
 {literal}
+
 <style>
-    .type-499{
-        display: none;
-    }
+    .type-499{display: none;}
 </style>
 
 <script id="tpl-spinner" type="text/x-jsrender">
-<div class="spinner text-center col-md-12">
+<div class="spinner text-center">
     <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-    <span class="sr-only">Loading...</span>
+    <span class="sr-only">{/literal}{'Loading...'|i18n('agenda')}{literal}</span>
 </div>
 </script>
+
+<script id="tpl-empty" type="text/x-jsrender">
+<div class="text-center">
+    <i class="fa fa-times"></i> {/literal}{'Nessun evento trovato'|i18n('agenda')}{literal}
+</div>
+</script>
+
 <script id="tpl-event" type="text/x-jsrender">
-<div class="col-md-4">
+<div class="col-md-6">
     <div class="service_teaser calendar_teaser vertical">
+      {{if ~i18n(data,'image')}}
+      <div class="service_photo">
+          <figure style="background-image:url({{:~mainImageUrl(data)}})"></figure>
+      </div>
+      {{/if}}
+      <div class="service_details">
+          <div class="media">
 
-        {{if data[~language].image}}
-        <div class="service_photo">
-            <figure style="background-image:url({{:~filterUrl(data[~language].image.url)}})"></figure>
-        </div>
-        {{/if}}
-        <div class="service_details">
+              {{if ~formatDate(~i18n(data,'to_time'),'yyyy.MM.dd') == ~formatDate(~i18n(data,'from_time'),'yyyy.MM.dd')}}
+                  <div class="media-left">
+                      <div class="calendar-date">
+                        <span class="month">{{:~formatDate(~i18n(data,'from_time'),'MMM')}}</span>
+                        <span class="day">{{:~formatDate(~i18n(data,'from_time'),'D')}}</span>
+                      </div>
+                  </div>
+             {{/if}}
 
-            <div class="media">
-                <div class="media-left">
-                    <div class="calendar-date">
-                      <span class="month">{{:~formatDate(data[~language].from_time,'MMM')}}</span>
-                      <span class="day">{{:~formatDate(data[~language].from_time,'D')}}</span>
-                    </div>
-                </div>
-                <div class="media-body">
-                     <h2 class="section_header skincolored">
-                        <a href="{{:~agendaUrl(metadata.mainNodeId)}}">
-                            <b>{{:data[~language].titolo}}</b>
-                            <small>{{:data[~language].luogo_svolgimento}} {{:data[~language].orario_svolgimento}}</small>
-                        </a>
-                    </h2>
-                </div>
-            </div>
+              <div class="media-body">
+                  {{if ~formatDate(~i18n(data,'to_time'),'yyyy.MM.dd') !== ~formatDate(~i18n(data,'from_time'),'yyyy.MM.dd')}}
+                    <i class="fa fa-calendar"></i> {{:~formatDate(~i18n(data,'from_time'),'D MMMM')}} - {{:~formatDate(~i18n(data,'to_time'),'D MMMM')}}
+                  {{/if}}
+                   <h2 class="section_header skincolored">
+                      <a href="{{:~agendaUrl(metadata.mainNodeId)}}">
+                          <b>{{:~i18n(data,'titolo')}}</b>
+                          <small>{{:~i18n(data,'luogo_svolgimento')}} {{:~i18n(data,'orario_svolgimento')}}</small>
+                      </a>
+                  </h2>
+              </div>
+          </div>
 
-            <p>
-                <small class="periodo_svolgimento">
-                    {{:data[~language].periodo_svolgimento}}
-                </small>
-                {{:data[~language].abstract}}
-            </p>
+          {{if ~i18n(data,'periodo_svolgimento')}}
+              <small class="periodo_svolgimento">
+                  {{:~i18n(data,'periodo_svolgimento')}}
+              </small>
+          {{/if}}
+          {{if ~i18n(data,'abstract')}}
+              {{:~i18n(data,'abstract')}}
+          {{/if}}
 
-            <p class="pull-left">
-                <small class="tipo_evento">
-                {{for data[~language].tipo_evento}}
-                    <span class="type-{{>id}}">
-                        {{>name[~language]}}
-                    </span>
-                {{/for}}
-                </small>
-            </p>
-            <p class="pull-right">
-                <small>
-                {{for data[~language].associazione}}
-                    <a class="brn btn-success btn-xs type-{{>id}}" href="{{:~associazioneUrl(id)}}">
-                        {{>name[~language]}}
-                    </a>
-                {{/for}}
-                </small>
-            </p>
+          <p class="pull-left">
+              <small class="tipo_evento">
+              {{for ~i18n(data,'tipo_evento')}}
+                  <span class="type-{{>id}}">
+                      {{>~i18n(name)}}
+                  </span>
+              {{/for}}
+              </small>
+          </p>
+          {{if ~settings('is_collaboration_enabled')}}
+          <p class="pull-right">
+              <small>
+              {{for ~i18n(data,'organizzazione')}}
+                  <a class="btn btn-success btn-xs type-{{>id}}" href="{{:~associazioneUrl(id)}}">
+                      {{>~i18n(name)}}
+                  </a>
+              {{/for}}
+              </small>
+          </p>
+          {{/if}}
 
-        </div>
+      </div>
     </div>
 </div>
 </script>
-
-
 {/literal}
+
+{include
+    uri='design:agenda/parts/calendar.tpl'
+    site_identifier=$site_identifier
+    current_language=$current_language
+    base_query=concat('classes [event] and subtree [', $calendar_node_id, '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100,target|alpha|10,iniziativa|count|10]')
+}

@@ -4,32 +4,37 @@ $module = $Params['Module'];
 $tpl = eZTemplate::factory();
 $NodeId = $Params['NodeId'];
 
-if ( is_numeric( $NodeId ) )
-{
-    $contentModule = eZModule::exists( 'content' );
-    return $contentModule->run(
-        'view',
-        array( 'full', $NodeId )
-    );
-}
-else
-{
-    $currentUser = eZUser::currentUser();
+if (OpenPAAgenda::instance()->isCollaborationModeEnabled() || eZUser::currentUser()->hasAccessTo('agenda', 'config')) {
 
-    $tpl = eZTemplate::factory();
-    $tpl->setVariable('current_user', $currentUser);
-    $tpl->setVariable('persistent_variable', array());
 
-    $Result = array();
-    $Result['persistent_variable'] = $tpl->variable('persistent_variable');
-    $Result['content'] = $tpl->fetch('design:agenda/associazioni.tpl');
-    $Result['node_id'] = 0;
+    if (is_numeric($NodeId)) {
+        $contentModule = eZModule::exists('content');
 
-    $contentInfoArray = array('url_alias' => 'agenda/associazioni');
-    $contentInfoArray['persistent_variable'] = array();
-    if ($tpl->variable('persistent_variable') !== false) {
-        $contentInfoArray['persistent_variable'] = $tpl->variable('persistent_variable');
+        return $contentModule->run(
+            'view',
+            array('full', $NodeId)
+        );
+    } else {
+        $currentUser = eZUser::currentUser();
+
+        $tpl = eZTemplate::factory();
+        $tpl->setVariable('current_user', $currentUser);
+        $tpl->setVariable('persistent_variable', array());
+
+        $Result = array();
+        $Result['persistent_variable'] = $tpl->variable('persistent_variable');
+        $Result['content'] = $tpl->fetch('design:agenda/associazioni.tpl');
+        $Result['node_id'] = 0;
+
+        $contentInfoArray = array('url_alias' => 'agenda/associazioni');
+        $contentInfoArray['persistent_variable'] = array();
+        if ($tpl->variable('persistent_variable') !== false) {
+            $contentInfoArray['persistent_variable'] = $tpl->variable('persistent_variable');
+        }
+        $Result['content_info'] = $contentInfoArray;
+        $Result['path'] = array();
     }
-    $Result['content_info'] = $contentInfoArray;
-    $Result['path'] = array();
+
+}else{
+    return $module->handleError(eZError::KERNEL_ACCESS_DENIED);
 }

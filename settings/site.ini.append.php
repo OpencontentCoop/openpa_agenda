@@ -3,6 +3,9 @@
 [RegionalSettings]
 TranslationExtensions[]=openpa_agenda
 
+[TemplateSettings]
+ExtensionAutoloadPath[]=openpa_agenda
+
 [RoleSettings]
 PolicyOmitList[]=agenda/use
 

@@ -116,12 +116,14 @@ class OpenPAAgendaPageDataHandler implements OCPageDataHandlerInterface
             'has_children' => false
         );
 
-        $menu[] = array(
-            'name' => ezpI18n::tr( 'agenda/menu', 'Associazioni' ),
-            'url' => 'agenda/associazioni',
-            'highlight' => false,
-            'has_children' => false
-        );
+        if ($this->agenda()->isCollaborationModeEnabled()) {
+            $menu[] = array(
+                'name' => ezpI18n::tr('agenda/menu', 'Associazioni'),
+                'url' => 'agenda/associazioni',
+                'highlight' => false,
+                'has_children' => false
+            );
+        }
 
         $hasAccess = eZUser::currentUser()->hasAccessTo( 'editorialstuff', 'dashboard' );
         if ( $hasAccess['accessWord'] == 'yes' )
@@ -174,12 +176,14 @@ class OpenPAAgendaPageDataHandler implements OCPageDataHandlerInterface
         $hasAccess = eZUser::currentUser()->hasAccessTo( 'agenda', 'moderate' );
         if ( $hasAccess['accessWord'] == 'yes' )
         {
-            $userMenu[] = array(
-                'name' => ezpI18n::tr( 'agenda/menu', 'Gestisci associazioni' ),
-                'url' => 'editorialstuff/dashboard/associazione',
-                'highlight' => false,
-                'has_children' => false
-            );
+            if ($this->agenda()->isCollaborationModeEnabled()) {
+                $userMenu[] = array(
+                    'name' => ezpI18n::tr('agenda/menu', 'Gestisci associazioni'),
+                    'url' => 'editorialstuff/dashboard/associazione',
+                    'highlight' => false,
+                    'has_children' => false
+                );
+            }
             $userMenu[] = array(
                 'name' => ezpI18n::tr( 'agenda/menu', 'Gestisci programma in pdf' ),
                 'url' => 'editorialstuff/dashboard/programma_eventi',

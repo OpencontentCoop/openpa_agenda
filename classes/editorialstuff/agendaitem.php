@@ -28,7 +28,7 @@ class AgendaItem extends OCEditorialStuffPostDefault
         $tabs = array(
             array(
                 'identifier' => 'content',
-                'name' => 'Contenuto',
+                'name' => ezpI18n::tr( 'openpa_agenda', 'Contenuto'),
                 'template_uri' => "design:{$templatePath}/parts/content.tpl"
             )
         );
@@ -37,7 +37,7 @@ class AgendaItem extends OCEditorialStuffPostDefault
         {
             $tabs[] = array(
                 'identifier' => 'media',
-                'name' => 'Galleria immagini',
+                'name' => ezpI18n::tr( 'openpa_agenda', 'Galleria immagini'),
                 'template_uri' => "design:{$templatePath}/parts/media.tpl"
             );
         }
@@ -54,29 +54,49 @@ class AgendaItem extends OCEditorialStuffPostDefault
         {
             $tabs[] = array(
                 'identifier' => 'social',
-                'name' => 'Social Network',
+                'name' => ezpI18n::tr( 'openpa_agenda', 'Social Network'),
                 'template_uri' => "design:{$templatePath}/parts/social.tpl"
             );
         }
 
-        $tabs[] = array(
-            'identifier' => 'comments',
-            'name' => 'Commenti',
-            'template_uri' => "design:{$templatePath}/parts/public_comments.tpl"
-        );
+        if (OpenPAAgenda::instance()->isCommentEnabled()) {
+            $tabs[] = array(
+                'identifier' => 'comments',
+                'name' => ezpI18n::tr( 'openpa_agenda', 'Commenti'),
+                'template_uri' => "design:{$templatePath}/parts/public_comments.tpl"
+            );
+        }
 
         $tabs[] = array(
             'identifier' => 'tools',
-            'name' => 'Press kit',
+            'name' => ezpI18n::tr( 'openpa_agenda', 'Press kit'),
             'template_uri' => "design:{$templatePath}/parts/tools.tpl"
         );
 
         $tabs[] = array(
             'identifier' => 'history',
-            'name' => 'Cronologia',
+            'name' => ezpI18n::tr( 'openpa_agenda', 'Cronologia'),
             'template_uri' => "design:{$templatePath}/parts/history.tpl"
         );
         return $tabs;
+    }
+
+    public function addImage( eZContentObject $object )
+    {
+        parent::addImage($object);
+        $this->setObjectLastModified();
+    }
+
+    public function makeDefaultImage( $objectId )
+    {
+        parent::makeDefaultImage($objectId);
+        $this->setObjectLastModified();
+    }
+
+    public function removeImage( $objectId )
+    {
+        parent::removeImage($objectId);
+        $this->setObjectLastModified();
     }
 
 }

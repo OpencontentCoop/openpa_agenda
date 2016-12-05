@@ -31,6 +31,7 @@ AttributeIdentifiers[audios]=audio
 AttributeIdentifiers[tags]=argomento
 StateGroup=moderation
 States[skipped]=Non necessita di moderazione
+States[draft]=In lavorazione
 States[waiting]=In attesa di moderazione
 States[accepted]=Accettato
 States[refused]=Rifiutato

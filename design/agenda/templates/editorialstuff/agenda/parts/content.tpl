@@ -8,7 +8,8 @@
                 <form method="post" action="{"content/action"|ezurl(no)}" style="display: inline;">
                     <input type="hidden" name="ContentObjectLanguageCode"
                            value="{ezini( 'RegionalSettings', 'ContentObjectLocale', 'site.ini')}"/>
-                    <button class="btn btn-info btn-lg" type="submit" name="EditButton">Modifica
+                    <button class="btn btn-info btn-lg" type="submit" name="EditButton">
+                        {'Modifica'|i18n('agenda/dashboard')}
                     </button>
                     <input type="hidden" name="HasMainAssignment" value="1"/>
                     <input type="hidden" name="ContentObjectID" value="{$post.object.id}"/>
@@ -36,7 +37,7 @@
             <a class="btn btn-info btn-lg" data-toggle="modal"
                data-load-remote="{concat( 'layout/set/modal/content/view/full/', $post.object.main_node_id )|ezurl('no')}"
                data-remote-target="#preview .modal-content" href="#{*$post.url*}"
-               data-target="#preview">Anteprima</a>
+               data-target="#preview">{'Anteprima'|i18n('agenda/dashboard')}</a>
         </div>
     </div>
 
@@ -44,14 +45,14 @@
 
 
     <div class="row edit-row">
-        <div class="col-md-2"><strong><em>Autore</em></strong></div>
+        <div class="col-md-2"><strong><em>{'Autore'|i18n('agenda/dashboard')}</em></strong></div>
         <div class="col-md-10">
             {if $post.object.owner}{$post.object.owner.name|wash()}{else}?{/if}
         </div>
     </div>
 
     <div class="row edit-row">
-        <div class="col-md-2"><strong><em>Data di pubblicazione</em></strong></div>
+        <div class="col-md-2"><strong><em>{'Data di pubblicazione'|i18n('agenda/dashboard')}</em></strong></div>
         <div class="col-md-10">
             <p>{$post.object.published|l10n(shortdatetime)}</p>
             {if $post.object.current_version|gt(1)}
@@ -62,7 +63,7 @@
         </div>
     </div>
 
-
+{*
     <div class="row edit-row">
         <div class="col-md-2"><strong><em>Collocazioni</em></strong></div>
         <div class="col-md-10">
@@ -76,6 +77,7 @@
             </ul>
         </div>
     </div>
+*}
 
 	{def $attribute_categories = ezini( 'ClassAttributeSettings', 'CategoryList', 'content.ini' )}
     {foreach $post.content_attributes_grouped_data_map as $category => $attributes}

@@ -12,7 +12,7 @@
                 {foreach $post.tabs as $index=> $tab}
                     <li role="presentation"{if $index|eq(0)} class="active"{/if}>
                         <a href="#{$tab.identifier}" aria-controls="{$tab.identifier}"
-                           role="tab" data-toggle="tab">{$tab.name}</a>
+                           role="tab" data-toggle="tab">{$tab.name|i18n('agenda/dashboard')}</a>
                     </li>
                 {/foreach}
             </ul>

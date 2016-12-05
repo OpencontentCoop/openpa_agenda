@@ -2,60 +2,111 @@ $(document).ready(function () {
 
     var tools = $.opendataTools;
 
-    var map = tools.initMap(
-        'map',
-        function (response) {
-            return L.geoJson(response, {
-                pointToLayer: function (feature, latlng) {
-                    customIcon = L.MakiMarkers.icon({icon: "circle", size: "l"});
-                    return L.marker(latlng, {icon: customIcon});
-                },
-                onEachFeature: function (feature, layer) {
-                    var popupDefault = '<p class="text-center"><i class="fa fa-circle-o-notch fa-spin"></i></p><p><a href="' + tools.settings('accessPath') + '/agenda/event/' + feature.properties.mainNodeId + '" target="_blank">';
-                    popupDefault += feature.properties.name;
-                    popupDefault += '</a></p>';
-                    var popup = new L.Popup({maxHeight: 360});
-                    popup.setContent(popupDefault);
-                    layer.on('click', function(e) {
-
-                        tools.findOne('id = '+ e.target.feature.properties.id, function(data){
-                            var template = $.templates("#tpl-event");
-                            $.views.helpers({
-                                'formatDate': function (date, format) {
-                                    return moment(new Date(date)).format(format);
-                                },
-                                'agendaUrl': function (id) {
-                                    return tools.settings('accessPath') + '/agenda/event/' + id;
-                                },
-                                'filterUrl': function (fullUrl) {
-                                    if ($.isFunction(tools.settings('filterUrl'))) {
-                                        fullUrl = tools.settings('filterUrl')(fullUrl);
-                                    }
-                                    return fullUrl;
-                                },
-                                'settings': function (setting) {
-                                    return tools.settings(setting);
-                                },
-                                'language': tools.settings('language')
-                            });
-                            var htmlOutput = template.render([data]).replace('col-md-4','');
-                            popup.setContent(htmlOutput);popup.update();
-                        })
-                    });
-                    layer.bindPopup(popup);
-                }
-            });
+    var formatDate = function (date, format) {
+        return moment(new Date(date)).format(format);
+    };
+    var agendaUrl = function (id) {
+        return tools.settings('accessPath') + '/agenda/event/' + id;
+    };
+    var filterUrl = function (fullUrl) {
+        if ($.isFunction(tools.settings('filterUrl'))) {
+            fullUrl = tools.settings('filterUrl')(fullUrl);
         }
-    );
-    map.scrollWheelZoom.disable();
+        return fullUrl;
+    };
+    var mainImageUrl = function (data) {
+        var images = i18n(data,'images');
+        if (images.length > 0){
+            return tools.settings('accessPath') + '/agenda/image/' + images[0].id;
+        }
+        var image = i18n(data,'image');
+        if (image) {
+            return filterUrl(image.url);
+        }
+        return null;
+    };
+    var i18n = function (data, key, fallbackLanguage) {
+        var currentLanguage = tools.settings('language');
+        fallbackLanguage = fallbackLanguage || 'ita-IT';
+        if (data) {
+            if (typeof data[tools.settings('language')] != 'undefined' && data[currentLanguage][key]) {
+                return data[currentLanguage][key];
+            }
+            if (fallbackLanguage && typeof data[fallbackLanguage] != 'undefined' && data[fallbackLanguage][key]){
+                return data[fallbackLanguage][key];
+            }
+            return data[Object.keys(data)[0]][key];
+        }
+        return null;
+    };
+
+    var helpers = {
+        'formatDate': function (date, format) {
+            return formatDate(date, format);
+        },
+        'agendaUrl': function (id) {
+            return agendaUrl(id);
+        },
+        'filterUrl': function (fullUrl) {
+            return filterUrl(fullUrl);
+        },
+        'mainImageUrl': function (data) {
+            return mainImageUrl(data);
+        },
+        'settings': function (setting) {
+            return tools.settings(setting);
+        },
+        'language': tools.settings('language'),
+        'i18n': function (data, key, fallbackLanguage) {
+          return i18n(data, key, fallbackLanguage);
+        },
+        'associazioneUrl': function (objectId) {
+          return tools.settings('accessPath') + '/openpa/object/' + objectId;
+        },
+
+    };
+
+    if (document.getElementById('map')) {
+        var map = tools.initMap(
+            'map',
+            function (response) {
+                return L.geoJson(response, {
+                    pointToLayer: function (feature, latlng) {
+                        customIcon = L.MakiMarkers.icon({icon: "circle", size: "l"});
+                        return L.marker(latlng, {icon: customIcon});
+                    },
+                    onEachFeature: function (feature, layer) {
+                        var popupDefault = '<p class="text-center"><i class="fa fa-circle-o-notch fa-spin"></i></p><p><a href="' + tools.settings('accessPath') + '/agenda/event/' + feature.properties.mainNodeId + '" target="_blank">';
+                        popupDefault += feature.properties.name;
+                        popupDefault += '</a></p>';
+                        var popup = new L.Popup({maxHeight: 360});
+                        popup.setContent(popupDefault);
+                        layer.on('click', function (e) {
+
+                            tools.findOne('id = ' + e.target.feature.properties.id, function (data) {
+                                var template = $.templates("#tpl-event");
+                                $.views.helpers(helpers);
+                                var htmlOutput = template.render([data]).replace('col-md-6', '');
+                                popup.setContent(htmlOutput);
+                                popup.update();
+                            })
+                        });
+                        layer.bindPopup(popup);
+                    }
+                });
+            }
+        );
+        map.scrollWheelZoom.disable();
+    }
 
     $("body").on("shown.bs.tab", function() {
         tools.refreshMap();
     });
 
     var spinner = $.templates("#tpl-spinner").render({});
+    var empty = $.templates("#tpl-empty").render({});
 
-    var resultContainer = $(".service_teasers");
+    var resultContainer = $("#calendar");
     var filters = [];
     var typeList = $('.widget[data-filter="type"] ul');
     var dateList = $('.widget[data-filter="date"] ul');
@@ -181,7 +232,7 @@ $(document).ready(function () {
             value: searchInput.val()
         });
         var currentDatepicker = datepicker.datepicker('getDate');
-        if (currentDatepicker) {
+        if (currentDatepicker && typeof currentDatepicker.toDateString === 'function') {
             filters.push({
                 name: 'datepicker',
                 value: currentDatepicker.toDateString()
@@ -239,7 +290,7 @@ $(document).ready(function () {
             }
         }
         // Tipo di evento
-        var currentType = getFilter('type');        
+        var currentType = getFilter('type');
         if (currentType && currentType != 'all') {
             query += 'tipo_evento.name in [\'' + currentType + '\'] and ';
         }
@@ -253,8 +304,8 @@ $(document).ready(function () {
         if (currentIniziativa && currentIniziativa != 'all') {
             query += 'iniziativa in [\'' + currentIniziativa + '\'] and ';
         }
-        var calendar_node_id = tools.settings('calendar_node_id');
-        query += ' classes [event] and subtree ['+calendar_node_id+'] and iniziativa !in [Manifestazione] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100,target|alpha|10,iniziativa|count|10]';
+        var baseQuery = tools.settings('base_query');
+        query += ' '+baseQuery;
         //console.log(query);
         return query;
     };
@@ -266,8 +317,8 @@ $(document).ready(function () {
     var find = function (query) {
         resultContainer.html(spinner);
         tools.find(query, function (response) {
-            if (response.totalCount > 0) {
-              sessionStorage.setItem(tools.settings('session_key'), JSON.stringify(filters));
+            if (response.totalCount > 0 && tools.settings('session_key')) {
+                sessionStorage.setItem(tools.settings('session_key'), JSON.stringify(filters));
             }
             parseFacets(response);
             parseSearchHits(response);
@@ -284,71 +335,51 @@ $(document).ready(function () {
             currentIniziativa = getFilter('iniziativa');
 
         $('li a[data-value="all"]').parent().show();
-        $.each(response.facets, function(){            
+        $.each(response.facets, function(){
             var name = this.name;
             if (this.name == 'tipo_evento'){
-               $.each(this.data, function(value,count){
-                   $('li a[data-value="'+value+'"]', typeList).html(value +' ('+count+')').parent().show();
-               });
-               $('li a[data-value="'+currentType+'"]', typeList).parent().addClass('active');
-           } else if (this.name == 'target') {
-               $.each(this.data, function(value,count){
-                   if (value != '') {
-                       var quotedValue = value;
-                       if ($('li a[data-value="'+quotedValue+'"]', targetList).length) {
-                           $('li a[data-value="'+quotedValue+'"]', targetList).html(value +' ('+count+')').parent().show();                           
-                       } else {
-                           var li = $('<li><a href="#" data-value="'+quotedValue+'">'+value+' ('+count+')'+'</a></li>');
-                           targetList.append(li);                           
-                       }
-                       $('[data-filter="'+name+'"]').show();
-                   }
-               });
-               $('li a[data-value="'+currentTarget+'"]', targetList).parent().addClass('active');
-           } else if (this.name == 'iniziativa') {
-               $.each(this.data, function(value,count){
-                   if (value != '') {
-                       var quotedValue = value;
-                       if ($('li a[data-value="'+quotedValue+'"]', iniziativaList).length) {
-                           $('li a[data-value="'+quotedValue+'"]', iniziativaList).html(value +' ('+count+')').parent().show();
-                       } else {
-                           var li = $('<li><a href="#" data-value="'+quotedValue+'">'+value+' ('+count+')'+'</a></li>');
-                           iniziativaList.append(li);
-                       }
-                      $('[data-filter="'+name+'"]').show();
+                $.each(this.data, function(value,count){
+                    $('li a[data-value="'+value+'"]', typeList).html(value +' ('+count+')').parent().show();
+                });
+                $('li a[data-value="'+currentType+'"]', typeList).parent().addClass('active');
+            } else if (this.name == 'target') {
+                $.each(this.data, function(value,count){
+                    if (value != '') {
+                        var quotedValue = value;
+                        if ($('li a[data-value="'+quotedValue+'"]', targetList).length) {
+                            $('li a[data-value="'+quotedValue+'"]', targetList).html(value +' ('+count+')').parent().show();
+                        } else {
+                            var li = $('<li><a href="#" data-value="'+quotedValue+'">'+value+' ('+count+')'+'</a></li>');
+                            targetList.append(li);
+                        }
+                        $('[data-filter="'+name+'"]').show();
+                    }
+                });
+                $('li a[data-value="'+currentTarget+'"]', targetList).parent().addClass('active');
+            } else if (this.name == 'iniziativa') {
+                $.each(this.data, function(value,count){
+                    if (value != '') {
+                        var quotedValue = value;
+                        if ($('li a[data-value="'+quotedValue+'"]', iniziativaList).length) {
+                            $('li a[data-value="'+quotedValue+'"]', iniziativaList).html(value +' ('+count+')').parent().show();
+                        } else {
+                            var li = $('<li><a href="#" data-value="'+quotedValue+'">'+value+' ('+count+')'+'</a></li>');
+                            iniziativaList.append(li);
+                        }
+                        $('[data-filter="'+name+'"]').show();
 
-                   }
-               });
-               $('li a[data-value="'+currentIniziativa+'"]', iniziativaList).parent().addClass('active');
-           }
+                    }
+                });
+                $('li a[data-value="'+currentIniziativa+'"]', iniziativaList).parent().addClass('active');
+            }
         });
 
     };
 
     var parseSearchHits = function (response, append) {
-        if (response.totalCount > 0) {            
+        if (response.totalCount > 0) {
             var template = $.templates("#tpl-event");
-            $.views.helpers({
-                'formatDate': function (date, format) {
-                    return moment(new Date(date)).format(format);
-                },
-                'agendaUrl': function (nodeId) {
-                    return tools.settings('accessPath') + '/agenda/event/' + nodeId;
-                },
-                'associazioneUrl': function (objectId) {
-                    return tools.settings('accessPath') + '/openpa/object/' + objectId;
-                },
-                'filterUrl': function (fullUrl) {
-                    if ($.isFunction(tools.settings('filterUrl'))) {
-                        fullUrl = tools.settings('filterUrl')(fullUrl);
-                    }
-                    return fullUrl;
-                },
-                'settings': function (setting) {
-                    return tools.settings(setting);
-                },
-                'language': tools.settings('language')
-            });
+            $.views.helpers(helpers);
 
             var htmlOutput = template.render(response.searchHits);
             if (append) {
@@ -357,7 +388,7 @@ $(document).ready(function () {
                 resultContainer.html(htmlOutput);
             }
             if (response.nextPageQuery) {
-                var loadMore = $('<a href="#" class="btn btn-primary btn-lg">Carica altri eventi</a>');
+                var loadMore = $($.templates("#tpl-load-other").render({}));
                 loadMore.bind('click',function(e){
                     tools.find(response.nextPageQuery, function (response) {
                         parseSearchHits(response, true);
@@ -368,14 +399,14 @@ $(document).ready(function () {
                 resultContainer.append(loadMore)
             }
         }else {
-            resultContainer.html('<em>Nessun evento trovato...</em>');
+            resultContainer.html(empty);
         }
     };
 
-    var getFilter = function (name) {        
+    var getFilter = function (name) {
         var filter = null;
         $.each(filters, function () {
-            if (this.name == name && filter == null) {
+            if (this.name == name && filter == null && typeof this.value == 'string') {
                 value = this.value.replace('\'', '\\\'');
                 filter = value;
             }
@@ -393,7 +424,7 @@ $(document).ready(function () {
         resetSelectIniziativa();
 
 
-        if (sessionStorage.getItem(tools.settings('session_key'))) {
+        if (tools.settings('session_key') && sessionStorage.getItem(tools.settings('session_key'))) {
             filters = JSON.parse(sessionStorage.getItem(tools.settings('session_key')));
             var currentDatepicker = getFilter('datepicker');
             if (currentDatepicker) {
@@ -414,13 +445,17 @@ $(document).ready(function () {
         doFind();
     };
 
-    tools.findAll('classes [tipo_evento] sort [name=>asc]', function (response) {
-        $.each(response,function(){
-            var li = $('<li><a href="#" data-value="'+this.metadata.name[tools.settings('language')]+'">'+this.metadata.name[tools.settings('language')]+'</a></li>');
-            li.hide();
-            typeList.append(li);
+    if (typeList.length > 0) {
+        tools.findAll('classes [tipo_evento] sort [name=>asc]', function (response) {
+            $.each(response, function () {
+                var li = $('<li><a href="#" data-value="' + this.metadata.name[tools.settings('language')] + '">' + this.metadata.name[tools.settings('language')] + '</a></li>');
+                li.hide();
+                typeList.append(li);
+            });
+            init();
         });
+    }else{
         init();
-    });
+    }
 
 });
