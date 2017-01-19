@@ -11,7 +11,8 @@ class OpenPAAgendaOperators
     {
         return array(
             'is_collaboration_enabled',
-            'is_comment_enabled'
+            'is_comment_enabled',
+            'is_header_only_logo_enabled',
         );
     }
 
@@ -58,6 +59,10 @@ class OpenPAAgendaOperators
 
             case 'is_comment_enabled':
                 $operatorValue = $agenda->isCommentEnabled();
+                break;
+
+            case 'is_header_only_logo_enabled':
+                $operatorValue = $agenda->isHeaderOnlyLogoEnabled();
                 break;
         }
     }

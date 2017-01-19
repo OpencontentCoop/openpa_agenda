@@ -391,4 +391,9 @@ class OpenPAAgenda
     {
         return (bool)$this->getAttributeString('enable_comment') == 1;
     }
+
+    public function isHeaderOnlyLogoEnabled()
+    {
+        return (bool)$this->getAttributeString('enable_header_only_logo') == 1;
+    }
 }

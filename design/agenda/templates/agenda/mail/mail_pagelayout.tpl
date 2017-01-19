@@ -93,7 +93,7 @@
                 <table border='0' cellpadding='20' cellspacing='0' style='margin-left: auto;margin-right: auto;width:600px;text-align:center;' width='600'>
                     <tr>
                         <td align='center' valign='top'>
-                          <img src="http://{$social_pagedata.asset_url}{$social_pagedata.logo_path|ezroot(no)}" alt="{$social_pagedata.site_title}" height="90" width="90" style="outline:none; text-decoration:none;border:none,display:block;">
+							<img src="http://{$social_pagedata.asset_url}{$social_pagedata.logo_path|ezroot(no)}" alt="{$social_pagedata.site_title}" {if is_header_only_logo_enabled()|not()}height="90" width="90"{/if} style="outline:none; text-decoration:none;border:none,display:block;">
                           <p>{$social_pagedata.logo_title} - {$social_pagedata.logo_subtitle}</p>
                         </td>
                     </tr>
