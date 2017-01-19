@@ -80,7 +80,7 @@
     } else if (tools.settings('language') == 'eng-GB') {
         calendarLocale = 'en';
     }
-    var mainQuery = 'classes [event] and state = [moderation.accepted] sort [published=>desc]';
+    var mainQuery = 'classes [event] and state = [moderation.accepted, moderation.skipped] sort [published=>desc]';
     var calendar = $('#calendar');
 
     var i18n = function (data, key, fallbackLanguage) {
