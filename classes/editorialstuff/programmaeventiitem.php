@@ -143,7 +143,7 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
 
             eZContentBrowse::browse(
                 array(
-                    'action_name' => 'AddSelectedEvent',
+                    'action_name' => 'ProgrammaEventiItemAddSelectedEvent',
                     'selection' => 'multiple',
                     'from_page' => '/editorialstuff/action/programma_eventi/' . $this->getObject()->ID . '#tab_leaflet',
                     'class_array' => array('event'),
