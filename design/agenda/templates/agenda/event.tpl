@@ -70,6 +70,10 @@
         </div>
     </div>
 
+    {def $luogo = false()}                      
+    {if $node|has_attribute( 'luogo' )}                          
+      {set $luogo = fetch('content','node',hash('node_id', $node.data_map.luogo.content.relation_list[0].node_id))}                        
+    {/if}
 
     <div class="service_teasers row space">
 
@@ -79,24 +83,40 @@
 
                     <p> <i class="fa fa-map-marker"></i>
                         <strong>Dove</strong>
-                        {if $node|has_attribute( 'indirizzo' )}
-                            {attribute_view_gui attribute=$node.data_map.indirizzo}
+
+                        {if $luogo}
+                            {$luogo.name|wash()}                            
+                            {if $luogo|has_attribute( 'indirizzo')}
+                              {$luogo|attribute( 'indirizzo' ).content}
+                            {/if}
+                            
+                            {if $luogo|has_attribute( 'comune' )}                                
+                              {$luogo|attribute( 'comune' ).content}
+                            {/if}
+                            
+                        {else}
+
+                          {if $node|has_attribute( 'indirizzo' )}
+                              {$node.data_map.indirizzo.content}
+                          {/if}
+                          {if $node|has_attribute( 'luogo_svolgimento' )}
+                              {$node.data_map.luogo_svolgimento.content}
+                          {/if}
+                          {if $node|has_attribute( 'comune' )}
+                              {*if $node|has_attribute( 'cap' )}
+                                {$node.data_map.cap}
+                              {/if*}
+                              {$node.data_map.comune.content}
+                          {/if}
+
                         {/if}
-                        {if $node|has_attribute( 'luogo_svolgimento' )}
-                            {attribute_view_gui attribute=$node.data_map.luogo_svolgimento}
-                        {/if}
-                        {if $node|has_attribute( 'comune' )}
-                            {*if $node|has_attribute( 'cap' )}
-                              {attribute_view_gui attribute=$node.data_map.cap}
-                            {/if*}
-                            {attribute_view_gui attribute=$node.data_map.comune}
-                        {/if}
+
                     </p>
 
                     {if $node|has_attribute( 'periodo_svolgimento' )}
                         <p> <i class="fa fa-calendar-o"></i>
                             <strong>{$node.data_map.periodo_svolgimento.contentclass_attribute_name}</strong>
-                            {attribute_view_gui attribute=$node.data_map.periodo_svolgimento}
+                            {$node.data_map.periodo_svolgimento.content}
                         </p>
                     {else}
                         <p> <i class="fa fa-calendar-o"></i>
@@ -107,14 +127,14 @@
                     {if $node|has_attribute( 'orario_svolgimento' )}
                         <p> <i class="fa fa-clock-o"></i>
                             <strong>{$node.data_map.orario_svolgimento.contentclass_attribute_name}</strong>
-                            {attribute_view_gui attribute=$node.data_map.orario_svolgimento}
+                            {$node.data_map.orario_svolgimento.content}
                         </p>
                     {/if}
 
                     {if $node|has_attribute( 'durata' )}
                         <p> <i class="fa fa-clock-o"></i>
                             <strong>{$node.data_map.durata.contentclass_attribute_name}</strong>
-                            {attribute_view_gui attribute=$node.data_map.durata}
+                            {$node.data_map.durata.content}
                         </p>
                     {/if}
 
@@ -129,7 +149,7 @@
                         <p>
                             <i class="fa fa-money"></i>
                             <strong>{$node.data_map.costi.contentclass_attribute_name}</strong>
-                            {attribute_view_gui attribute=$node.data_map.costi}
+                            {$node.data_map.costi.content}
                         </p>
                     {/if}
 
@@ -146,18 +166,29 @@
         </div>
 
         <div class="col-md-4">
-            {if or($node|has_attribute( 'indirizzo' ),$node|has_attribute( 'luogo_svolgimento' ),$node|has_attribute( 'comune' ),$node|has_attribute( 'geo' ))}
 
-                {if $node|has_attribute( 'geo' )}
-                    {def $attribute = $node|attribute( 'geo' )}
-                    {if and( $attribute.content.latitude, $attribute.content.longitude )}
+
+            {if or($node|has_attribute( 'indirizzo' ),
+                   $node|has_attribute( 'luogo_svolgimento' ),
+                   $node|has_attribute( 'comune' ),
+                   $node|has_attribute( 'geo' ))}
+
+                {def $geo_attribute = false()}
+                {if and( $luogo, $luogo|has_attribute( 'geo' ) )}
+                  {set $geo_attribute = $luogo|attribute( 'geo' )}
+                {elseif $node|has_attribute( 'geo' )}
+                  {set $geo_attribute = $node|attribute( 'geo' )}
+                {/if}
+                
+                {if $geo_attribute}
+                    {if and( $geo_attribute.content.latitude, $geo_attribute.content.longitude )}
 
                         {ezscript_require( array( 'ezjsc::jquery', 'leaflet/leaflet.0.7.2.js', 'leaflet/Leaflet.MakiMarkers.js', 'leaflet/leaflet.markercluster.js') )}
                         {ezcss_require( array( 'leaflet/leaflet.css', 'leaflet/map.css', 'leaflet/MarkerCluster.css', 'leaflet/MarkerCluster.Default.css' ) )}
 
-                        <div id="map-{$attribute.id}" style="width: 100%; height: 300px;"></div>
+                        <div id="map-{$geo_attribute.id}" style="width: 100%; height: 300px;"></div>
                         <p class="goto space text-center">
-                            <a class="btn btn-lg btn-success" target="_blank" href="https://www.google.com/maps/dir//'{$attribute.content.latitude},{$attribute.content.longitude}'/@{$attribute.content.latitude},{$attribute.content.longitude},15z?hl=it">Come arrivare <i class="fa fa-external-link"></i></a>
+                            <a class="btn btn-lg btn-success" target="_blank" href="https://www.google.com/maps/dir//'{$geo_attribute.content.latitude},{$geo_attribute.content.longitude}'/@{$geo_attribute.content.latitude},{$geo_attribute.content.longitude},15z?hl=it">Come arrivare <i class="fa fa-external-link"></i></a>
                         </p>
 
                     {run-once}
@@ -179,11 +210,11 @@
                     {/run-once}
 
                         <script type="text/javascript">
-                            drawMap([{$attribute.content.latitude},{$attribute.content.longitude}],{$attribute.id});
+                            drawMap([{$geo_attribute.content.latitude},{$geo_attribute.content.longitude}],{$geo_attribute.id});
                         </script>
 
                     {/if}
-                    {undef $attribute}
+                    {undef $geo_attribute}
                 {/if}
 
             {/if}

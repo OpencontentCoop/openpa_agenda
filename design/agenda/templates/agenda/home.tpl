@@ -139,6 +139,7 @@
       </div>
       {{/if}}
       <div class="service_details">
+        
           <div class="media">
 
               {{if ~formatDate(~i18n(data,'to_time'),'yyyy.MM.dd') == ~formatDate(~i18n(data,'from_time'),'yyyy.MM.dd')}}
@@ -171,18 +172,24 @@
           {{if ~i18n(data,'abstract')}}
               {{:~i18n(data,'abstract')}}
           {{/if}}
+          
+          {{for ~i18n(data,'patrocinio')}}
+            <div class="patronage">            
+               <small><i class="fa fa-flag"></i> {{>~i18n(name)}}</small>
+            </div>
+          {{/for}}
 
-          <p class="pull-left">
-              <small class="tipo_evento">
+          <div class="tipo_evento">
+              <small>
               {{for ~i18n(data,'tipo_evento')}}
-                  <span class="type-{{>id}}">
-                      {{>~i18n(name)}}
+                  <span class="type-{{>id}}" style="white-space:nowrap">
+                      <i class="fa fa-tag"></i> {{>~i18n(name)}}
                   </span>
               {{/for}}
               </small>
-          </p>
+          </div>
           {{if ~settings('is_collaboration_enabled')}}
-          <p class="pull-right">
+          <div class="organizzazione">
               <small>
               {{for ~i18n(data,'organizzazione')}}
                   <a class="btn btn-success btn-xs type-{{>id}}" href="{{:~associazioneUrl(id)}}">
@@ -190,7 +197,7 @@
                   </a>
               {{/for}}
               </small>
-          </p>
+          </div>          
           {{/if}}
 
       </div>

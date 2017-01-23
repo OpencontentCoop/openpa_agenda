@@ -28,7 +28,7 @@ $(document).ready(function () {
     var i18n = function (data, key, fallbackLanguage) {
         var currentLanguage = tools.settings('language');
         fallbackLanguage = fallbackLanguage || 'ita-IT';
-        if (data) {
+        if (data && key) {
             if (typeof data[tools.settings('language')] != 'undefined' && data[currentLanguage][key]) {
                 return data[currentLanguage][key];
             }
@@ -36,6 +36,14 @@ $(document).ready(function () {
                 return data[fallbackLanguage][key];
             }
             return data[Object.keys(data)[0]][key];
+        }else if (data) {
+          if (typeof data[tools.settings('language')] != 'undefined' && data[currentLanguage]) {
+              return data[currentLanguage];
+          }
+          if (fallbackLanguage && typeof data[fallbackLanguage] != 'undefined' && data[fallbackLanguage]){
+              return data[fallbackLanguage];
+          }
+          return data[Object.keys(data)[0]];
         }
         return null;
     };
