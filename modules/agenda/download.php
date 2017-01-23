@@ -4,6 +4,7 @@
 $Module = $Params['Module'];
 
 $programmi = eZContentObjectTreeNode::subTreeByNodeID(array(
+    'Language' => eZLocale::currentLocaleCode(),
     'SortBy' => array('published', false),
     'ClassFilterType' => 'include',
     'ClassFilterArray' => array('programma_eventi'),
