@@ -16,7 +16,7 @@
                         <span class="day">{$node.data_map.from_time.content.timestamp|datetime( 'custom', '%j' )}</span>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <h1>
                         {$node.data_map.titolo.content|wash()}
                         {if $node.object.can_edit}
@@ -26,27 +26,54 @@
                         {/if}
                     </h1>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     {def $attribute = $node.data_map.rating}
                     {def $rating = $attribute.content}
 
                         {if $attribute.data_int|not()}
-                            <div class="hreview-aggregate like_rating  center-block">
-                                <ul id="ezsr_rating_{$attribute.id}" class="ezsr-star-rating">
-                                    <li id="ezsr_rating_percent_{$attribute.id}" class="ezsr-current-rating" style="width:{$rating.rounded_average|div(1)|mul(100)}%;">{'Currently %current_rating out of 5 Stars.'|i18n('extension/ezstarrating/datatype', '', hash( '%current_rating', concat('<span>', $rating.rounded_average|wash, '</span>') ))}</li>
-                                    {for 1 to 1 as $num}
-                                        <li><a href="JavaScript:void(0);" id="ezsr_{$attribute.id}_{$attribute.version}_{$num}" class="ezsr-stars-{$num}" rel="nofollow" onfocus="this.blur();">{$num}</a></li>
-                                    {/for}
-                                </ul>
-                                <span id="ezsr_total_{$attribute.id}">{$rating.rating_count|wash}</span>
-                                {*<p id="ezsr_just_rated_{$attribute.id}" class="ezsr-just-rated hide">{'Thank you for rating!'|i18n('extension/ezstarrating/datatype', 'When rating')}</p>
-                                <p id="ezsr_has_rated_{$attribute.id}" class="ezsr-has-rated hide">Hai già votato!</p>*}
+
+                            <div class="row social-buttons">
+
+                              <div class="col-xs-4 social-button">
+                                <div class="hreview-aggregate like_rating  center-block">
+                                    <ul id="ezsr_rating_{$attribute.id}" class="ezsr-star-rating">
+                                        <li id="ezsr_rating_percent_{$attribute.id}" class="ezsr-current-rating" style="width:{$rating.rounded_average|div(1)|mul(100)}%;">{'Currently %current_rating out of 5 Stars.'|i18n('extension/ezstarrating/datatype', '', hash( '%current_rating', concat('<span>', $rating.rounded_average|wash, '</span>') ))}</li>
+                                        {for 1 to 1 as $num}
+                                            <li><a href="JavaScript:void(0);" id="ezsr_{$attribute.id}_{$attribute.version}_{$num}" class="ezsr-stars-{$num}" rel="nofollow" onfocus="this.blur();">{$num}</a></li>
+                                        {/for}
+                                    </ul>
+                                    <span id="ezsr_total_{$attribute.id}">{$rating.rating_count|wash}</span>
+                                    {*<p id="ezsr_just_rated_{$attribute.id}" class="ezsr-just-rated hide">{'Thank you for rating!'|i18n('extension/ezstarrating/datatype', 'When rating')}</p>
+                                    <p id="ezsr_has_rated_{$attribute.id}" class="ezsr-has-rated hide">Hai già votato!</p>*}
+                                </div>
+                              </div>
+
+                              <div class="col-xs-4 social-button"  style="margin-top: 30px;">
+                                  <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="ezpublish">Tweet</a>
+                                  {literal}<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>{/literal}
+                              </div>
+                              <div class="col-xs-4 social-button"  style="margin-top: 30px;">
+                                  <div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false"></div>
+
+                                  <div id="fb-root"></div>
+                                  {literal}
+                                  <script>(function(d, s, id) {
+                                    var js, fjs = d.getElementsByTagName(s)[0];
+                                    if (d.getElementById(id)) return;
+                                    js = d.createElement(s); js.id = id;
+                                    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                                    fjs.parentNode.insertBefore(js, fjs);
+                                  }(document, 'script', 'facebook-jssdk'));</script>
+                                  {/literal}
+                              </div>
                             </div>
+
                         {/if}
 
 
                     {undef $rating}
                     {undef $attribute}
+
                 </div>
             </div>
             <div class="text space">
