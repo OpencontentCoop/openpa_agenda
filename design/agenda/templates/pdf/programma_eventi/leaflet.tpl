@@ -29,7 +29,7 @@
                                                 {$event.periodo_svolgimento}
                                             {else}
                                                 {$event.from_time|datetime('custom', '%j %F')}
-                                                {if $event.from_time|ne($event.to_time)}
+                                                {if sub($event.to_time.timestamp,$event.from_time.timestamp)|gt(86399)}
                                                     - {$event.to_time|datetime('custom', '%j %F')}
                                                 {/if}
                                             {/if}
@@ -99,7 +99,7 @@
                                                 {$event.periodo_svolgimento}
                                             {else}
                                                 {$event.from_time|datetime('custom', '%j %F')}
-                                                {if $event.from_time|ne($event.to_time)}
+                                                {if sub($event.to_time.timestamp,$event.from_time.timestamp)|gt(86399)}
                                                     - {$event.to_time|datetime('custom', '%j %F')}
                                                 {/if}
                                             {/if}

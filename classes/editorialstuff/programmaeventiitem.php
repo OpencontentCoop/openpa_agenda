@@ -237,7 +237,7 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
                     'periodo_svolgimento' => $eventDataMap['periodo_svolgimento']->toString(),
                     'from_time' => $eventDataMap['from_time']->toString(),
                     'to_time' => $eventDataMap['to_time']->toString(),
-                    'orario_svolgimento' => $eventDataMap['periodo_svolgimento']->toString(),
+                    'orario_svolgimento' => $eventDataMap['orario_svolgimento']->toString(),
                     'durata' => $eventDataMap['durata']->toString(),
                     'luogo_svolgimento' => $eventDataMap['luogo_svolgimento']->toString(),
                     'abstract' => substr(strip_tags($eventDataMap['abstract']->hasContent() ? $eventDataMap['abstract']->toString() : $eventDataMap['text']->toString()),
