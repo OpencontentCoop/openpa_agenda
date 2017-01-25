@@ -290,9 +290,9 @@ $(document).ready(function () {
 
             if (start != '*'){
                 if (end == '*') {
-                    query += 'calendar[] = [' + start.set('hour', 0).set('minute', 0).format('YYYY-MM-DD') + ',*] and ';
+                    query += 'calendar[] = [' + start.set('hour', 0).set('minute', 0).format('YYYY-MM-DD HH:mm') + ',*] and ';
                 } else {
-                    query += 'calendar[] = [' + start.set('hour', 0).set('minute', 0).format('YYYY-MM-DD') + ',' + end.set('hour', 23).set('minute', 59).format('YYYY-MM-DD') + '] and ';
+                    query += 'calendar[] = [' + start.set('hour', 0).set('minute', 0).format('YYYY-MM-DD HH:mm') + ',' + end.set('hour', 23).set('minute', 59).format('YYYY-MM-DD HH:mm') + '] and ';
                 }
             }
         }
