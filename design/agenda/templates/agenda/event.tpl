@@ -97,9 +97,9 @@
         </div>
     </div>
 
-    {def $luogo = false()}                      
+    {def $luogo = false()}
     {if $node|has_attribute( 'luogo' )}                          
-      {set $luogo = fetch('content','node',hash('node_id', $node.data_map.luogo.content.relation_list[0].node_id))}                        
+      {set $luogo = fetch('content','node',hash('node_id', $node.data_map.luogo.content.relation_list[0].node_id))}
     {/if}
 
     <div class="service_teasers row space">
@@ -108,37 +108,27 @@
             <div class="service_teaser vertical notitle">
                 <div class="service_details">
 
-                    <p> <i class="fa fa-map-marker"></i>
-                        <strong>Dove</strong>
+                    {if or($luogo, $node|has_attribute( 'indirizzo' ), $node|has_attribute( 'luogo_svolgimento' ),$node|has_attribute( 'comune' ))}
+					<p> <i class="fa fa-map-marker"></i>
+                        <strong>{'Dove'|i18n('agenda/event')}</strong>
 
                         {if $luogo}
                             {$luogo.name|wash()}                            
-                            {if $luogo|has_attribute( 'indirizzo')}
-                              {$luogo|attribute( 'indirizzo' ).content}
-                            {/if}
-                            
-                            {if $luogo|has_attribute( 'comune' )}                                
-                              {$luogo|attribute( 'comune' ).content}
-                            {/if}
-                            
+                            {if $luogo|has_attribute( 'indirizzo')}{if $luogo.data_map.indirizzo.content|ne($luogo.data_map.title.content)} ,{$luogo|attribute('indirizzo' ).content}{/if}{/if}
+                            {if $luogo|has_attribute( 'comune' )} {$luogo|attribute( 'comune' ).content}{/if}
                         {else}
 
-                          {if $node|has_attribute( 'indirizzo' )}
-                              {$node.data_map.indirizzo.content}
-                          {/if}
                           {if $node|has_attribute( 'luogo_svolgimento' )}
                               {$node.data_map.luogo_svolgimento.content}
                           {/if}
                           {if $node|has_attribute( 'comune' )}
-                              {*if $node|has_attribute( 'cap' )}
-                                {$node.data_map.cap}
-                              {/if*}
                               {$node.data_map.comune.content}
                           {/if}
 
                         {/if}
 
                     </p>
+					{/if}
 
                     {if $node|has_attribute( 'periodo_svolgimento' )}
                         <p> <i class="fa fa-calendar-o"></i>
@@ -194,65 +184,67 @@
 
         <div class="col-md-4">
 
+		  {def $geo_attribute = false()}
+		  {if and( $luogo, $luogo|has_attribute( 'geo' ) )}
+			{set $geo_attribute = $luogo|attribute( 'geo' )}
+		  {elseif $node|has_attribute( 'geo' )}
+			{set $geo_attribute = $node|attribute( 'geo' )}
+		  {/if}
+		  
+		  {if $geo_attribute}
+			  {if and( $geo_attribute.content.latitude, $geo_attribute.content.longitude )}
 
-            {if or($node|has_attribute( 'indirizzo' ),
-                   $node|has_attribute( 'luogo_svolgimento' ),
-                   $node|has_attribute( 'comune' ),
-                   $node|has_attribute( 'geo' ))}
+				  {ezscript_require( array( 'ezjsc::jquery', 'leaflet/leaflet.0.7.2.js', 'leaflet/Leaflet.MakiMarkers.js', 'leaflet/leaflet.markercluster.js') )}
+				  {ezcss_require( array( 'leaflet/leaflet.css', 'leaflet/map.css', 'leaflet/MarkerCluster.css', 'leaflet/MarkerCluster.Default.css' ) )}
 
-                {def $geo_attribute = false()}
-                {if and( $luogo, $luogo|has_attribute( 'geo' ) )}
-                  {set $geo_attribute = $luogo|attribute( 'geo' )}
-                {elseif $node|has_attribute( 'geo' )}
-                  {set $geo_attribute = $node|attribute( 'geo' )}
-                {/if}
-                
-                {if $geo_attribute}
-                    {if and( $geo_attribute.content.latitude, $geo_attribute.content.longitude )}
+				  <div id="map-{$geo_attribute.id}" style="width: 100%; height: 300px;"></div>
+				  <p class="goto space text-center">
+					  <a class="btn btn-lg btn-success" target="_blank" href="https://www.google.com/maps/dir//'{$geo_attribute.content.latitude},{$geo_attribute.content.longitude}'/@{$geo_attribute.content.latitude},{$geo_attribute.content.longitude},15z?hl=it">{'Come arrivare'|i18n('agenda/event')} <i class="fa fa-external-link"></i></a>
+				  </p>
 
-                        {ezscript_require( array( 'ezjsc::jquery', 'leaflet/leaflet.0.7.2.js', 'leaflet/Leaflet.MakiMarkers.js', 'leaflet/leaflet.markercluster.js') )}
-                        {ezcss_require( array( 'leaflet/leaflet.css', 'leaflet/map.css', 'leaflet/MarkerCluster.css', 'leaflet/MarkerCluster.Default.css' ) )}
+			  {run-once}
+			  {literal}
+				  <script type="text/javascript">
+					  var drawMap = function(latlng,id){
+						  var map = new L.Map('map-'+id);
+						  map.scrollWheelZoom.disable();
+						  var customIcon = L.MakiMarkers.icon({icon: "star", color: "#f00", size: "l"});
+						  var postMarker = new L.marker(latlng,{icon:customIcon});
+						  postMarker.addTo(map);
+						  map.setView(latlng, 15);
+						  L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+							  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+						  }).addTo(map);
+					  }
+				  </script>
+			  {/literal}
+			  {/run-once}
 
-                        <div id="map-{$geo_attribute.id}" style="width: 100%; height: 300px;"></div>
-                        <p class="goto space text-center">
-                            <a class="btn btn-lg btn-success" target="_blank" href="https://www.google.com/maps/dir//'{$geo_attribute.content.latitude},{$geo_attribute.content.longitude}'/@{$geo_attribute.content.latitude},{$geo_attribute.content.longitude},15z?hl=it">Come arrivare <i class="fa fa-external-link"></i></a>
-                        </p>
+				  <script type="text/javascript">
+					  drawMap([{$geo_attribute.content.latitude},{$geo_attribute.content.longitude}],{$geo_attribute.id});
+				  </script>
 
-                    {run-once}
-                    {literal}
-                        <script type="text/javascript">
-                            var drawMap = function(latlng,id){
-                                var map = new L.Map('map-'+id);
-                                map.scrollWheelZoom.disable();
-                                var customIcon = L.MakiMarkers.icon({icon: "star", color: "#f00", size: "l"});
-                                var postMarker = new L.marker(latlng,{icon:customIcon});
-                                postMarker.addTo(map);
-                                map.setView(latlng, 15);
-                                L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                                }).addTo(map);
-                            }
-                        </script>
-                    {/literal}
-                    {/run-once}
-
-                        <script type="text/javascript">
-                            drawMap([{$geo_attribute.content.latitude},{$geo_attribute.content.longitude}],{$geo_attribute.id});
-                        </script>
-
-                    {/if}
-                    {undef $geo_attribute}
-                {/if}
-
-            {/if}
+			  {/if}
+			  {undef $geo_attribute}
+		  {/if}
         </div>
 
         <div class="col-md-4">
             <ul class="list-group">
                 {if $node|has_attribute( 'organizzazione' )}
                 {def $itemObject = false()}
-                <li class="list-group-item"><i class="fa fa-group"></i> {foreach $node.data_map.organizzazione.content.relation_list as $item}{set $itemObject = fetch(content, object, hash(object_id, $item.contentobject_id))}<a href="{concat('content/view/full/',$itemObject.main_node_id)|ezurl(no)}">{$itemObject.name|wash()}</a>{delimiter}, {/delimiter}{/foreach}</li>
+                {foreach $node.data_map.organizzazione.content.relation_list as $item}
+				<li class="list-group-item">
+				  <i class="fa fa-group"></i>
+				  {set $itemObject = fetch(content, object, hash(object_id, $item.contentobject_id))}
+				  {if and($itemObject.class_identifier|eq('associazione'), is_collaboration_enabled())}
+					<a href="{concat('content/view/full/',$itemObject.main_node_id)|ezurl(no)}">{$itemObject.name|wash()}</a>
+				  {else}
+					{$itemObject.name|wash()}
+				  {/if}
+				</li>
                 {undef $itemObject}
+				{/foreach}
                 {/if}
                 {if $node|has_attribute( 'telefono' )}
                     <li class="list-group-item"><i class="fa fa-phone"></i> {attribute_view_gui attribute=$node.data_map.telefono}</li>
@@ -292,7 +284,7 @@
 
             {if $node|has_attribute('informazioni')}
             <button class="btn btn-info btn-lg center-block space" type="button" data-toggle="collapse" data-target="#info" aria-expanded="false" aria-controls="info">
-                <i class="fa fa-info-circle"></i> Maggiori informazioni
+                <i class="fa fa-info-circle"></i> {'Maggiori informazioni'|i18n('agenda/event')}
             </button>
             <div class="collapse space" id="info">
                 <div class="well">
@@ -379,78 +371,10 @@
   <a href="#" class="btn btn-primary btn-lg">{/literal}{'Carica altri eventi'|i18n('agenda')}{literal}</a>
 </div>
 </script>
-
-<script id="tpl-event" type="text/x-jsrender">
-<div class="col-md-6 space">
-    <div class="service_teaser calendar_teaser vertical">
-      {{if ~i18n(data,'image')}}
-      <div class="service_photo">
-          <figure style="background-image:url({{:~mainImageUrl(data)}})"></figure>
-      </div>
-      {{/if}}
-      <div class="service_details">
-          <div class="media">
-
-              {{if ~formatDate(~i18n(data,'to_time'),'yyyy.MM.dd') == ~formatDate(~i18n(data,'from_time'),'yyyy.MM.dd')}}
-                  <div class="media-left">
-                      <div class="calendar-date">
-                        <span class="month">{{:~formatDate(~i18n(data,'from_time'),'MMM')}}</span>
-                        <span class="day">{{:~formatDate(~i18n(data,'from_time'),'D')}}</span>
-                      </div>
-                  </div>
-             {{/if}}
-
-              <div class="media-body">
-                  {{if ~formatDate(~i18n(data,'to_time'),'yyyy.MM.dd') !== ~formatDate(~i18n(data,'from_time'),'yyyy.MM.dd')}}
-                    <i class="fa fa-calendar"></i> {{:~formatDate(~i18n(data,'from_time'),'D MMMM')}} - {{:~formatDate(~i18n(data,'to_time'),'D MMMM')}}
-                  {{/if}}
-                   <h2 class="section_header skincolored">
-                      <a href="{{:~agendaUrl(metadata.mainNodeId)}}">
-                          <b>{{:~i18n(data,'titolo')}}</b>
-                          <small>{{:~i18n(data,'luogo_svolgimento')}} {{:~i18n(data,'orario_svolgimento')}}</small>
-                      </a>
-                  </h2>
-              </div>
-          </div>
-
-          {{if ~i18n(data,'periodo_svolgimento')}}
-              <small class="periodo_svolgimento">
-                  {{:~i18n(data,'periodo_svolgimento')}}
-              </small>
-          {{/if}}
-          {{if ~i18n(data,'abstract')}}
-              {{:~i18n(data,'abstract')}}
-          {{/if}}
-
-          <p class="pull-left">
-              <small class="tipo_evento">
-              {{for ~i18n(data,'tipo_evento')}}
-                  <span class="type-{{>id}}">
-                      {{>~i18n(name)}}
-                  </span>
-              {{/for}}
-              </small>
-          </p>
-          {{if ~settings('is_collaboration_enabled')}}
-          <p class="pull-right">
-              <small>
-              {{for ~i18n(data,'organizzazione')}}
-                  <a class="btn btn-success btn-xs type-{{>id}}" href="{{:~associazioneUrl(id)}}">
-                      {{>~i18n(name)}}
-                  </a>
-              {{/for}}
-              </small>
-          </p>
-          {{/if}}
-
-      </div>
-    </div>
-</div>
-</script>
 {/literal}
 
-{include
-    uri='design:agenda/parts/calendar.tpl'
+{include uri='design:agenda/tpl-event.tpl'}
+
+{include uri='design:agenda/parts/calendar.tpl'
     current_language=$node.object.current_language
-    base_query=concat('classes [event] and subtree [', $calendar_node_id, '] and iniziativa.id in [', $node.contentobject_id, '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100,target|alpha|10,iniziativa|count|10]')
-}
+    base_query=concat('classes [event] and iniziativa.id in [', $node.contentobject_id, '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100,target|alpha|10,iniziativa|count|10]')}

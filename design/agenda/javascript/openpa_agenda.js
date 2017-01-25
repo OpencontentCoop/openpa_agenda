@@ -26,26 +26,25 @@ $(document).ready(function () {
         return null;
     };
     var i18n = function (data, key, fallbackLanguage) {
-        var currentLanguage = tools.settings('language');
+        var currentLanguage = tools.settings('language');        
         fallbackLanguage = fallbackLanguage || 'ita-IT';
+        var returnData = false;
         if (data && key) {
-            if (typeof data[tools.settings('language')] != 'undefined' && data[currentLanguage][key]) {
-                return data[currentLanguage][key];
+            if (typeof data[currentLanguage] != 'undefined' && data[currentLanguage][key]) {
+                returnData = data[currentLanguage][key];
             }
-            if (fallbackLanguage && typeof data[fallbackLanguage] != 'undefined' && data[fallbackLanguage][key]){
-                return data[fallbackLanguage][key];
-            }
-            return data[Object.keys(data)[0]][key];
+            else if (fallbackLanguage && typeof data[fallbackLanguage] != 'undefined' && data[fallbackLanguage][key]){
+                returnData = data[fallbackLanguage][key];
+            }            
         }else if (data) {
-          if (typeof data[tools.settings('language')] != 'undefined' && data[currentLanguage]) {
-              return data[currentLanguage];
-          }
-          if (fallbackLanguage && typeof data[fallbackLanguage] != 'undefined' && data[fallbackLanguage]){
-              return data[fallbackLanguage];
-          }
-          return data[Object.keys(data)[0]];
-        }
-        return null;
+            if (typeof data[currentLanguage] != 'undefined' && data[currentLanguage]) {
+                returnData = data[currentLanguage];
+            }
+            else if (fallbackLanguage && typeof data[fallbackLanguage] != 'undefined' && data[fallbackLanguage]){
+                returnData = data[fallbackLanguage];
+            }          
+        }        
+        return returnData != 0 ? returnData : false;
     };
 
     var helpers = {
@@ -397,7 +396,7 @@ $(document).ready(function () {
             }
             if (response.nextPageQuery) {
                 var loadMore = $($.templates("#tpl-load-other").render({}));
-                loadMore.bind('click',function(e){
+                loadMore.find('a').bind('click',function(e){
                     tools.find(response.nextPageQuery, function (response) {
                         parseSearchHits(response, true);
                         loadMore.remove();

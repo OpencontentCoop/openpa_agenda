@@ -14,9 +14,10 @@
     'bootstrap-datepicker/bootstrap-datepicker.min.css'
 ))}
 
+{def $moment_language = $current_language|explode('-')[1]|downcase()}
 
 <script>
-    moment.locale('it');
+    moment.locale('{$moment_language}');
     $.opendataTools.settings('onError', function(errorCode,errorMessage,jqXHR){ldelim}
         console.log(errorMessage + ' (error: '+errorCode+')');
         $("#calendar").html('<div class="alert alert-danger">'+errorMessage+'</div>')

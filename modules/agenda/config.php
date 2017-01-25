@@ -51,12 +51,26 @@ elseif ( $Part == 'moderators' )
     $tpl->setVariable( 'moderators_parent_node_id', OpenPAAgenda::moderatorGroupNodeId() );
 }
 
+$data = array();
+/** @var eZContentObjectTreeNode[] $otherFolders */
+$otherFolders = eZContentObjectTreeNode::subTreeByNodeID( array( 'ClassFilterType' => 'include',
+                                                                 'ClassFilterArray' => array( 'folder' ),
+                                                                 'Depth' => 1, 'DepthOperator' => 'eq', ),
+                                                         $root->attribute( 'node_id' ) );
+foreach( $otherFolders as $folder )
+{
+    if ( $folder->attribute( 'node_id' ) != OpenPAAgenda::programNodeId() )
+    {
+        $data[] = $folder;
+    }
+}
 
 $tpl->setVariable( 'root', $root );
 $tpl->setVariable( 'current_user', $currentUser );
 $tpl->setVariable( 'persistent_variable', array() );
 $tpl->setVariable( 'view_parameters', $viewParameters );
 $tpl->setVariable( 'current_part', $Part );
+$tpl->setVariable( 'data', $data );
 
 $Result = array();
 $Result['persistent_variable'] = $tpl->variable( 'persistent_variable' );

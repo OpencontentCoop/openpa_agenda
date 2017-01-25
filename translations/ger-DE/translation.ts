@@ -81,12 +81,12 @@
     <message>
         <location filename="../../design/agenda/templates/agenda/home.tpl" line="69"/>
         <source>I prossimi 7 giorni</source>
-        <translation>Nächste 7 Tage</translation>
+        <translation>Die nächsten 7 Tage</translation>
     </message>
     <message>
         <location filename="../../design/agenda/templates/agenda/home.tpl" line="70"/>
         <source>I prossimi 30 giorni</source>
-        <translation>Nächste 30 Tage</translation>
+        <translation>Die nächsten 30 Tage</translation>
     </message>
     <message>
         <location filename="../../design/agenda/templates/agenda/home.tpl" line="71"/>
@@ -124,6 +124,82 @@
         <location filename="../../design/agenda/templates/agenda/home.tpl" line="119"/>
         <source>Nessun evento trovato</source>
         <translation>Kein Event gefunden</translation>
+    </message>
+    <message>
+      <location filename="../../design/agenda/templates/agenda/home.tpl" line="135"/>
+      <source>Carica altri eventi</source>
+      <translation>Weitere Events laden</translation>
+    </message>
+    <message>
+      <source>Chiudi</source>
+      <translation>schließen</translation>
+    </message>
+</context>
+<context>
+    <name>agenda/event</name>
+    <message>
+        <location filename="../../design/agenda/templates/agenda/event.tpl" line="112" />
+        <source>Dove</source>
+        <translation>Wo</translation>
+    </message>
+    <message>
+        <location filename="../../design/agenda/templates/agenda/event.tpl" line="218" />
+        <source>Come arrivare</source>
+        <translation>So erreichen Sie den Veranstaltungsort</translation>
+    </message>
+    <message>
+        <location filename="../../design/agenda/templates/agenda/event.tpl" line="295" />
+        <source>Maggiori informazioni</source>
+        <translation>Weitere Informationen</translation>
+    </message>
+</context>
+<context>
+    <name>agenda/event/hours</name>
+    <message>
+        <location filename="../../design/agenda/templates/atoms/dates.tpl" line="23" />
+        <source>da</source>
+        <translation>vom</translation>
+    </message>
+    <message>
+        <location filename="../../design/agenda/templates/atoms/dates.tpl" line="25" />
+        <source>a</source>
+        <translation>bis</translation>
+    </message>
+</context>
+<context>
+    <name>agenda/event/days</name>
+    <message>
+        <location filename="../../design/agenda/templates/atoms/dates.tpl" line="32" />
+        <source>da</source>
+        <translation>vom</translation>
+    </message>
+    <message>
+        <location filename="../../design/agenda/templates/atoms/dates.tpl" line="34" />
+        <source>a</source>
+        <translation>bis zum</translation>
+    </message>
+</context>
+    <context>
+    <name>agenda/event/comments</name>
+    <message>
+        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="23" />
+        <source>Inserisci risposta</source>
+        <translation>Antwort hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="25" />
+        <source>Inserisci commento</source>
+        <translation>Kommentar hinzufügen</translation>
+    </message>
+    <message>
+        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="204" />
+        <source>Pubblica il commento</source>
+        <translation>Kommentar veröffentlichen</translation>
+    </message>
+    <message>
+        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="205" />
+        <source>Annulla</source>
+        <translation>Löschen</translation>
     </message>
 </context>
 <context>
@@ -318,6 +394,21 @@
         <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/content.tpl" line="55"/>
         <source>Data di pubblicazione</source>
         <translation>Veröffentlicht</translation>
+    </message>
+    <message>
+      <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/media.tpl" line="7"/>
+      <source>Nuovo</source>
+      <translation>Neu</translation>
+    </message>
+    <message>
+      <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/media.tpl" line="19"/>
+      <source>Libreria</source>
+      <translation>Bildarchiv</translation>
+    </message>
+    <message>
+      <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/media/images.tpl" line="16"/>
+      <source>Immagini</source>
+      <translation>Fotos</translation>
     </message>
 </context>
 <context>
