@@ -10,6 +10,7 @@ class OpenPAAgendaOperators
     function operatorList()
     {
         return array(
+            'calendar_node_id',
             'is_collaboration_enabled',
             'is_comment_enabled',
             'is_header_only_logo_enabled',
@@ -53,6 +54,10 @@ class OpenPAAgendaOperators
         $agenda = OpenPAAgenda::instance();
         switch( $operatorName )
         {
+            case 'calendar_node_id':
+                $operatorValue = OpenPAAgenda::calendarNodeId();
+                break;
+
             case 'is_collaboration_enabled':
                 $operatorValue = $agenda->isCollaborationModeEnabled();
                 break;

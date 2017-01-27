@@ -4,6 +4,11 @@
 <context>
     <name>agenda</name>
     <message>
+        <location filename="../../design/agenda/templates/agenda/home.tpl" line="118"/>
+        <source>Patrocinato da</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="OpenPAAgendaPageDataHandler.php" line="75"/>
         <source>AgendaCivica - realizzato da OpenContent con ComunWeb</source>
         <translation type="unfinished"></translation>

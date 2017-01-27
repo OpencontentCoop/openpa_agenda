@@ -377,4 +377,4 @@
 
 {include uri='design:agenda/parts/calendar.tpl'
     current_language=$node.object.current_language
-    base_query=concat('classes [event] and iniziativa.id in [', $node.contentobject_id, '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100,target|alpha|10,iniziativa|count|10]')}
+    base_query=concat('classes [event] and subtree [', calendar_node_id(), '] and iniziativa.id in [', $node.contentobject_id, '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100,target|alpha|10,iniziativa|count|10]')}
