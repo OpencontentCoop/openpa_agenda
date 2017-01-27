@@ -122,6 +122,24 @@ class OpenPAAgenda
         return self::getNodeIdFromRemoteId(self::programRemoteId());
     }
 
+    /**
+     * @return eZContentObjectTreeNode|null
+     */
+    public static function latestProgram()
+    {
+        $programs = eZContentObjectTreeNode::subTreeByNodeID(array(
+            'Language' => eZLocale::currentLocaleCode(),
+            'SortBy' => array('published', false),
+            'ClassFilterType' => 'include',
+            'ClassFilterArray' => array('programma_eventi'),
+            'Limit' => 1
+        ), OpenPAAgenda::programNodeId());
+        if (isset($programs[0]) && $programs[0] instanceof eZContentObjectTreeNode){
+            return $programs[0];
+        }
+        return null;
+    }
+
     public static function associationsRemoteId()
     {
         return OpenPAAgenda::rootRemoteId() . '_associations';

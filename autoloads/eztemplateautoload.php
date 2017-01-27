@@ -4,6 +4,7 @@ $eZTemplateOperatorArray[] = array(
     'script' => 'extension/openpa_agenda/autoloads/OpenPAAgendaOperators.php',
     'class' => 'OpenPAAgendaOperators',
     'operator_names' => array(
+        'latest_program',
         'calendar_node_id',
         'is_collaboration_enabled',
         'is_comment_enabled',

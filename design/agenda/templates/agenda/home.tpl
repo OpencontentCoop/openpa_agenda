@@ -2,6 +2,7 @@
 
 {if is_collaboration_enabled()}
     <div class="row home-teaser hidden-xs">
+        {if latest_program()}
         <div class="col-sm-4">
             <div class="service_teaser vertical">
                 <div class="service_photo">
@@ -9,6 +10,7 @@
                 </div>
             </div>
         </div>
+        {/if}
         <div class="col-sm-4">
             <div class="service_teaser vertical">
                 <div class="service_photo">
@@ -25,7 +27,7 @@
         </div>
     </div>
 
-{else}
+{elseif latest_program()}
 
     <div class="text-center">
         <a class="btn btn-success btn-lg" href="{'agenda/download/'|ezurl(no)}">

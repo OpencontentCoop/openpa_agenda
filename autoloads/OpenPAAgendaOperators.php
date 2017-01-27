@@ -10,6 +10,7 @@ class OpenPAAgendaOperators
     function operatorList()
     {
         return array(
+            'latest_program',
             'calendar_node_id',
             'is_collaboration_enabled',
             'is_comment_enabled',
@@ -54,6 +55,10 @@ class OpenPAAgendaOperators
         $agenda = OpenPAAgenda::instance();
         switch( $operatorName )
         {
+            case 'latest_program':
+                $operatorValue = OpenPAAgenda::latestProgram();
+                break;
+
             case 'calendar_node_id':
                 $operatorValue = OpenPAAgenda::calendarNodeId();
                 break;

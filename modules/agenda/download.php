@@ -3,22 +3,14 @@
 /** @var eZModule $module */
 $Module = $Params['Module'];
 
-$programmi = eZContentObjectTreeNode::subTreeByNodeID(array(
-    'Language' => eZLocale::currentLocaleCode(),
-    'SortBy' => array('published', false),
-    'ClassFilterType' => 'include',
-    'ClassFilterArray' => array('programma_eventi'),
-    'Limit' => 1
-), OpenPAAgenda::programNodeId());
+$latestProgram = OpenPAAgenda::latestProgram();
 
-if (isset($programmi[0]) && $programmi[0] instanceof eZContentObjectTreeNode){
-    /** @var eZContentObjectTreeNode $current */
-    $current = $programmi[0];
+if ($latestProgram instanceof eZContentObjectTreeNode){
     try {
-        $post = OCEditorialStuffHandler::instance('programma_eventi')->fetchByObjectId($current->attribute('contentobject_id'));
+        $post = OCEditorialStuffHandler::instance('programma_eventi')->fetchByObjectId($latestProgram->attribute('contentobject_id'));
 
         $fileHandler = eZBinaryFileHandler::instance();
-        $result = $fileHandler->handleDownload( $current->object(), $post->attribute('file_attribute'), eZBinaryFileHandler::TYPE_FILE );
+        $result = $fileHandler->handleDownload( $latestProgram->object(), $post->attribute('file_attribute'), eZBinaryFileHandler::TYPE_FILE );
 
         if ( $result == eZBinaryFileHandler::RESULT_UNAVAILABLE )
         {
