@@ -137,7 +137,7 @@
                         </p>
                     {else}
                         <p> <i class="fa fa-calendar-o"></i>
-                            {include uri='design:atoms/dates.tpl' item=$node}
+                            {include uri='design:atoms/dates.tpl' item=$node show_time=cond($node|has_attribute( 'orario_svolgimento' ),false(),true())}
                         </p>
                     {/if}
 
