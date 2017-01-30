@@ -100,11 +100,9 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         $tpl->resetVariables();
         $tpl->setVariable('root_node', $rootNode);
         $tpl->setVariable('programma_eventi', $this);
+        $tpl->setVariable('root_dir', eZSys::rootDir());
         $tpl->setVariable('layout', $currentLayout);
         $content = $tpl->fetch('design:pdf/programma_eventi/leaflet.tpl');
-
-        //echo $content;
-        //eZExecution::cleanExit();
 
         /** @var eZContentClass $objectClass */
         $objectClass = $this->getObject()->attribute('content_class');
@@ -114,6 +112,14 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
 
         $paradoxPdf = new ParadoxPDF();
         $pdfContent = $paradoxPdf->generatePDF($content);
+
+        $ini = eZINI::instance();
+        $viewCacheEnabled = ( $ini->variable( 'ContentSettings', 'ViewCaching' ) == 'enabled' );
+        if ( !$viewCacheEnabled ){
+            echo $content;
+            eZExecution::cleanExit();
+        }
+
         eZFile::create($fileName, eZSys::cacheDirectory(), $pdfContent);
         if (isset( $this->dataMap['file'] )) {
             $this->dataMap['file']->fromString(eZSys::cacheDirectory() . '/' . $fileName);
@@ -244,7 +250,8 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
                         0, $this->abstract_length),
                     'auto' => true,
                     'index' => $index,
-                    'key' => $key
+                    'key' => $key,
+                    'qrcode_file_url' => OpenPAAgendaQRCode::getFile($objectEvent->mainNodeID())->filePath
                 );
 
                 if (isset( $customEventsAttributes[$objectEvent->ID] ) && !empty( $customEventsAttributes[$objectEvent->ID]['abstract'] )) {

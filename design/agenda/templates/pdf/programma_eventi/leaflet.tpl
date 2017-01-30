@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="{'stylesheets/print-default.css'|ezdesign(no)|ezroot(no,full)}" />
+    <link rel="stylesheet" type="text/css" href="file://{$root_dir}{'stylesheets/print-default.css'|ezdesign(no)|ezroot(no)}" />
 </head>
 <body>
 <div id="header">
@@ -71,7 +71,7 @@
                                 </td>
 
                                 <td width="80px">
-                                    <img src="{concat('/agenda/qrcode/',$event.main_node_id)|ezurl(no,full)}" alt="" height="80px"/>
+                                    <img src="file://{$root_dir}/{$event.qrcode_file_url}" alt="" height="80px"/>
                                 </td>
 
                             </tr>
@@ -141,7 +141,7 @@
                                 </td>
 
                                 <td width="80px">
-                                    <img src="{concat('/agenda/qrcode/',$event.main_node_id)|ezurl(no,full)}" alt="" height="80px"/>
+                                    <img src="file://{$root_dir}/{$event.qrcode_file_url}" alt="" height="80px"/>
                                 </td>
 
                             </tr>
@@ -157,7 +157,7 @@
                 {attribute_view_gui attribute=$programma_eventi.object.data_map.description}
                 <br />
                 <br />
-                {attribute_view_gui attribute=$root_node.data_map.logo image_class=medium}
+                <img src="file://{$root_dir}{$root_node.data_map.logo.content.medium.url|ezroot(no)}" alt="" />
                 <br />
                 <br />
                 {attribute_view_gui attribute=$root_node.data_map.contacts}
