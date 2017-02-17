@@ -11,7 +11,7 @@
         
           <div class="media">
 
-              {{if ~formatDate(~i18n(data,'to_time'),'yyyy.MM.dd') == ~formatDate(~i18n(data,'from_time'),'yyyy.MM.dd')}}
+              {{if ~formatDate(~i18n(data,'to_time'),'yyyy.MM.D') == ~formatDate(~i18n(data,'from_time'),'yyyy.MM.D')}}
                   <div class="media-left">
                       <div class="calendar-date">
                         <span class="month">{{:~formatDate(~i18n(data,'from_time'),'MMM')}}</span>
@@ -21,7 +21,7 @@
 			  {{/if}}
 
               <div class="media-body">
-                  {{if ~formatDate(~i18n(data,'to_time'),'yyyy.MM.dd') !== ~formatDate(~i18n(data,'from_time'),'yyyy.MM.dd')}}
+                  {{if ~formatDate(~i18n(data,'to_time'),'yyyy.MM.D') !== ~formatDate(~i18n(data,'from_time'),'yyyy.MM.D')}}
                     <i class="fa fa-calendar"></i> {{:~formatDate(~i18n(data,'from_time'),'D MMMM')}} - {{:~formatDate(~i18n(data,'to_time'),'D MMMM')}}
                   {{/if}}
                    <h2 class="section_header skincolored">
