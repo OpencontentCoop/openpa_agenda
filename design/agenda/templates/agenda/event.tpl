@@ -1,5 +1,6 @@
+{include uri="design:parts/opengraph_set_persistent.tpl"}
 {ezcss_require( 'star_rating.css' )}
-{ezscript_require( array( 'ezjsc::jquery', 'ezjsc::jqueryio', 'ezstarrating_jquery.js', 'readmore.min.js' ) )}
+{ezscript_require( array( 'ezjsc::jquery', 'ezjsc::jqueryio', 'ezstarrating_jquery.js' ) )}
 {def $reply_limit=20
      $reply_tree_count = fetch('content','tree_count', hash( parent_node_id, $node.node_id ) )
      $reply_count=fetch('content','list_count', hash( parent_node_id, $node.node_id ) )}
@@ -27,7 +28,9 @@
                     </h1>
                 </div>
                 <div class="col-md-3">
-                    {def $attribute = $node.data_map.rating}
+                    {include uri='design:parts/common/social_control.tpl'}
+                    {include uri='design:parts/common/add_to_calendar.tpl'}
+                    {*def $attribute = $node.data_map.rating}
                     {def $rating = $attribute.content}
 
                         {if $attribute.data_int|not()}
@@ -43,8 +46,6 @@
                                         {/for}
                                     </ul>
                                     <span id="ezsr_total_{$attribute.id}">{$rating.rating_count|wash}</span>
-                                    {*<p id="ezsr_just_rated_{$attribute.id}" class="ezsr-just-rated hide">{'Thank you for rating!'|i18n('extension/ezstarrating/datatype', 'When rating')}</p>
-                                    <p id="ezsr_has_rated_{$attribute.id}" class="ezsr-has-rated hide">Hai già votato!</p>*}
                                 </div>
                               </div>
 
@@ -72,7 +73,7 @@
 
 
                     {undef $rating}
-                    {undef $attribute}
+                    {undef $attribute*}
 
                 </div>
             </div>

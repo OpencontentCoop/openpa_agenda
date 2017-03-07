@@ -12,7 +12,7 @@
     'jquery.dataTables.js',
     'dataTables.bootstrap.js',
     'jquery.opendataDataTable.js',
-    'jquery.opendataTools.js',,
+    'jquery.opendataTools.js',
     'openpa_agenda_associazioni.js',
     'leaflet.js',
     'leaflet.markercluster.js',

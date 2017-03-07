@@ -17,7 +17,7 @@
                         <label>
                             <input type="radio" name="layout" value="{$layout.id}" {if $count|eq(0)} checked="checked"{/if}>
                             <img src="{concat($layout.id, '-columns.png')|ezimage(no)}" title="{$layout.title}">
-                            {$layout.title}
+                            {$layout.title}<br /><small>{$layout.displayed_attributes|implode( ', ' )}</small>
                         </label>
                     </div>
                     {set $count = $count|inc()}

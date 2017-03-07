@@ -1,12 +1,20 @@
 {def $per_page = $layout.events_per_page
      $offset = 0
-     $last_page_columns = $layout.columns|sub(1)}
+     $last_page_columns = $layout.columns|sub(1)
+     $prefix = concat('file://', $root_dir)
+     $displayed_attributes = array()}
+
+{foreach $layout.displayed_attributes as $k => $v}
+    {set $displayed_attributes = $displayed_attributes|append($k)}
+{/foreach}
+
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="file://{$root_dir}{'stylesheets/print-default.css'|ezdesign(no)|ezroot(no)}" />
+    <link rel="stylesheet" type="text/css" href="{$prefix}{'stylesheets/print-default.css'|ezdesign(no)|ezroot(no)}" />
 </head>
 <body>
 <div id="header">
@@ -25,25 +33,27 @@
                                 <td>
                                     <ul class="unstyled">
                                         <li>
-                                            {if $event.periodo_svolgimento}
-                                                {$event.periodo_svolgimento}
-                                            {else}
-                                                {$event.from_time|datetime('custom', '%j %F')}
-                                                {if sub($event.to_time,$event.from_time)|gt(86399)}
-                                                    - {$event.to_time|datetime('custom', '%j %F')}
+                                            {if $displayed_attributes|contains( 'periodo_svolgimento' )}
+                                                {if $event.periodo_svolgimento}
+                                                    {$event.periodo_svolgimento}
+                                                {else}
+                                                    {$event.from_time|datetime('custom', '%j %F')}
+                                                    {if sub($event.to_time,$event.from_time)|gt(86399)}
+                                                        - {$event.to_time|datetime('custom', '%j %F')}
+                                                    {/if}
                                                 {/if}
                                             {/if}
 
-                                            {if $event.orario_svolgimento}
+                                            {if and($event.orario_svolgimento, $displayed_attributes|contains( 'orario_svolgimento' ))}
                                                 - {$event.orario_svolgimento}
                                             {/if}
 
-                                            {if $event.durata}
+                                            {if and($event.durata, $displayed_attributes|contains( 'durata' ))}
                                                 - {$event.durata}
                                             {/if}
                                         </li>
 
-                                        {if $event.luogo_svolgimento}
+                                        {if and($event.luogo_svolgimento, $displayed_attributes|contains( 'luogo_svolgimento' ))}
                                             <li>
                                                 {if $event.luogo_svolgimento}
                                                     {$event.luogo_svolgimento}
@@ -55,7 +65,7 @@
 
 
                                     <h4>{$event.name}</h4>
-                                    {if $event.abstract}
+                                    {if and($event.abstract, $displayed_attributes|contains( 'abstract' ))}
                                         <div class="event-abstract"> {$event.abstract}</div>
                                     {/if}
 
@@ -71,7 +81,7 @@
                                 </td>
 
                                 <td width="80px">
-                                    <img src="file://{$root_dir}/{$event.qrcode_file_url}" alt="" height="80px"/>
+                                    <img src="{$prefix}/{$event.qrcode_file_url}" alt="" height="80px"/>
                                 </td>
 
                             </tr>
@@ -95,25 +105,27 @@
                                 <td>
                                     <ul class="unstyled">
                                         <li>
-                                            {if $event.periodo_svolgimento}
-                                                {$event.periodo_svolgimento}
-                                            {else}
-                                                {$event.from_time|datetime('custom', '%j %F')}
-                                                {if sub($event.to_time,$event.from_time)|gt(86399)}
-                                                    - {$event.to_time|datetime('custom', '%j %F')}
+                                            {if $displayed_attributes|contains( 'periodo_svolgimento' )}
+                                                {if $event.periodo_svolgimento}
+                                                    {$event.periodo_svolgimento}
+                                                {else}
+                                                    {$event.from_time|datetime('custom', '%j %F')}
+                                                    {if sub($event.to_time,$event.from_time)|gt(86399)}
+                                                        - {$event.to_time|datetime('custom', '%j %F')}
+                                                    {/if}
                                                 {/if}
                                             {/if}
 
-                                            {if $event.orario_svolgimento}
+                                            {if and($event.orario_svolgimento, $displayed_attributes|contains( 'orario_svolgimento' ))}
                                                 - {$event.orario_svolgimento}
                                             {/if}
 
-                                            {if $event.durata}
+                                            {if and($event.durata, $displayed_attributes|contains( 'durata' ))}
                                                 - {$event.durata}
                                             {/if}
                                         </li>
 
-                                        {if $event.luogo_svolgimento}
+                                        {if and($event.luogo_svolgimento, $displayed_attributes|contains( 'luogo_svolgimento' ))}
                                             <li>
                                                 {if $event.luogo_svolgimento}
                                                     {$event.luogo_svolgimento}
@@ -125,7 +137,7 @@
 
 
                                     <h4>{$event.name}</h4>
-                                    {if $event.abstract}
+                                    {if and($event.abstract, $displayed_attributes|contains( 'abstract' ))}
                                         <div class="event-abstract"> {$event.abstract}</div>
                                     {/if}
 
@@ -141,7 +153,7 @@
                                 </td>
 
                                 <td width="80px">
-                                    <img src="file://{$root_dir}/{$event.qrcode_file_url}" alt="" height="80px"/>
+                                    <img src="{$prefix}/{$event.qrcode_file_url}" alt="" height="80px"/>
                                 </td>
 
                             </tr>
@@ -157,7 +169,7 @@
                 {attribute_view_gui attribute=$programma_eventi.object.data_map.description}
                 <br />
                 <br />
-                <img src="file://{$root_dir}{$root_node.data_map.logo.content.medium.url|ezroot(no)}" alt="" />
+                <img src="{$prefix}{$root_node.data_map.logo.content.medium.url|ezroot(no)}" alt="" />
                 <br />
                 <br />
                 {attribute_view_gui attribute=$root_node.data_map.contacts}

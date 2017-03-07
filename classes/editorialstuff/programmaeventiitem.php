@@ -5,8 +5,47 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
 
     protected $abstract_length = 220;
     protected $layouts = array(
-        array( 'id' => 2, 'columns' => 2, 'events_per_page' => 6, 'title' => 'Due colonne (18 eventi)'),
-        array( 'id' => 3, 'columns' => 3, 'events_per_page' => 4, 'title' => 'Tre colonne (20 eventi)')
+        array(
+            'id'                   => 2,
+            'columns'              => 2,
+            'events_per_page'      => 6,
+            'title'                => 'Due colonne (18 eventi)',
+            'displayed_attributes' => array(
+                'name'                => 'Titolo',
+                'abstract'            => 'Abstract',
+                'periodo_svolgimento' => 'Periodo',
+                'orario_svolgimento'  => 'Orario',
+                'durata'              => 'Durata',
+                'luogo_svolgimento'   => 'Luogo svolgimento'
+            )
+        ),
+        array(
+            'id'              => 3,
+            'columns'         => 3,
+            'events_per_page' => 4,
+            'title'           => 'Tre colonne (20 eventi)',
+            'displayed_attributes' => array(
+                'name'                => 'Titolo',
+                'abstract'            => 'Abstract',
+                'periodo_svolgimento' => 'Periodo',
+                'orario_svolgimento'  => 'Orario',
+                'durata'              => 'Durata',
+                'luogo_svolgimento'   => 'Luogo svolgimento'
+            )
+        ),
+        array(
+            'id'                   => 4,
+            'columns'              => 3,
+            'events_per_page'      => 8,
+            'title'                => 'Tre colonne (40 eventi)',
+            'displayed_attributes' => array(
+                'name'                => 'Titolo',
+                'periodo_svolgimento' => 'Periodo',
+                'orario_svolgimento'  => 'Orario',
+                'durata'              => 'Durata',
+                'luogo_svolgimento'   => 'Luogo svolgimento'
+            )
+        )
     );
 
     protected $events = array();

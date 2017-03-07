@@ -8,7 +8,8 @@
     'leaflet.css',
     'MarkerCluster.css',
     'MarkerCluster.Default.css',
-    'openpa_agenda.css'
+    'openpa_agenda.css',
+    'addtocalendar.css'
 ))}
 
 {include uri='design:page_head.tpl'}
