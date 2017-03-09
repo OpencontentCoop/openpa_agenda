@@ -1,3 +1,4 @@
+{ezscript_require( array( 'jquery.opendataTools.js', 'moment.js' ) )}
 <section class="hgroup">
     <h1>{$post.object.name|wash()}</h1>
     {include uri=concat('design:', $template_directory, '/parts/workflow.tpl') post=$post}
