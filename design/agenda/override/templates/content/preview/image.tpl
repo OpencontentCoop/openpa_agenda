@@ -66,16 +66,16 @@
                                 data-objectid="{$attribute.object.id}" data-attributeid="{$attribute.id}"
                                 data-version="{$attribute.version}"><span class="glyphicon glyphicon-pencil"></span></button>
 
-                        {attribute_view_gui attribute=$attribute image_class=large}
+                        {attribute_view_gui attribute=$attribute image_class=large html_class='form-control'}
                     </span>
                     <span class="inline-form" style="display: none">
-                        {attribute_edit_gui attribute=$attribute}
+                        {attribute_edit_gui attribute=$attribute html_class='form-control'}
                         <button class="btn btn-danger pull-right">Salva</button>
                     </span>
                     {undef $inputTag}
 
                 {else}
-                    {attribute_view_gui attribute=$attribute image_class=large}
+                    {attribute_view_gui attribute=$attribute image_class=large html_class='form-control'}
                 {/if}
 
             </div>

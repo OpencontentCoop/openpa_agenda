@@ -111,7 +111,7 @@ class OpenPAAgendaPageDataHandler implements OCPageDataHandlerInterface
 
         $menu[] = array(
             'name' => ezpI18n::tr( 'agenda/menu', 'Agenda' ),
-            'url' => 'agenda/home',
+            'url' => '',
             'highlight' => false,
             'has_children' => false
         );

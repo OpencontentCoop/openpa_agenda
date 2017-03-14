@@ -26,7 +26,8 @@ $(document).ready(function(){
             <div class="col-md-3">
               <ul class="nav nav-pills nav-stacked">
                 <li role="presentation" {if $current_part|eq('users')}class="active"{/if}><a href="{'agenda/config/users'|ezurl(no)}">{'Utenti'|i18n('agenda/config')}</a></li>
-              <li role="presentation" {if $current_part|eq('moderators')}class="active"{/if}><a href="{'agenda/config/moderators'|ezurl(no)}">{'Moderatori'|i18n('agenda/config')}</a></li>
+                <li role="presentation" {if $current_part|eq('moderators')}class="active"{/if}><a href="{'agenda/config/moderators'|ezurl(no)}">{'Moderatori'|i18n('agenda/config')}</a></li>
+                <li role="presentation" {if $current_part|eq('external_users')}class="active"{/if}><a href="{'agenda/config/external_users'|ezurl(no)}">{'Utenti Esterni'|i18n('agenda/config')}</a></li>
 			  
 			  {if $data|count()|gt(0)}
 				{foreach $data as $item}
@@ -53,6 +54,23 @@ $(document).ready(function(){
                     <button class="btn btn-danger" name="AddModeratorLocation" type="submit"><i class="fa fa-plus"></i> {'Aggiungi utente esistente'|i18n('agenda/config')}</button>
                   </form>
               </div>
+              </div>
+              {/if}
+
+              {if $current_part|eq('external_users')}
+              <div class="tab-pane active" id="external_users">
+                <form class="form-inline" action="{'agenda/config/external_users'|ezurl(no)}">
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="s" placeholder="{'Cerca'|i18n('agenda/config')}" value="{$view_parameters.query|wash()}" autofocus>
+                  </div>
+                  <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+                </form>
+                {include name=users_table uri='design:agenda/config/moderators_table.tpl' view_parameters=$view_parameters moderator_parent_node_id=$external_users_parent_node_id}
+                <div class="pull-right"><a class="btn btn-danger" href="{concat('add/new/user/?parent=',$external_users_parent_node_id)|ezurl(no)}"><i class="fa fa-plus"></i> {'Aggiungi utente'|i18n('agenda/config')}</a>
+                  <form class="form-inline" style="display: inline" action="{'agenda/config/external_users'|ezurl(no)}" method="post">
+                    <button class="btn btn-danger" name="AddExternalUsersLocation" type="submit"><i class="fa fa-plus"></i> {'Aggiungi utente esistente'|i18n('agenda/config')}</button>
+                  </form>
+                </div>
               </div>
               {/if}
 
@@ -84,7 +102,9 @@ $(document).ready(function(){
 					{foreach $item.children as $child}
 					<tr>
 					  <td>
-						{*<a href="{$child.url_alias|ezurl(no)}">{$child.name|wash()}</a>*}{$child.name|wash()}
+						<a href="{concat('agenda/event/',$child.node_id)|ezurl(no)}">
+                            {$child.name|wash()}
+                        </a>
 					  </td>
 					  <td>              
 						{foreach $child.object.available_languages as $language}
@@ -100,9 +120,19 @@ $(document).ready(function(){
 					</tr>
 					{/foreach}
 				  </table>
-				  <div class="pull-left"><a class="btn btn-info" href="{concat('exportas/csv/', $item.children[0].class_identifier, '/',$item.node_id)|ezurl(no)}">{'Esporta in CSV'|i18n('agenda/config')}</a></div>
-				  <div class="pull-right"><a class="btn btn-danger"<a href="{concat('add/new/', $item.children[0].class_identifier, '/?parent=',$item.node_id)|ezurl(no)}"><i class="fa fa-plus"></i> {'Aggiungi %classname'|i18n('agenda/config',, hash( '%classname', $item.children[0].class_name ))}</a></div>
-				  {/if}
+                  {/if}
+                  {def $class_identifier = false()
+                       $class_name = false()}
+                  {if is_set($item.children[0])}
+                      {set $class_identifier = $item.children[0].class_identifier
+                           $class_name = $item.children[0].class_name}
+                  {elseif $item|has_attribute('tags')}
+                      {set $class_identifier = $item|attribute('tags').content.keyword_string|explode(', ')[0]
+                           $class_name = $class_identifier}
+                  {/if}
+				  <div class="pull-left"><a class="btn btn-info" href="{concat('exportas/csv/', $class_identifier, '/',$item.node_id)|ezurl(no)}">{'Esporta in CSV'|i18n('agenda/config')}</a></div>
+				  <div class="pull-right"><a class="btn btn-danger"<a href="{concat('add/new/', $class_identifier, '/?parent=',$item.node_id)|ezurl(no)}"><i class="fa fa-plus"></i> {'Aggiungi %classname'|i18n('agenda/config',, hash( '%classname', $class_name ))}</a></div>
+                  {undef $class_identifier $class_name}
 				</div>
 				{/if}
 			  {/foreach}

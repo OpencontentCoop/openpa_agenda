@@ -66,7 +66,7 @@
               <small>
               {{for ~i18n(data,'tipo_evento')}}
                   <span class="type-{{>id}}" style="white-space:nowrap">
-                      <i class="fa fa-tag"></i> {{>~i18n(name)}}
+                      <i class="fa fa-tag"></i> {{if ~i18n(name)}} {{>~i18n(name)}} {{else}} {{>#data}} {{/if}}
                   </span>
               {{/for}}
               </small>

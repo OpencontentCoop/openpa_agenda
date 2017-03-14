@@ -11,7 +11,7 @@ if (is_numeric($NodeId) && OpenPAAgenda::instance()->checkAccess($NodeId)) {
     $cacheFileHandler = OpenPAAgendaQRCode::getFile($NodeId, $size, $padding);
 
     header('Content-Type: image/png');
-    header( "Last-Modified: " . gmdate( 'D, d M Y H:i:s', $mtime ) . ' GMT' );
+    header( "Last-Modified: " . gmdate( 'D, d M Y H:i:s', $cacheFileHandler->mtime() ) . ' GMT' );
     $cacheFileHandler->passthrough();
 
 }

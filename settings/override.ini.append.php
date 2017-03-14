@@ -14,4 +14,11 @@ Subdir=templates
 Match[class_identifier]=event
 Match[attribute_identifier]=associazione
 
+[datatype_iniziativa_evento]
+Source=content/datatype/edit/ezobjectrelationlist.tpl
+MatchFile=datatype/edit/ezobjectrelationlist_iniziativa_evento.tpl
+Subdir=templates
+Match[class_identifier]=event
+Match[attribute_identifier]=iniziativa
+
  */ ?>

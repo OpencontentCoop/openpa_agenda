@@ -15,7 +15,7 @@ class OpenPAAgendaQRCode
     {
         $cacheFile = $NodeId . '-' . $size . '-' . $padding . '.png';
         $cacheFilePath = eZDir::path(
-            array( eZSys::cacheDirectory(), 'openpa_agenda', 'qrcode', $cacheFile )
+            array( OpenPAAgenda::instance()->getAgendaCacheDir(), 'qrcode', $cacheFile )
         );
 
         $cacheFileHandler = eZClusterFileHandler::instance( $cacheFilePath );

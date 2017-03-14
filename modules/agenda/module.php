@@ -7,6 +7,18 @@ $ViewList['home'] = array(
     'functions' => array('use')
 );
 
+$ViewList['view'] = array(
+    'script' => 'view.php',
+    'params' => array('Calendar'),
+    'functions' => array('use')
+);
+
+$ViewList['add'] = array(
+    'script' => 'add.php',
+    'params' => array('Class'),
+    'functions' => array('use')
+);
+
 $ViewList['info'] = array(
     'script' => 'info.php',
     'params' => array('Page'),
@@ -56,9 +68,16 @@ $ViewList['download'] = array(
     'functions' => array('download')
 );
 
+$ViewList['push'] = array(
+    'script' => 'push.php',
+    'params' => array('NodeId'),
+    'functions' => array('push')
+);
+
 
 $FunctionList = array();
 $FunctionList['use'] = array();
 $FunctionList['config'] = array();
 $FunctionList['qrcode'] = array();
 $FunctionList['download'] = array();
+$FunctionList['push'] = array();

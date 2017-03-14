@@ -66,6 +66,9 @@ class OpenPAAgenda
         return $this->root;
     }
 
+    /**
+     * @return eZContentObjectTreeNode
+     */
     public function rootNode()
     {
         return $this->root->attribute('main_node');
@@ -82,6 +85,14 @@ class OpenPAAgenda
         return isset($this->rootDataMap[$identifier]);
     }
 
+    public function getAgendaCacheDir()
+    {
+        $cacheFilePath = eZDir::path(
+            array( eZSys::cacheDirectory(), 'openpa_agenda' )
+        );
+        return $cacheFilePath;
+    }
+
     /**
      * Remote id di rootNode
      *
@@ -92,12 +103,25 @@ class OpenPAAgenda
         return OpenPABase::getCurrentSiteaccessIdentifier() . '_openpa_agenda';
     }
 
-    private static function getNodeIdFromRemoteId($remote)
+    private static function getNodeIdFromRemoteId($remote, $createIfNotExists = true, $params = array())
     {
         $db = eZDB::instance();
         $results = $db->arrayQuery("SELECT ezcotn.main_node_id, ezco.remote_id FROM ezcontentobject_tree as ezcotn, ezcontentobject as ezco WHERE ezco.id = ezcotn.contentobject_id AND ezco.remote_id = '{$remote}'");
         foreach($results as $result){
             return $result['main_node_id'];
+        }
+        if ($createIfNotExists){
+            $newObject = eZContentFunctions::createAndPublishObject(
+                array_merge(array(
+                    'parent_node_id' => OpenPAAppSectionHelper::instance()->rootNode()->attribute('node_id'),
+                    'remote_id' => $remote,
+                    'class_identifier' => 'folder',
+                    'attributes' => array( 'name' => $remote )
+                ), $params )
+            );
+            if ($newObject instanceof eZContentObject){
+                return $newObject->attribute('main_node_id');
+            }
         }
         return OpenPAAppSectionHelper::instance()->rootNode()->attribute('node_id');
     }
@@ -109,7 +133,7 @@ class OpenPAAgenda
 
     public static function calendarNodeId()
     {
-        return self::getNodeIdFromRemoteId(self::calendarRemoteId());
+        return self::getNodeIdFromRemoteId(self::calendarRemoteId(), array('class_identifier' => 'event_calendar'));
     }
 
     public static function programRemoteId()
@@ -147,7 +171,7 @@ class OpenPAAgenda
 
     public static function associationsNodeId()
     {
-        return self::getNodeIdFromRemoteId(self::associationsRemoteId());
+        return self::getNodeIdFromRemoteId(self::associationsRemoteId(), array('class_identifier' => 'user_group'));
     }
 
     public static function moderatorGroupRemoteId()
@@ -155,9 +179,19 @@ class OpenPAAgenda
         return OpenPAAgenda::rootRemoteId() . '_moderators';
     }
 
+    public static function externalUsersGroupRemoteId()
+    {
+        return OpenPAAgenda::rootRemoteId() . '_external_users';
+    }
+
     public static function moderatorGroupNodeId()
     {
-        return self::getNodeIdFromRemoteId(self::moderatorGroupRemoteId());
+        return self::getNodeIdFromRemoteId(self::moderatorGroupRemoteId(), array('class_identifier' => 'user_group'));
+    }
+
+    public static function externalUsersGroupNodeId()
+    {
+        return self::getNodeIdFromRemoteId(self::externalUsersGroupRemoteId(), array('class_identifier' => 'user_group'));
     }
 
     public static function classIdentifiers()
@@ -302,32 +336,41 @@ class OpenPAAgenda
     public static function notifyModerationGroup( OCEditorialStuffPost $post )
     {
         $object = $post->getObject();
-        if ( $object instanceof eZContentObject )
-        {
+        if ( $object instanceof eZContentObject ) {
             $users = array();
-            $userClasses = eZUser::contentClassIDs();
-            $children = eZContentObjectTreeNode::subTreeByNodeID(
-                array(
-                    'ClassFilterType' => 'include',
-                    'ClassFilterArray' => $userClasses,
-                    'Limitation' => array(),
-                    'AsObject' => false
-                ), self::moderatorGroupNodeId()
-            );
-            foreach ( $children as $child )
-            {
-                $id = isset( $child['contentobject_id'] ) ? $child['contentobject_id'] : $child['id'];
-                $user = eZUser::fetch( $id );
-                if ( $user instanceof eZUser )
-                {
-                    $users[] = $user;
+            $moderatorGroup = eZContentObjectTreeNode::fetch(self::moderatorGroupNodeId());
+            if ($moderatorGroup instanceof eZContentObjectTreeNode) {
+                /** @var eZContentObjectAttribute[] $dataMap */
+                $dataMap = $moderatorGroup->attribute('data_map');
+                if (isset( $dataMap['email'] ) && $dataMap['email']->hasContent()) {
+                    $users[] = new eZUser(array(
+                        'email' => $dataMap['email']->toString(),
+                        'login' => $moderatorGroup->attribute('name')
+                    ));
                 }
-                else
-                {
-                    eZDebug::writeError(
-                        "User {$id} not found",
-                        __METHOD__
-                    );
+            }
+
+            if (!empty( $users )) {
+                $userClasses = eZUser::contentClassIDs();
+                $children = eZContentObjectTreeNode::subTreeByNodeID(
+                    array(
+                        'ClassFilterType' => 'include',
+                        'ClassFilterArray' => $userClasses,
+                        'Limitation' => array(),
+                        'AsObject' => false
+                    ), self::moderatorGroupNodeId()
+                );
+                foreach ($children as $child) {
+                    $id = isset( $child['contentobject_id'] ) ? $child['contentobject_id'] : $child['id'];
+                    $user = eZUser::fetch($id);
+                    if ($user instanceof eZUser) {
+                        $users[] = $user;
+                    } else {
+                        eZDebug::writeError(
+                            "User {$id} not found",
+                            __METHOD__
+                        );
+                    }
                 }
             }
 

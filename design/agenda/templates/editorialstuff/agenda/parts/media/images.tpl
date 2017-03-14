@@ -2,7 +2,7 @@
      $main_image = false() 
      $priorities = array()}
 
-{if $post.images}
+{if and($post.images, $post.images.has_content)}
   {foreach $post.images.content.relation_list as $relation_item}
     {if $relation_item.priority|eq(1)}
       {set $main_image = fetch('content','node',hash('node_id',$relation_item.node_id))}
@@ -10,9 +10,7 @@
       {set $images = $images|append(fetch('content','node',hash('node_id',$relation_item.node_id)))}
     {/if}
   {/foreach}
-{/if}
 
-{if $post.images}
   <h3>{'Immagini'|i18n('agenda/dashboard')}</h3>
   
   {ezscript_require( array( "ezjsc::jquery", "plugins/blueimp/jquery.blueimp-gallery.min.js" ) )}

@@ -68,6 +68,32 @@ class OpenPAAgendaModuleFunctions
         return $returnValue;
     }
 
+    public static function agendaViewGenerate($file, $args)
+    {
+        $currentUser = eZUser::currentUser();
+
+        $tpl = eZTemplate::factory();
+        $tpl->setVariable('current_user', $currentUser);
+        $tpl->setVariable('persistent_variable', array());
+        $tpl->setVariable('agenda_home', true);
+
+        $Result = array();
+        $Result['persistent_variable'] = $tpl->variable('persistent_variable');
+        $Result['content'] = $tpl->fetch('design:agenda/view.tpl');
+        $Result['node_id'] = 0;
+
+        $contentInfoArray = array('url_alias' => 'agenda/view');
+        $contentInfoArray['persistent_variable'] = array();
+        if ($tpl->variable('persistent_variable') !== false) {
+            $contentInfoArray['persistent_variable'] = $tpl->variable('persistent_variable');
+        }
+        $Result['content_info'] = $contentInfoArray;
+        $Result['path'] = array();
+        $returnValue = array('content' => $Result, 'scope' => 'agenda');
+
+        return $returnValue;
+    }
+
     public static function agendaInfoGenerate($file, $args)
     {
         extract($args);

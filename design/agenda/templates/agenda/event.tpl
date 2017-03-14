@@ -30,51 +30,6 @@
                 <div class="col-md-3">
                     {include uri='design:parts/common/social_control.tpl'}
                     {include uri='design:parts/common/add_to_calendar.tpl'}
-                    {*def $attribute = $node.data_map.rating}
-                    {def $rating = $attribute.content}
-
-                        {if $attribute.data_int|not()}
-
-                            <div class="row social-buttons">
-
-                              <div class="col-xs-4 social-button">
-                                <div class="hreview-aggregate like_rating  center-block">
-                                    <ul id="ezsr_rating_{$attribute.id}" class="ezsr-star-rating">
-                                        <li id="ezsr_rating_percent_{$attribute.id}" class="ezsr-current-rating" style="width:{$rating.rounded_average|div(1)|mul(100)}%;">{'Currently %current_rating out of 5 Stars.'|i18n('extension/ezstarrating/datatype', '', hash( '%current_rating', concat('<span>', $rating.rounded_average|wash, '</span>') ))}</li>
-                                        {for 1 to 1 as $num}
-                                            <li><a href="JavaScript:void(0);" id="ezsr_{$attribute.id}_{$attribute.version}_{$num}" class="ezsr-stars-{$num}" rel="nofollow" onfocus="this.blur();">{$num}</a></li>
-                                        {/for}
-                                    </ul>
-                                    <span id="ezsr_total_{$attribute.id}">{$rating.rating_count|wash}</span>
-                                </div>
-                              </div>
-
-                              <div class="col-xs-4 social-button"  style="margin-top: 30px;">
-                                  <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="ezpublish">Tweet</a>
-                                  {literal}<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>{/literal}
-                              </div>
-                              <div class="col-xs-4 social-button"  style="margin-top: 30px;">
-                                  <div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false"></div>
-
-                                  <div id="fb-root"></div>
-                                  {literal}
-                                  <script>(function(d, s, id) {
-                                    var js, fjs = d.getElementsByTagName(s)[0];
-                                    if (d.getElementById(id)) return;
-                                    js = d.createElement(s); js.id = id;
-                                    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-                                    fjs.parentNode.insertBefore(js, fjs);
-                                  }(document, 'script', 'facebook-jssdk'));</script>
-                                  {/literal}
-                              </div>
-                            </div>
-
-                        {/if}
-
-
-                    {undef $rating}
-                    {undef $attribute*}
-
                 </div>
             </div>
             <div class="text space">
@@ -157,10 +112,16 @@
                     {/if}
 
                     {if $node|has_attribute( 'iniziativa' )}
-                        <div class="well well-sm">
-                            <p> <i class="fa fa-link"></i>
-                            <strong>parte di </strong> {attribute_view_gui attribute=$node|attribute( 'iniziativa' ) show_link=true()}
-                        </div>
+
+                        {foreach $node|attribute( 'iniziativa' ).content.relation_list as $item}
+                            {def $obj = fetch(content,object, hash(object_id, $item['contentobject_id']))}
+                            {if $obj.can_read}
+                            <div class="well well-sm">
+                                <i class="fa fa-link"></i> <strong>parte di </strong> <a href="{concat('agenda/event/',$obj.main_node_id)|ezurl(no)}">{$obj.name|wash()}</a>
+                            </div>
+                            {undef $obj}
+                        {/foreach}
+
                     {/if}
 
                     {if $node|has_attribute( 'costi' )}
@@ -198,7 +159,7 @@
 				  {ezscript_require( array( 'ezjsc::jquery', 'leaflet/leaflet.0.7.2.js', 'leaflet/Leaflet.MakiMarkers.js', 'leaflet/leaflet.markercluster.js') )}
 				  {ezcss_require( array( 'leaflet/leaflet.css', 'leaflet/map.css', 'leaflet/MarkerCluster.css', 'leaflet/MarkerCluster.Default.css' ) )}
 
-				  <div id="map-{$geo_attribute.id}" style="width: 100%; height: 300px;"></div>
+				  <div id="event-map-{$geo_attribute.id}" style="width: 100%; height: 300px;"></div>
 				  <p class="goto space text-center">
 					  <a class="btn btn-lg btn-success" target="_blank" href="https://www.google.com/maps/dir//'{$geo_attribute.content.latitude},{$geo_attribute.content.longitude}'/@{$geo_attribute.content.latitude},{$geo_attribute.content.longitude},15z?hl=it">{'Come arrivare'|i18n('agenda/event')} <i class="fa fa-external-link"></i></a>
 				  </p>
@@ -207,7 +168,7 @@
 			  {literal}
 				  <script type="text/javascript">
 					  var drawMap = function(latlng,id){
-						  var map = new L.Map('map-'+id);
+						  var map = new L.Map('event-map-'+id);
 						  map.scrollWheelZoom.disable();
 						  var customIcon = L.MakiMarkers.icon({icon: "star", color: "#f00", size: "l"});
 						  var postMarker = new L.marker(latlng,{icon:customIcon});
@@ -259,14 +220,6 @@
                 {if $node|has_attribute( 'url' )}
                     <li class="list-group-item"><i class="fa fa-globe"></i> {attribute_view_gui attribute=$node.data_map.url}</li>
                 {/if}
-                {if $node|has_attribute( 'iniziativa' )}
-                    {foreach $node|attribute( 'iniziativa' ).content.relation_list as $item}
-                            {def $obj = fetch(content,object, hash(object_id, $item['contentobject_id']))}
-                            {if $obj.can_read}
-                                <li class="list-group-item"><i class="fa fa-star"></i> <a href="{concat('agenda/event/',$obj.main_node_id)|ezurl(no)}">{$obj.name|wash()}</a></li>{/if}
-                            {undef $obj}
-                    {/foreach}
-                {/if}
             </ul>
         </div>
 
@@ -314,13 +267,6 @@
         </div>
     </div>
 
-
-    <div class="row space">
-        <div class="col-md-12">
-            <section id="calendar" class="service_teasers row"></section>
-        </div>
-    </div>
-
     {if is_comment_enabled()}
     <div class="service_teaser">
         <div class="service_details comments clearfix">
@@ -357,25 +303,3 @@
 
 
 </div>
-
-
-<script>
-    $.opendataTools.settings('is_collaboration_enabled', {cond(is_collaboration_enabled(), 'true', 'false')});
-</script>
-{literal}
-<script id="tpl-spinner" type="text/x-jsrender"></script>
-
-<script id="tpl-empty" type="text/x-jsrender"></script>
-
-<script id="tpl-load-other" type="text/x-jsrender">
-<div class="col-sm-12 text-center">
-  <a href="#" class="btn btn-primary btn-lg">{/literal}{'Carica altri eventi'|i18n('agenda')}{literal}</a>
-</div>
-</script>
-{/literal}
-
-{include uri='design:agenda/tpl-event.tpl'}
-
-{include uri='design:agenda/parts/calendar.tpl'
-    current_language=$node.object.current_language
-    base_query=concat('classes [event] and subtree [', calendar_node_id(), '] and iniziativa.id in [', $node.contentobject_id, '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] facets [tipo_evento|alpha|100,target|alpha|10,iniziativa|count|10]')}

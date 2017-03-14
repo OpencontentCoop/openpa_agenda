@@ -70,4 +70,58 @@ class AgendaFactory extends OCEditorialStuffPostDefaultFactory
         return $tpl;
     }
 
+    protected function editModuleResultTemplate( $currentPost, $parameters, OCEditorialStuffHandlerInterface $handler, eZModule $module )
+    {
+        if ( isset( $this->configuration['UiContext'] ) && is_string( $this->configuration['UiContext'] ) )
+            $module->setUIContextName( $this->configuration['UiContext'] );
+        $tpl = eZTemplate::factory();
+        $tpl->setVariable( 'persistent_variable', false );
+        $tpl->setVariable( 'factory_identifier', $this->configuration['identifier'] );
+        $tpl->setVariable( 'factory_configuration', $this->getConfiguration() );
+        $tpl->setVariable( 'template_directory', $this->getTemplateDirectory() );
+        $tpl->setVariable( 'post', $currentPost );
+        $tpl->setVariable( 'site_title', false );
+        return $tpl;
+    }
+
+    public function editModuleResult( $parameters, OCEditorialStuffHandlerInterface $handler, eZModule $module )
+    {
+        $currentPost = $this->getModuleCurrentPost( $parameters, $handler, $module );
+        if ( !$currentPost instanceof OCEditorialStuffPostInterface )
+        {
+            return $currentPost;
+        }
+        $tpl = $this->editModuleResultTemplate( $currentPost, $parameters, $handler, $module );
+
+        $Result = array();
+        $Result['content'] = $tpl->fetch( "design:{$this->getTemplateDirectory()}/edit.tpl" );
+        $contentInfoArray = array( 'url_alias' => 'editorialstuff/dashboard' );
+        $contentInfoArray['persistent_variable'] = array(
+            'show_path' => true,
+            'site_title' => 'Edit ' . $currentPost->getObject()->attribute( 'name' )
+        );
+        if ( is_array( $tpl->variable( 'persistent_variable' ) ) )
+        {
+            $contentInfoArray['persistent_variable'] = array_merge( $contentInfoArray['persistent_variable'], $tpl->variable( 'persistent_variable' ) );
+        }
+        if ( isset( $this->configuration['PersistentVariable'] ) && is_array( $this->configuration['PersistentVariable'] ) )
+        {
+            $contentInfoArray['persistent_variable'] = array_merge( $contentInfoArray['persistent_variable'], $this->configuration['PersistentVariable'] );
+        }
+        $Result['content_info'] = $contentInfoArray;
+        $Result['path'] = array(
+            array( 'url' => 'editorialstuff/dashboard/' . $this->configuration['identifier'],
+                   'text' => isset( $this->configuration['Name'] ) ? $this->configuration['Name'] : 'Dashboard'
+            )
+        );
+        if ( $currentPost instanceof OCEditorialStuffPostInterface )
+        {
+            $Result['path'][] = array(
+                'url' => false,
+                'text' => $currentPost->getObject()->attribute( 'name' )
+            );
+        }
+        return $Result;
+    }
+
 }
