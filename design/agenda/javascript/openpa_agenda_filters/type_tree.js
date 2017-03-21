@@ -26,21 +26,15 @@ var OpenpaAgendaTypeTreeFilter = {
         container.append(li);
     },
 
-    init: function (view) {
-        var self = this;
-        var container = $(self.container);
+    init: function (view, filter) {
+        var container = $(filter.container);
         $.opendataTools.tagsTree('Tipologia di evento', function (response) {
             $.each(response.children, function () {
-                self.renderTagTree(this, container, self);
+                filter.renderTagTree(this, container, filter);
             });
-            $(self.container).find('a').on('click', function(e){self.filterClickEvent(e,view)});
+            $(filter.container).find('a').on('click', function(e){filter.filterClickEvent(e,view)});
         });
     },
-
-    //init: function (view) {
-    //    var self = this;
-    //    $(self.container).find('a').on('click', function(e){self.filterClickEvent(e,view)});
-    //},
 
     setCurrent: function (value) {
         $('li', $(this.container)).removeClass('active');

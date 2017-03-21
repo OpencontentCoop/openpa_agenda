@@ -13,9 +13,12 @@ var OpenpaAgendaDateFilter = {
         e.preventDefault();
     },
 
-    init: function (view) {
-        var self = this;
-        $(self.container).find('a').on('click', function(e){self.filterClickEvent(e,view)});
+    init: function (view, filter) {
+        var currentPreselected = $('li.active a', $(filter.container)).data('value');
+        if (currentPreselected){
+            filter.current = [currentPreselected];
+        }
+        $(filter.container).find('a').on('click', function(e){filter.filterClickEvent(e,view)});
     },
 
     setCurrent: function (value) {

@@ -154,7 +154,6 @@
     var selectionContainer = $('form[name="browse"]').find('.selection');
 
     var searchView = $("#browse-images").opendataSearchView({
-        debug: true,
         query: 'classes [image] sort [published=>desc] limit 12',
         onBeforeSearch: function (query, view) {
             view.container.html(spinner);
@@ -206,19 +205,18 @@
     }).data('opendataSearchView').addFilter({
         name: 'search-by-name',
         current: '',
-        init: function (view) {
-            self = this;
+        init: function (view, filter) {
             searchForm.find('button[type="submit"]').on('click', function (e) {
                 var currentValue = searchForm.find('#searchImagesByName').val();
                 searchForm.find('button[type="reset"]').show();
-                self.setCurrent(currentValue);
+                filter.setCurrent(currentValue);
                 view.doSearch();
                 e.preventDefault();
             });
             searchForm.find('button[type="reset"]').on('click', function (e) {
                 searchForm.find('button[type="reset"]').hide();
                 searchForm.find('#searchImagesByName').val('');
-                self.setCurrent('');
+                filter.setCurrent('');
                 view.doSearch();
                 e.preventDefault();
             });

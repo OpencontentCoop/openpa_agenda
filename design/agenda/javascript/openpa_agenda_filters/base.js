@@ -9,10 +9,9 @@ var OpenpaAgendaBaseFilter = {
         e.preventDefault();
     },
 
-    init: function (view) {
-        var self = this;
-        $(self.container).find('a').on('click', function (e) {
-            self.filterClickEvent(e, view)
+    init: function (view, filter) {
+        $(filter.container).find('a').on('click', function (e) {
+            filter.filterClickEvent(e, view)
         });
     },
 

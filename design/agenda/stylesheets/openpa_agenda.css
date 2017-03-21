@@ -734,3 +734,5 @@ div#zone-map-container .zone-map-item label
 .agenda-block.service_teaser.vertical .service_details .section_header small{
     color: #000;
 }
+
+#blueimp-gallery{display: none}

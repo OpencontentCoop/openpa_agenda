@@ -5,7 +5,7 @@
     </div>
 </section>
 
-{include uri='design:agenda/parts/calendar/views.tpl' views=array('list','geo','agenda')}
+{include uri='design:agenda/parts/calendar/views.tpl' views=array('list','geo','agenda') view_all=true()}
 
 {include
     uri='design:agenda/parts/calendar/calendar.tpl'

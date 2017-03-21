@@ -159,7 +159,6 @@
     });
 
     var searchView = $("#iniziativa").opendataSearchView({
-        //debug: true,
         query: 'classes [iniziativa] sort [published=>desc] limit 10',
         onLoadResults: function (response, query, appendResults, view) {
             if (response.totalCount > 0) {

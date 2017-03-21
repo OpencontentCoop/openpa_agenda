@@ -73,8 +73,7 @@
     $.opendataTools.settings('locale', "{$moment_language}");
 
     $(document).ready(function () {ldelim}
-        var searchView = $("#calendar").data('opendataSearchView');
-        searchView{foreach $filters as $filter}.addFilter({$filterDefinitions[$filter]}){/foreach}.init().doSearch();
+        $("#calendar").initSearchView().data('opendataSearchView'){foreach $filters as $filter}.addFilter({$filterDefinitions[$filter]}){/foreach}.init().doSearch();
     {rdelim});
 
 

@@ -123,7 +123,6 @@
     };
     var searchForm = $('#search-iniziativa');
     var searchViewIniziativa = $(searchIniziativaSelector).opendataSearchView({
-        debug: true,
         query: 'classes [iniziativa] sort [published=>desc] limit 5',
         refreshCurrent : function(view){
             if (currentIniziativa){
@@ -183,29 +182,18 @@
     searchViewIniziativa.addFilter({
         name: 'search-by-name',
         current: '',
-        init: function (view) {
-            self = this;
+        init: function (view, filter) {
             searchForm.find('button[type="submit"]').on('click', function (e) {
                 var currentValue = searchForm.find('#searchIniziativaByName').val();
                 searchForm.find('button[type="reset"]').show();
-                self.setCurrent(currentValue);
+                filter.setCurrent(currentValue);
                 view.doSearch();
                 e.preventDefault();
             });
-//            $(document).keypress(function(e) {
-//                if(e.which == 13 && $(e.target).attr('id') == '#searchIniziativaByName') {
-//                    var currentValue = searchForm.find('#searchIniziativaByName').val();
-//                    searchForm.find('button[type="reset"]').show();
-//                    self.setCurrent(currentValue);
-//                    view.doSearch();
-//                    e.preventDefault();
-//                    e.preventDefault();
-//                }
-//            });
             searchForm.find('button[type="reset"]').on('click', function (e) {
                 searchForm.find('button[type="reset"]').hide();
                 searchForm.find('#searchIniziativaByName').val('');
-                self.setCurrent('');
+                filter.setCurrent('');
                 view.doSearch();
                 e.preventDefault();
             });
@@ -226,14 +214,13 @@
     }).addFilter({
         name: 'search-by-owner',
         current: null,
-        init: function (view) {
-            self = this;
+        init: function (view, filter) {
             var user = $('.searchIniziativaByUser.label-success').data('user_id');
-            self.setCurrent(user);
+            filter.setCurrent(user);
             $('.searchIniziativaByUser').css('cursor', 'pointer').on('click', function(e){
                 $('.searchIniziativaByUser').toggleClass('label-success');
                 var user = $(e.currentTarget).data('user_id');
-                self.setCurrent(user);
+                filter.setCurrent(user);
                 view.doSearch();
             })
         },
