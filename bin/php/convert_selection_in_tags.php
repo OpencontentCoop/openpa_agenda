@@ -9,7 +9,7 @@ $script = eZScript::instance( array( 'description' => ( "Converte relazioni ogge
 $script->startup();
 
 $options = $script->getOptions(
-    '[class:][selection_attribute:][tags_attribute:][tag_root_id:][fix_class]',
+    '[class:][selection_attribute:][tags_attribute:][tag_root_id:]',
     '',
     array(
         'class'  => 'Identificatore di classe',
