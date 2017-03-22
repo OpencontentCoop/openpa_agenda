@@ -60,7 +60,8 @@ function convertObject(eZContentObject $object)
             $related = eZContentObject::fetch($id);
             if ($related instanceof eZContentObject){
                 $name = $related->attribute('name');
-                $tags[] = createTag($name, $options['tag_root_id'], $locale);
+                if ($name != 'Evento singolo' && $name != 'Manifestazione')
+                    $tags[] = createTag($name, $options['tag_root_id'], $locale);
             }
         }
     }

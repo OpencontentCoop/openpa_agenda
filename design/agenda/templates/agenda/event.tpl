@@ -119,6 +119,7 @@
                             <div class="well well-sm">
                                 <i class="fa fa-link"></i> <strong>parte di </strong> <a href="{concat('agenda/event/',$obj.main_node_id)|ezurl(no)}">{$obj.name|wash()}</a>
                             </div>
+							{/if}
                             {undef $obj}
                         {/foreach}
 
@@ -236,11 +237,8 @@
                 {/if}
             </div>
 
-            {if $node|has_attribute('informazioni')}
-            <button class="btn btn-info btn-lg center-block space" type="button" data-toggle="collapse" data-target="#info" aria-expanded="false" aria-controls="info">
-                <i class="fa fa-info-circle"></i> {'Maggiori informazioni'|i18n('agenda/event')}
-            </button>
-            <div class="collapse space" id="info">
+            {if $node|has_attribute('informazioni')}            
+            <div class="space" id="info">
                 <div class="well">
                     {attribute_view_gui attribute=$node|attribute('informazioni')}
                 </div>

@@ -1,17 +1,17 @@
 var OpenpaAgendaTypeFilter = $.extend({}, OpenpaAgendaBaseFilter, {
 
-    name: 'type',
+    name: 'tipo_evento',
 
     container: '.widget[data-filter="type"] ul',
 
     buildQueryFacet: function () {
-        return 'type|count|100';
+        return 'tipo_evento|count|100';
     },
 
     buildQuery: function () {
         var currentValues = this.getCurrent();
         if (currentValues.length && jQuery.inArray('all', currentValues) == -1) {
-            return 'type in [\'' + currentValues.join("','") + '\']';
+            return 'tipo_evento in [\'' + currentValues.join("','") + '\']';
         }
     }
 
