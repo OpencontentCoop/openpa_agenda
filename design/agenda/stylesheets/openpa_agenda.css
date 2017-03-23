@@ -719,7 +719,7 @@ div#zone-map-container .zone-map-item label
     padding: 0;
 }
 .agenda-block.service_teaser.vertical .service_details {
-    background: rgba(238,238,238,0.7);
+    background: rgba(1,1,1,0.5);
     width: 100%;
     position: absolute;
     bottom: 0;
@@ -727,8 +727,11 @@ div#zone-map-container .zone-map-item label
     padding: 10px 20px 0;
     margin-bottom: 0;
 }
+.agenda-block.service_teaser.vertical .service_details *{
+    color: #fff !important
+}
 .agenda-block.service_teaser.vertical .service_details h2.section_header{
-    margin-bottom: 0;
+    margin-bottom: 5px;
     border-bottom: none;
 }
 .agenda-block.service_teaser.vertical .service_details .section_header small{
