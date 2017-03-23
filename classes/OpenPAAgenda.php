@@ -9,9 +9,10 @@ class OpenPAAgenda
     public static $stateGroupIdentifier = 'moderation';
     public static $stateIdentifiers = array(
         'skipped' => "Non necessita di moderazione",
+        'draft' => "In lavorazione",
         'waiting' => "In attesa di moderazione",
         'accepted' => "Accettato",
-        'refused' => "Rifiutato"
+        'refused' => "Rifiutato",
     );
 
     public static $programStateGroupIdentifier = 'programma_eventi';
@@ -196,7 +197,7 @@ class OpenPAAgenda
 
     public static function classIdentifiers()
     {
-        return array('agenda_root');
+        return array('agenda_root', 'agenda_calendar');
     }
 
     /**
