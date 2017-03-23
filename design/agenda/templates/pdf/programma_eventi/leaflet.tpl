@@ -16,7 +16,7 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="{$prefix}{'stylesheets/print-default.css'|ezdesign(no)|ezroot(no)}" />
 </head>
-<body>
+<body class="layout-{$layout.id}">
 <div id="header">
 </div>
 <div id="footer">
@@ -32,7 +32,7 @@
                             <tr>
                                 <td>
                                     <ul class="unstyled">
-                                        <li>
+                                        <li><small>
                                             {if $displayed_attributes|contains( 'periodo_svolgimento' )}
                                                 {if $event.periodo_svolgimento}
                                                     {$event.periodo_svolgimento}
@@ -51,14 +51,14 @@
                                             {if and($event.durata, $displayed_attributes|contains( 'durata' ))}
                                                 - {$event.durata}
                                             {/if}
-                                        </li>
+                                        </small></li>
 
                                         {if and($event.luogo_svolgimento, $displayed_attributes|contains( 'luogo_svolgimento' ))}
-                                            <li>
+                                            <li><small>
                                                 {if $event.luogo_svolgimento}
                                                     {$event.luogo_svolgimento}
                                                 {/if}
-                                            </li>
+                                            </small></li>
                                         {/if}
 
                                     </ul>
@@ -104,7 +104,7 @@
                             <tr>
                                 <td>
                                     <ul class="unstyled">
-                                        <li>
+                                        <li><small>
                                             {if $displayed_attributes|contains( 'periodo_svolgimento' )}
                                                 {if $event.periodo_svolgimento}
                                                     {$event.periodo_svolgimento}
@@ -123,14 +123,14 @@
                                             {if and($event.durata, $displayed_attributes|contains( 'durata' ))}
                                                 - {$event.durata}
                                             {/if}
-                                        </li>
+                                        </small></li>
 
                                         {if and($event.luogo_svolgimento, $displayed_attributes|contains( 'luogo_svolgimento' ))}
-                                            <li>
+                                            <li><small>
                                                 {if $event.luogo_svolgimento}
                                                     {$event.luogo_svolgimento}
                                                 {/if}
-                                            </li>
+                                            </small></li>
                                         {/if}
 
                                     </ul>
@@ -163,16 +163,20 @@
                 {set $offset = $offset|sum($per_page)}
             {/for}
             <td class="columns-{$layout.columns} text-center">
-                <h1>{$programma_eventi.object.data_map.title.content}</h1>
-                <hr />
-                <h3>{$programma_eventi.object.data_map.subtitle.content}</h3>
-                {attribute_view_gui attribute=$programma_eventi.object.data_map.description}
-                <br />
-                <br />
-                <img src="{$prefix}{$root_node.data_map.logo.content.medium.url|ezroot(no)}" alt="" />
-                <br />
-                <br />
-                {attribute_view_gui attribute=$root_node.data_map.contacts}
+                <div id="copertina">
+                  <h1 class="title">{$programma_eventi.object.data_map.title.content}</h1>
+                  <hr />
+                  <h3 class="subtitle">{$programma_eventi.object.data_map.subtitle.content}</h3>
+                  {attribute_view_gui attribute=$programma_eventi.object.data_map.description}
+                  <br />
+                  <br />
+                  <img src="{$prefix}{$root_node.data_map.logo.content.medium.url|ezroot(no)}" alt="" />
+                  <br />
+                  <br />
+                  <div class="contacts">
+                    {attribute_view_gui attribute=$root_node.data_map.contacts}
+                  </div>
+                </div>
             </td>
         </tr>
     </table>
