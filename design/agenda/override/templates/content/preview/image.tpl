@@ -45,11 +45,15 @@
                 <strong>{$attribute.contentclass_attribute_name}</strong>
             </div>
             <div class="col-xs-9">
-                {if array( 'ezstring', 'ezinteger', 'ezkeyword', 'eztext', 'ezobjectrelationlist' )|contains( $attribute.data_type_string )}
+                {if array( 'ezstring', 'ezinteger', 'ezkeyword', 'eztext', 'eztags', 'ezobjectrelationlist', 'ezselection' )|contains( $attribute.data_type_string )}
 
                     {def $inputTag = 'input'}
                     {if array( 'eztext' )|contains( $attribute.data_type_string )}
                         {set $inputTag = 'textarea'}
+                    {elseif array( 'eztags' )|contains( $attribute.data_type_string )}
+                      {set $inputTag = 'option:selected'}
+                    {elseif array( 'ezselection' )|contains( $attribute.data_type_string )}
+                        {set $inputTag = 'option:selected'}
                     {elseif array( 'ezobjectrelationlist' )|contains( $attribute.data_type_string )}
                         {if $attribute.class_content.selection_type|eq(1)}
                             {set $inputTag = 'option:selected'}
@@ -65,11 +69,15 @@
                         <button class="inline-edit btn btn-xs btn-info" data-input="{$inputTag}"
                                 data-objectid="{$attribute.object.id}" data-attributeid="{$attribute.id}"
                                 data-version="{$attribute.version}"><span class="glyphicon glyphicon-pencil"></span></button>
-
+                        
                         {attribute_view_gui attribute=$attribute image_class=large html_class='form-control'}
                     </span>
                     <span class="inline-form" style="display: none">
-                        {attribute_edit_gui attribute=$attribute html_class='form-control'}
+                        {if array( 'eztags' )|contains( $attribute.data_type_string )}
+                          {include uri='design:content/preview/parts/eztags_edit.tpl' attribute=$attribute}
+                        {else}
+                          {attribute_edit_gui attribute=$attribute html_class='form-control'}
+                        {/if}
                         <button class="btn btn-danger pull-right">Salva</button>
                     </span>
                     {undef $inputTag}

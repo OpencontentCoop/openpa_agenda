@@ -51,13 +51,22 @@
     </div>
 
 
-    <form class="form-inline pull-right" id="search-images">
-        <div class="form-group">
-            <label for="searchImagesByName" class="hide">{'Cerca per nome...'|i18n('agenda')}</label>
-            <input type="text" class="form-control" id="searchImagesByName" placeholder="{'Cerca'|i18n('agenda')}">
+    <form class="form" id="search-images">
+        <div class="row">
+          <div data-filter="license" class="form-group col-md-9">
+              <ul class="list-inline">
+                <li><a href="#" data-value="all" class="label label-default">{'Tutti'|i18n('agenda')}</a></li>
+              </ul>
+          </div>
+          <div class="col-md-3 form-inline">
+            <div class="form-group">
+                <label for="searchImagesByName" class="hide">{'Cerca per nome...'|i18n('agenda')}</label>
+                <input type="text" class="form-control" id="searchImagesByName" placeholder="{'Cerca'|i18n('agenda')}">
+            </div>
+            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> </button>
+            <button type="reset" class="btn btn-default" style="display: none;"><i class="fa fa-times"></i> </button>
+          </div>
         </div>
-        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> </button>
-        <button type="reset" class="btn btn-default" style="display: none;"><i class="fa fa-times"></i> </button>
     </form>
     <hr />
     <div class="row" id="browse-images"></div>
@@ -78,8 +87,23 @@
     'ezjsc::jqueryio',
     'moment.min.js',
     'jquery.opendataTools.js',
+    'openpa_agenda_filters/license.js',
     'jquery.opendataSearchView.js',
-    'jsrender.js'
+    'jsrender.js',
+    'ezjsc::jqueryUI',
+    'jqmodal.js',
+    'jstree.min.js',
+    'jquery.eztags.js',
+    'jquery.eztags.select.js',
+    'jquery.eztags.tree.js',
+    'tagsstructuremenu.js'
+))}
+
+{ezcss_require(array(
+  'jqmodal.css',
+  'tagssuggest.css',
+  'contentstructure-tree.css',
+  'jstree/eztags/style.css',
 ))}
 
 <script id="tpl-spinner" type="text/x-jsrender">
@@ -117,15 +141,15 @@
         <div class="caption" style="height:100px;overflow:hidden">
             <small>
                 {{:~i18n(data, 'image').mime_type}}
-                {{:~i18n(data, 'image').width}}x{{:~i18n(data, 'image').height}}
-                {{if ~i18n(data,'license')}}
-                      {{for ~i18n(data,'license')}}
-                          <em>{{>~i18n(name)}}</em>
-                      {{/for}}
-                  {{/if}}
+                {{:~i18n(data, 'image').width}}x{{:~i18n(data, 'image').height}}                
             </small><br />
             <strong>{{:~i18n(metadata.name)}}</strong>
             <a href="#" class="load-preview" data-contentobject_id="{{:metadata.id}}"><i class="fa fa-edit"></i></a>
+            {{if ~i18n(data,'license')}}
+                <br /><small>{{for ~i18n(data,'license')}}
+                    <em>{{>#data}}</em>
+                {{/for}}</small>
+            {{/if}}
         </div>
     </div>
 </div>
@@ -138,8 +162,9 @@
     $.opendataTools.settings('language', "{ezini('RegionalSettings','Locale')}");
     $.opendataTools.settings('languages', ['{ezini('RegionalSettings','SiteLanguageList')|implode("','")}']); //@todo
     $.opendataTools.settings('endpoint',{ldelim}
-        'search': '{'/opendata/api/content/search/'|ezurl(no,full)}',
-        'class': '{'/opendata/api/classes/'|ezurl(no,full)}'
+        'search': '{'/opendata/api/content/search/'|ezurl(no,full)}/',
+        'class': '{'/opendata/api/classes/'|ezurl(no,full)}/',
+        'tags_tree': '{'/opendata/api/tags_tree/'|ezurl(no,full)}/',
     {rdelim});
 
     var inputName = '{$select_name}';
@@ -149,7 +174,7 @@
     {literal}
 
     var preview = $('#preview');
-    var searchForm = $('#search-images');
+    var searchForm = $('#search-images');    
     var spinner = $($.templates("#tpl-spinner").render({}));
     var selectionContainer = $('form[name="browse"]').find('.selection');
 
@@ -234,6 +259,59 @@
                 return "(raw[meta_name_t] in ['"+currentValue+"*', '*"+currentValue+"', '"+currentValue+"'] or tags in ['"+currentValue+"*', '*"+currentValue+"', '"+currentValue+"'])";
             }
         }
+    })
+    .addFilter(OpenpaAgendaLicenseTagsFilter)
+    .addFilter({
+        name: 'search-by-license',
+        current: [],
+        init: function (view, filter) {            
+        },
+        setCurrent: function (value) {
+            this.current = value;
+        },
+
+        getCurrent: function () {
+            return this.current;
+        },
+        buildQuery: function () {
+            var currentValue = this.getCurrent();
+            if (currentValue.length > 0) {
+                return "(license in ['"+currentValue.join("','")+"'])";
+            }
+        },
+        refresh: function (response, view) {
+          var self = this;          
+          
+          var current = self.getCurrent();
+          var currentLength = 0;
+  
+  
+          $.when($.each(response.facets, function () {
+              var name = this.name;
+              if (this.name == 'license') {
+                  $('#searchImagesByLicense').empty();
+                  $.each(this.data, function (value, count) {
+                      if (value != '') {
+                          var quotedValue = value;
+                          if ($('li a[data-value="' + quotedValue + '"]', $(self.container)).length) {
+                              $('li a[data-value="' + quotedValue + '"]', $(self.container)).html(value + ' (' + count + ')').parent().show();
+                          } else {
+                              var li = $('<li><a href="#" data-value="' + quotedValue + '">' + value + ' (' + count + ')' + '</a></li>');
+                              li.find('a').on('click', function (e) {
+                                  self.filterClickEvent(e, view);
+                              });
+                              $(self.container).append(li);
+                          }
+                          $(self.container).parent().show();
+                      }
+                  });
+              }
+          })).then(function(){
+              if( $(self.container).find('li:visible').length < 2 && currentLength == 0){
+                  $(self.container).parent().hide();
+              }
+          });
+      },
     }).init().doSearch();
 
     var inlineEdit = function () {
