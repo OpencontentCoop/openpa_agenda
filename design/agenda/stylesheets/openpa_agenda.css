@@ -298,6 +298,15 @@ footer a:hover {color: #eeeeee;}
     padding: 10px 15px;
 }
 
+.agenda-filters .nav-pills li ul{
+    padding-left: 0
+}
+.agenda-filters .nav-pills li ul li a:before{
+    content: "\f061";
+    font: normal normal normal 14px/1 FontAwesome;
+    padding-right: 10px;
+}
+
 .agenda-views .nav-pills li{
     display: table-cell;
     width: 1%;

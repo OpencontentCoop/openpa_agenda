@@ -12,6 +12,7 @@ class OpenPAAgendaOperators
         return array(
             'latest_program',
             'calendar_node_id',
+            'agenda_root_node',
             'is_collaboration_enabled',
             'is_comment_enabled',
             'is_header_only_logo_enabled',
@@ -167,6 +168,10 @@ class OpenPAAgendaOperators
 
             case 'calendar_node_id':
                 $operatorValue = OpenPAAgenda::calendarNodeId();
+                break;
+            
+            case 'agenda_root_node':
+                $operatorValue = OpenPAAgenda::instance()->rootNode();
                 break;
 
             case 'is_collaboration_enabled':
