@@ -1,0 +1,4 @@
+<?php /*
+
+[ObjectRelationsMultiupload]
+ClassAttributeIdentifiers[]=images
