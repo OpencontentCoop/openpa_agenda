@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                         {else}
-                            {if and($hasLimitedEdit, $attribute.is_required)}
+                            {if and($hasLimitedEdit, current_user_has_limited_edit_agenda_event_attribute($attribute))}
                                 <div class="col-md-3">
                                     <p{if $attribute.has_validation_error} class="message-error"{/if}>{first_set( $contentclass_attribute.nameList[$content_language], $contentclass_attribute.name )|wash}
                                         {if $attribute.is_required} <span class="required" title="{'required'|i18n( 'design/admin/content/edit_attribute' )}">*</span>{/if}

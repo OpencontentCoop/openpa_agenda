@@ -78,3 +78,57 @@ catch( Exception $e )
     $errCode = $errCode != 0 ? $errCode : 1; // If an error has occured, script must terminate with a status other than 0
     $script->shutdown( $errCode, $e->getMessage() );
 }
+
+
+$roles = array(
+    "Agenda Anonymous" => array(            
+        array(
+            'ModuleName' => 'content',
+            'FunctionName' => 'read',
+            'Limitation' => array(
+                'Class' => array(
+                    eZContentClass::classIDByIdentifier( 'agenda_calendar' ),
+                    eZContentClass::classIDByIdentifier( 'iniziativa' ),
+                ),
+                'Section' => $section->attribute( 'id' )
+            )
+        ),                
+    ),
+    "Agenda Associations" => array(
+         array(
+            'ModuleName' => 'content',
+            'FunctionName' => 'read',
+            'Limitation' => array(
+                'Class' => array(
+                    eZContentClass::classIDByIdentifier( 'agenda_calendar' ),
+                    eZContentClass::classIDByIdentifier( 'iniziativa' ),
+                ),
+                'Section' => $section->attribute( 'id' )
+            )
+        ),
+        array(
+            'ModuleName' => 'content',
+            'FunctionName' => 'create',
+            'Limitation' => array(
+                'Class' => array(
+                    eZContentClass::classIDByIdentifier( 'iniziativa' )
+                ),
+                'Section' => $section->attribute( 'id' ),
+                'ParentClass' => array(
+                    eZContentClass::classIDByIdentifier( 'event_calendar' )
+                )
+            )
+        ),
+         array(
+            'ModuleName' => 'content',
+            'FunctionName' => 'edit',
+            'Limitation' => array(
+                'Class' => array(
+                    eZContentClass::classIDByIdentifier( 'image' ),
+                    eZContentClass::classIDByIdentifier( 'iniziativa' )
+                ),
+                'Owner' => 1,
+            )
+        ),
+    )
+);

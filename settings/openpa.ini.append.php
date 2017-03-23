@@ -4,3 +4,6 @@
 TrentinoCulturaServer=http://tcu.opencontent.it
 TrentinoCulturaLogin=demo
 TrentinoCulturaPassword=demo
+
+[OpenpaAgendaEditSettings]
+LimitEditAttributeIdentifiers[]

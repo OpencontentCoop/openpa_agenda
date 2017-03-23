@@ -1,6 +1,12 @@
 <section class="hgroup">
     <h1>{'Gestisci eventi'|i18n('agenda/dashboard')}</h1>
 </section>
+
+<script>
+  var CurrentUserIsModerator = {cond(current_user_is_agenda_moderator(), true, false)};
+  var CurrentUserId = {fetch(user, current_user).contentobject_id};
+</script>
+
 {ezcss_require( array(
     'plugins/chosen.css',
     'dataTables.bootstrap.css',
@@ -89,6 +95,7 @@
             <thead>
             <tr>
                 <th>{'Titolo'|i18n('agenda/dashboard')}</th>
+                <th>{'Autore'|i18n('agenda/dashboard')}</th>
                 <th>{'Pubblicato'|i18n('agenda/dashboard')}</th>
                 <th>{'Modificato'|i18n('agenda/dashboard')}</th>
                 <th>{'Traduzioni'|i18n('agenda/dashboard')}</th>
@@ -108,13 +115,13 @@
 </div>
 
 <script id="tpl-list-empty" type="text/x-jsrender">
-<tr><td colspan="5"><a href="#">
+<tr><td colspan="6"><a href="#">
     <i class="fa fa-times"></i> {'Nessun contenuto trovato'|i18n('agenda')}
 </a></td></tr>
 </script>
 
 <script id="tpl-list-load-other" type="text/x-jsrender">
-<tr><td colspan="5"><a href="#" class="btn btn-primary btn-xs">{'Mostra meno recenti'|i18n('agenda')}</a></td></tr>
+<tr><td colspan="6"><a href="#" class="btn btn-primary btn-xs">{'Mostra meno recenti'|i18n('agenda')}</a></td></tr>
 </script>
 
 {literal}
@@ -126,6 +133,7 @@
         <small>{{:~i18n(data,'abstract')}}</small>
         {{/if}}
     </td>
+    <td style="white-space: nowrap;width:100px;">{{:~i18n(metadata.ownerName)}}</td>
     <td style="white-space: nowrap;width:100px;">{{:~formatDate(metadata.published,'D MMMM YYYY')}}</td>
     <td style="white-space: nowrap;width:100px;">{{:~formatDate(metadata.modified,'D MMMM YYYY')}}</td>
     <td style="white-space: nowrap;width:100px;">{{:~editLink(metadata)}}</td>
@@ -159,8 +167,6 @@
         'Loading...': '{'Loading...'|i18n('agenda/dashboard')}'
     {rdelim};
 
-    var CurrentUser = "{fetch(user, current_user).contentobject_id}";
-
 {literal}
     var searchIniziativaSelector = '#dashboard-iniziative';
     var renderIniziativa = function(content){
@@ -169,8 +175,16 @@
         return template.render(content);
     };
     var searchForm = $('#search-iniziativa');
+    
+    var iniziativeQuery = 'null';
+    if (CurrentUserIsModerator) {
+      iniziativeQuery = 'classes [iniziativa] sort [modified=>desc] limit 5';
+    }else{
+      iniziativeQuery = 'classes [iniziativa] and owner_id = '+CurrentUserId+' sort [modified=>desc] limit 5';
+    }
+    
     var searchViewIniziativa = $(searchIniziativaSelector).opendataSearchView({
-        query: 'classes [iniziativa] and owner_id = '+CurrentUser+' sort [modified=>desc] limit 5',
+        query: iniziativeQuery,
         onBeforeSearch: function(){
             $('#searchIniziativaSpinner').show();
         },
@@ -245,6 +259,7 @@
 
 <style>
     .chosen-search input, .chosen-container-multi input{height: auto !important}
+    .label-draft {  background-color: #ccc;  }
     .label-skipped {  background-color: #999;  }
     .label-waiting {  background-color: #f0ad4e;  }
     .label-accepted {  background-color: #5cb85c;  }

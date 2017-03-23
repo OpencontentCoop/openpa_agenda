@@ -6,7 +6,7 @@ class AgendaItem extends OCEditorialStuffPostDefault
     {
         if ( $this->getObject()->attribute('current_version') == 1 ){
             $states = $this->states();
-            $default = 'moderation.waiting';
+            $default = 'moderation.draft';
             if ( isset( $states[$default] ) ) {
                 $this->getObject()->assignState($states[$default]);
             }

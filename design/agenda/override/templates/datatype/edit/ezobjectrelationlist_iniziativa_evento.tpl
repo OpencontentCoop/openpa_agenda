@@ -49,6 +49,11 @@
     <hr />
     <div class="row">
         <div class="col-md-12">
+            <div class="list-group" id="current-{$attribute.id}"></div>
+        </div>
+    </div>    
+    <div class="row">
+        <div class="col-md-12">
             <div class="list-group" id="relations-{$attribute.id}"></div>
         </div>
     </div>
@@ -101,6 +106,7 @@
     {rdelim});
 
     var searchIniziativaSelector = '#relations-{$attribute.id}';
+    var currentIniziativaSelector = '#current-{$attribute.id}';
     var addNewIniziativaSelector = '#add-new-iniziativa';
     var addNewIniziativaEndPoint = "{'agenda/add/iniziativa'|ezurl(no)}";
     var selectIniziativaSelector = "#select-iniziativa";
@@ -108,12 +114,11 @@
     {literal}
 
     var currentIniziativa = $(selectIniziativaSelector).val();
-
+    
     var selectIniziativa = function(id){
-        $(selectIniziativaSelector).val(id);
-        $('[data-contentobject_id]').removeClass('active');
-        $('[data-contentobject_id="'+id+'"]').addClass('active');
+        $(selectIniziativaSelector).val(id);        
         currentIniziativa = id;
+        refreshCurrentIniziativa();
     };
 
     var renderIniziativa = function(content){
@@ -121,26 +126,27 @@
         $.views.helpers($.opendataTools.helpers);
         return template.render(content);
     };
+    
+    var refreshCurrentIniziativa = function(){        
+        if (currentIniziativa){
+            $('#searchIniziativaSpinner').show();
+            $.opendataTools.findOne('id in ['+currentIniziativa+']', function(response){
+                $(currentIniziativaSelector).html(renderIniziativa(response)).find('a').addClass('active').css('cursor', 'none');
+                $('#searchIniziativaSpinner').hide();
+            });
+        }
+    };
+    
     var searchForm = $('#search-iniziativa');
     var searchViewIniziativa = $(searchIniziativaSelector).opendataSearchView({
-        query: 'classes [iniziativa] sort [published=>desc] limit 5',
-        refreshCurrent : function(view){
-            if (currentIniziativa){
-                $('#searchIniziativaSpinner').show();
-                $.opendataTools.findOne('id in ['+currentIniziativa+']', function(response){
-                    view.container.prepend(renderIniziativa(response));
-                    selectIniziativa(response.metadata.id);
-                    $('#searchIniziativaSpinner').hide();
-                });
-            }
-        },
-        onInit: function(view){
-            this.refreshCurrent(view);
-        },
+        query: 'classes [iniziativa] sort [published=>desc] limit 5',        
         onBuildQuery: function(){
             if (currentIniziativa){
                 return "id != '"+currentIniziativa+"'";
             }
+        },
+        onInit: function(){
+          refreshCurrentIniziativa();
         },
         onBeforeSearch: function(){
             $('#searchIniziativaSpinner').show();
@@ -154,7 +160,6 @@
                     view.container.append(renderIniziativa(response.searchHits));
                 }else {
                     view.container.html(renderIniziativa(response.searchHits));
-                    this.refreshCurrent(view);
                 }
 
                 view.container.find('.list-group-item').on('click', function(e){
@@ -170,7 +175,7 @@
                         e.preventDefault();
                     });
                     view.container.append(loadMore)
-                }
+                }            
             } else {
                 view.container.html($.templates("#tpl-list-empty").render({}));
             }
@@ -234,7 +239,7 @@
         buildQuery: function () {
             var currentValue = this.getCurrent();
             if (currentValue) {
-                return "owner_id in ['"+currentValue+"']";
+                return "owner_id = "+currentValue;
             }
         }
     }).init().doSearch();

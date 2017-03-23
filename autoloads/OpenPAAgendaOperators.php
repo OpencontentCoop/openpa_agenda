@@ -20,6 +20,7 @@ class OpenPAAgendaOperators
             'agenda_browse_helper',
             'current_user_is_agenda_moderator',
             'current_user_has_limited_edit_agenda_event',
+            'current_user_has_limited_edit_agenda_event_attribute'
         );
     }
 
@@ -47,7 +48,10 @@ class OpenPAAgendaOperators
             'current_user_has_limited_edit_agenda_event' => array(
                 'object' => array( 'type' => 'object', 'required' => true ),
                 'version' => array( 'type' => 'integer', 'required' => true ),
-            )
+            ),
+            'current_user_has_limited_edit_agenda_event_attribute' => array(
+                'attribute' => array( 'type' => 'object', 'required' => true )                
+            ),
         );
     }
 
@@ -102,6 +106,18 @@ class OpenPAAgendaOperators
                 }
                 return $operatorValue;
                 break;
+            
+            case 'current_user_has_limited_edit_agenda_event_attribute':
+                $attribute = $namedParameters['attribute'];                
+                $operatorValue = true;
+                if (count( (array) OpenPAINI::variable('OpenpaAgendaEditSettings', 'LimitEditAttributeIdentifiers', array()) ) > 0){
+                    $operatorValue = in_array($attribute->attribute('contentclass_attribute_identifier'), (array)OpenPAINI::variable('OpenpaAgendaEditSettings', 'LimitEditAttributeIdentifiers'));
+                }elseif ($attribute instanceof eZContentObjectAttribute){
+                    $operatorValue = $attribute->attribute('is_required');
+                }
+                return $operatorValue;
+                break;
+            
             case 'current_user_is_agenda_moderator':
                 return $operatorValue = self::currentUserIsAgendaModerator();
                 break;

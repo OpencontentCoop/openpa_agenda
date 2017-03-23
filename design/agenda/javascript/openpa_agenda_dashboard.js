@@ -11,7 +11,12 @@ $(document).ready(function () {
         calendarLocale = 'en';
     }
 
-    var mainQuery = 'classes [event] sort [published=>desc]';
+    var mainQuery = 'null';
+    if (CurrentUserIsModerator) {
+      mainQuery = 'classes [event] sort [published=>desc]';
+    }else{
+      mainQuery = "owner_id = '"+CurrentUserId+"' classes [event] sort [published=>desc]";
+    }
     var stateSelect = $('select#state');
     var calendar = $('#calendar');
     var datatable = $('.content-data').opendataDataTable({

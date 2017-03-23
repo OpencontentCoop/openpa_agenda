@@ -33,8 +33,8 @@
             <td width="1">
                 <a href="{concat('social_user/setting/',$moderator.contentobject_id)|ezurl(no)}"><i class="fa fa-user"></i></a>
             </td>
-            <td width="1">{include name=edit uri='design:parts/toolbar/node_edit.tpl' current_node=$moderator redirect_if_discarded='/agenda/config/moderators' redirect_after_publish='/agenda/config/moderators'}</td>
-            <td width="1">{include name=trash uri='design:parts/toolbar/node_trash.tpl' current_node=$moderator redirect_if_cancel='/agenda/config/moderators' redirect_after_remove='/agenda/config/moderators'}</td>
+            <td width="1">{include name=edit uri='design:parts/toolbar/node_edit.tpl' current_node=$moderator redirect_if_discarded=$redirect redirect_after_publish=$redirect}</td>
+            <td width="1">{include name=trash uri='design:parts/toolbar/node_trash.tpl' current_node=$moderator redirect_if_cancel=$redirect redirect_after_remove=$redirect}</td>
             {*<td width="1">
               {if fetch( 'user', 'has_access_to', hash( 'module', 'user', 'function', 'setting' ))}
                 <form name="Setting" method="post" action={concat( 'user/setting/', $moderator.contentobject_id )|ezurl}>

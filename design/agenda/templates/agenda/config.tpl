@@ -17,7 +17,14 @@ $(document).ready(function(){
     <div class="col-md-12">
         <ul class="list-unstyled">
             <li>{'Modifica impostazioni generali'|i18n('agenda/config')} {include name=edit uri='design:parts/toolbar/node_edit.tpl' current_node=$root redirect_if_discarded='/agenda/config' redirect_after_publish='/agenda/config'}</li>
+            {if $root|has_attribute('hide_tags')}
+            <li><strong>{$root|attribute('hide_tags').contentclass_attribute_name}:</strong> {attribute_view_gui attribute=$root|attribute('hide_tags')}</li>
+            {/if}
+            {if $root|has_attribute('hide_iniziative')}
+            <li><strong>{$root|attribute('hide_iniziative').contentclass_attribute_name}:</strong> {attribute_view_gui attribute=$root|attribute('hide_iniziative')}</li>
+            {/if}
         </ul>
+        
 
         <hr />
 
@@ -48,7 +55,7 @@ $(document).ready(function(){
                   </div>
                   <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
                 </form>
-                {include name=users_table uri='design:agenda/config/moderators_table.tpl' view_parameters=$view_parameters moderator_parent_node_id=$moderators_parent_node_id}
+                {include name=users_table uri='design:agenda/config/moderators_table.tpl' view_parameters=$view_parameters moderator_parent_node_id=$moderators_parent_node_id redirect='/agenda/config/moderators'}
                 <div class="pull-right"><a class="btn btn-danger" href="{concat('add/new/user/?parent=',$moderators_parent_node_id)|ezurl(no)}"><i class="fa fa-plus"></i> {'Aggiungi moderatore'|i18n('agenda/config')}</a>
                   <form class="form-inline" style="display: inline" action="{'agenda/config/moderators'|ezurl(no)}" method="post">
                     <button class="btn btn-danger" name="AddModeratorLocation" type="submit"><i class="fa fa-plus"></i> {'Aggiungi utente esistente'|i18n('agenda/config')}</button>
@@ -65,7 +72,7 @@ $(document).ready(function(){
                   </div>
                   <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
                 </form>
-                {include name=users_table uri='design:agenda/config/moderators_table.tpl' view_parameters=$view_parameters moderator_parent_node_id=$external_users_parent_node_id}
+                {include name=users_table uri='design:agenda/config/moderators_table.tpl' view_parameters=$view_parameters moderator_parent_node_id=$external_users_parent_node_id redirect='/agenda/config/external_users'}
                 <div class="pull-right"><a class="btn btn-danger" href="{concat('add/new/user/?parent=',$external_users_parent_node_id)|ezurl(no)}"><i class="fa fa-plus"></i> {'Aggiungi utente'|i18n('agenda/config')}</a>
                   <form class="form-inline" style="display: inline" action="{'agenda/config/external_users'|ezurl(no)}" method="post">
                     <button class="btn btn-danger" name="AddExternalUsersLocation" type="submit"><i class="fa fa-plus"></i> {'Aggiungi utente esistente'|i18n('agenda/config')}</button>
