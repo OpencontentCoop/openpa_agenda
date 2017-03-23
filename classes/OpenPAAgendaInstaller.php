@@ -395,6 +395,10 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                             eZContentClass::classIDByIdentifier( 'event' )
                         ),
                         'Section' => $section->attribute( 'id' ),
+                        'StateGroup_moderation' => array(
+                            $states['moderation.draft']->attribute( 'id' ),
+                            $states['moderation.waiting']->attribute( 'id' )
+                        ),
                         'NewState' => array(
                             $states['moderation.draft']->attribute( 'id' ),
                             $states['moderation.waiting']->attribute( 'id' )
