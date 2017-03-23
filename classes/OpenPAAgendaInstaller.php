@@ -367,7 +367,8 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                     'Limitation' => array(
                         'Class' => array(
                             eZContentClass::classIDByIdentifier( 'associazione' ),
-                            eZContentClass::classIDByIdentifier( 'iniziativa' )
+                            eZContentClass::classIDByIdentifier( 'iniziativa' ),
+                            eZContentClass::classIDByIdentifier( 'image' )
                         ),
                         'Owner' => 1
                     )
