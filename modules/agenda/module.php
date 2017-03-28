@@ -74,6 +74,12 @@ $ViewList['push'] = array(
     'functions' => array('push')
 );
 
+$ViewList['widget'] = array(
+    'script' => 'widget.php',
+    'params' => array('WidgetId'),
+    'functions' => array('use')
+);
+
 
 $FunctionList = array();
 $FunctionList['use'] = array();

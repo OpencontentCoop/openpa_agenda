@@ -7,8 +7,7 @@
     {set $image = $event|attribute('image').content}
 {/if}
 
-<div class="service_teaser vertical agenda-block"
-     style="{if $image}background-image: url('{$image['large'].url|ezroot(no)}');background-size: contain;background-repeat: no-repeat;background-position: center{else}background:#fff{/if}">
+<div class="service_teaser vertical agenda-block" style="{if $image}background-image: url('{$image['large'].url|ezroot(no)}');background-size: contain;background-repeat: no-repeat;background-position: center{else}background:#fff{/if}">
     <div class="service_details">
         <h2 class="section_header skincolored" style="">
             <a href="{concat('agenda/event/',$event.object.main_node_id)|ezurl(no)}"><b>{$event.name|wash()}</b></a>
