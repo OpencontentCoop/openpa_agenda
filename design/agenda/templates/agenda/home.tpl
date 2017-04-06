@@ -8,9 +8,14 @@
 {def $node = agenda_root_node()}
 {def $hide_tags = $node|attribute('hide_tags').content.tag_ids
      $hide_iniziative = array()}
-{foreach $node|attribute('hide_iniziative').content.relation_list as $item}    
+{if $node|has_attribute('hide_tags')}
+    {set $hide_tags = $node|attribute('hide_tags').content.tag_ids}
+{/if}
+{if $node|has_attribute('hide_iniziative')}
+{foreach $node|attribute('hide_iniziative').content.relation_list as $item}
   {set $hide_iniziative = $hide_iniziative|append($item.contentobject_id)}    
 {/foreach}
+{/if}
 
 {def $agenda_query_custom = array()}
 {if count($hide_tags)|gt(0)}
