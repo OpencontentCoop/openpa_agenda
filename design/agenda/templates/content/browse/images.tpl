@@ -103,7 +103,7 @@
   'jqmodal.css',
   'tagssuggest.css',
   'contentstructure-tree.css',
-  'jstree/eztags/style.css',
+  'jstree/eztags/style.css'
 ))}
 
 <script id="tpl-spinner" type="text/x-jsrender">
