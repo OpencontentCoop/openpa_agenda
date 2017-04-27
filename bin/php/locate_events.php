@@ -9,7 +9,11 @@ $script = eZScript::instance( array( 'description' => ( "OpenPA Agenda Locate ev
 $script->startup();
 
 $script->startup();
-$options = $script->getOptions();
+$options = $script->getOptions(
+    '[subtree:]',
+    '',
+    array( 'subtree'  => 'subtree node id (default 1)')
+);
 
 $script->initialize();
 $script->setUseDebugAccumulators( true );
@@ -20,6 +24,10 @@ OpenPALog::setOutputLevel( OpenPALog::ALL );
 
 try
 {
+    $subtree = (int)$options['subtree'];
+    if ($subtree == 0){
+        $subtree = 1;
+    }
     /** @var eZUser $user */
     $user = eZUser::fetchByName( 'admin' );
     eZUser::setCurrentlyLoggedInUser( $user , $user->attribute( 'contentobject_id' ) );
@@ -28,7 +36,7 @@ try
     $events = eZContentObjectTreeNode::subTreeByNodeID(array(
         'ClassFilterType' => 'include',
         'ClassFilterArray' => array('event')
-    ),1);
+    ),$subtree);
 
     foreach($events as $event){
         $cli->warning("Add assignment to " . $event->attribute('name'));

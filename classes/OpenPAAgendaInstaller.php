@@ -683,7 +683,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                         'Class' => array(
                             eZContentClass::classIDByIdentifier( 'image' ),
                             eZContentClass::classIDByIdentifier( 'argomento' ),
-                            eZContentClass::classIDByIdentifier( 'tipo_evento' )
+//                            eZContentClass::classIDByIdentifier( 'tipo_evento' )
                         )
                     )
                 ),
