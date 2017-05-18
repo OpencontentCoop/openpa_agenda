@@ -64,7 +64,7 @@
                                     </ul>
 
 
-                                    <h4>{$event.name}</h4>
+                                    <h4>{$event.name|wash()}</h4>
                                     {if and($event.abstract, $displayed_attributes|contains( 'abstract' ))}
                                         <div class="event-abstract"> {$event.abstract}</div>
                                     {/if}
@@ -136,7 +136,7 @@
                                     </ul>
 
 
-                                    <h4>{$event.name}</h4>
+                                    <h4>{$event.name|wash()}</h4>
                                     {if and($event.abstract, $displayed_attributes|contains( 'abstract' ))}
                                         <div class="event-abstract"> {$event.abstract}</div>
                                     {/if}
