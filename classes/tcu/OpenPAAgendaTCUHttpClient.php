@@ -23,7 +23,7 @@ class OpenPAAgendaTCUHttpClient
 
     protected $apiEndPointBase = '/api/tcu';
 
-    public static $connectionTimeout = 60;
+    public static $connectionTimeout = 5;
 
     public static $processTimeout = 60;
 
