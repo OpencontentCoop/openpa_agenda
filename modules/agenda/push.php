@@ -8,7 +8,8 @@ try {
     if (is_numeric($NodeId) && OpenPAAgenda::instance()->checkAccess($NodeId)) {
         $node = eZContentObjectTreeNode::fetch($NodeId);
         if ($node instanceof eZContentObjectTreeNode && $node->attribute('class_identifier') == 'event') {
-            $client = new OpenPAAgendaTCUEventClient();
+
+            $client = new OpenPAAgendaTCUHttpClient();
             $data = array(
                 'result' => 'success',
                 'data' => $client->push($node)
