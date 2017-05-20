@@ -48,7 +48,7 @@ class OpenPAAgendaTcuPushClient implements OpenPAAgendaPushClient
     public function getRemoteUrl($response)
     {
         if (isset($response['id'])){
-            $settings = OpenPAINI::group('OpenpaAgendaPushSettings');
+            $settings = OpenPAINI::group('OpenpaAgendaPushSettingsTcu');
             return $settings['TrentinoCulturaServer'] . '/openpa/object/' . $response['id'];
         }
         return null; //@todo

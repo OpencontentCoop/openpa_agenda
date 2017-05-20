@@ -34,7 +34,7 @@ class OpenPAAgendaTCUHttpClient
         $password = null,
         $server = null
     ) {
-        $settings = OpenPAINI::group('OpenpaAgendaPushSettings');
+        $settings = OpenPAINI::group('OpenpaAgendaPushSettingsTcu');
         $server = $server === null ? $settings['TrentinoCulturaServer'] : $server;
         $this->server = rtrim($server, '/');
         $this->login = $login === null ? $settings['TrentinoCulturaLogin'] : $login;

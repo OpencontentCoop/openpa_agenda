@@ -1,6 +1,10 @@
 <?php /* #?ini charset="utf-8"?
 
 [OpenpaAgendaPushSettings]
-TrentinoCulturaServer=
-TrentinoCulturaLogin=
-TrentinoCulturaPassword=
+AvailableEndpoint[]
+#AvailableEndpoint[tcu]=OpenPAAgendaTcuPushClient
+
+#[OpenpaAgendaPushSettingsTcu]
+#TrentinoCulturaServer=
+#TrentinoCulturaLogin=
+#TrentinoCulturaPassword=
