@@ -77,6 +77,7 @@ class OpenPAAgendaTCUEventConverter
                 }
                 break;
 
+            case 'preview_image':
             case 'immagini':
                 $fileContent = (array)$this->content->data[$language]['images']['content'];
                 foreach($fileContent as $item){
@@ -94,16 +95,14 @@ class OpenPAAgendaTCUEventConverter
                 }
                 break;
 
-            case 'preview_image':
+            case 'image':
                 $fileContent = $this->content->data[$language]['image']['content'];
                 if (isset($fileContent['filename'])) {
                     $fileData = eZClusterFileHandler::instance(eZSys::rootDir() . $fileContent['url'])->fetchContents();
 
                     return array(
-                        array(
                         'filename' => $fileContent['filename'],
                         'file' => base64_encode($fileData)
-                        )
                     );
                 }else{
                     return null;
