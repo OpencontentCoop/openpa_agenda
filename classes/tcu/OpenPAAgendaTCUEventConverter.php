@@ -23,7 +23,7 @@ class OpenPAAgendaTCUEventConverter
     public function convert()
     {
         $data = array();
-        foreach(OpenPAAgendaTCUEventClient::definition() as $identifier => $definition){
+        foreach(OpenPAAgendaTCUHttpClient::definition() as $identifier => $definition){
             foreach($this->languages as $language) {
                 $fieldData = $this->map($identifier, $definition, $language);
                 if (!empty( $fieldData )) {
@@ -160,5 +160,8 @@ class OpenPAAgendaTCUEventConverter
 
                 return null;
         }
+
+        return null;
     }
+
 }

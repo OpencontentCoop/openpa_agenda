@@ -1,6 +1,6 @@
 <?php
 
-class OpenPAAgendaTCUEventClient
+class OpenPAAgendaTCUHttpClient
 {
 
     const REMOTE_ID_PREFIX = 'tcu_push_';
@@ -183,8 +183,8 @@ class OpenPAAgendaTCUEventClient
     {
         $cacheFilePath = OpenPAAgenda::instance()->getAgendaCacheDir() . '/tcu_event_definition.cache';
         $cacheFile = eZClusterFileHandler::instance($cacheFilePath);
-        $retrieveCallback = $refresh ? null : array('OpenPAAgendaTCUEventClient', 'retrieveEventDefinitionCache');
-        $generateCallback = array('OpenPAAgendaTCUEventClient', 'generateEventDefinitionCache');
+        $retrieveCallback = $refresh ? null : array('OpenPAAgendaTCUHttpClient', 'retrieveEventDefinitionCache');
+        $generateCallback = array('OpenPAAgendaTCUHttpClient', 'generateEventDefinitionCache');
 
         return $cacheFile->processCache($retrieveCallback, $generateCallback);
     }
@@ -198,7 +198,7 @@ class OpenPAAgendaTCUEventClient
 
     public static function generateEventDefinitionCache()
     {
-        $client = new OpenPAAgendaTCUEventClient();
+        $client = new OpenPAAgendaTCUHttpClient();
         $cacheData = $client->describe();
 
         if ($cacheData !== null) {

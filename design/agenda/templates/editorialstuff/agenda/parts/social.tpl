@@ -45,7 +45,9 @@
             var ngpush_text_maxlength_error = "{"Message is too long!"|i18n("ngpush/status")}";
         </script>
         <div id="ngpush-list">
+
             {foreach $push_blocks as $index => $entry}
+
                 {set $account = hash( 'Type', ezini($entry, 'Type', 'ngpush.ini'),
                                       'Name', ezini($entry, 'Name', 'ngpush.ini') )}
 
@@ -106,15 +108,15 @@
                                             <input {if $post.is_published|not()}disabled="disabled"{/if}
                                                    type="button"
                                                    value="{"Push"|i18n("ngpush/status")}"
-                                                   class="push defaultbutton"/>
-                                            <input class="button insert-link" name="full"
+                                                   class="push btn btn-success"/>
+                                            <input class="btn insert-link" name="full"
                                                    type="button"
                                                    value="{"Insert full link"|i18n("ngpush/ui")}"/>
-                                            <input class="button insert-link" name="short"
+                                            <input class="btn insert-link" name="short"
                                                    type="button"
                                                    value="{"Insert short link"|i18n("ngpush/ui")}"
                                                    disabled="disabled"/>
-                                            <input class="button" type="reset" value="Reset"/>
+                                            <input class="btn" type="reset" value="Reset"/>
                                         </p>
                                     </form>
 
@@ -231,11 +233,11 @@
                                             <input class="ngpush-facebook-entitytype" type="hidden"
                                                    value="{$account.EntityType}"/>
                                             <input class="ngpush-status" type="hidden" value=""/>
-                                            <input {if $post.current_state.identifier|ne('published')}disabled="disabled"{/if}
+                                            <input {if $post.is_published|not()}disabled="disabled"{/if}
                                                    type="button"
                                                    value="{"Push"|i18n("ngpush/status")}"
-                                                   class="push defaultbutton"/>
-                                            <input class="button" type="reset" value="Reset"/>
+                                                   class="push btn btn-success"/>
+                                            <input class="btn" type="reset" value="Reset"/>
                                         </p>
                                     </form>
 
@@ -246,14 +248,51 @@
                     </table>
                 {/case}
 
+                {case}
+                    <table cellspacing="0" class="list ngpush-block type-{$account.Type}" id="ngpush-{$entry}">
+                        <thead>
+                        <tr>
+                            <th class="icon"><img title="{$account.Name}" alt="{$account.Name}" src={concat("ngpush-logo-", $account.Type, ".png")|ezimage}/> </th>
+                            <th class="name">{$account.Name}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <div class="account-body float-break{if $active_blocks|contains($entry)} account-body-active{/if}">
+                                    <form action="{concat('editorialstuff/action/agenda/', $post.object_id, '#tab_social')|ezurl(no)}" enctype="multipart/form-data" method="post">
+                                        <p>
+                                            <input type="hidden" name="ActionParameters[]" value="{$account.Type}" />
+                                            <input type="hidden" name="ActionIdentifier" value="ActionPush" />
+                                            <button {if $post.is_published|not()}disabled="disabled"{/if}
+                                                    class="btn btn-success"
+                                                    type="submit"
+                                                    name="ActionPush">
+                                                Invia evento a {$account.Name}
+                                            </button>
+
+                                        </p>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                {/case}
+
                 {/switch}
+
+                {delimiter}<hr />{/delimiter}
+
             {/foreach}
 
-            <div class="block">
+            {*<div class="block">
                 <input {if $post.is_published|not()}disabled="disabled"{/if} type="button"
                        value="{"Push to all services"|i18n("ngpush/status")}"
-                       class="push-all defaultbutton"/>
-            </div>
+                       class="push-all btn btn-success"/>
+            </div>*}
 
         </div>
     {else}
@@ -272,7 +311,7 @@
                     <th>Stato</th>
                     <th>Link</th>
                 </tr>
-                {foreach $post.social_pushes as $item}
+                {foreach $post.social_history as $item}
                     <tr{if $item.params.response.status|eq('error')} class="danger"{/if}>
                         <td>{$item.created_time|l10n( shortdatetime )}</td>
                         <td>{$item.user.email}</td>
@@ -287,4 +326,3 @@
 
 
 </div>
-  
