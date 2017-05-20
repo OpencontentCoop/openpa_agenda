@@ -70,11 +70,14 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         if (eZINI::instance('ngpush.ini')->hasVariable('PushNodeSettings', 'Blocks')
             && $access['accessWord'] == 'yes'
         ) {
-            $tabs[] = array(
-                'identifier' => 'social',
-                'name' => ezpI18n::tr('openpa_agenda', 'Share'),
-                'template_uri' => "design:{$templatePath}/parts/social.tpl"
-            );
+            $blocks = (array)eZINI::instance('ngpush.ini')->variable('PushNodeSettings', 'Blocks');
+            if (count($blocks) > 0) {
+                $tabs[] = array(
+                    'identifier' => 'social',
+                    'name' => ezpI18n::tr('openpa_agenda', 'Share'),
+                    'template_uri' => "design:{$templatePath}/parts/social.tpl"
+                );
+            }
         }
 
         if (OpenPAAgenda::instance()->isCommentEnabled()) {
