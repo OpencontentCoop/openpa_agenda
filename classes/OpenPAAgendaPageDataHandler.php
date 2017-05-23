@@ -156,12 +156,12 @@ class OpenPAAgendaPageDataHandler implements OCPageDataHandlerInterface
                 'highlight' => false,
                 'has_children' => false
             ),
-            array(
-                'name' => ezpI18n::tr( 'agenda/menu', 'Notifiche' ),
-                'url' => 'notification/settings',
-                'highlight' => false,
-                'has_children' => false
-            )
+//            array(
+//                'name' => ezpI18n::tr( 'agenda/menu', 'Notifiche' ),
+//                'url' => 'notification/settings',
+//                'highlight' => false,
+//                'has_children' => false
+//            )
         );
 
         $hasAccess = eZUser::currentUser()->hasAccessTo( 'agenda', 'config' );
