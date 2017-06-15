@@ -3,45 +3,68 @@
 $module = $Params['Module'];
 $http = eZHTTPTool::instance();
 $NodeId = $Params['NodeId'];
+$Client = $Params['Client'];
 $data = null;
 
-if ($http->hasGetVariable('convert')){
-    try {
-        if (is_numeric($NodeId) && OpenPAAgenda::instance()->checkAccess($NodeId)) {
-            $node = eZContentObjectTreeNode::fetch($NodeId);
-            if ($node instanceof eZContentObjectTreeNode && $node->attribute('class_identifier') == 'event') {
+try {
 
-                $converter = new OpenPAAgendaTCUEventConverter($node);
-                $data = $converter->convert();
-            }
-        }
-    } catch (Exception $e) {
-        $data = array(
-            'result' => 'error',
-            'error' => $e->getMessage(),
-            'error_trace' => $e->getTraceAsString()
-        );
-    }
-}else {
-    try {
-        if (is_numeric($NodeId) && OpenPAAgenda::instance()->checkAccess($NodeId)) {
-            $node = eZContentObjectTreeNode::fetch($NodeId);
-            if ($node instanceof eZContentObjectTreeNode && $node->attribute('class_identifier') == 'event') {
+    $pusher = OpenPAAgendaPushClientLoader::instance($Client);
 
-                $client = new OpenPAAgendaTCUHttpClient();
-                $data = array(
-                    'result' => 'success',
-                    'data' => $client->push($node)
-                );
+    $post = null;
+    if (is_numeric($NodeId) && OpenPAAgenda::instance()->checkAccess($NodeId)) {
+        $node = eZContentObjectTreeNode::fetch($NodeId);
+        if ($node instanceof eZContentObjectTreeNode ) {
+
+            if ($node->attribute('class_identifier') == 'event') {
+                $post = OCEditorialStuffHandler::instance('agenda')
+                    ->getFactory()
+                    ->instancePost(array('object_id' => $node->attribute('contentobject_id')));
             }
+
+            if ($node->attribute('class_identifier') == 'associazione') {
+                $post = OCEditorialStuffHandler::instance('associazione')
+                    ->getFactory()
+                    ->instancePost(array('object_id' => $node->attribute('contentobject_id')));
+            }
+        }else{
+            throw new Exception("Node not found");
         }
-    } catch (Exception $e) {
-        $data = array(
-            'result' => 'error',
-            'error' => $e->getMessage(),
-            'error_trace' => $e->getTraceAsString()
-        );
     }
+    if (!$post instanceof OCEditorialStuffPost){
+        throw new Exception("Post type unhandled");
+    }
+
+    if ($http->hasGetVariable('convert')){
+        try {
+            $data = $pusher->convert($post);
+        } catch (Exception $e) {
+            $data = array(
+                'result' => 'error',
+                'error' => $e->getMessage(),
+                'error_trace' => $e->getTraceAsString()
+            );
+        }
+    }else {
+        try {
+            $data = array(
+                'result' => 'success',
+                'data' => $pusher->push($post)
+            );
+        } catch (Exception $e) {
+            $data = array(
+                'result' => 'error',
+                'error' => $e->getMessage(),
+                'error_trace' => $e->getTraceAsString()
+            );
+        }
+    }
+
+} catch (Exception $e) {
+    $data = array(
+        'result' => 'error',
+        'error' => $e->getMessage(),
+        'error_trace' => $e->getTraceAsString()
+    );
 }
 
 if (eZHTTPTool::instance()->hasGetVariable('debug')) {

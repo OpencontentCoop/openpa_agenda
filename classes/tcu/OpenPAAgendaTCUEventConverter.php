@@ -2,7 +2,7 @@
 
 use Opencontent\Opendata\Api\ContentRepository;
 
-class OpenPAAgendaTCUEventConverter
+class OpenPAAgendaTCUEventConverter implements OpenPAAgendaPushConverter
 {
     private $node;
 
@@ -12,18 +12,21 @@ class OpenPAAgendaTCUEventConverter
 
     private $contentRepository;
 
-    public function __construct(eZContentObjectTreeNode $node)
+    private $remoteClassDefinition;
+
+    public function __construct(eZContentObjectTreeNode $node, $remoteClassDefinition)
     {
         $this->node = $node;
         $this->contentRepository = new ContentRepository();
         $this->content = $this->contentRepository->getGateway()->loadContent($node->attribute('contentobject_id'));
         $this->languages = $node->object()->availableLanguages();
+        $this->remoteClassDefinition = $remoteClassDefinition;
     }
 
     public function convert()
     {
         $data = array();
-        foreach(OpenPAAgendaTCUHttpClient::definition() as $identifier => $definition){
+        foreach($this->remoteClassDefinition as $identifier => $definition){
             foreach($this->languages as $language) {
                 $fieldData = $this->map($identifier, $definition, $language);
                 if (!empty( $fieldData )) {

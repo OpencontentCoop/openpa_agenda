@@ -17,7 +17,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
 
     public function attributes()
     {
-        return array_merge(parent::attributes(), array('is_published'));
+        return array_merge(parent::attributes(), array('is_published', 'associazione'));
     }
 
     public function attribute($property)
@@ -28,6 +28,12 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
 
         if ($property == 'social_history') {
             return $this->getSocialHistory();
+        }
+
+        if ($property == 'associazione' && isset( $this->dataMap[$property] ) && $this->dataMap[$property]->hasContent()) {
+            return $this->dataMap[$property];
+        } else {
+            eZDebug::writeError("Object attribute '{$property}' is empty");
         }
 
         return parent::attribute($property);
@@ -166,12 +172,6 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
             if ($response['status'] != 'success') {
                 SocialUser::addFlashAlert(implode(', ', $response['messages']), SocialUser::ALERT_ERROR);
             }
-
-            OCEditorialStuffHistory::addSocialHistoryToObjectId(
-                $this->id(),
-                'tcu',
-                $response
-            );
 
             if ($module) {
                 $module->redirectTo("editorialstuff/edit/{$this->getFactory()->identifier()}/{$this->id()}#tab_social");

@@ -3,8 +3,6 @@
 class OpenPAAgendaTCUHttpClient
 {
 
-    const REMOTE_ID_PREFIX = 'tcu_push_';
-
     protected $server;
 
     protected $login;
@@ -23,6 +21,8 @@ class OpenPAAgendaTCUHttpClient
 
     protected $apiEndPointBase = '/api/tcu';
 
+    protected $endpointType;
+
     public static $connectionTimeout = 5;
 
     public static $processTimeout = 60;
@@ -32,14 +32,35 @@ class OpenPAAgendaTCUHttpClient
     public function __construct(
         $login = null,
         $password = null,
-        $server = null
+        $server = null,
+        $endpointType = null
     ) {
         $settings = OpenPAINI::group('OpenpaAgendaPushSettingsTcu');
         $server = $server === null ? $settings['TrentinoCulturaServer'] : $server;
         $this->server = rtrim($server, '/');
         $this->login = $login === null ? $settings['TrentinoCulturaLogin'] : $login;
         $this->password = $password === null ? $settings['TrentinoCulturaPassword'] : $password;
+        $this->endpointType = $endpointType;
+    }
 
+    /**
+     * @return string
+     */
+    public function getEndpointType()
+    {
+        return $this->endpointType;
+    }
+
+    /**
+     * @param string $endpointType
+     *
+     * @return OpenPAAgendaTCUHttpClient
+     */
+    public function setEndpointType($endpointType)
+    {
+        $this->endpointType = $endpointType;
+
+        return $this;
     }
 
     public function setProxy(
@@ -58,17 +79,17 @@ class OpenPAAgendaTCUHttpClient
 
     public function create($data)
     {
-        return $this->request('POST', $this->buildUrl('/create/event'), json_encode($data));
+        return $this->request('POST', $this->buildUrl('/create/' . $this->endpointType), json_encode($data));
     }
 
     public function get($id)
     {
-        return $this->request('GET', $this->buildUrl('/get/event/' . $id));
+        return $this->request('GET', $this->buildUrl('/get/' . $this->endpointType . '/' . $id));
     }
 
     public function update($id, $data)
     {
-        return $this->request('POST', $this->buildUrl('/update/event/' . $id), json_encode($data));
+        return $this->request('POST', $this->buildUrl('/update/' . $this->endpointType . '/' .  $id), json_encode($data));
     }
 
     public function describe($identifier = null)
@@ -76,10 +97,10 @@ class OpenPAAgendaTCUHttpClient
         if ($identifier) {
             $identifier = '/' . ltrim($identifier, '/');
 
-            return $this->request('GET', $this->buildUrl('/describe/event' . $identifier));
+            return $this->request('GET', $this->buildUrl('/describe/' . $this->endpointType . $identifier));
         } else {
             $data = array();
-            $class = $this->request('GET', $this->buildUrl('/describe/event' . $identifier));
+            $class = $this->request('GET', $this->buildUrl('/describe/' . $this->endpointType ));
             foreach ($class as $field) {
                 $data[$field] = $this->describe($field);
             }
@@ -179,86 +200,35 @@ class OpenPAAgendaTCUHttpClient
         return $data['result'];
     }
 
-    public static function definition($refresh = false)
+    public function definition($refresh = false)
     {
-        $cacheFilePath = OpenPAAgenda::instance()->getAgendaCacheDir() . '/tcu_event_definition.cache';
+        $endpointType = $this->endpointType;
+        $cacheFilePath = OpenPAAgenda::instance()->getAgendaCacheDir() . '/tcu_definition_'. $endpointType .'.cache';
         $cacheFile = eZClusterFileHandler::instance($cacheFilePath);
-        $retrieveCallback = $refresh ? null : array('OpenPAAgendaTCUHttpClient', 'retrieveEventDefinitionCache');
-        $generateCallback = array('OpenPAAgendaTCUHttpClient', 'generateEventDefinitionCache');
+
+        $retrieveCallback = $refresh ? null : function($filePath){
+            $cache = include( $filePath );
+            return $cache;
+        };
+
+        $generateCallback = function() use($endpointType){
+            $client = new OpenPAAgendaTCUHttpClient();
+            $client->setEndpointType($endpointType);
+            $cacheData = $client->describe();
+
+            if ($cacheData !== null) {
+                $cacheData = array(
+                    'content' => $cacheData,
+                    'scope' => 'tcu-cache',
+                    'datatype' => 'php',
+                    'store' => true
+                );
+            }
+
+            return $cacheData;
+        };
 
         return $cacheFile->processCache($retrieveCallback, $generateCallback);
-    }
-
-    public static function retrieveEventDefinitionCache($filePath, $mtime)
-    {
-        $cache = include( $filePath );
-
-        return $cache;
-    }
-
-    public static function generateEventDefinitionCache()
-    {
-        $client = new OpenPAAgendaTCUHttpClient();
-        $cacheData = $client->describe();
-
-        if ($cacheData !== null) {
-            $cacheData = array(
-                'content' => $cacheData,
-                'scope' => 'tcu_event-cache',
-                'datatype' => 'php',
-                'store' => true
-            );
-        }
-
-        return $cacheData;
-    }
-
-    public function isAlreadyPushed(eZContentObjectTreeNode $node)
-    {
-        try{
-            $data = $this->get($this->getRemoteId($node));
-            return isset( $data['metadata'] );
-        }catch(Exception $e){
-            return false;
-        }
-    }
-
-    private function getRemoteId(eZContentObjectTreeNode $node)
-    {
-        $mainNode = $node->object()->attribute('main_node');
-
-        return str_replace(self::REMOTE_ID_PREFIX, '', $mainNode->attribute('remote_id'));
-    }
-
-    private function storeRemoteId(eZContentObjectTreeNode $node, $data)
-    {
-        $mainNode = $node->object()->attribute('main_node');
-        $mainNode->setAttribute('remote_id', self::REMOTE_ID_PREFIX . $data);
-        $mainNode->store();
-    }
-
-    public function push(eZContentObjectTreeNode $node)
-    {
-        $converter = new OpenPAAgendaTCUEventConverter($node);
-        $data = $converter->convert();
-
-        if ($this->isAlreadyPushed($node)) {
-
-            $result = $this->update(
-                $this->getRemoteId($node),
-                $data
-            );
-
-        }else {
-
-            $result = $this->create($data);
-            if (isset( $result['metadata'] )) {
-                $this->storeRemoteId($node, $result['metadata']['id']);
-            }
-        }
-
-        return $result;
-
     }
 
 }

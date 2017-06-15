@@ -4,7 +4,7 @@ class Commento extends OCEditorialStuffPost
 {
     public function onCreate()
     {
-        if ( OpenpaAgenda::needModeration($this->getObject()) ){
+        if ( OpenpaAgenda::instance()->needModeration($this->getObject()) ){
             $states = $this->states();
             $default = 'moderation.waiting';
             if ( isset( $states[$default] ) ) {

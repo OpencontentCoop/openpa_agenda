@@ -70,7 +70,7 @@ $ViewList['download'] = array(
 
 $ViewList['push'] = array(
     'script' => 'push.php',
-    'params' => array('NodeId'),
+    'params' => array('Client', 'NodeId'),
     'functions' => array('push')
 );
 

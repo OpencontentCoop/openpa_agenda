@@ -26,8 +26,8 @@ Se risponde "Non installato"
 `php extension/openpa/bin/php/install_sql.php -sala_backend --file=/home/httpd/comunweb/html/extension/eztags/sql/postgresql/schema.sql --run`
 
 correggere le conf di solr inserendo in java/solr/ala/conf/custom-fields.xml le stringhe
-`<field name="ezf_df_tags" type="lckeyword" indexed="true" stored="true" multiValued="true" termVectors="true"/>`
-`<field name="ezf_df_tag_ids" type="sint" indexed="true" stored="true" multiValued="true" termVectors="true"/>`
+<field name="ezf_df_tags" type="lckeyword" indexed="true" stored="true" multiValued="true" termVectors="true"/>
+<field name="ezf_df_tag_ids" type="sint" indexed="true" stored="true" multiValued="true" termVectors="true"/>
 
 ### Installare alberatura tags tcu
 

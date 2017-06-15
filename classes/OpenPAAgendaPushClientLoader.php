@@ -5,9 +5,10 @@ class OpenPAAgendaPushClientLoader
     private static $instance;
 
     /**
-     * @param $client
+     * @param string $client
      *
      * @return OpenPAAgendaPushClient
+     * @throws Exception
      */
     public static function instance($client)
     {

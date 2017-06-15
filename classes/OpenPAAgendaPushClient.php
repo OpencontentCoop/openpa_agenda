@@ -2,7 +2,9 @@
 
 interface OpenPAAgendaPushClient
 {
-    public function push(AgendaItem $post);
+    public function push(OCEditorialStuffPost $post);
+
+    public function convert(OCEditorialStuffPost $post);
 
     public function name();
 
