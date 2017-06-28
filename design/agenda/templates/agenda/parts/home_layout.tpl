@@ -42,7 +42,7 @@
                         {if agenda_root()|has_attribute('testo_partecipa_associazioni')}
                             <small>{agenda_root()|attribute('testo_partecipa_associazioni').data_text|wash( xhtml )}</small>
                         {else}
-                            <small>{'Registro ufficiale del comune'|i18n('agenda')}</small>
+                            <small>{'Scopri come partecipare!'|i18n('agenda')}</small>
                         {/if}
                     </h2>
                 </div>
