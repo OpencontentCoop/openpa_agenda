@@ -76,12 +76,9 @@ class OpenPAAgendaTcuPushClient implements OpenPAAgendaPushClient
             );
         }catch(Exception $e){
 
-            eZDebug::writeError($e->getTraceAsString(), $e->getMessage());
-            eZDebug::writeError($data);
-
             eZLog::write(
-                $e->getMessage() . ' ' . $e->getTraceAsString() . ' ' . var_export($data, 1),
-                OpenPABase::getCurrentSiteaccessIdentifier() . '_agenda__push_tcu.log'
+                $e->getMessage() . ' ' . $e->getTraceAsString(),
+                OpenPABase::getCurrentSiteaccessIdentifier() . '_push_tcu.log'
             );
 
             $response = array(
@@ -131,7 +128,10 @@ class OpenPAAgendaTcuPushClient implements OpenPAAgendaPushClient
                         $result = $pusher->push($associazione);
                         $associazioneRemoteIdList[] = $result['id'];
                     }catch(Exception $e){
-                        eZDebug::writeError($e->getTraceAsString(), $e->getMessage());
+                        eZLog::write(
+                            $e->getMessage() . ' ' . $e->getTraceAsString(),
+                            OpenPABase::getCurrentSiteaccessIdentifier() . '_push_tcu.log'
+                        );
                     }
                 }
 
