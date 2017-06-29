@@ -30,10 +30,12 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
             return $this->getSocialHistory();
         }
 
-        if ($property == 'associazione' && isset( $this->dataMap[$property] ) && $this->dataMap[$property]->hasContent()) {
-            return $this->dataMap[$property];
-        } else {
-            eZDebug::writeError("Object attribute '{$property}' is empty");
+        if ($property == 'associazione') {
+            if (isset( $this->dataMap[$property] ) && $this->dataMap[$property]->hasContent()) {
+                return $this->dataMap[$property];
+            } else {
+                eZDebug::writeError("Object attribute '{$property}' is empty");
+            }
         }
 
         return parent::attribute($property);
