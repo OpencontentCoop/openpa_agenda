@@ -4,7 +4,7 @@
 {if $view_parameters.query}
     {set $query = concat('(*',$view_parameters.query|downcase(),'*) OR ',$view_parameters.query|downcase())}
 {/if}
-{def $search = fetch( ezfind, search, hash( query, $query, subtree_array, array( $moderator_parent_node_id ), class_id, array('user'), limit, $item_limit, offset, $view_parameters.offset, sort_by, hash( 'name', 'asc' ) ) )}
+{def $search = fetch( ezfind, search, hash( query, $query, subtree_array, array( $moderator_parent_node_id ), limit, $item_limit, offset, $view_parameters.offset, sort_by, hash( 'name', 'asc' ) ) )}
 
 {def $moderators_count = $search.SearchCount
      $moderators = $search.SearchResult}
