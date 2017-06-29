@@ -150,7 +150,8 @@ class OpenPAAgendaTCUEventConverter implements OpenPAAgendaPushConverter
             case 'url':
                 $url = 'agenda/event/' . $this->node->attribute('node_id');
                 eZURI::transformURI($url, false, 'full');
-                return $url;
+                $pageData = new OpenPAAgendaPageDataHandler();
+                return $url . '|' . $pageData->siteTitle();
                 break;
 
             default:
