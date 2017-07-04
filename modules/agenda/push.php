@@ -44,6 +44,16 @@ try {
                 'error_trace' => $e->getTraceAsString()
             );
         }
+    }elseif ($http->hasGetVariable('get')){
+        try {
+            $data = $pusher->getRemote($post);
+        } catch (Exception $e) {
+            $data = array(
+                'result' => 'error',
+                'error' => $e->getMessage(),
+                'error_trace' => $e->getTraceAsString()
+            );
+        }
     }else {
         try {
             $data = array(

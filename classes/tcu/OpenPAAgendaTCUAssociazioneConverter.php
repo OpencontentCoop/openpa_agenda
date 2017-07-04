@@ -44,6 +44,7 @@ class OpenPAAgendaTCUAssociazioneConverter implements OpenPAAgendaPushConverter
             case 'circoscrizione':
             case 'argomento':
             case 'rating':
+            case 'codice': //problemi di indicizzazione
                 return null;
                 break;
 

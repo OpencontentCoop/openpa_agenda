@@ -37,6 +37,20 @@ class OpenPAAgendaTCUEventConverter implements OpenPAAgendaPushConverter
         return $data;
     }
 
+    private function getImage($language)
+    {
+        $data = array();
+        $fileContent = $this->content->data[$language]['image']['content'];
+        if (isset($fileContent['filename'])) {
+            $fileData = eZClusterFileHandler::instance(eZSys::rootDir() . $fileContent['url'])->fetchContents();
+            $data = array(
+                'filename' => $fileContent['filename'],
+                'file' => base64_encode($fileData)
+            );
+        }
+        return $data;
+    }
+
     private function map($identifier, $definition, $language)
     {
         switch($identifier){
@@ -80,11 +94,10 @@ class OpenPAAgendaTCUEventConverter implements OpenPAAgendaPushConverter
                 }
                 break;
 
-            case 'preview_image':
             case 'immagini':
+                $data = array();
                 $fileContent = (array)$this->content->data[$language]['images']['content'];
                 foreach($fileContent as $item){
-                    $data = array();
                     $image = $this->contentRepository->getGateway()->loadContent($item['id']);
                     $imageContent = $image->data[$language]['image']['content'];
                     if (isset($imageContent['filename'])) {
@@ -94,22 +107,24 @@ class OpenPAAgendaTCUEventConverter implements OpenPAAgendaPushConverter
                             'file' => base64_encode($imageContentData)
                         );
                     }
-                    return $data;
                 }
+                $image = $this->getImage($language);
+                if (!empty($image)){
+                    $data[] = $image;
+                }
+                return $data;
                 break;
 
+            case 'preview_image':
             case 'image':
-                $fileContent = $this->content->data[$language]['image']['content'];
-                if (isset($fileContent['filename'])) {
-                    $fileData = eZClusterFileHandler::instance(eZSys::rootDir() . $fileContent['url'])->fetchContents();
-
-                    return array(
-                        'filename' => $fileContent['filename'],
-                        'file' => base64_encode($fileData)
-                    );
-                }else{
-                    return null;
-                }
+                //     $image = $this->getImage($language);
+                //     if (!empty($image)){
+                //         if ($identifier == 'preview_image'){
+                //             return array($image);
+                //         }
+                //         return $image;
+                //     }
+                return null;
                 break;
 
             case 'iniziativa_text':
@@ -163,8 +178,5 @@ class OpenPAAgendaTCUEventConverter implements OpenPAAgendaPushConverter
 
                 return null;
         }
-
-        return null;
     }
-
 }

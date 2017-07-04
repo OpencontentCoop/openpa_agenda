@@ -57,21 +57,31 @@ class OpenPAAgendaTcuPushClient implements OpenPAAgendaPushClient
 
 
             if ($this->isAlreadyPushed($post)) {
+                $action = 'update';
                 $result = $this->client->update(
                     $this->getRemoteId($post),
                     $data
                 );
+                eZLog::write(
+                    "Update {$post->id()} " . var_export($result['metadata'], 1),
+                    OpenPABase::getCurrentSiteaccessIdentifier() . '_push_tcu.log'
+                );
 
             }else {
+                $action = 'create';
                 $result = $this->client->create($data);
                 if (isset( $result['metadata'] )) {
+                    eZLog::write(
+                        "Create {$post->id()} " . var_export($result['metadata'], 1),
+                        OpenPABase::getCurrentSiteaccessIdentifier() . '_push_tcu.log'
+                    );
                     $this->storeRemoteId($post, $result['metadata']['id']);
                 }
             }
 
             $response = array(
                 'status' => 'success',
-                'messages' => array(),
+                'messages' => array($action),
                 'id' => $result['metadata']['id']
             );
         }catch(Exception $e){
@@ -100,6 +110,12 @@ class OpenPAAgendaTcuPushClient implements OpenPAAgendaPushClient
     {
         $this->loadDepsByClass($post);
         return $this->converter->convert();
+    }
+
+    public function getRemote(OCEditorialStuffPost $post)
+    {
+        $this->loadDepsByClass($post);
+        return $this->client->get($this->getRemoteId($post));;
     }
 
     public function getRemoteUrl($response)
@@ -153,6 +169,10 @@ class OpenPAAgendaTcuPushClient implements OpenPAAgendaPushClient
             $data = $this->client->get($this->getRemoteId($post));
             return isset( $data['metadata'] );
         }catch(Exception $e){
+            eZLog::write(
+                $e->getMessage() . ' ' . $e->getTraceAsString(),
+                OpenPABase::getCurrentSiteaccessIdentifier() . '_push_tcu.log'
+            );
             return false;
         }
     }

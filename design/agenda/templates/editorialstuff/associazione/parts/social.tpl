@@ -316,7 +316,12 @@
                         <td>{$item.created_time|l10n( shortdatetime )}</td>
                         <td>{$item.user.email}</td>
                         <td>{$item.type}</td>
-                        <td>{$item.params.response.status}</td>
+                        <td>
+                            {$item.params.response.status}
+                            {if and($item.params.response.status|eq('error'), is_set($item.params.response.messages))}
+                                <br /><em>{$item.params.response.messages|implode(', ')}</em>
+                            {/if}
+                        </td>
                         <td>{if $item.link}<a href="{$item.link}" target="_blank">Vedi</a>{/if}</td>
                     </tr>
                 {/foreach}

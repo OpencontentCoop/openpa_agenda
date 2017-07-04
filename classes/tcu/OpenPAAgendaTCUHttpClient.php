@@ -116,6 +116,11 @@ class OpenPAAgendaTCUHttpClient
 
     public function request($method, $url, $data = null)
     {
+        eZLog::write(
+            __METHOD__ . ' ' . $url . ' ' . $method,
+            OpenPABase::getCurrentSiteaccessIdentifier() . '_push_tcu.log'
+        );
+
         $headers = array();
 
         if ($this->login && $this->password) {
@@ -163,10 +168,6 @@ class OpenPAAgendaTCUHttpClient
         }
 
         $info = curl_getinfo($ch);
-        if (class_exists('eZDebug')) {
-            eZDebug::writeDebug($info['request_header'], __METHOD__);
-        }
-
         curl_close($ch);
 
         $headers = substr($data, 0, $info['header_size']);
