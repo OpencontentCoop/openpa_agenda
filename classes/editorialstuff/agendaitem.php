@@ -74,7 +74,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         //                'template_uri' => "design:{$templatePath}/parts/mail.tpl"
         //            );
         //        }
-        $access = $currentUser->hasAccessTo('push', '*');
+        $access = $currentUser->hasAccessTo('agenda', 'push');
         if (eZINI::instance('ngpush.ini')->hasVariable('PushNodeSettings', 'Blocks')
             && $access['accessWord'] == 'yes'
         ) {

@@ -30,7 +30,7 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
 //            );
 //        }
 
-        $access = $currentUser->hasAccessTo('push', '*');
+        $access = $currentUser->hasAccessTo('agenda', 'push');
         if (eZINI::instance('ngpush.ini')->hasVariable('PushNodeSettings', 'Blocks')
             && $access['accessWord'] == 'yes'
         ) {

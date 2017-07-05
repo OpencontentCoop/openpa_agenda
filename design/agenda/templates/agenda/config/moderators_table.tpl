@@ -12,6 +12,7 @@
 <table class="table table-hover">
     {foreach $moderators as $moderator}
         {def $userSetting = $moderator|user_settings()}
+        {if $userSetting.user_id}
         <tr>
             <td>
                 {if $userSetting.is_enabled|not()}<span style="text-decoration: line-through">{/if}
@@ -45,6 +46,7 @@
               {/if}
             </td>*}
         </tr>
+        {/if}
         {undef $userSetting}
     {/foreach}
 </table>
