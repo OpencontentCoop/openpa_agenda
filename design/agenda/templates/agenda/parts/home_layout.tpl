@@ -2,10 +2,12 @@
     {attribute_view_gui attribute=agenda_root()|attribute('layout')}
 {/if}
 
+{def $has_latest_program = latest_program()}
+
 {if is_collaboration_enabled()}
     <div class="row home-teaser hidden-xs">
-        {if latest_program()}
-            <div class="col-sm-4">
+        {if $has_latest_program}
+            <div class="col-md-4">
                 <div class="service_teaser vertical">
                     <div class="service_photo">
                         <h2 class="section_header gradient-background">
@@ -20,7 +22,7 @@
                 </div>
             </div>
         {/if}
-        <div class="col-sm-4">
+        <div class="col-sm-6 col-md-{if $has_latest_program}4{else}6{/if}">
             <div class="service_teaser vertical">
                 <div class="service_photo">
                     <h2 class="section_header gradient-background">
@@ -34,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6 col-md-{if $has_latest_program}4{else}6{/if}">
             <div class="service_teaser vertical">
                 <div class="service_photo">
                     <h2 class="section_header gradient-background">
@@ -50,7 +52,7 @@
         </div>
     </div>
 
-{elseif latest_program()}
+{elseif $has_latest_program}
 
     <div class="text-center">
         <a class="btn btn-success btn-lg" href="{'agenda/download/'|ezurl(no)}">

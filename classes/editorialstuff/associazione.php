@@ -13,14 +13,14 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
                 'template_uri' => "design:{$templatePath}/parts/content.tpl"
             )
         );
-        if ( $currentUser->hasAccessTo( 'editorialstuff', 'media' ) && in_array( 'image', $this->factory->attributeIdentifiers() ) )
-        {
-            $tabs[] = array(
-                'identifier' => 'media',
-                'name' => 'Media',
-                'template_uri' => "design:{$templatePath}/parts/media.tpl"
-            );
-        }
+//        if ( $currentUser->hasAccessTo( 'editorialstuff', 'media' ) && in_array( 'image', $this->factory->attributeIdentifiers() ) )
+//        {
+//            $tabs[] = array(
+//                'identifier' => 'media',
+//                'name' => 'Media',
+//                'template_uri' => "design:{$templatePath}/parts/media.tpl"
+//            );
+//        }
 //        if ( $currentUser->hasAccessTo( 'editorialstuff', 'mail' ) )
 //        {
 //            $tabs[] = array(
@@ -54,7 +54,74 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
 
     public function onCreate()
     {
+        if ($this->getObject()->attribute('current_version') == 1 && eZUser::currentUser()->isAnonymous()) {
+            $states = $this->states();
+            $default = 'privacy.private';
+            if (isset( $states[$default] )) {
+                $this->getObject()->assignState($states[$default]);
+            }
+            $this->disableUser();
+            $this->flushObject();
+            eZSearch::addObject($this->getObject(), true);
+        }
         OpenPAAgenda::notifyModerationGroup($this);
+    }
+
+    public function onChangeState( eZContentObjectState $beforeState, eZContentObjectState $afterState )
+    {
+        if ($afterState->attribute('identifier') == 'private'){
+            $this->disableUser();
+            $this->flushObject();
+            eZSearch::addObject($this->getObject(), true);
+        }elseif ($afterState->attribute('identifier') == 'public'){
+            $this->enableUser();
+            $this->flushObject();
+            eZSearch::addObject($this->getObject(), true);
+            $this->notify();
+        }
+        return parent::onChangeState($beforeState, $afterState);
+    }
+
+    private function notify()
+    {
+        $templatePath = 'design:agenda/mail/notify_associazione.tpl';
+        if ( !OCEditorialStuffActionHandler::sendMail(
+            $this,
+            array( eZUser::fetch($this->id()) ),
+            $templatePath,
+            array(
+                'post' => $this
+            )
+        ) )
+        {
+            eZDebug::writeError( "Fail sending mail", __METHOD__ );
+        }
+    }
+
+    private function disableUser()
+    {
+        $userSetting = eZUserSetting::fetch( $this->id() );
+        if ($userSetting instanceof eZUserSetting){
+            if ($userSetting->attribute("is_enabled") != 0){
+                eZContentCacheManager::clearContentCacheIfNeeded( $this->id() );
+                eZContentCacheManager::generateObjectViewCache( $this->id() );
+            }
+            $userSetting->setAttribute( "is_enabled", 0 );
+            $userSetting->store();
+        }
+    }
+
+    private function enableUser()
+    {
+        $userSetting = eZUserSetting::fetch( $this->id() );
+        if ($userSetting instanceof eZUserSetting){
+            if ($userSetting->attribute("is_enabled") != 1){
+                eZContentCacheManager::clearContentCacheIfNeeded( $this->id() );
+                eZContentCacheManager::generateObjectViewCache( $this->id() );
+            }
+            $userSetting->setAttribute( "is_enabled", 1 );
+            $userSetting->store();
+        }
     }
 
     public function onUpdate()

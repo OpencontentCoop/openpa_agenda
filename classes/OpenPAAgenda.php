@@ -351,7 +351,7 @@ class OpenPAAgenda
                 }
             }
 
-            if (!empty( $users )) {
+            if (empty( $users )) {
                 $userClasses = eZUser::contentClassIDs();
                 $children = eZContentObjectTreeNode::subTreeByNodeID(
                     array(
@@ -457,5 +457,15 @@ class OpenPAAgenda
     public function isHeaderOnlyLogoEnabled()
     {
         return (bool)$this->getAttributeString('enable_header_only_logo') == 1;
+    }
+
+    public function isAutoRegistrationEnabled()
+    {
+        return (bool)$this->getAttributeString('enable_auto_registration') == 1;
+    }
+
+    public function isModerationEnabled()
+    {
+        return $this->getAttributeString('enable_moderation') == 1 || $this->getAttributeString('enable_moderation') == '';
     }
 }

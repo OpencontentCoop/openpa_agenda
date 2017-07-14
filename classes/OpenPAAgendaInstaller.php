@@ -383,6 +383,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                         'Owner' => 1,
                         'Section' => $section->attribute( 'id' ),
                         'StateGroup_moderation' => array(
+                            $states['moderation.skipped']->attribute( 'id' ),
                             $states['moderation.draft']->attribute( 'id' ),
                             $states['moderation.waiting']->attribute( 'id' )
                         )

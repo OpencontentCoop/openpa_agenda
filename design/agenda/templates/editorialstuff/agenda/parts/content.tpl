@@ -4,7 +4,7 @@
     <div class="row">
 
         {if $post.object.can_edit}
-            <div class="col-xs-6 col-md-2">
+            <div class="col-xs-4 col-md-2">
                 <form method="post" action="{"content/action"|ezurl(no)}" style="display: inline;">
                     <input type="hidden" name="ContentObjectLanguageCode"
                            value="{ezini( 'RegionalSettings', 'ContentObjectLocale', 'site.ini')}"/>
@@ -33,12 +33,44 @@
                 </form>
             </div>
         {/if}
-        <div class="col-xs-6 col-md-2">
+        <div class="col-xs-4 col-md-2">
             <a class="btn btn-info btn-lg" data-toggle="modal"
                data-load-remote="{concat( 'layout/set/modal/content/view/full/', $post.object.main_node_id )|ezurl('no')}"
                data-remote-target="#preview .modal-content" href="#{*$post.url*}"
                data-target="#preview">{'Anteprima'|i18n('agenda/dashboard')}</a>
         </div>
+        <div class="col-xs-4 col-md-2">
+            <form action="{concat('editorialstuff/action/agenda/', $post.object_id)|ezurl(no)}" method="post">
+                <p>
+                    <input type="hidden" name="ActionParameters[]" value="" />
+                    <input type="hidden" name="ActionIdentifier" value="ActionCopy" />
+                    <button class="btn btn-warning btn-lg"
+                            type="submit"
+                            name="ActionCopy">
+                        Copia evento
+                    </button>
+
+                </p>
+            </form>
+        </div>
+
+        {if $post.object.can_remove}
+        <div class="col-xs-4 col-md-2">
+            <form method="post" action="{"content/action"|ezurl(no)}" style="display: inline;">
+
+            <button class="btn btn-danger btn-lg" type="submit" name="ActionRemove">Elimina</button>
+
+            <input type="hidden" name="ContentObjectID" value="{$post.object.id}" />
+            <input type="hidden" name="NodeID" value="{$post.object.main_node_id}" />
+            <input type="hidden" name="ContentNodeID" value="{$post.object.main_node_id}" />
+
+            <input type="hidden" name="RedirectIfCancel" value="{$post.editorial_url}" />
+            <input type="hidden" name="RedirectURIAfterRemove" value="{concat('editorialstuff/dashboard/', $factory_identifier)}" />
+
+            </form>
+        </div>
+        {/if}
+
     </div>
 
     <hr/>

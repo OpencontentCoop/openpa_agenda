@@ -39,8 +39,7 @@ $(document).ready(function () {
                 {"data": "data", "name": 'from_time', "title": Translations['Inizio']},
                 {"data": "data", "name": 'from_time', "title": Translations['Fine']},
                 {"data": "metadata.stateIdentifiers", "name": 'state', "title": Translations['Stato'], "sortable": false},
-                {"data": "metadata.id", "name": 'id', "title": Translations['Traduzioni'], "sortable": false},
-                {"data": "metadata.id", "name": 'id', "title": '', "sortable": false}
+                {"data": "metadata.id", "name": 'id', "title": Translations['Traduzioni'], "sortable": false}
             ],
             "columnDefs": [
                 {
@@ -121,12 +120,6 @@ $(document).ready(function () {
                         return string;
                     },
                     "targets": [7]
-                },
-                {
-                    "render": function (data, type, row) {
-                        return ' <form method="post" action="' + tools.settings('accessPath') + '/content/action" style="display: inline;"><button class="btn btn-link btn-xs" type="submit" name="ActionRemove"><i class="fa fa-trash" style="font-size: 12px;"></i></button><input name="ContentObjectID" value="' + row.metadata.id + '" type="hidden"><input name="NodeID" value="' + row.metadata.mainNodeId + '" type="hidden"><input name="ContentNodeID" value="' + row.metadata.mainNodeId + '" type="hidden"><input name="RedirectIfCancel" value="editorialstuff/dashboard/agenda" type="hidden"><input name="RedirectURIAfterRemove" value="editorialstuff/dashboard/agenda" type="hidden"></form> ';
-                    },
-                    "targets": [8]
                 }
             ]
         },

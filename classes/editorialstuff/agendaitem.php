@@ -4,7 +4,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
 {
     public function onCreate()
     {
-        if ($this->getObject()->attribute('current_version') == 1) {
+        if ($this->getObject()->attribute('current_version') == 1 && OpenPAAgenda::instance()->isModerationEnabled()) {
             $states = $this->states();
             $default = 'moderation.draft';
             if (isset( $states[$default] )) {
@@ -13,6 +13,20 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         }
         eZSearch::addObject($this->object, true);
         OpenPAAgenda::notifyModerationGroup($this);
+    }
+
+    public function onChangeState(eZContentObjectState $beforeState, eZContentObjectState $afterState)
+    {
+        if ($afterState->attribute('indentifier') == 'waiting' && !OpenPAAgenda::instance()->isModerationEnabled()){
+            $states = $this->states();
+            $accepted = 'moderation.accepted';
+            if (isset( $states[$accepted] )) {
+                $this->getObject()->assignState($states[$accepted]);
+                $this->flushObject();
+                eZSearch::addObject($this->getObject(), true);
+            }
+        }
+        return parent::onChangeState($beforeState, $afterState);
     }
 
     public function attributes()
@@ -177,6 +191,24 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
 
             if ($module) {
                 $module->redirectTo("editorialstuff/edit/{$this->getFactory()->identifier()}/{$this->id()}#tab_social");
+            }
+        }
+
+        if ($actionIdentifier == 'ActionCopy') {
+
+            $newObject = OpenPAObjectTools::copyObject($this->getObject(), false, OpenPAAgenda::instance()->calendarNodeId());
+            $states = $this->states();
+            $default = 'moderation.draft';
+            if (isset( $states[$default] )) {
+                $newObject->assignState($states[$default]);
+            }
+
+            $name = $newObject->attribute('name');
+            $newObject->setName("Copia di $name");
+
+            $language = eZLocale::currentLocaleCode();
+            if ($module) {
+                $module->redirectTo("content/edit/{$newObject->attribute('id')}/{$newObject->attribute('current_version')}/$language");
             }
         }
     }

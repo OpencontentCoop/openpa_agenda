@@ -748,3 +748,7 @@ div#zone-map-container .zone-map-item label
 }
 
 #blueimp-gallery{display: none}
+
+span.classattribute-description{
+    color: #333;
+}

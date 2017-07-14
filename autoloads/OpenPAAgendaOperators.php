@@ -14,8 +14,10 @@ class OpenPAAgendaOperators
             'calendar_node_id',
             'agenda_root_node',
             'is_collaboration_enabled',
+            'is_moderation_enabled',
             'is_comment_enabled',
             'is_header_only_logo_enabled',
+            'is_auto_registration_enabled',
             'agenda_root',
             'agenda_browse_helper',
             'current_user_is_agenda_moderator',
@@ -198,8 +200,16 @@ class OpenPAAgendaOperators
                 $operatorValue = $agenda->isCommentEnabled();
                 break;
 
+            case 'is_moderation_enabled':
+                $operatorValue = $agenda->isModerationEnabled();
+                break;
+
             case 'is_header_only_logo_enabled':
                 $operatorValue = $agenda->isHeaderOnlyLogoEnabled();
+                break;
+
+            case 'is_auto_registration_enabled':
+                $operatorValue = $agenda->isAutoRegistrationEnabled();
                 break;
         }
     }

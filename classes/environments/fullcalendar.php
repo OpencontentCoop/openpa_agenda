@@ -6,6 +6,8 @@ use Opencontent\Opendata\Api\Values\Content;
 
 class OpenPAAgendaFullcalendarEnvironmentSettings extends DefaultEnvironmentSettings
 {
+    protected $maxSearchLimit = 300;
+
     public function filterContent(Content $content)
     {
         return $content;
@@ -98,7 +100,7 @@ class OpenPAAgendaFullcalendarEnvironmentSettings extends DefaultEnvironmentSett
                 $query['SearchLimit'] = $this->maxSearchLimit;
             }
         } else {
-            $query['SearchLimit'] = $this->defaultSearchLimit;
+            $query['SearchLimit'] = $this->maxSearchLimit;
         }
 
         if (!isset( $query['SearchOffset'] )) {

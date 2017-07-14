@@ -45,15 +45,20 @@ $ViewList['config'] = array(
 );
 
 $ViewList['comment'] = array(
-    'script' =>	'comment.php',
-    'params' => array( 'ForumID', 'ForumReplyID' ),
-    'functions' => array( 'use' )
+    'script' => 'comment.php',
+    'params' => array('ForumID', 'ForumReplyID'),
+    'functions' => array('use')
 );
 
 $ViewList['associazioni'] = array(
     'script' => 'associazioni.php',
-    'params' => array('NodeId'),
-    'functions' => array('use')
+    'params' => array('Action'),
+    'functions' => array('use'),
+    'single_post_actions' => array(
+        'PublishButton' => 'Publish',
+        'CancelButton' => 'Cancel',
+        'CustomActionButton' => 'CustomAction'
+    )
 );
 
 $ViewList['qrcode'] = array(

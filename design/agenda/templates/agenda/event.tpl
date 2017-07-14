@@ -194,9 +194,13 @@
 
         <div class="col-md-4">
             <ul class="list-group">
+                {def $associazione_identifier = 'associazione'}
                 {if $node|has_attribute( 'organizzazione' )}
+                    {set $associazione_identifier = 'organizzazione'}
+                {/if}
+                {if $node|has_attribute( $associazione_identifier )}
                 {def $itemObject = false()}
-                {foreach $node.data_map.organizzazione.content.relation_list as $item}
+                {foreach $node|attribute( $associazione_identifier ).content.relation_list as $item}
 				<li class="list-group-item">
 				  <i class="fa fa-group"></i>
 				  {set $itemObject = fetch(content, object, hash(object_id, $item.contentobject_id))}

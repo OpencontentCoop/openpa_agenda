@@ -57,7 +57,12 @@ class OpenPAAgendaPageDataHandler implements OCPageDataHandlerInterface
 
     public function needLogin()
     {
-        // TODO: Implement needLogin() method.
+        $persistentVariable = eZPageData::getPersistentVariable();
+        if (isset($persistentVariable["need_login"])){
+            return $persistentVariable["need_login"];
+        }
+
+        return !eZUser::currentUser()->isRegistered();
     }
 
     public function attributeContacts()

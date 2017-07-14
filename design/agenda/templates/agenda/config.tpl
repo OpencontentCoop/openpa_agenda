@@ -17,11 +17,17 @@ $(document).ready(function(){
     <div class="col-md-12">
         <ul class="list-unstyled">
             <li>{'Modifica impostazioni generali'|i18n('agenda/config')} {include name=edit uri='design:parts/toolbar/node_edit.tpl' current_node=$root redirect_if_discarded='/agenda/config' redirect_after_publish='/agenda/config'}</li>
+            {if is_moderation_enabled()}
+                <li><strong>{'Moderazione attiva'|i18n('agenda/config')}</strong></li>
+            {/if}
+            {if is_auto_registration_enabled()}
+                <li><strong>{'Auto-registrazione associazioni attiva'|i18n('agenda/config')}</strong></li>
+            {/if}
             {if $root|has_attribute('hide_tags')}
-            <li><strong>{$root|attribute('hide_tags').contentclass_attribute_name}:</strong> {attribute_view_gui attribute=$root|attribute('hide_tags')}</li>
+            <li><strong>{'Tipologie nascoste in agenda principale'|i18n('agenda/config')}:</strong> {attribute_view_gui attribute=$root|attribute('hide_tags')}</li>
             {/if}
             {if $root|has_attribute('hide_iniziative')}
-            <li><strong>{$root|attribute('hide_iniziative').contentclass_attribute_name}:</strong> {attribute_view_gui attribute=$root|attribute('hide_iniziative')}</li>
+            <li><strong>{'Iniziative nascoste in agenda principale'|i18n('agenda/config')}:</strong> {attribute_view_gui attribute=$root|attribute('hide_iniziative')}</li>
             {/if}
         </ul>
         

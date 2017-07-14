@@ -27,7 +27,7 @@
     <div class="container">
         {$module_result.content}
 
-        {if and( $current_user.is_logged_in|not(), $social_pagedata.need_login|not )}
+        {if or($current_user.is_logged_in|not(), $social_pagedata.need_login)}
             {include uri='design:page_login.tpl'}
         {/if}
 

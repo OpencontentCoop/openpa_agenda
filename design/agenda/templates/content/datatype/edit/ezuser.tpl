@@ -12,7 +12,7 @@
 
     {* Username. *}
 
-{if and( $attribute.content.has_stored_login, $attribute.content.login|ne(''))}
+{if and( $attribute.content.has_stored_login, $attribute.content.login|ne(''), $attribute.object.main_node_id|ne(''))}
     <p><input id="{$id_base}_login" autocomplete="off" type="text" name="{$attribute_base}_data_user_login_{$attribute.id}_stored_login" class="{$html_class}" value="{$attribute.content.login|wash()}" disabled="disabled" /></p>
     <input id="{$id_base}_login_hidden" type="hidden" name="{$attribute_base}_data_user_login_{$attribute.id}" value="{$attribute.content.login|wash()}" />
 {else}

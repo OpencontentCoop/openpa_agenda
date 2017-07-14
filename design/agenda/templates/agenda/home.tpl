@@ -1,13 +1,7 @@
-<section class="hgroup noborder home-agenda">
-
-    {include uri='design:agenda/parts/home_layout.tpl'}
-
-    {include uri='design:agenda/parts/calendar/views.tpl' views=array('list','geo','agenda')}
-
-</section>
 {def $node = agenda_root_node()}
 {def $hide_tags = $node|attribute('hide_tags').content.tag_ids
-     $hide_iniziative = array()}
+     $hide_iniziative = array()
+     $view_all = false()}
 {if $node|has_attribute('hide_tags')}
     {set $hide_tags = $node|attribute('hide_tags').content.tag_ids}
 {/if}
@@ -16,10 +10,13 @@
   {set $hide_iniziative = $hide_iniziative|append($item.contentobject_id)}    
 {/foreach}
 {/if}
+{if $node|has_attribute('view_all')}
+    {set $view_all = cond($node.data_map.view_all.data_int|eq(1), true(), false())}
+{/if}
 
 {def $agenda_query_custom = array()}
 {if count($hide_tags)|gt(0)}
-{concat('tipo_evento.tag_ids !in ['", $hide_tags|implode("','"), "']')}
+{concat("tipo_evento.tag_ids !in ['", $hide_tags|implode("','"), "']'")}
   {foreach $hide_tags as $tag}
     {set $agenda_query_custom = $agenda_query_custom|append(concat("tipo_evento.tag_ids != '", $tag, "'"))}
   {/foreach}
@@ -29,6 +26,14 @@
     {set $agenda_query_custom = $agenda_query_custom|append(concat("iniziativa.id != '", $iniziativa, "'"))}
   {/foreach}
 {/if}
+
+<section class="hgroup noborder home-agenda">
+
+    {include uri='design:agenda/parts/home_layout.tpl'}
+
+    {include uri='design:agenda/parts/calendar/views.tpl' views=array('list','geo','agenda') view_all=$view_all}
+
+</section>
 
 {include
     uri='design:agenda/parts/calendar/calendar.tpl'
