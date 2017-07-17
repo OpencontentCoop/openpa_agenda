@@ -23,8 +23,7 @@ if (OpenPAAgenda::instance()->isCollaborationModeEnabled() || eZUser::currentUse
 
     } elseif ($Action == 'register' && OpenPAAgenda::instance()->isAutoRegistrationEnabled()) {
 
-        eZPageData::setPersistentVariable('need_login', false, $tpl);
-
+        $Module->setUIContextName('edit');
         if (isset( $Params['UserParameters'] )) {
             $UserParameters = $Params['UserParameters'];
         } else {
