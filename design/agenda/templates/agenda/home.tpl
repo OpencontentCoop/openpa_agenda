@@ -16,7 +16,6 @@
 
 {def $agenda_query_custom = array()}
 {if count($hide_tags)|gt(0)}
-{concat("tipo_evento.tag_ids !in ['", $hide_tags|implode("','"), "']'")}
   {foreach $hide_tags as $tag}
     {set $agenda_query_custom = $agenda_query_custom|append(concat("tipo_evento.tag_ids != '", $tag, "'"))}
   {/foreach}
