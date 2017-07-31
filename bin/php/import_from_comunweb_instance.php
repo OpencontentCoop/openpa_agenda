@@ -18,14 +18,14 @@ $script->startup();
 $query = 'classes [event] and calendar[] = [now,next month]';
 
 $options = $script->getOptions(
-    '[host:][creator_id:][update][query:][debug]',
+    '[host:][creator_id:][status:][update][query:]',
     '',
     array(
         'host' => 'Esempio: "http://www.valledeltesino.com/"',
         'creator_id' => "Id dell'autore (default admin)",
         'update' => 'Aggiorna gli eventi se già imporatti altrimenti non li considera',
         'query' => "Default: '$query'",
-        'debug' => "Stampa il payload e non pubblica"
+        'status' => "Stato in cui importa (default: 'moderation.waiting')"
     )
 );
 $script->initialize();
@@ -225,7 +225,12 @@ try {
 
                         }
 
-                        $payload->setStateIdentifiers(array('moderation.waiting'));
+                        $status = 'moderation.waiting';
+                        if ($options['status']){
+                            $status = $options['status'];
+                        }
+
+                        $payload->setStateIdentifiers(array($status));
 
                         if ($options['debug']){
                             throw new Exception(var_export($payload, 1));
