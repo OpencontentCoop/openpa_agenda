@@ -199,18 +199,17 @@
                     {set $associazione_identifier = 'organizzazione'}
                 {/if}
                 {if $node|has_attribute( $associazione_identifier )}
-                {def $itemObject = false()}
                 {foreach $node|attribute( $associazione_identifier ).content.relation_list as $item}
 				<li class="list-group-item">
 				  <i class="fa fa-group"></i>
-				  {set $itemObject = fetch(content, object, hash(object_id, $item.contentobject_id))}
+				  {def $itemObject = fetch(content, object, hash(object_id, $item.contentobject_id))}
 				  {if and($itemObject.class_identifier|eq('associazione'), is_collaboration_enabled())}
 					<a href="{concat('content/view/full/',$itemObject.main_node_id)|ezurl(no)}">{$itemObject.name|wash()}</a>
 				  {else}
 					{$itemObject.name|wash()}
 				  {/if}
+                  {undef $itemObject}
 				</li>
-                {undef $itemObject}
 				{/foreach}
                 {/if}
                 {if $node|has_attribute( 'telefono' )}
