@@ -12,7 +12,9 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
             }
         }
         eZSearch::addObject($this->object, true);
-        OpenPAAgenda::notifyModerationGroup($this);
+        if (!OpenPAAgenda::instance()->isModerationEnabled()){
+            OpenPAAgenda::notifyModerationGroup($this);
+        }
     }
 
     public function onChangeState(eZContentObjectState $beforeState, eZContentObjectState $afterState)

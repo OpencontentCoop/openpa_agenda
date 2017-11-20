@@ -4,6 +4,7 @@
 [AvailableActions]
 Actions[]=NotifyEventOwner
 Actions[]=NotifyCommentOwner
+Actions[]=NotifyModerationGroup
 
 [NotifyEventOwner]
 ClassName=OpenPAAgenda
@@ -12,6 +13,10 @@ MethodName=notifyEventOwner
 [NotifyCommentOwner]
 ClassName=OpenPAAgenda
 MethodName=notifyCommentOwner
+
+[NotifyModerationGroup]
+ClassName=OpenPAAgenda
+MethodName=notifyModerationGroup
 
 
 [AvailableFactories]
@@ -36,6 +41,7 @@ States[waiting]=In attesa di moderazione
 States[accepted]=Accettato
 States[refused]=Rifiutato
 Actions[]
+Actions[draft-waiting]=NotifyModerationGroup
 Actions[waiting-accepted]=NotifyEventOwner
 Actions[waiting-refused]=NotifyEventOwner
 
