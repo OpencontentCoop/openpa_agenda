@@ -1,0 +1,356 @@
+//	COLORI
+//$blu-italia-base:					#0066cc;
+$blu-italia-base:					$brand-primary;
+$blu-italia-base-dark:		darken($blu-italia-base, 20%);
+
+//blu-notte
+$blu-notte-05:						#b8b8d3;
+$blu-notte-10:						#aeaed1;
+$blu-notte-20:						#a3a3cc;
+$blu-notte-30:						#9999c9;
+$blu-notte-40:						#8e8bc6;
+$blu-notte-50:						#857ec4;
+$blu-notte-60:						#706da8;
+$blu-notte-70:						#5d5d8c;
+$blu-notte-80:						#4b4b70;
+$blu-notte-90:						#393954;
+$blu-notte-95:						#272738;
+
+//lilla
+$lilla-50:							#bd8ae5;
+
+//grigio
+$grigio-05:							#f5f5f0;
+$grigio-10:							#d6d6d6;
+$grigio-20:							#b2b8bd;
+$grigio-30:							#919ba3;
+$grigio-40:							#747f8a;
+$grigio-50:							#5a6772;
+$grigio-60:							#444e57;
+$grigio-70:							#30373d;
+$grigio-80:							#1c2024;
+$grigio-90:							#13171a;
+$grigio-95:							#000000;
+
+
+//$light-blue: 						#c6f3f5;
+$light-blue: 						#23b0fd;
+
+$mark:								#b2ebed;
+//$link-color-visited:				#428fdb !default;
+//$link-color-visited:				#02679e !default;
+$link-color-visited:				$brand-primary;
+$font-size-h7:            			floor(($font-size-base * 0.8889)) !default;// ~16px
+//$btn-default-bg-hover:      		#65dde0 !default;
+$btn-default-bg-hover:      		$light-blue !default;
+$border-width-input-activated:  	4px;
+$icon-search-dim:					48px;
+
+.blu-italia-base-color{color: $blu-italia-base; }
+.blu-italia-base-bg{background-color:$blu-italia-base; }
+
+.blu-notte-05-color{color: $blu-notte-05;}
+.blu-notte-05-bg{background-color: $blu-notte-05;}
+
+.blu-notte-10-color{color: $blu-notte-10;}
+.blu-notte-10-bg{background-color: $blu-notte-10;}
+
+.blu-notte-20-color{color: $blu-notte-20;}
+.blu-notte-20-bg{background-color: $blu-notte-20;}
+
+.blu-notte-30-color{color: $blu-notte-30;}
+.blu-notte-30-bg{background-color: $blu-notte-30;}
+
+.blu-notte-40-color{color: $blu-notte-40;}
+.blu-notte-40-bg{background-color: $blu-notte-40;}
+
+.blu-notte-50-color{color: $blu-notte-50;}
+.blu-notte-50-bg{background-color: $blu-notte-50;}
+
+.blu-notte-60-color{color: $blu-notte-60;}
+.blu-notte-60-bg{background-color: $blu-notte-60;}
+
+.blu-notte-70-color{color: $blu-notte-70;}
+.blu-notte-70-bg{background-color: $blu-notte-70;}
+
+.blu-notte-80-color{color: $blu-notte-80;}
+.blu-notte-80-bg{background-color: $blu-notte-80;}
+
+.blu-notte-90-color{ color: $blu-notte-90;}
+.blu-notte-90-bg{background-color: $blu-notte-90;}
+
+.blu-notte-95-color{ color: $blu-notte-95;}
+.blu-notte-95-bg{background-color: $blu-notte-95;}
+
+.grigio-05-color{ color:$grigio-05 }
+.grigio-05-bg{ background-color:$grigio-05 }
+
+.grigio-10-color{ color:$grigio-10 }
+.grigio-10-bg{ background-color:$grigio-10 }
+
+.grigio-20-color{ color:$grigio-20 }
+.grigio-20-bg{ background-color:$grigio-20 }
+
+.grigio-30-color{ color:$grigio-30 }
+.grigio-30-bg{ background-color:$grigio-30 }
+
+.grigio-40-color{ color:$grigio-40 }
+.grigio-40-bg{ background-color:$grigio-40 }
+
+.grigio-50-color{ color:$grigio-50 }
+.grigio-50-bg{ background-color:$grigio-50 }
+
+.grigio-60-color{ color:$grigio-60 }
+.grigio-60-bg{ background-color:$grigio-60 }
+
+.grigio-70-color{ color:$grigio-70 }
+.grigio-70-bg{ background-color:$grigio-70 }
+
+.grigio-80-color{ color:$grigio-80 }
+.grigio-80-bg{ background-color:$grigio-80 }
+
+.grigio-90-color{ color:$grigio-90 }
+.grigio-90-bg{ background-color:$grigio-90 }
+
+.grigio-95-color{ color:$grigio-95 }
+.grigio-95-bg{ background-color:$grigio-95 }
+
+
+
+.white-color{ color: #fff;}
+.white-bg{background-color:#fff;}
+
+
+
+
+
+
+// buttons
+.btn {
+  text-transform:uppercase;
+  white-space: normal !important;
+  @include box-shadow(0px 2px 4px 0px rgba(28, 32, 36 , 0.26));
+  border-radius:2px;-moz-border-radius:2px;-webkit-border-radius:2px;
+}
+.btn-default {
+  &:hover,
+  &:focus,
+  &.focus{
+    background: $btn-default-bg-hover;
+    border-color: $btn-default-bg-hover;
+    color: $btn-default-color;
+    @include opacity(1);
+
+  }
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle{
+    background:$btn-default-color;
+    border-color: $btn-default-color;
+    color: $btn-default-bg-hover;
+    @include opacity(1);
+
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active{
+      background:$btn-default-color;
+      border-color: $btn-default-color;
+      color: $btn-default-bg-hover;
+      @include opacity(1);
+    }
+  }
+}
+
+a.btn-default:visited {
+  color: $btn-default-color;
+}
+a.btn-primary:visited {
+  color: $btn-primary-color;
+}
+a.btn-danger:visited {
+  color: $btn-danger-color;
+}
+a.btn-success:visited {
+  color: $btn-success-color;
+}
+a.btn-info:visited {
+  color: $btn-info-color;
+}
+a.btn-warning:visited {
+  color: $btn-warning-color;
+}
+
+
+// forms
+label{
+  font-weight: normal;
+}
+// _scaffolding
+a {
+  &:hover{
+    color: $blu-italia-base-dark;
+  }
+  &:visited{
+    color: $link-color-visited;
+  }
+}
+
+// .h7,h7 {
+// 	@extend .h6;
+// }
+
+h5, .h5{
+  font-weight: normal;
+}
+
+h1, .h1 { line-height: $line-height-h1 }
+h2, .h2 { line-height: $line-height-h2 }
+h3, .h3 { line-height: $line-height-h3 }
+h4, .h4 { line-height: $line-height-h4 }
+h5, .h5 { line-height: $line-height-h5 }
+h6, .h6 { line-height: $line-height-h6 }
+
+// h7, .h7 { font-size: $font-size-h7; line-height: $line-height-h7 }
+
+article {
+  p,
+  ul,
+  ol,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    max-width: 31em;
+  }
+}
+
+mark,
+.mark {
+  background-color:$mark;
+}
+
+blockquote {
+  padding: ($line-height-computed) / 2 $line-height-computed;
+  font-style: italic;
+}
+
+// Wells
+.well {
+  color: $gray;
+}
+// GRID FRAMEWORK MIXIN
+// [converter] This is defined recursively in LESS, but Sass supports real loops
+@mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
+  @for $i from (1 + 1) through $grid-columns {
+    $list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+  }
+  #{$list} {
+    padding-bottom: $grid-gutter-width;
+  }
+}
+
+@include  make-grid-columns;
+
+@mixin form-control-focus($color: $input-border-focus) {
+  &:focus {
+    outline: $border-width-input-activated solid $light-blue;
+    @include box-shadow(none);
+  }
+}
+.form-control {
+  @include  form-control-focus;
+}
+
+// Centered container element
+@mixin container-fixed($gutter: $grid-gutter-width) {
+  padding:  ($gutter/ 2) + $gutter;
+}
+
+.container, .container-fluid  {
+  @include container-fixed;
+}
+
+
+
+.alert-danger{ color:$gray-base; }
+.has-error .form-control{border-width: $border-width-input-activated;}
+.icon-search{width:$icon-search-dim;height:$icon-search-dim; text-align: center; font-size: 0.7em; border-radius:0;-moz-border-radius:0;-webkit-border-radius:0; padding: 0;}
+
+
+
+
+@mixin gradient-striped($color: rgba(255,255,255,.15), $angle: 135deg) {
+  background-image: -webkit-linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
+  background-image: linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
+}
+.progress-italia-login{ height: 4px;
+  .progress-bar-striped{
+    @include gradient-striped;
+    background-size: 4px 4px;
+  }
+}
+
+
+
+.nav-tabs > li > a{ background-color: $light-blue; color: $grigio-50; text-transform: uppercase; font-weight: 700; margin-right: 0;}
+.nav-tabs > li > a.active{ color: #30373d}
+
+
+
+
+
+
+.tag{@include border-bottom-radius(12px); @include border-top-radius(12px); border: 1px solid #d6d6d6; display: inline-block; background-color: #fff; padding: 0 10px; height: 24px; @include box-sizing(border-box); position: relative; line-height: 22px; font-size: $font-size-small; color: $gray-base;
+  .fa-stack{ font-size: 13px; position: absolute; right:-2px; top: -2px; bottom: 0;}
+}
+.tag.active{ background-color: $light-blue;}
+
+.filtro{@extend .tag;background-color: $light-blue; padding-right: 24px;}
+
+a.tag, .tag a, a .tag,
+a.filtro, .filtro a, a .filtro{color: inherit;cursor: pointer;}
+
+.no-border-radius{@include border-bottom-radius(0); @include border-top-radius(0);}
+
+.cst-radio-group{ border: 1px solid $grigio-10; background: #fff;
+  .radio, .checkbox{ padding: 0; margin: 0;
+    input[type="radio"], input[type="checkbox"]{display: none;}
+    input[type="radio"], input[type="checkbox"]{position: absolute; top:$grid-gutter-width; right: 0; margin-right: $grid-gutter-width; margin-left: 0;}
+    label{padding: $grid-gutter-width 20px $grid-gutter-width $grid-gutter-width; display: block; color: $grigio-50; border-bottom: 1px solid $grigio-10;}
+    input[type=radio]:checked + label, input[type="checkbox"]:checked + label{
+      background: $light-blue;color: $grigio-70;
+    }
+    label:after{
+      content: url(img/radio.png);position: absolute; top:22px; right: 0; margin-right: $grid-gutter-width;
+    }
+    input[type=radio]:checked + label:after, input[type="checkbox"]:checked + label:after{
+      content: url(img/radio-checked.png);
+    }
+  }
+
+
+}
+
+.cst-dropdown{
+  background: #fff;
+  .heading{ padding:$grid-gutter-width $grid-gutter-width $grid-gutter-width $grid-gutter-width*2; border-bottom: 1px solid $grigio-10; }
+  .heading a{font-size: $font-size-h5; color: $btn-default-bg; display: block; cursor: pointer; }
+  .heading a:hover, .heading a:focus{ text-decoration: none;}
+  .heading a:after {
+    font-family: "FontAwesome";
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    content:"\f106";
+    float: right;
+    color: $btn-default-bg;
+  }
+  .heading a.collapsed:after {
+    content: "\f107";
+  }
+}

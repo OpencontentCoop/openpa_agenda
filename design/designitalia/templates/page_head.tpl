@@ -10,15 +10,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    {ezcss_load( array(
-        'animate.css',
-        'style.css',
-        'custom.css',
-        'font-awesome.min.css',
-        'font-awesome-animation.min.css',
-        'debug.css',
-        'websitetoolbar.css'
-    ) )}
+
+  {ezcss_load( array(
+  'animate.css',
+  'app.css',
+  'jasny-bootstrap.min.css',
+  'custom.css',
+  'font-awesome.min.css',
+  'font-awesome-animation.min.css',
+  'debug.css',
+  'websitetoolbar.css'
+  ) )}
 
     {ezscript_load(array(
         'modernizr.custom.48287.js',
@@ -30,7 +32,8 @@
         'wow.min.js',
         'restart_theme.js',
         'collapser.js',
-        'placeholders.min.js'
+        'placeholders.min.js',
+        'jasny-bootstrap.min.js'
     ))}
 
     <!--[if lt IE 9]>

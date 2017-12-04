@@ -1,7 +1,3 @@
-<section class="hgroup">
-    <h1>{'Gestisci eventi'|i18n('agenda/dashboard')}</h1>
-</section>
-
 <script>
   var CurrentUserIsModerator = {cond(current_user_is_agenda_moderator(), true, false)};
   var CurrentUserId = {fetch(user, current_user).contentobject_id};
@@ -41,9 +37,12 @@
     'Control.Geocoder.js'
 ))}
 
-<div class="content-view-full class-folder">
-    <div class="content-main">
-      
+<div class="row">
+  <div class="col-md-12">
+      <section class="hgroup">
+        <h1>{'Gestisci eventi'|i18n('agenda/dashboard')}</h1>
+      </section>
+
         {if $factory_configuration.CreationRepositoryNode}
           <p><a href="{concat('editorialstuff/add/',$factory_identifier)|ezurl(no)}" class="btn btn-lg btn-success">{$factory_configuration.CreationButtonText|wash()|i18n('agenda/dashboard')}</a></p>
         {/if}
@@ -77,19 +76,22 @@
 
 </div>
 
-<section class="hgroup">
-    <div class="form-inline pull-right" id="search-iniziativa">
-        <div class="form-group">
-            <label for="searchIniziativaByName" class="hide">{'Cerca per nome...'|i18n('agenda')}</label>
-            <input type="text" class="form-control" id="searchIniziativaByName" placeholder="{'Cerca'|i18n('agenda')}">
-        </div>
-        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> </button>
-        <button type="reset" class="btn btn-default" style="display: none;"><i class="fa fa-times"></i> </button>
-    </div>
-    <h1>{'Gestisci iniziative'|i18n('agenda/dashboard')}</h1>
-</section>
+
 
 <div class="row">
+    <div class="col-md-12">
+      <section class="hgroup">
+        <div class="form-inline pull-right" id="search-iniziativa">
+          <div class="form-group">
+            <label for="searchIniziativaByName" class="hide">{'Cerca per nome...'|i18n('agenda')}</label>
+            <input type="text" class="form-control" id="searchIniziativaByName" placeholder="{'Cerca'|i18n('agenda')}">
+          </div>
+          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> </button>
+          <button type="reset" class="btn btn-default" style="display: none;"><i class="fa fa-times"></i> </button>
+        </div>
+        <h1>{'Gestisci iniziative'|i18n('agenda/dashboard')}</h1>
+      </section>
+    </div>
     <div class="col-md-12">
         <table class="table table-striped table-bordered">
             <thead>
@@ -175,14 +177,14 @@
         return template.render(content);
     };
     var searchForm = $('#search-iniziativa');
-    
+
     var iniziativeQuery = 'null';
     if (CurrentUserIsModerator) {
       iniziativeQuery = 'classes [iniziativa] sort [modified=>desc] limit 5';
     }else{
       iniziativeQuery = 'classes [iniziativa] and owner_id = '+CurrentUserId+' sort [modified=>desc] limit 5';
     }
-    
+
     var searchViewIniziativa = $(searchIniziativaSelector).opendataSearchView({
         query: iniziativeQuery,
         onBeforeSearch: function(){

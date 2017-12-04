@@ -47,7 +47,7 @@
         <span class="sr-only">Loading...</span>
     </div>
 
-    <div class="content-main" style="display: none">
+    <div class="content-main wide" style="display: none">
         <div class="clearfix">
             <ul class="nav nav-pills space pull-left">
                 <li class="active"><a data-toggle="tab" href="#table"><i class="fa fa-list" aria-hidden="true"></i> Lista</a></li>
