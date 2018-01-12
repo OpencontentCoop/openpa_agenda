@@ -360,3 +360,82 @@ body.canvas-slid {
 .no-pad-b {
   padding-bottom: 0;
 }
+
+/* Alerts */
+.alert {
+  border-radius: 0 !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  box-shadow: 0 -5px 5px -5px #e0e0e0;
+  border-left: 10px solid #ccc ;
+  background-color: #fbfbfb;
+  p:before {
+    padding-right: 10px;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 2em;
+  }
+  &.alert-danger {
+    border-left-color: #ff0000 !important;
+    p:before {
+      content: "\f06a";
+    }
+  }
+  &.alert-warning {
+    border-left-color: #d1ae00 !important;
+    p:before {
+      content: "\f071";
+    }
+  }
+  &.alert-info {
+    border-left-color: #24c3cc !important;
+    p:before {
+      content: "\f129";
+    }
+  }
+  &.alert-success {
+    border-left-color: #65b446 !important;
+    p:before {
+      content: "\f00c";
+    }
+  }
+}
+
+#openFilters {
+  a {
+    i:after {
+      font-weight: 600;
+      font-family: "Titillium Web", Helvetica, Arial, sans-serif;
+      content: ' Chiudi i Filtri';
+    }
+    &.collapsed {
+      i:after {
+        font-weight: 600;
+        font-family: "Titillium Web", Helvetica, Arial, sans-serif;
+        content: ' Filtra gli eventi';
+      }
+    }
+  }
+  @media only screen and (min-width: $screen-xs-min) {
+    display: block;
+  }
+  @media only screen and (min-width: $screen-sm-min) {
+    display: none;
+  }
+}
+
+
+#collapseFilters {
+  @media only screen and (min-width: $screen-xs-min) {
+    display: none;
+  }
+  @media only screen and (min-width: $screen-sm-min) {
+    display: block;
+  }
+  &.in {
+    display: block;
+  }
+}
+
+
+

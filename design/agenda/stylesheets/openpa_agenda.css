@@ -752,3 +752,12 @@ div#zone-map-container .zone-map-item label
 span.classattribute-description{
     color: #333;
 }
+
+#openFilters a i:after { font-weight: 600; font-family: "Titillium Web", Helvetica, Arial, sans-serif; content: ' Chiudi i Filtri'; }
+#openFilters a.collapsed i:after { font-weight: 600; font-family: "Titillium Web", Helvetica, Arial, sans-serif; content: ' Filtra gli eventi'; }
+@media only screen and (min-width: 480px) { #openFilters { display: block; } }
+@media only screen and (min-width: 768px) { #openFilters { display: none; } }
+
+@media only screen and (min-width: 480px) { #collapseFilters { display: none; } }
+@media only screen and (min-width: 768px) { #collapseFilters { display: block; } }
+#collapseFilters.in { display: block; }

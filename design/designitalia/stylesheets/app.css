@@ -4104,3 +4104,24 @@ body.canvas-slid #header.header-fixed #header-inside .burger-wrapper .burger-con
 .no-pad-t { padding-top: 0; }
 
 .no-pad-b { padding-bottom: 0; }
+
+/* Alerts */
+.alert, .message-confirmation, .message-feedback, .feedback, .message-warning, .warning, .message-error { border-radius: 0 !important; border-top: none !important; border-right: none !important; border-bottom: none !important; box-shadow: 0 -5px 5px -5px #e0e0e0; border-left: 10px solid #ccc; background-color: #fbfbfb; }
+.alert p:before, .message-confirmation p:before, .message-feedback p:before, .feedback p:before, .message-warning p:before, .warning p:before, .message-error p:before { padding-right: 10px; font: normal normal normal 14px/1 FontAwesome; font-size: 2em; }
+.alert.alert-danger, .alert-danger.message-confirmation, .alert-danger.message-feedback, .alert-danger.feedback, .alert-danger.message-warning, .alert-danger.warning, .message-error { border-left-color: #ff0000 !important; }
+.alert.alert-danger p:before, .alert-danger.message-confirmation p:before, .message-confirmation.message-error p:before, .alert-danger.message-feedback p:before, .message-feedback.message-error p:before, .alert-danger.feedback p:before, .feedback.message-error p:before, .alert-danger.message-warning p:before, .message-warning.message-error p:before, .alert-danger.warning p:before, .warning.message-error p:before, .message-error p:before { content: "\f06a"; }
+.alert.alert-warning, .alert-warning.message-confirmation, .alert-warning.message-feedback, .alert-warning.feedback, .message-warning, .warning, .alert-warning.message-error { border-left-color: #d1ae00 !important; }
+.alert.alert-warning p:before, .alert-warning.message-confirmation p:before, .message-confirmation.message-warning p:before, .message-confirmation.warning p:before, .alert-warning.message-feedback p:before, .message-feedback.message-warning p:before, .message-feedback.warning p:before, .alert-warning.feedback p:before, .feedback.message-warning p:before, .feedback.warning p:before, .message-warning p:before, .warning p:before, .alert-warning.message-error p:before, .message-error.message-warning p:before, .message-error.warning p:before { content: "\f071"; }
+.alert.alert-info, .alert-info.message-confirmation, .alert-info.message-feedback, .alert-info.feedback, .alert-info.message-warning, .alert-info.warning, .alert-info.message-error { border-left-color: #24c3cc !important; }
+.alert.alert-info p:before, .alert-info.message-confirmation p:before, .alert-info.message-feedback p:before, .alert-info.feedback p:before, .alert-info.message-warning p:before, .alert-info.warning p:before, .alert-info.message-error p:before { content: "\f129"; }
+.alert.alert-success, .message-confirmation, .message-feedback, .feedback, .alert-success.message-warning, .alert-success.warning, .alert-success.message-error { border-left-color: #65b446 !important; }
+.alert.alert-success p:before, .message-confirmation p:before, .message-feedback p:before, .feedback p:before, .alert-success.message-warning p:before, .message-warning.message-confirmation p:before, .message-warning.message-feedback p:before, .message-warning.feedback p:before, .alert-success.warning p:before, .warning.message-confirmation p:before, .warning.message-feedback p:before, .warning.feedback p:before, .alert-success.message-error p:before, .message-error.message-confirmation p:before, .message-error.message-feedback p:before, .message-error.feedback p:before { content: "\f00c"; }
+
+#openFilters a i:after { font-weight: 600; font-family: "Titillium Web", Helvetica, Arial, sans-serif; content: ' Chiudi i Filtri'; }
+#openFilters a.collapsed i:after { font-weight: 600; font-family: "Titillium Web", Helvetica, Arial, sans-serif; content: ' Filtra gli eventi'; }
+@media only screen and (min-width: 480px) { #openFilters { display: block; } }
+@media only screen and (min-width: 768px) { #openFilters { display: none; } }
+
+@media only screen and (min-width: 480px) { #collapseFilters { display: none; } }
+@media only screen and (min-width: 768px) { #collapseFilters { display: block; } }
+#collapseFilters.in { display: block; }
