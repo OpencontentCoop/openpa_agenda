@@ -20,13 +20,13 @@
     'Control.Geocoder.js'
 ))}
 
-<script type="text/javascript" language="javascript" class="init">	
+<script type="text/javascript" language="javascript" class="init">
   $.opendataTools.settings('accessPath', "{'/'|ezurl(no,full)}");
   $.opendataTools.settings('endpoint',{ldelim}
       geo: '{'/opendata/api/geo/search/'|ezurl(no,full)}',
       search: '{'/opendata/api/content/search/'|ezurl(no,full)}',
       class: '{'/opendata/api/classes/'|ezurl(no,full)}'
-  {rdelim});  
+  {rdelim});
 </script>
 {literal}
     <style>
@@ -40,7 +40,7 @@
     </h1>
 </section>
 
-<div class="content-view-full class-folder">
+<div class="content-view-full class-folder clearfix">
 
     <div class="spinner text-center">
         <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
