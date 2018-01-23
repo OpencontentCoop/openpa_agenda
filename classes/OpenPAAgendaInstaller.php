@@ -345,7 +345,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                     'FunctionName' => 'create',
                     'Limitation' => array(
                         'Class' => array(
-                            eZContentClass::classIDByIdentifier( 'event' ),
+                            eZContentClass::classIDByIdentifier( OpenPAAgenda::instance()->getEventClassIdentifier() ),
                             eZContentClass::classIDByIdentifier( 'iniziativa' )
                         ),
                         'Section' => $section->attribute( 'id' )
@@ -378,7 +378,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                     'FunctionName' => 'edit',
                     'Limitation' => array(
                         'Class' => array(
-                            eZContentClass::classIDByIdentifier( 'event' )
+                            eZContentClass::classIDByIdentifier( OpenPAAgenda::instance()->getEventClassIdentifier() )
                         ),
                         'Owner' => 1,
                         'Section' => $section->attribute( 'id' ),
@@ -394,7 +394,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                     'FunctionName' => 'assign',
                     'Limitation' => array(
                         'Class' => array(
-                            eZContentClass::classIDByIdentifier( 'event' )
+                            eZContentClass::classIDByIdentifier( OpenPAAgenda::instance()->getEventClassIdentifier() )
                         ),
                         'Section' => $section->attribute( 'id' ),
                         'StateGroup_moderation' => array(
@@ -424,7 +424,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                     'FunctionName' => 'read',
                     'Limitation' => array(
                         'Class' => array(
-                            eZContentClass::classIDByIdentifier( 'event' )
+                            eZContentClass::classIDByIdentifier( OpenPAAgenda::instance()->getEventClassIdentifier() )
                         ),
                         'Owner' => 1,
                         'Section' => $section->attribute( 'id' )
@@ -481,7 +481,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                     'FunctionName' => 'create',
                     'Limitation' => array(
                         'Class' => array(
-                            eZContentClass::classIDByIdentifier( 'event' ),
+                            eZContentClass::classIDByIdentifier( OpenPAAgenda::instance()->getEventClassIdentifier() ),
                             eZContentClass::classIDByIdentifier( 'programma_eventi' ),
                             eZContentClass::classIDByIdentifier( 'associazione' ),
                             eZContentClass::classIDByIdentifier( 'comment' )
@@ -519,7 +519,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                         'Class' => array(
                             eZContentClass::classIDByIdentifier( 'programma_eventi' ),
                             eZContentClass::classIDByIdentifier( 'associazione' ),
-                            eZContentClass::classIDByIdentifier( 'event' ),
+                            eZContentClass::classIDByIdentifier( OpenPAAgenda::instance()->getEventClassIdentifier() ),
                             eZContentClass::classIDByIdentifier( 'comment' ),
                             eZContentClass::classIDByIdentifier( 'image' ),
                             eZContentClass::classIDByIdentifier( 'iniziativa' )
@@ -534,7 +534,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                         'Class' => array(
                             eZContentClass::classIDByIdentifier( 'programma_eventi' ),
                             eZContentClass::classIDByIdentifier( 'associazione' ),
-                            eZContentClass::classIDByIdentifier( 'event' ),
+                            eZContentClass::classIDByIdentifier( OpenPAAgenda::instance()->getEventClassIdentifier() ),
                             eZContentClass::classIDByIdentifier( 'comment' ),
                             eZContentClass::classIDByIdentifier( 'agenda_calendar' ),
                             eZContentClass::classIDByIdentifier( 'iniziativa' )
@@ -570,7 +570,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                             eZContentClass::classIDByIdentifier( 'programma_eventi' ),
                             eZContentClass::classIDByIdentifier( 'associazione' ),
                             eZContentClass::classIDByIdentifier( 'comment' ),
-                            eZContentClass::classIDByIdentifier( 'event' ),
+                            eZContentClass::classIDByIdentifier( OpenPAAgenda::instance()->getEventClassIdentifier() ),
                         ),
                         'Section' => $section->attribute( 'id' )
                     )
@@ -602,7 +602,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                     'Limitation' => array(
                         'Class' => array(
                             eZContentClass::classIDByIdentifier( 'comment' ),
-                            eZContentClass::classIDByIdentifier( 'event' )
+                            eZContentClass::classIDByIdentifier( OpenPAAgenda::instance()->getEventClassIdentifier() )
                         ),
                         'Section' => $section->attribute( 'id' ),
                         'StateGroup_moderation' => array(
@@ -699,7 +699,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
                         ),
                         'Section' => $section->attribute( 'id' ),
                         'ParentClass' => array(
-                            eZContentClass::classIDByIdentifier( 'event' )
+                            eZContentClass::classIDByIdentifier( OpenPAAgenda::instance()->getEventClassIdentifier() )
                         )
                     )
                 ),

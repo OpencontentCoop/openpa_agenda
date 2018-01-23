@@ -15,7 +15,7 @@ $(document).ready(function () {
     if (CurrentUserIsModerator) {
       mainQuery = 'classes [event] sort [published=>desc]';
     }else{
-      mainQuery = "owner_id = '"+CurrentUserId+"' classes [event] sort [published=>desc]";
+      mainQuery = "owner_id = '"+CurrentUserId+"' classes ["+AgendaEventClassIdentifier+"] sort [published=>desc]";
     }
     var stateSelect = $('select#state');
     var calendar = $('#calendar');

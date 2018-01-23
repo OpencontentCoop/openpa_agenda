@@ -27,5 +27,5 @@
     name=agenda_calendar
     calendar_identifier=$node.contentobject_id
     filters=$calendar_filters
-    base_query=concat("classes [event] and tipo_evento.tag_ids in ['", $calendar_types|implode("','"), "'] and subtree [", calendar_node_id(), "] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc]")
+    base_query=concat("classes [",agenda_event_class_identifier(),"] and tipo_evento.tag_ids in ['", $calendar_types|implode("','"), "'] and subtree [", calendar_node_id(), "] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc]")
 }

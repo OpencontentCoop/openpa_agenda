@@ -29,5 +29,5 @@
     name=iniziativa_calendar
     calendar_identifier=$node.contentobject_id
     filters=array('date', 'target')
-    base_query=concat('classes [event] and id in [', $events_ids|implode(','), '] and subtree [', calendar_node_id(), '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc]')
+    base_query=concat('classes [',agenda_event_class_identifier(),'] and id in [', $events_ids|implode(','), '] and subtree [', calendar_node_id(), '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc]')
 }

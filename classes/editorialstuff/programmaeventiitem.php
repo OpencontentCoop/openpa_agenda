@@ -191,7 +191,7 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
                     'action_name' => 'ProgrammaEventiItemAddSelectedEvent',
                     'selection' => 'multiple',
                     'from_page' => '/editorialstuff/action/programma_eventi/' . $this->getObject()->ID . '#tab_leaflet',
-                    'class_array' => array('event'),
+                    'class_array' => array(OpenPAAgenda::instance()->getEventClassIdentifier()),
                     'start_node' => $startNodeId,
                     'cancel_page' => '/editorialstuff/edit/programma_eventi/' . $this->getObject()->ID . '#tab_leaflet',
                     'persistent_data' => array(

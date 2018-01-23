@@ -16,6 +16,7 @@ $eZTemplateOperatorArray[] = array(
         'agenda_browse_helper',
         'current_user_is_agenda_moderator',
         'current_user_has_limited_edit_agenda_event',
-        'current_user_has_limited_edit_agenda_event_attribute'
+        'current_user_has_limited_edit_agenda_event_attribute',
+        'agenda_event_class_identifier'
     )
 );

@@ -15,7 +15,7 @@ try {
         $node = eZContentObjectTreeNode::fetch($NodeId);
         if ($node instanceof eZContentObjectTreeNode ) {
 
-            if ($node->attribute('class_identifier') == 'event') {
+            if ($node->attribute('class_identifier') == OpenPAAgenda::instance()->getEventClassIdentifier()) {
                 $post = OCEditorialStuffHandler::instance('agenda')
                     ->getFactory()
                     ->instancePost(array('object_id' => $node->attribute('contentobject_id')));

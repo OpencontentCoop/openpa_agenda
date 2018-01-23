@@ -1,6 +1,7 @@
 <script>
   var CurrentUserIsModerator = {cond(current_user_is_agenda_moderator(), true, false)};
   var CurrentUserId = {fetch(user, current_user).contentobject_id};
+  var AgendaEventClassIdentifier = "{agenda_event_class_identifier()}";
 </script>
 
 {ezcss_require( array(

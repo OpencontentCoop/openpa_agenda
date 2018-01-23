@@ -70,7 +70,7 @@
         'class': '{'/opendata/api/classes/'|ezurl(no,full)}',
         'fullcalendar': '{'/opendata/api/fullcalendar/search/'|ezurl(no,full)}',
     {rdelim});
-
+    var AgendaEventClassIdentifier = "{agenda_event_class_identifier()}";
     {literal}
     var tools = $.opendataTools;
 
@@ -80,7 +80,7 @@
     } else if (tools.settings('language') == 'eng-GB') {
         calendarLocale = 'en';
     }
-    var mainQuery = 'classes [event] and state = [moderation.accepted, moderation.skipped] sort [published=>desc]';
+    var mainQuery = 'classes ['+AgendaEventClassIdentifier+'] and state = [moderation.accepted, moderation.skipped] sort [published=>desc]';
     var calendar = $('#calendar');
 
     var i18n = function (data, key, fallbackLanguage) {

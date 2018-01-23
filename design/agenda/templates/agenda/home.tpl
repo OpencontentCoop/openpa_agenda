@@ -39,7 +39,7 @@
     name=home_calendar
     calendar_identifier=$site_identifier
     filters=array('date', 'type', 'target', 'iniziativa')
-    base_query=concat('classes [event] and subtree [', calendar_node_id(), '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] ', cond($agenda_query_custom|count()|gt(0), ' and ', false()), $agenda_query_custom|implode(' and '))
+    base_query=concat('classes [',agenda_event_class_identifier(),'] and subtree [', calendar_node_id(), '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] ', cond($agenda_query_custom|count()|gt(0), ' and ', false()), $agenda_query_custom|implode(' and '))
 }
 
 {undef $node $hide_tags $hide_iniziative $agenda_query_custom}

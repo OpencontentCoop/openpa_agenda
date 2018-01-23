@@ -122,7 +122,7 @@ try {
     $repository = new ContentRepository();
     $repository->setEnvironment(new DefaultEnvironmentSettings());
 
-    $agendaEventClass = eZContentClass::fetchByIdentifier('event');
+    $agendaEventClass = eZContentClass::fetchByIdentifier(OpenPAAgenda::instance()->getEventClassIdentifier());
     /** @var eZContentClassAttribute[] $agendaEventAttributes */
     $agendaEventAttributes = $agendaEventClass->dataMap();
 

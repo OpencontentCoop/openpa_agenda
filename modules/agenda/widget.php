@@ -30,7 +30,7 @@ $tpl->setVariable('css', $css);
 if ($widgetId > 0) {
     $widget = array(
         'id' => $widgetId,
-        'query' => 'classes [event] and subtree [' . OpenPAAgenda::instance()->calendarNodeId() . '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] limit 5',
+        'query' => 'classes [' . OpenPAAgenda::instance()->getEventClassIdentifier() . '] and subtree [' . OpenPAAgenda::instance()->calendarNodeId() . '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] limit 5',
         'show_header' => true,
         'show_footer' => true,
         'show_title' => true,

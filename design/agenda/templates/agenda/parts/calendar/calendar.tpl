@@ -33,7 +33,7 @@
     'iniziativa','OpenpaAgendaIniziativaFilter'
 )}
 {def $has_tags = false()}
-{foreach api_class('event').fields as $field}
+{foreach api_class(agenda_event_class_identifier()).fields as $field}
     {if and($field.identifier|eq('tipo_evento'), $field.dataType|eq('eztags'))}
         {set $has_tags = true()}
     {/if}

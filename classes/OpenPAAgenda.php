@@ -56,6 +56,11 @@ class OpenPAAgenda
         }
     }
 
+    public function getEventClassIdentifier()
+    {
+        return eZINI::instance('editorialstuff.ini')->variable('agenda', 'ClassIdentifier');
+    }
+
     public function checkAccess($nodeId)
     {
         //@todo
@@ -197,7 +202,7 @@ class OpenPAAgenda
 
     public static function classIdentifiers()
     {
-        return array('agenda_root', 'agenda_calendar');
+        return array('agenda_root', 'agenda_calendar', 'programma_eventi');
     }
 
     /**

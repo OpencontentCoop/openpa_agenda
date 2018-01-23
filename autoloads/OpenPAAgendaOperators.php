@@ -22,7 +22,8 @@ class OpenPAAgendaOperators
             'agenda_browse_helper',
             'current_user_is_agenda_moderator',
             'current_user_has_limited_edit_agenda_event',
-            'current_user_has_limited_edit_agenda_event_attribute'
+            'current_user_has_limited_edit_agenda_event_attribute',
+            'agenda_event_class_identifier'
         );
     }
 
@@ -92,6 +93,10 @@ class OpenPAAgendaOperators
         $agenda = OpenPAAgenda::instance();
         switch( $operatorName )
         {
+            case 'agenda_event_class_identifier':
+                return $operatorValue = $agenda->getEventClassIdentifier();
+                break;
+
             case 'current_user_has_limited_edit_agenda_event':
                 $object = $namedParameters['object'];
                 $version = $namedParameters['version'];
@@ -99,7 +104,7 @@ class OpenPAAgendaOperators
                 if ($object instanceof eZContentObject){
                     $operatorValue = (
                            $version > 1
-                           && $object->attribute('class_identifier') == 'event'
+                           && $object->attribute('class_identifier') == OpenPAAgenda::instance()->getEventClassIdentifier()
                            && self::currentUserIsAgendaModerator() === false
                            && count(array_intersect($object->attribute('state_identifier_array'), array('moderation/accepted', 'moderation/waiting'))) > 0
                     );
