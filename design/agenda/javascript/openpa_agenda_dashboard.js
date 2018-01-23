@@ -13,9 +13,9 @@ $(document).ready(function () {
 
     var mainQuery = 'null';
     if (CurrentUserIsModerator) {
-      mainQuery = 'classes [event] sort [published=>desc]';
+      mainQuery = 'classes ['+AgendaEventClassIdentifier+'] subtree ['+AgendaSubTree+'] sort [published=>desc]';
     }else{
-      mainQuery = "owner_id = '"+CurrentUserId+"' classes ["+AgendaEventClassIdentifier+"] sort [published=>desc]";
+      mainQuery = "owner_id = '"+CurrentUserId+"' classes ["+AgendaEventClassIdentifier+"] subtree ["+AgendaSubTree+"] sort [published=>desc]";
     }
     var stateSelect = $('select#state');
     var calendar = $('#calendar');
