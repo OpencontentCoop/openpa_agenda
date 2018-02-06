@@ -5,7 +5,7 @@ $Module = $Params['Module'];
 $Http = eZHTTPTool::instance();
 $tpl = eZTemplate::factory();
 $Part = $Params['Part'] ? $Params['Part'] : 'users';
-$Offset = isset($Offset) ? $Offset : 0;
+$Offset = (int)$Params['Offset'];
 $viewParameters = array( 'offset' => $Offset, 'query' => null );
 $currentUser = eZUser::currentUser();
 
