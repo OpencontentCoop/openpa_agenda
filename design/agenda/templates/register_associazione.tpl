@@ -70,37 +70,13 @@
                             <p>{'Codice di sicurezza'|i18n( 'social_user/signup' )}</p>
                         </div>
                         <div class="col-md-9">
-                            {if ezini( 'RecaptchaSetting', 'PublicKey', 'ezcomments.ini' )|eq('')}
+                            {if $recaptcha_public_key|not()}
                                 <div class="message-warning">
                                     {'reCAPTCHA API key non trovata'|i18n( 'social_user/signup' )}
                                 </div>
                             {else}
-                                <script type="text/javascript">
-                                    {def $theme = ezini( 'RecaptchaSetting', 'Theme', 'ezcomments.ini' )}
-                                    {def $language = ezini( 'RecaptchaSetting', 'Language', 'ezcomments.ini' )}
-                                    {def $tabIndex = ezini( 'RecaptchaSetting', 'TabIndex', 'ezcomments.ini' )}
-                                    var RecaptchaOptions = {literal}{{/literal} theme : '{$theme}',
-                                        lang : '{$language}',
-                                        tabindex : {$tabIndex} {literal}}{/literal};
-                                </script>
-                            {if $theme|eq('custom')}
-                                {*Customized theme start*}
-                                <p>
-                                    {'Inserisci il codice di sicurezza'|i18n( 'social_user/signup' )}
-                                    <a href="javascript:;" onclick="Recaptcha.reload();">
-                                        {'Clicca qui per ottenere un nuovo codice'|i18n( 'social_user/signup' )}
-                                    </a>
-                                </p>
-                                <div id="recaptcha_image"></div>
-                                <div style="width: 300px;">
-                                    <p>
-                                        <input style="width: 300px;font-size: 2em" type="text" class="box" id="recaptcha_response_field" name="recaptcha_response_field" />
-                                    </p>
-                                </div>
-                                {*Customized theme end*}
-                            {/if}
-                                {fetch( 'social_user', 'recaptcha_html' )}
-
+                                <div class="g-recaptcha" data-sitekey="{$recaptcha_public_key}"></div>
+                                <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl={fetch( 'content', 'locale' ).country_code|downcase}"></script>
                             {/if}
                         </div>
                     </div>

@@ -6,6 +6,9 @@ $Action = $Params['Action'];
 $tpl = eZTemplate::factory();
 $http = eZHTTPTool::instance();
 
+$recaptcha = new SocialUserRecaptcha();
+$tpl->setVariable( 'recaptcha_public_key', $recaptcha->getPublicKey() );
+
 if (OpenPAAgenda::instance()->isCollaborationModeEnabled() || eZUser::currentUser()->hasAccessTo('agenda', 'config')) {
 
     if ($Action == 'activate' && OpenPAAgenda::instance()->isAutoRegistrationEnabled()) {
