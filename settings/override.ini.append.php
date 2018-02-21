@@ -36,28 +36,28 @@ Match[class_identifier]=event
 Match[attribute_identifier]=geo
 
 
-[datatype_associazioni_evento]
+[datatype_associazioni_evento2]
 Source=content/datatype/edit/ezobjectrelationlist.tpl
 MatchFile=datatype/edit/ezobjectrelationlist_associazioni_evento.tpl
 Subdir=templates
 Match[class_identifier]=agenda_event
 Match[attribute_identifier]=associazione
 
-[datatype_iniziativa_evento]
+[datatype_iniziativa_evento2]
 Source=content/datatype/edit/ezobjectrelationlist.tpl
 MatchFile=datatype/edit/ezobjectrelationlist_iniziativa_evento.tpl
 Subdir=templates
 Match[class_identifier]=agenda_event
 Match[attribute_identifier]=iniziativa
 
-[datatype_luogo_evento]
+[datatype_luogo_evento2]
 Source=content/datatype/edit/ezobjectrelationlist.tpl
 MatchFile=datatype/edit/ezobjectrelationlist_luogo_evento.tpl
 Subdir=templates
 Match[class_identifier]=agenda_event
 Match[attribute_identifier]=luogo
 
-[datatype_geo_evento]
+[datatype_geo_evento2]
 Source=content/datatype/edit/ezgmaplocation.tpl
 MatchFile=datatype/edit/ezgmaplocation_geo_evento.tpl
 Subdir=templates
