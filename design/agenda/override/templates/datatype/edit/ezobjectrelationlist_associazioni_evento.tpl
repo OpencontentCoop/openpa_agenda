@@ -15,7 +15,8 @@
      nodesList=fetch( content, tree, hash( parent_node_id, $parent_node, class_filter_type,'include', class_filter_array, $class_content.class_constraint_list, sort_by, array( 'name',true() ), main_node_only, true() ) )}
 
 {def $user=fetch( 'user', 'current_user' )
-     $userObject = $user.contentobject}
+     $userObject = $user.contentobject
+     $associationsClassIdentifier = agenda_association_class_identifier()}
 
 {section var=node loop=$nodesList}
     <div class="checkbox">
@@ -36,7 +37,7 @@
         </label>
     </div>
 {/section}
-{if $userObject.class_identifier|eq('associazione')}
+{if $userObject.class_identifier|eq( $associationsClassIdentifier )}
     <input type="hidden" name="{$attribute_base}_data_object_relation_list_{$attribute.id}[{$userObject.main_node_id}]" value="{$userObject.id}" />
 {/if}
 
