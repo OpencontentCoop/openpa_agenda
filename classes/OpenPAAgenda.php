@@ -61,6 +61,11 @@ class OpenPAAgenda
         return eZINI::instance('editorialstuff.ini')->variable('agenda', 'ClassIdentifier');
     }
 
+    public function getAssociationClassIdentifier()
+    {
+      return eZINI::instance('editorialstuff.ini')->variable('associazione', 'ClassIdentifier');
+    }
+
     public function checkAccess($nodeId)
     {
         //@todo
@@ -406,7 +411,7 @@ class OpenPAAgenda
             eZDebug::writeError( "Object not found", __METHOD__ );
         }
     }
-    
+
     public static function notifyCommentOwner( OCEditorialStuffPost $post )
     {
         $object = $post->getObject();

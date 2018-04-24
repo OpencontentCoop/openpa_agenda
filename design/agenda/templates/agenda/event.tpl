@@ -54,7 +54,7 @@
     </div>
 
     {def $luogo = false()}
-    {if $node|has_attribute( 'luogo' )}                          
+    {if $node|has_attribute( 'luogo' )}
       {set $luogo = fetch('content','node',hash('node_id', $node.data_map.luogo.content.relation_list[0].node_id))}
     {/if}
 
@@ -69,7 +69,7 @@
                         <strong>{'Dove'|i18n('agenda/event')}</strong>
 
                         {if $luogo}
-                            {$luogo.name|wash()}                            
+                            {$luogo.name|wash()}
                             {if $luogo|has_attribute( 'indirizzo')}{if $luogo.data_map.indirizzo.content|ne($luogo.data_map.title.content)} ,{$luogo|attribute('indirizzo' ).content}{/if}{/if}
                             {if $luogo|has_attribute( 'comune' )} {$luogo|attribute( 'comune' ).content}{/if}
                         {else}
@@ -153,7 +153,7 @@
 		  {elseif $node|has_attribute( 'geo' )}
 			{set $geo_attribute = $node|attribute( 'geo' )}
 		  {/if}
-		  
+
 		  {if $geo_attribute}
 			  {if and( $geo_attribute.content.latitude, $geo_attribute.content.longitude )}
 
@@ -194,23 +194,23 @@
 
         <div class="col-md-4">
             <ul class="list-group">
-                {def $associazione_identifier = 'associazione'}
+                {def $associazione_identifier = agenda_association_class_identifier()}
                 {if $node|has_attribute( 'organizzazione' )}
                     {set $associazione_identifier = 'organizzazione'}
                 {/if}
                 {if $node|has_attribute( $associazione_identifier )}
                 {foreach $node|attribute( $associazione_identifier ).content.relation_list as $item}
-				<li class="list-group-item">
-				  <i class="fa fa-group"></i>
-				  {def $itemObject = fetch(content, object, hash(object_id, $item.contentobject_id))}
-				  {if and($itemObject.class_identifier|eq('associazione'), is_collaboration_enabled())}
-					<a href="{concat('content/view/full/',$itemObject.main_node_id)|ezurl(no)}">{$itemObject.name|wash()}</a>
-				  {else}
-					{$itemObject.name|wash()}
-				  {/if}
-                  {undef $itemObject}
-				</li>
-				{/foreach}
+                  <li class="list-group-item">
+                    <i class="fa fa-group"></i>
+                    {def $itemObject = fetch(content, object, hash(object_id, $item.contentobject_id))}
+                    {if and( $itemObject.class_identifier|eq( agenda_association_class_identifier() ), is_collaboration_enabled() )}
+                    <a href="{concat('content/view/full/',$itemObject.main_node_id)|ezurl(no)}">{$itemObject.name|wash()}</a>
+                    {else}
+                    {$itemObject.name|wash()}
+                    {/if}
+                    {undef $itemObject}
+                  </li>
+				        {/foreach}
                 {/if}
                 {if $node|has_attribute( 'telefono' )}
                     <li class="list-group-item"><i class="fa fa-phone"></i> {attribute_view_gui attribute=$node.data_map.telefono}</li>
@@ -240,7 +240,7 @@
                 {/if}
             </div>
 
-            {if $node|has_attribute('informazioni')}            
+            {if $node|has_attribute('informazioni')}
             <div class="space" id="info">
                 <div class="well">
                     {attribute_view_gui attribute=$node|attribute('informazioni')}
