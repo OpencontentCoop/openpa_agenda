@@ -1,6 +1,6 @@
 {def $calendar_filters = array()
      $calendar_views = array()
-     $calendar_types = $node|attribute('calendar_types').content.tag_ids}
+     $calendar_tags = $node|attribute('calendar_types').content.keyword_string}
 {foreach $node|attribute('calendar_views').class_content.options as $option}
     {if $node|attribute('calendar_views').content|contains( $option.id )}
         {set $calendar_views = $calendar_views|append($option.name)}
@@ -27,5 +27,5 @@
     name=agenda_calendar
     calendar_identifier=$node.contentobject_id
     filters=$calendar_filters
-    base_query=concat("classes [",agenda_event_class_identifier(),"] and tipo_evento.tag_ids in ['", $calendar_types|implode("','"), "'] and subtree [", calendar_node_id(), "] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc]")
+    base_query=concat("classes [",agenda_event_class_identifier(),"] and raw[ezf_df_tags] in ['", $calendar_tags|implode("','"), "'] and subtree [", calendar_node_id(), "] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc]")
 }

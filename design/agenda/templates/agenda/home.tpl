@@ -38,7 +38,7 @@
     uri='design:agenda/parts/calendar/calendar.tpl'
     name=home_calendar
     calendar_identifier=$site_identifier
-    filters=array('date', 'type', 'target', 'iniziativa')
+    filters=array('date', 'type', 'target', 'iniziativa', 'where')
     base_query=concat('classes [',agenda_event_class_identifier(),'] and subtree [', calendar_node_id(), '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] ', cond($agenda_query_custom|count()|gt(0), ' and ', false()), $agenda_query_custom|implode(' and '))
 }
 
