@@ -41,6 +41,13 @@
     </ul>
   </aside>
 
+  <aside class="widget agenda-filters" data-filter="where" style="display: none">
+    <h4>{'Dove?'|i18n('agenda')}</h4>
+    <ul class="nav nav-pills nav-stacked">
+        <li><a href="#" data-value="all">{'Tutti'|i18n('agenda')}</a></li>
+    </ul>
+  </aside>
+
   <aside class="widget agenda-filters" data-filter="iniziativa" style="display: none">
     <h4>{'Manifestazione'|i18n('agenda')}</h4>
     <ul class="nav nav-pills nav-stacked">
