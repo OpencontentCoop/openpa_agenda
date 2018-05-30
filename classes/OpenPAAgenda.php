@@ -162,13 +162,25 @@ class OpenPAAgenda
      */
     public static function latestProgram()
     {
-        $programs = eZContentObjectTreeNode::subTreeByNodeID(array(
+        $params = array();
+        $programStateGroup = eZContentObjectStateGroup::fetchByIdentifier(self::$programStateGroupIdentifier);
+        if ($programStateGroup instanceof eZContentObjectStateGroup){
+            $programStatePublic = eZContentObjectState::fetchByIdentifier(
+                'public', 
+                $programStateGroup->attribute('id')
+            );
+            if ($programStatePublic instanceof eZContentObjectState){
+                $params['AttributeFilter'] = array(array('state', "=", $programStatePublic->attribute('id')));
+            }
+        }
+
+        $programs = eZContentObjectTreeNode::subTreeByNodeID(array_merge($params, array(
             'Language' => eZLocale::currentLocaleCode(),
             'SortBy' => array('published', false),
             'ClassFilterType' => 'include',
-            'ClassFilterArray' => array('programma_eventi'),
+            'ClassFilterArray' => array('programma_eventi'),            
             'Limit' => 1
-        ), OpenPAAgenda::programNodeId());
+        )), OpenPAAgenda::programNodeId());
         if (isset($programs[0]) && $programs[0] instanceof eZContentObjectTreeNode){
             return $programs[0];
         }

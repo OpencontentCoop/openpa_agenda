@@ -61,7 +61,6 @@ ClassIdentifier=programma_eventi
 CreationButtonText=Crea un nuovo programma eventi
 AttributeIdentifiers[]
 StateGroup=programma_eventi
-StateGroup=privacy
 States[public]=Pubblico
 States[private]=Privato
 NotificationAttributeIdentifiers[]

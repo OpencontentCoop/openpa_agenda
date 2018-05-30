@@ -52,9 +52,16 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
 
     public function onCreate()
     {
+        OpenPAAgendaModuleFunctions::onClearObjectCache(array(OpenPAAgenda::instance()->rootNode()->attribute('node_id')));
         if ($this->getObject()->attribute('current_version') == 1) {
             $states = $this->states();
         }
+    }
+
+    public function onChangeState(eZContentObjectState $beforeState, eZContentObjectState $afterState)
+    {
+        OpenPAAgendaModuleFunctions::onClearObjectCache(array(OpenPAAgenda::instance()->rootNode()->attribute('node_id')));
+        return parent::onChangeState($beforeState, $afterState);
     }
 
     /**
