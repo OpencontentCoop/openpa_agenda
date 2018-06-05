@@ -42,7 +42,7 @@ class OpenPAAgendaTCUEventConverter implements OpenPAAgendaPushConverter
         $data = array();
         $fileContent = $this->content->data[$language]['image']['content'];
         if (isset($fileContent['filename'])) {
-            $fileData = eZClusterFileHandler::instance(eZSys::rootDir() . $fileContent['url'])->fetchContents();
+            $fileData = eZClusterFileHandler::instance(ltrim($fileContent['url'], '/'))->fetchContents();
             $data = array(
                 'filename' => $fileContent['filename'],
                 'file' => base64_encode($fileData)
@@ -84,7 +84,7 @@ class OpenPAAgendaTCUEventConverter implements OpenPAAgendaPushConverter
             case 'file':
                 $fileContent = $this->content->data[$language]['file']['content'];
                 if (isset($fileContent['filename'])) {
-                    $fileData = eZClusterFileHandler::instance(eZSys::rootDir() . $fileContent['url'])->fetchContents();
+                    $fileData = eZClusterFileHandler::instance(ltrim($fileContent['url'], '/'))->fetchContents();
                     return array(
                         'filename' => $fileContent['filename'],
                         'file' => base64_encode($fileData)
@@ -101,7 +101,7 @@ class OpenPAAgendaTCUEventConverter implements OpenPAAgendaPushConverter
                     $image = $this->contentRepository->getGateway()->loadContent($item['id']);
                     $imageContent = $image->data[$language]['image']['content'];
                     if (isset($imageContent['filename'])) {
-                        $imageContentData = eZClusterFileHandler::instance(eZSys::rootDir() . $imageContent['url'])->fetchContents();
+                        $imageContentData = eZClusterFileHandler::instance(ltrim($fileContent['url'], '/'))->fetchContents();
                         $data[] = array(
                             'filename' => $imageContent['filename'],
                             'file' => base64_encode($imageContentData)
