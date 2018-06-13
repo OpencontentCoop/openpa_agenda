@@ -88,12 +88,57 @@
             {if $node|has_attribute('abstract')}
               {attribute_view_gui attribute=$node|attribute('abstract')}
             {/if}
+            {if or( $node|has_attribute('forma_giuridica'), $node|has_attribute('albo'), $node|has_attribute('numero_iscritti') )}
+              <table cellpadding="4">
+                {if $node|has_attribute('codice_fiscale')}
+                  <tr>
+                    <td><strong>{$node|attribute('codice_fiscale').contentclass_attribute.name}:</strong></td>
+                    <td>
+                        <small><span class="label label-primary">{attribute_view_gui attribute=$node|attribute('codice_fiscale')}</span></small>
+                    </td>
+                  </tr>
+                {/if}
+              {if $node|has_attribute('forma_giuridica')}
+                <tr>
+                  <td><strong>{$node|attribute('forma_giuridica').contentclass_attribute.name}:</strong></td>
+                  <td>
+                    {foreach $node|attribute('forma_giuridica').content.tags as $tag}
+                      <small><span class="label label-primary">{$tag.keyword|wash}</span></small>
+                      {delimiter} {/delimiter}
+                    {/foreach}
+                  </td>
+                </tr>
+              {/if}
+              {if $node|has_attribute('albo')}
+                <tr>
+                  <td><strong>{$node|attribute('albo').contentclass_attribute.name}:</strong></td>
+                  <td>
+                    {foreach $node|attribute('albo').content.tags as $tag}
+                      <small><span class="label label-primary">{$tag.keyword|wash}</span></small>
+                      {delimiter} {/delimiter}
+                    {/foreach}
+                  </td>
+                </tr>
+              {/if}
+                {if $node|has_attribute('numero_iscritti')}
+                  <tr>
+                    <td><strong>{$node|attribute('numero_iscritti').contentclass_attribute.name}:</strong></td>
+                    <td>
+                      {foreach $node|attribute('numero_iscritti').content.tags as $tag}
+                        <small><span class="label label-primary">{$tag.keyword|wash}</span></small>
+                        {delimiter} {/delimiter}
+                      {/foreach}
+                    </td>
+                  </tr>
+                {/if}
+              </table>
+            {/if}
           </div>
         </div>
         <div class="col-md-4">
-          {if is_set( $openpa.content_main.parts.image )}
+          {if $node|has_attribute('logo')}
             <div class="text-center">
-              {include uri='design:atoms/image.tpl' item=$node image_class=imagefull alignment="center" image_css_class="img-responsive"}
+              {attribute_view_gui attribute=$node|attribute('logo') alignment='center'}
             </div>
           {/if}
         </div>
@@ -194,6 +239,7 @@
               {undef $contact_point}
             {/foreach}
           {/if}
+
         </div>
       </div>
       {undef $sede}
@@ -202,7 +248,7 @@
 
 
   <div class="row space">
-    <div class="col-md-12">
+    <div class="col-md-8">
 
       <div class="text">
         {if $node|has_attribute('descrizione_completa')}
@@ -215,6 +261,27 @@
           {attribute_view_gui attribute=$node|attribute('funzione_principale')}
         {/if}
       </div>
+
+      {if $node|has_attribute('referenti')}
+        <h5><i class="fa fa-users"></i> Referenti</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Ruolo</th>
+              <th>Nome</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          {foreach $node|attribute('referenti').content.relation_list as $r}
+            {def $ref = fetch( 'content', 'node', hash( 'node_id', $r.node_id ) )}
+            <tr>
+              <td>{attribute_view_gui attribute=$ref|attribute('ruolo')}</td>
+              <td>{attribute_view_gui attribute=$ref|attribute('nome')}</td>
+              <td>{attribute_view_gui attribute=$ref|attribute('email')}</td>
+            </tr>
+          {/foreach}
+        </table>
+      {/if}
 
       {if $node|has_attribute('contatti')}
         <button class="btn btn-info btn-lg center-block space" type="button" data-toggle="collapse" data-target="#info"
