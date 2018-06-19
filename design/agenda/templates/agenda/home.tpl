@@ -7,7 +7,7 @@
 {/if}
 {if $node|has_attribute('hide_iniziative')}
 {foreach $node|attribute('hide_iniziative').content.relation_list as $item}
-  {set $hide_iniziative = $hide_iniziative|append($item.contentobject_id)}    
+  {set $hide_iniziative = $hide_iniziative|append($item.contentobject_id)}
 {/foreach}
 {/if}
 {if $node|has_attribute('view_all')}
@@ -38,7 +38,7 @@
     uri='design:agenda/parts/calendar/calendar.tpl'
     name=home_calendar
     calendar_identifier=$site_identifier
-    filters=array('date', 'type', 'target', 'iniziativa', 'where')
+    filters=array('date', 'type', 'target', 'iniziativa', 'where', 'theme')
     base_query=concat('classes [',agenda_event_class_identifier(),'] and subtree [', calendar_node_id(), '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] ', cond($agenda_query_custom|count()|gt(0), ' and ', false()), $agenda_query_custom|implode(' and '))
 }
 

@@ -27,6 +27,13 @@
     </ul>
   </aside>
 
+  <aside class="widget agenda-filters" data-filter="theme" style="display: none">
+    <h4>{'Tematica'|i18n('agenda')}</h4>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#" data-value="all">{'Tutte'|i18n('agenda')}</a></li>
+    </ul>
+  </aside>
+
   <aside class="widget agenda-filters" data-filter="type" style="display: none">
     <h4>{'Cosa?'|i18n('agenda')}</h4>
     <ul class="nav nav-pills nav-stacked">

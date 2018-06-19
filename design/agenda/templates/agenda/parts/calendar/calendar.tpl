@@ -20,6 +20,7 @@
     'openpa_agenda_filters/target.js',
     'openpa_agenda_filters/iniziativa.js',
     'openpa_agenda_filters/where_tree.js',
+    'openpa_agenda_filters/theme_tree.js',
     'openpa_agenda.js',
     'jsrender.js'
 ))}
@@ -34,7 +35,8 @@
     'iniziativa','OpenpaAgendaIniziativaFilter'
 )}
 {def $has_tags_tipo = false()
-     $has_tags_luogo = false()}
+     $has_tags_luogo = false()
+     $has_tags_theme = false()}
 {foreach api_class(agenda_event_class_identifier()).fields as $field}
     {if and($field.identifier|eq('tipo_evento'), $field.dataType|eq('eztags'))}
         {set $has_tags_tipo = true()}
@@ -42,17 +44,27 @@
     {if and($field.identifier|eq('luogo_evento'), $field.dataType|eq('eztags'))}
         {set $has_tags_luogo = true()}
     {/if}
+    {if and($field.identifier|eq('tematica_evento'), $field.dataType|eq('eztags'))}
+      {set $has_tags_theme = true()}
+    {/if}
 {/foreach}
+{* Tipo *}
 {if $has_tags_tipo}
     {set $filterDefinitions = $filterDefinitions|merge(hash('type', 'OpenpaAgendaTypeTreeFilter'))}
 {else}
     {set $filterDefinitions = $filterDefinitions|merge(hash('type', 'OpenpaAgendaTypeFilter'))}
 {/if}
+{* Luogo *}
 {if $has_tags_luogo}
     {set $filterDefinitions = $filterDefinitions|merge(hash('where', 'OpenpaAgendaWhereTreeFilter'))}
-{/if}    
+{/if}
+{* Tematica *}
+{if $has_tags_theme}
+  {set $filterDefinitions = $filterDefinitions|merge(hash('theme', 'OpenpaAgendaThemeTreeFilter'))}
+{/if}
+
 {if is_set($filters)|not()}{def $filters = array()}{/if}
-{undef $has_tags_tipo $has_tags_luogo}
+{undef $has_tags_tipo $has_tags_luogo $has_tags_theme}
 
 {def $current_language=ezini('RegionalSettings', 'Locale')}
 {def $moment_language = $current_language|explode('-')[1]|downcase()}
