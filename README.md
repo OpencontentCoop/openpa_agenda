@@ -1,22 +1,33 @@
 # OpenAgenda
 
-## Il calendario degli eventi partecipato dai cittadini
 
-OpenAgenda facilita la collaborazione tra i soggetti che animano la vita culturale di una comunità locale; associazioni, biblioteche e musei raccolgono i propri eventi in un unico calendario che ne facilita la diffusione multicanale, in coordinamento con l'ente locale. Un modo per rafforzare le relazioni tra amministrazione e territorio, secondo il paradigma dell'OpenGovernment
+## Il calendario degli eventi partecipato dai cittadini
+OpenAgenda facilita la collaborazione tra i soggetti che animano la vita culturale di una comunità locale; associazioni, biblioteche e musei raccolgono i propri eventi in un unico calendario che ne facilita la diffusione multicanale, in coordinamento con l'ente locale. In questo modo, la P.A. propone un significativo cambio di paradigma rispetto al passato: rende autonomi e responsabilizza i cittadini nella gestione degli eventi pubblici, mantenendo un ruolo di coordinamento e di validazione dell’intero processo, a garanzia del suo corretto funzionamento.
+Un modo per rafforzare le relazioni tra amministrazione e territorio, secondo il paradigma dell'OpenGovernment.
 
 Per maggiori informazioni, vedi: https://www.opencontent.it/Per-la-PA/OpenAgenda
 
+## Documentazione
+La documentazione di OpenAgenda è stata realizzata con Readthedocs ed è disponibile in questi formati:
+* Manuale d'uso per gli operatori della PA: http://manuale-openagenda.readthedocs.io/it/latest/manuale_amministratori.html
+* Manuale d'uso per le Associazioni: http://manuale-openagenda.readthedocs.io/it/latest/manuale_associazioni.html
 
-## Ricevere aiuto
+## Sei un programmatore ed hai bisogno di aiuto?
 * Per segnalare malfunzionamenti utilizzare la funzionalità GitHub Issues di questo repository
 * Per richiedere l'assistenza di uno sviluppatore scrivere a info@opencontent.it
 
 ## Copyright
-
 Copyright (C) 2010-2018 Opencontent SCARL. Tutti i diritti riservati.
 
-## Licenza
-http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2.0
+## Licenza e modalità d'uso
+OpenAgenda è rilasciato da OpenContent con licenza aperta, GNU General Public License v2.0, che puoi leggere integralmente qui: http://www.gnu.org/licenses/gpl-2.0.txt 
+
+Grazie a questa licenza, qualsiasi utente di OpenAgenda gode delle quattro libertà fondamentali:
+* Libertà di eseguire il programma come si desidera, per qualsiasi scopo (libertà 0).
+* Libertà di studiare come funziona il programma e di modificarlo in modo da adattarlo alle proprie necessità (libertà 1). L'accesso al codice sorgente ne è un prerequisito.
+* Libertà di ridistribuire copie in modo da aiutare gli altri (libertà 2).
+* Libertà di migliorare il programma e distribuirne pubblicamente i miglioramenti da voi apportati (e le vostre versioni modificate in genere), in modo tale che tutta la comunità ne tragga beneficio (libertà 3). L'accesso al codice sorgente ne è un prerequisito.
+
 
 ## Codice etico
 OpenAgenda è un'applicazione Open Source. Il codice sorgente viene rilasciato con licenza GNU General Public License v2.0 per due ragioni: 
