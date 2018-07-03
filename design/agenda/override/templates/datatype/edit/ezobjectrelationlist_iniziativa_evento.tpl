@@ -126,12 +126,25 @@
         $.views.helpers($.opendataTools.helpers);
         return template.render(content);
     };
+
+    var clearCurrentIniziativa = function(){
+        currentIniziativa = null;
+        $(selectIniziativaSelector).val(0);
+        $(currentIniziativaSelector).html('');
+    }
     
     var refreshCurrentIniziativa = function(){        
         if (currentIniziativa){
             $('#searchIniziativaSpinner').show();
             $.opendataTools.findOne('id in ['+currentIniziativa+']', function(response){
-                $(currentIniziativaSelector).html(renderIniziativa(response)).find('a').addClass('active').css('cursor', 'none');
+                var clearButton = $('<a class="pull-right btn btn-info" href="#" style="display:block;position:relative;z-index:10;margin:20px"><i class="fa fa-close"></i></a>');                
+                clearButton.on('click', function(e){
+                    clearCurrentIniziativa();
+                    e.preventDefault();
+                });
+                var renderedInizitiva = $(currentIniziativaSelector).html(renderIniziativa(response));
+                renderedInizitiva.find('a').addClass('active').css('cursor', 'none');                
+                $(currentIniziativaSelector).prepend(clearButton);
                 $('#searchIniziativaSpinner').hide();
             });
         }
