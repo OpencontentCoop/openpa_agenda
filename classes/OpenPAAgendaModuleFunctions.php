@@ -31,9 +31,8 @@ class OpenPAAgendaModuleFunctions
             }
             $relatedSiteAccessList[] = $GLOBALS['eZCurrentAccess']['name'];
             $siteAccesses = array_unique($relatedSiteAccessList);
-        } else {
-            $siteAccesses = $ini->variable('SiteAccessSettings', 'AvailableSiteAccessList');
         }
+
         if (!empty( $siteAccesses )) {
             $cacheBaseDir = eZDir::path(array(eZSys::cacheDirectory(), 'agenda'));
             $fileHandler = eZClusterFileHandler::instance();
@@ -164,5 +163,10 @@ class OpenPAAgendaModuleFunctions
         $cachePath = eZDir::path(array(eZSys::cacheDirectory(), 'agenda', $currentSiteAccess, $cacheFile));
 
         return $cachePath;
+    }
+
+    public static function clearCache()
+    {
+        self::clearAgendaCache('');
     }
 }

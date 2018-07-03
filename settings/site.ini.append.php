@@ -21,6 +21,8 @@ name=Agenda cache
 id=agenda
 tags[]=template
 path=agenda
+isClustered=true
+class=OpenPAAgendaModuleFunctions
 
 [RoleSettings]
 PolicyOmitList[]=agenda/qrcode
