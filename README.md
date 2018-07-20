@@ -16,11 +16,17 @@ La documentazione di OpenAgenda è stata realizzata con Readthedocs ed è dispon
 * Per segnalare malfunzionamenti utilizzare la funzionalità GitHub Issues di questo repository
 * Per richiedere l'assistenza di uno sviluppatore scrivere a info@opencontent.it
 
-## Copyright
-Copyright (C) 2010-2018 Opencontent SCARL. Tutti i diritti riservati.
+## Titolare della licenza
+Comune di Ala, piazza San Giovanni n 1 - 38061 Ala (Trento)
+http://www.comune.ala.tn.it/
+
+## Responsabile tecnico
+Opencontent SCARL
+https://www.opencontent.it/
+Opencontent si è occupato della progettazione, realizzazione e manutenzione tecnica di OpenAgenda
 
 ## Licenza e modalità d'uso
-OpenAgenda è rilasciato da OpenContent con licenza aperta, GNU General Public License v2.0, che puoi leggere integralmente qui: http://www.gnu.org/licenses/gpl-2.0.txt 
+OpenAgenda è rilasciato con licenza aperta, GNU General Public License v2.0, che puoi leggere integralmente qui: http://www.gnu.org/licenses/gpl-2.0.txt 
 
 Grazie a questa licenza, qualsiasi utente di OpenAgenda gode delle quattro libertà fondamentali:
 * Libertà di eseguire il programma come si desidera, per qualsiasi scopo (libertà 0).
