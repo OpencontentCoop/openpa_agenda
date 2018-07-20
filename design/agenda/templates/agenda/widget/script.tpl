@@ -80,6 +80,9 @@
             {literal}
             $('[data-agenda-widget]').each(function() {
                 var widgetId = $(this).data('agenda-widget');
+                var title = $(this).data('agenda-title');
+                var filters = $(this).data('agenda-filters');
+                var limit   = $(this).data('agenda-limit');
                 var $container = $(this);
                 var helpers = {
                     'formatDate': function (date, format) {
@@ -116,6 +119,7 @@
                 $container.html(spinner);
                 $.ajax({
                     url: "{/literal}{'agenda/widget/'|ezurl(no,full)}{literal}/"+widgetId,
+                    data: { title : title,  filters : filters,  limit: limit},
                     jsonp: "callback",
                     dataType: "jsonp",
                     success: function( widget ) {
