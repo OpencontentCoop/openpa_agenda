@@ -31,8 +31,8 @@ if ($widgetId > 0) {
     $widget = array(
         'id' => $widgetId,
         'query' => 'classes [' . OpenPAAgenda::instance()->getEventClassIdentifier() . '] and subtree [' . OpenPAAgenda::instance()->calendarNodeId() . '] and state in [moderation.skipped,moderation.accepted]',
-        'show_header' => true,
-        'show_footer' => true,
+        'show_header' => boolval($http->variable('header', 1)),
+        'show_footer' => boolval($http->variable('footer', 1)),
         'show_title'  => true,
         'title'       => $http->variable('title', 'Da non perdere')
     );
