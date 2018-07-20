@@ -23,19 +23,50 @@ $css = packFiles(array(
     'openpa_agenda_widget.css',
 ), 'stylesheets/', '.css');
 
-
-$tpl = eZTemplate::factory();
+$http = eZHTTPTool::instance();
+$tpl  = eZTemplate::factory();
 $tpl->setVariable('css', $css);
 
 if ($widgetId > 0) {
     $widget = array(
         'id' => $widgetId,
-        'query' => 'classes [' . OpenPAAgenda::instance()->getEventClassIdentifier() . '] and subtree [' . OpenPAAgenda::instance()->calendarNodeId() . '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc] limit 5',
+        'query' => 'classes [' . OpenPAAgenda::instance()->getEventClassIdentifier() . '] and subtree [' . OpenPAAgenda::instance()->calendarNodeId() . '] and state in [moderation.skipped,moderation.accepted]',
         'show_header' => true,
         'show_footer' => true,
-        'show_title' => true,
-        'title' => 'Da non perdere'
+        'show_title'  => true,
+        'title'       => $http->variable('title', 'Da non perdere')
     );
+
+  $sort   = '';
+
+  // Set base filter
+  if ( in_array('ocevents', eZINI::instance()->variable('ExtensionSettings', 'ActiveAccessExtensions') ) ||
+    in_array('ocevents', eZINI::instance()->variable('ExtensionSettings', 'ActiveExtensions') ) ) {
+
+    // recurrence query
+    $baseFilter = ' and raw[' . OCRecurrenceHelper::SOLR_FIELD_NAME . '] = "Intersects\\(' . OCRecurrenceHelper::MIN_BOUND . ' ' . time() . ' ' . OCRecurrenceHelper::MAX_BOUND . ' ' . OCRecurrenceHelper::MAX_BOUND . '\\)"';
+
+  } else {
+
+    // old calendar query
+    $baseFilter = ' and calendar[] = [' . time() . ',*]';
+    $sort   = ' sort [from_time=>asc]';
+
+  }
+
+  // Set filters
+  $filters  = '';
+  if ( !empty( $http->variable('filters' ) ) ) {
+    $filters  = $http->variable('filters' );
+  }
+
+  // Set limit
+  $limit  = '5';
+  if ( !empty( $http->variable('limit' ) ) ) {
+    $limit  = $http->variable('limit' );
+  }
+
+  $widget['query'] .= $baseFilter . ' ' . $filters . $sort . ' limit ' . $limit;
 
     try {
         $contentSearch = new ContentSearch();
