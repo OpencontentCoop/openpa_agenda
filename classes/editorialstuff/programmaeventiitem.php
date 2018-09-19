@@ -300,6 +300,11 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
                     'qrcode_file_url' => OpenPAAgendaQRCode::getFile($objectEvent->mainNodeID())->filePath
                 );
 
+                if (isset($eventDataMap['recurrences'])) {
+                  $recuurenceContent = $eventDataMap['recurrences']->content();
+                  $events[$key]['recurrences_text'] = $recuurenceContent['text'];
+                }
+
                 if (isset( $customEventsAttributes[$objectEvent->ID] ) && !empty( $customEventsAttributes[$objectEvent->ID]['abstract'] )) {
                     $events[$key]['abstract'] = $customEventsAttributes[$objectEvent->ID]['abstract'];
                     $events[$key]['auto'] = false;
