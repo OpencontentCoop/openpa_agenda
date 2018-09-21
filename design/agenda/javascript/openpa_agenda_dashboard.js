@@ -51,15 +51,21 @@ $(document).ready(function () {
                 {
                     "render": function (data, type, row) {
                         var contentData = row.data;
-                        var title = typeof contentData[tools.settings('language')] != 'undefined' ? contentData[tools.settings('language')].titolo : contentData[Object.keys(contentData)[0]].titolo;
-                        return '<a href="#" data-toggle="modal" data-remote-target="#preview .modal-content" data-target="#preview" data-load-remote="' + tools.settings('accessPath') + '/layout/set/modal/content/view/full/' + row.metadata.mainNodeId + '">'+title+'</a>';
+                        if (contentData){
+                            var title = typeof contentData[tools.settings('language')] != 'undefined' ? contentData[tools.settings('language')].titolo : contentData[Object.keys(contentData)[0]].titolo;
+                            return '<a href="#" data-toggle="modal" data-remote-target="#preview .modal-content" data-target="#preview" data-load-remote="' + tools.settings('accessPath') + '/layout/set/modal/content/view/full/' + row.metadata.mainNodeId + '">'+title+'</a>';
+                        }
+                        return '';
                     },
                     "targets": [1]
                 },
                 {
                     "render": function (data, type, row) {
                         var contentData = row.metadata.ownerName;
-                        return typeof contentData[tools.settings('language')] != 'undefined' ? contentData[tools.settings('language')] : contentData[Object.keys(contentData)[0]];
+                        if (contentData){
+                            return typeof contentData[tools.settings('language')] != 'undefined' ? contentData[tools.settings('language')] : contentData[Object.keys(contentData)[0]];
+                        }
+                        return '';
                     },
                     "targets": [2]
                 },
@@ -72,16 +78,22 @@ $(document).ready(function () {
                 {
                     "render": function (data, type, row) {
                         var contentData = row.data;
-                        var date = typeof contentData[tools.settings('language')] != 'undefined' ? contentData[tools.settings('language')].from_time : contentData[Object.keys(contentData)[0]].from_time;
-                        return moment(new Date(date)).format('DD/MM/YYYY HH:MM');
+                        if (contentData){
+                            var date = typeof contentData[tools.settings('language')] != 'undefined' ? contentData[tools.settings('language')].from_time : contentData[Object.keys(contentData)[0]].from_time;
+                            return moment(new Date(date)).format('DD/MM/YYYY HH:MM');
+                        }
+                        return '';
                     },
                     "targets": [4]
                 },
                 {
                     "render": function (data, type, row) {
                         var contentData = row.data;
-                        var date = typeof contentData[tools.settings('language')] != 'undefined' ? contentData[tools.settings('language')].to_time : contentData[Object.keys(contentData)[0]].to_time;
-                        return moment(new Date(date)).format('DD/MM/YYYY HH:MM');
+                        if (contentData){
+                            var date = typeof contentData[tools.settings('language')] != 'undefined' ? contentData[tools.settings('language')].to_time : contentData[Object.keys(contentData)[0]].to_time;
+                            return moment(new Date(date)).format('DD/MM/YYYY HH:MM');
+                        }
+                        return '';
                     },
                     "targets": [5]
                 },
@@ -104,20 +116,23 @@ $(document).ready(function () {
                 {
                     "render": function (data, type, row) {
                         var contentData = row.data;
-                        var keys = $.map(contentData, function (value, key) {
-                            return key;
-                        });
-                        var string = '';
-                        var languages = tools.settings('languages');
-                        var length = languages.length;
-                        for (var i = 0; i < length; i++) {
-                            if ($.inArray(languages[i], keys) >= 0) {
-                                string += '<img src="/share/icons/flags/' + languages[i] + '.gif" /> ';
-                            } else {
-                                string += '<a href="' + tools.settings('accessPath') + '/content/edit/' + row.metadata.id + '/a"><img style="opacity:0.2" src="/share/icons/flags/' + languages[i] + '.gif" /></a> ';
+                        if (contentData){
+                            var keys = $.map(contentData, function (value, key) {
+                                return key;
+                            });
+                            var string = '';
+                            var languages = tools.settings('languages');
+                            var length = languages.length;
+                            for (var i = 0; i < length; i++) {
+                                if ($.inArray(languages[i], keys) >= 0) {
+                                    string += '<img src="/share/icons/flags/' + languages[i] + '.gif" /> ';
+                                } else {
+                                    string += '<a href="' + tools.settings('accessPath') + '/content/edit/' + row.metadata.id + '/a"><img style="opacity:0.2" src="/share/icons/flags/' + languages[i] + '.gif" /></a> ';
+                                }
                             }
+                            return string;
                         }
-                        return string;
+                        return '';
                     },
                     "targets": [7]
                 }
