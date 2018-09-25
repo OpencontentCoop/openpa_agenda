@@ -11,16 +11,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
-  {ezcss_load( array(
-  'animate.css',
-  'app.css',
-  'jasny-bootstrap.min.css',
-  'custom.css',
-  'font-awesome.min.css',
-  'font-awesome-animation.min.css',
-  'debug.css',
-  'websitetoolbar.css'
-  ) )}
+    {ezcss_load( array(  
+      'app.css',
+      'animate.css',
+      'jasny-bootstrap.min.css',
+      'custom.css',
+      'font-awesome.min.css',
+      'font-awesome-animation.min.css',
+      'debug.css',
+      'websitetoolbar.css'
+    ))}
 
     {ezscript_load(array(
         'modernizr.custom.48287.js',
