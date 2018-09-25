@@ -132,6 +132,7 @@
           </div>
           <div id="site-name" class="clearfix">
             <a href="{'/'|ezurl(no)}" title="{$social_pagedata.logo_title}"><h1>{$social_pagedata.logo_title}</h1></a>
+            <span class="logo_subtitle">{$social_pagedata.logo_subtitle}</span>
           </div>
         </div>
 

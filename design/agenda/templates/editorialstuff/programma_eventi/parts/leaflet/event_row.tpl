@@ -9,8 +9,11 @@
     <td>
         <h4>{$event.name}</h4>
         <ul class="list-unstyled">
-            <li><strong>Giorno:</strong> {if $event.periodo_svolgimento}
+            <li><strong>Giorno:</strong>
+            {if $event.periodo_svolgimento}
                 {$event.periodo_svolgimento}
+            {elseif and(is_set($event.recurrences_text), $event.recurrences_text|ne(''))}
+              {$event.recurrences_text}
             {else}
                 {$event.from_time|datetime('custom', '%j %F')}
                 {if $event.from_time|ne($event.to_time)}
