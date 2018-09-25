@@ -1,10 +1,5 @@
 <?php
 
-use Opencontent\Opendata\Api\ContentRepository;
-use Opencontent\Opendata\Api\ContentSearch;
-use Opencontent\Opendata\Api\TagRepository;
-
-
 /** @var eZModule $module */
 $Module = $Params['Module'];
 $widgetId = (int)$Params['WidgetId'];
@@ -17,77 +12,21 @@ function packFiles($cssFiles, $subPath, $fileExtension)
     if (count($files) > 0) {
         return $files[0];
     }
+
     return null;
 }
+
 $css = packFiles(array(
     'openpa_agenda_widget.css',
 ), 'stylesheets/', '.css');
 
 $http = eZHTTPTool::instance();
-$tpl  = eZTemplate::factory();
+$tpl = eZTemplate::factory();
 $tpl->setVariable('css', $css);
 
 if ($widgetId > 0) {
-    $widget = array(
-        'id' => $widgetId,
-        'query' => 'classes [' . OpenPAAgenda::instance()->getEventClassIdentifier() . '] and subtree [' . OpenPAAgenda::instance()->calendarNodeId() . '] and state in [moderation.skipped,moderation.accepted]',
-        'show_header' => boolval($http->variable('header', 1)),
-        'show_footer' => boolval($http->variable('footer', 1)),
-        'show_title'  => true,
-        'title'       => $http->variable('title', 'Da non perdere')
-    );
-
-  $sort   = '';
-
-  // Set base filter
-  if ( in_array('ocevents', eZINI::instance()->variable('ExtensionSettings', 'ActiveAccessExtensions') ) ||
-    in_array('ocevents', eZINI::instance()->variable('ExtensionSettings', 'ActiveExtensions') ) ) {
-
-    // recurrence query
-    $baseFilter = ' and raw[' . OCRecurrenceHelper::SOLR_FIELD_NAME . '] = "Intersects\\(' . OCRecurrenceHelper::MIN_BOUND . ' ' . time() . ' ' . OCRecurrenceHelper::MAX_BOUND . ' ' . OCRecurrenceHelper::MAX_BOUND . '\\)"';
-
-  } else {
-
-    // old calendar query
-    $baseFilter = ' and calendar[] = [' . time() . ',*]';
-    $sort   = ' sort [from_time=>asc]';
-
-  }
-
-  // Set filters
-  $filters  = '';
-  if ( !empty( $http->variable('filters' ) ) ) {
-    $filters  = $http->variable('filters' );
-  }
-
-  // Set limit
-  $limit  = '5';
-  if ( !empty( $http->variable('limit' ) ) ) {
-    $limit  = $http->variable('limit' );
-  }
-
-  $widget['query'] .= $baseFilter . ' ' . $filters . $sort . ' limit ' . $limit;
-
-    try {
-        $contentSearch = new ContentSearch();
-        $contentSearch->setEnvironment(new DefaultEnvironmentSettings());
-        $data = (array)$contentSearch->search($widget['query']);
-    } catch (Exception $e) {
-        $data = array(
-            'error_code' => $e->getCode(),
-            'error_message' => $e->getMessage(),
-            'trace' => $e->getTraceAsString()
-        );
-    }
-    $widget['data'] = $data;
-    $tpl->setVariable('widget', $widget);
-    $tpl->fetch('design:agenda/widget/template.tpl');
-    $widget['templates'] = array(
-        'events' => $tpl->variable('events'),
-        'header' => $tpl->variable('header'),
-        'footer' => $tpl->variable('footer'),
-    );
-    $callback = eZHTTPTool::instance()->getVariable('callback', false);
+    $callback = eZHTTPTool::instance()->getVariable('callback', false);    
+    $widget = OpenPAAgendaWidgetFactory::instanceWidget($widgetId);    
     $result = json_encode($widget);
     if ($callback) {
         header('Content-Type: application/json');
@@ -99,7 +38,7 @@ if ($widgetId > 0) {
     }
 } else {
     header('Content-Type: application/javascript');
-    $tpl->setVariable('height', '200px');
+    $tpl->setVariable('height', $http->getVariable('height', 200) . 'px');
     echo $tpl->fetch('design:agenda/widget/script.tpl');
 }
 

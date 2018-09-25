@@ -1,10 +1,4 @@
-{*<ul class="nav nav-pills">
-  <li><a href="#"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
-  <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> Profilo</a></li>
-  <li><a href="#"><i class="fa fa-files-o" aria-hidden="true"></i> Pratiche</a></li>
-</ul>*}
-
-<ul class="nav nav-pills">
+<ul class="nav nav-pills hidden-xs">
   {foreach $social_pagedata.menu as $item}
       {if $item.has_children}
           <li class="dropdown">
