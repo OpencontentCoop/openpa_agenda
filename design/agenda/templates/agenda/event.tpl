@@ -249,6 +249,14 @@
             {/if}
 
         </div>
+
+        {if $node|has_attribute('allegati')}
+            <div class="col-md-12">
+                <h3>{'Allegati'|i18n('agenda/event')}</h3>
+                {attribute_view_gui attribute=$node|attribute('allegati')}
+            </div>
+        {/if}
+
     </div>
 
     <div class="row space">
