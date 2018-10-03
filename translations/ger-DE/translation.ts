@@ -153,6 +153,11 @@
         <translation>So erreichen Sie den Veranstaltungsort</translation>
     </message>
     <message>
+        <location filename="../../design/agenda/templates/agenda/event.tpl" line="255" />
+        <source>Allegati</source>
+        <translation>Zubehör</translation>
+    </message>
+    <message>
         <location filename="../../design/agenda/templates/agenda/event.tpl" line="295" />
         <source>Maggiori informazioni</source>
         <translation>Weitere Informationen</translation>
