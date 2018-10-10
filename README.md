@@ -42,8 +42,9 @@ OpenAgenda è un'applicazione Open Source. Il codice sorgente viene rilasciato c
 * il modello di business di [Opencontent](https://www.opencontent.it/Chi-siamo) ed il suo codice etico aziendale, che identifica nella condivisione del sapere un fattore determinante per migliorare costantemente la qualità e la competitività aziendale
 * la tutela degli utenti ed in particolare degli enti pubblici, che possono più facilmente rispettare quanto previsto dall'Art. 68 (sotto riportato) e dal Piano Triennale per l'informatica nella Pubblica Amministrazione (in particolare, capitoli 4, 7 e 13 sotto riportati).
 
+## PRINCIPALE NORMATIVA DI RIFERIMENTO
 
-#### Codice dell'Amministrazione Digitale - Art. 68.  Analisi comparativa delle soluzioni 
+### Codice dell'Amministrazione Digitale - Art. 68.  Analisi comparativa delle soluzioni 
 
 In vigore
 
@@ -62,9 +63,9 @@ c) garanzie del fornitore in materia di **livelli di sicurezza, conformità alla
 
 1-ter) Ove dalla valutazione comparativa di tipo tecnico ed economico, secondo i criteri di cui al comma 1-bis, **risulti motivatamente l’impossibilità di accedere a soluzioni già disponibili all’interno della pubblica amministrazione, o a software liberi o a codici sorgente aperto**, adeguati alle esigenze da soddisfare, **è consentita l’acquisizione di programmi informatici di tipo proprietario** mediante ricorso a licenza d’uso. La valutazione di cui al presente comma è effettuata secondo le modalità e i criteri definiti dall’AgID.
 
-## Piano Triennale: 4. Infrastrutture immateriali
+### Piano Triennale: 4. Infrastrutture immateriali
 
-### 4.1. Dati della Pubblica amministrazione
+#### 4.1. Dati della Pubblica amministrazione
 La valorizzazione del patrimonio informativo pubblico è un obiettivo strategico per la Pubblica amministrazione. Per sfruttare le potenzialità dell’immenso patrimonio dei dati raccolti e gestiti dalle PA è necessario attuare un cambio di paradigma nella loro gestione che consenta di superare la “logica a silos” in favore di una visione sistemica. Il dato deve essere inteso come bene comune, condiviso gratuitamente tra Pubbliche amministrazioni per scopi istituzionali e, salvo casi documentati e propriamente motivati, utilizzabile dalla società civile.
 
 Per implementare tale paradigma, il Piano individua tre aree:
@@ -75,9 +76,9 @@ Per implementare tale paradigma, il Piano individua tre aree:
 
 La valorizzazione del patrimonio pubblico richiede un’attenta regia che disegni i processi di standardizzazione, generazione, conservazione e riuso dei dati. Questo potenziamento porterà benefici in termini di maggiore efficienza amministrativa, riuso dei dati a vantaggio del cittadino (che così evita di fornire nuovamente dati già in possesso della Pubblica amministrazione) e ampliamento delle possibilità di analisi, ivi incluse la comprensione e la predizione di fenomeni sociali a supporto del processo di policy making e dello sviluppo di servizi al cittadino.
 
-## Piano Triennale: 7. Strumenti per la generazione e la diffusione di servizi digitali
+### Piano Triennale: 7. Strumenti per la generazione e la diffusione di servizi digitali
 
-### 7.2. Obiettivi strategici
+#### 7.2. Obiettivi strategici
 * Favorire la diffusione del **paradigma open source**, agevolando la costituzione di una community di sviluppatori di applicazioni e componenti software di utilità per la PA.
 * Incentivare l’adozione delle **Piattaforme abilitanti (ad es. SPID, PagoPA, ANPR)** tramite la realizzazione e diffusione di kit di sviluppo, ambienti di validazione e verifica, la comunicazione trasparente sullo stato di avanzamento di ciascun progetto e la segnalazione e discussione di anomalie.
 * Fornire **linee guida** da seguire e toolkit utili allo sviluppo di applicazioni e servizi con adeguati livelli di design, user experience, sicurezza e usabilità.
@@ -85,7 +86,7 @@ La valorizzazione del patrimonio pubblico richiede un’attenta regia che disegn
 * Condividere indicazioni e componenti software che permettano di **ridurre i costi di implementazione** di nuovi prodotti digitali, **favorendo il riuso e l’interoperabilità** .
 * Supportare le amministrazioni nella diffusione e nella divulgazione dei servizi e degli strumenti necessari alla comunicazione del percorso di attuazione del Piano triennale.
 
-## Piano Triennale: 13. Principi per lo sviluppo di progetti digitali
+### Piano Triennale: 13. Principi per lo sviluppo di progetti digitali
 Questo capitolo contiene principi che vengono qui ricordati e raccomandati perché ritenuti fondamentali per la realizzazione dei progetti contenuti nel Piano. Gli accorgimenti sono sia di natura pratica - per la gestione del progetto - sia di natura contrattuale e amministrativa per la stesura del contratto, la definizione degli obiettivi, e l’approvvigionamento delle risorse.
 
 Infine, la predisposizione di un progetto digitale per la realizzazione di un nuovo sistema o per l’evoluzione di un sistema esistente, richiede:
@@ -96,7 +97,7 @@ Infine, la predisposizione di un progetto digitale per la realizzazione di un nu
 
 Nei paragrafi seguenti si descrivono questi punti in maggior dettaglio.
 
-### 13.1. Design del progetto
+#### 13.1. Design del progetto
 La fase di design è essenziale per la buona riuscita del progetto. A tale proposito, si rinvia al capitolo Service design delle Linee guida di design per i servizi web della PA. In particolare, in fase di progettazione dei servizi si raccomanda di:
 * **Coinvolgere sempre i cittadini**, a partire dalla comprensione dei loro bisogni (Strategia n°1 delle Linee guida). Questo vuol dire immaginare come il cittadino (o l’utente finale) andrà a utilizzare il sistema e fare in modo che tutte le funzionalità siano disegnate intorno alle sue esigenze, consentendogli di ottenere facilmente e rapidamente ciò di cui ha bisogno - senza inutili passaggi, e con istruzioni comprensibili a chiunque.
 * Studiare per capire, documentare per non ripetere (Strategia n°3 delle Linee guida). È necessario conoscere il contesto nel quale opererà un progetto, definirne gli obiettivi, **attenersi agli standard** e fare ricerche su eventuali **alternative valide a livello nazionale e internazionale**, oltre che sulla disponibilità di strumenti e processi già sperimentati con successo che possono essere riutilizzati. Ogni fase di sviluppo del progetto deve essere documentata e resa disponibile in maniera aperta, da una parte per garantirne l’integrità e la sostenibilità futura, dall’altra per consentire possibili collaborazioni che potrebbero di aggiungervi nuovo valore.
@@ -105,7 +106,7 @@ La fase di design è essenziale per la buona riuscita del progetto. A tale propo
 * **Partire dai dati** (Strategia n°4 delle Linee Guida). **Per prendere decisioni basate su comportamenti e dati reali** è necessario realizzare servizi e processi interamente digitali, non limitandosi alla semplice trasposizione on line di un processo erogato in modalità tradizionale.
 * Nominare un product owner, ovvero una persona che - preferibilmente all’interno della PA e comunque non legata al soggetto che realizzerà il prodotto - sappia rappresentare le aspettative e i bisogni degli utenti finali del servizio progettato e che abbia una chiara competenza sui processi che si vuole digitalizzare e del risultato che si vuole ottenere. Ad esempio, in un progetto di fatturazione elettronica, il product owner sarà una persona che conosce bene i processi di fatturazione e sarà in grado di guidare gli esecutori del progetto fornendo consigli e indicazioni su come inviare e processare tali fatture, i dati che queste devono contenere, ecc.
 
-### 13.2. Realizzazione del progetto
+#### 13.2. Realizzazione del progetto
 [...]
 
 Da un punto di vista tecnico inoltre occorre:
@@ -130,7 +131,7 @@ Quando poi è importante l’integrazione del progetto con software realizzati d
 * **Utilizzare e documentare processi per coordinare gli aggiornamenti software** che prevedano dei meccanismi per annunciare il rilascio imminente di nuove versioni (newsletter, forum, …), il rilascio in ambienti di testing, e solo a seguito di verifica funzionale con gli utenti del sistema e software di terze parti in ambienti di testing, il rilascio in produzione.
 * Mettere a disposizione **librerie e kit di sviluppo**, ovvero esempi di codice e componenti software pronti per essere utilizzati da terze parti nei loro prodotti per integrarsi con i vostri sistemi. Questo facilita il riuso, migliora la qualità del codice, diminuisce i costi di manutenzione e aggiornamento, diminuisce significativamente il rischio di incompatibilità ed implementazioni non conformi alle specifiche, e diminuisce i costi di sviluppo per ognuna delle terze parti.
 
-### 13.3. Lancio del progetto
+#### 13.3. Lancio del progetto
 Nello stabilire un percorso per portare all’adozione del progetto, **la PA deve**:
 
 * Individuare la strategia di adozione di minor resistenza, ovvero **trovare il modo più semplice, veloce e con minore impatto perché il prodotto possa iniziare ad essere adottato, anche in forma limitata o incompleta**. Anziché introdurre un grande cambiamento in un unico passo, è preferibile avanzare a piccoli passi incrementali - individualmente più semplici e meno rischiosi - verso il raggiungimento dell’obiettivo finale.
@@ -138,7 +139,7 @@ Nello stabilire un percorso per portare all’adozione del progetto, **la PA dev
 * Individuare un **piano per il lancio completo del prodotto**, ovvero per dismettere il prodotto precedente. Per progetti di grande dimensione, è importante evidenziare che una strategia di lancio può richiedere non solo la realizzazione del prodotto, ma campagne di promozione con gli utenti, meccanismi di comunicazione (mailing list, twitter, realizzazione di siti vetrina) e tutto ciò che è considerato importante per portare all’adozione del prodotto stesso.
 * **Comunicare efficacemente**, spesso, ovunque (Strategia n°5 delle Linee Guida). Le Pubbliche amministrazioni devono comunicare in maniera chiara l’utilità e i prerequisiti del servizio, oltre a tutte le informazioni relative alla protezione dei dati personali, alla tutela della vita privata e alla sicurezza informatica, raggiungendo i cittadini attraverso i canali di comunicazione più usati e diffusi, dando loro la possibilità di accedere ai propri dati, di controllarli e di correggerli, mantenendo un continuo dialogo, anche oltre e dopo il lancio del servizio.
 
-### 13.4. Evoluzione e manutenzione del progetto
+#### 13.4. Evoluzione e manutenzione del progetto
 Nel definire le strategie per l’evoluzione e la manutenzione del progetto, si raccomanda alla PA di:
 
 * **Assicurare la manutenzione e l’aggiornamento periodico di tutti i software e i sistemi** al fine di prevenire problematiche di sicurezza, garantire la compatibilità del software con nuove tecnologie e la conformità con l’evoluzione normativa.
