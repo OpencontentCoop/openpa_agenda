@@ -275,9 +275,15 @@
           {foreach $node|attribute('referenti').content.relation_list as $r}
             {def $ref = fetch( 'content', 'node', hash( 'node_id', $r.node_id ) )}
             <tr>
+              {if $ref|has_attribute('ruolo')}
               <td>{attribute_view_gui attribute=$ref|attribute('ruolo')}</td>
+              {/if}
+              {if $ref|has_attribute('nome')}
               <td>{attribute_view_gui attribute=$ref|attribute('nome')}</td>
+              {/if}
+              {if $ref|has_attribute('email')}
               <td>{attribute_view_gui attribute=$ref|attribute('email')}</td>
+              {/if}
             </tr>
           {/foreach}
         </table>
@@ -316,3 +322,7 @@
 
 </div>
 
+
+{if $node|has_attribute('json_ld')}
+{attribute_view_gui attribute=$node|attribute('json_ld')}
+{/if}

@@ -206,3 +206,6 @@
 
 </div>
 
+{if $node|has_attribute('json_ld')}
+{attribute_view_gui attribute=$node|attribute('json_ld')}
+{/if}

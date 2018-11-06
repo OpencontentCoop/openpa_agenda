@@ -14,3 +14,7 @@
     filters=array('date', 'target')
     base_query=concat('classes [',agenda_event_class_identifier(),'] and iniziativa.id in [', $node.contentobject_id, '] and subtree [', calendar_node_id(), '] and state in [moderation.skipped,moderation.accepted] sort [from_time=>asc]')
 }
+
+{if $node|has_attribute('json_ld')}
+{attribute_view_gui attribute=$node|attribute('json_ld')}
+{/if}
