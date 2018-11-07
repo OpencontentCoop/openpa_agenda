@@ -224,6 +224,14 @@
                 {if $node|has_attribute( 'url' )}
                     <li class="list-group-item"><i class="fa fa-globe"></i> {attribute_view_gui attribute=$node.data_map.url}</li>
                 {/if}
+
+                {if and($node|has_attribute('json_ld'), openpaini('OpenpaAgendaSettings', 'ShowJsonLDLink', 'enabled')|eq('enabled'))}
+                    <li class="list-group-item">
+                        <a href="{concat('easyvocs/object/', $node.contentobject_id, '?ContentType=json')|ezurl(no)}" target="_blank">
+                            <img style="border:0px;" width="24" src="https://json-ld.org/images/json-ld-data-24.png" alt="JSON-LD-logo-24"/> JSON-LD
+                        </a>
+                    </li>
+                {/if}
             </ul>
         </div>
 
