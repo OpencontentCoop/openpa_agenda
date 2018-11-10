@@ -490,4 +490,14 @@ class OpenPAAgenda
     {
         return $this->getAttributeString('enable_moderation') == 1 || $this->getAttributeString('enable_moderation') == '';
     }
+
+    public function isLoginEnabled()
+    {        
+        return $this->getAttributeString('enable_login') == 1 || $this->getAttributeString('enable_login') == '';
+    }
+
+    public function isRegistrationEnabled()
+    {        
+        return $this->getAttributeString('enable_registration') == 1 || $this->getAttributeString('enable_registration') == '';
+    }
 }

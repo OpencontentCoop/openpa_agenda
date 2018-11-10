@@ -24,7 +24,9 @@ class OpenPAAgendaOperators
             'current_user_has_limited_edit_agenda_event',
             'current_user_has_limited_edit_agenda_event_attribute',
             'agenda_event_class_identifier',
-            'agenda_association_class_identifier'
+            'agenda_association_class_identifier',
+            'is_registration_enabled',
+            'is_login_enabled',
         );
     }
 
@@ -94,6 +96,14 @@ class OpenPAAgendaOperators
         $agenda = OpenPAAgenda::instance();
         switch( $operatorName )
         {
+            case 'is_registration_enabled':
+                return $operatorValue = $agenda->isRegistrationEnabled();
+                break;
+
+            case 'is_login_enabled':
+                return $operatorValue = $agenda->isLoginEnabled();
+                break;
+
             case 'agenda_event_class_identifier':
                 return $operatorValue = $agenda->getEventClassIdentifier();
                 break;

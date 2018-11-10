@@ -27,6 +27,6 @@ class=OpenPAAgendaModuleFunctions
 [RoleSettings]
 PolicyOmitList[]=agenda/qrcode
 PolicyOmitList[]=agenda/download
-
+PolicyOmitList[]=agenda/register_associazione
 
 */ ?>

@@ -89,6 +89,10 @@ class OpenPAAgendaPageDataHandler implements OCPageDataHandlerInterface
 
     public function menu()
     {
+        $hasAccess = eZUser::currentUser()->hasAccessTo( 'agenda', 'use' );
+        if ( $hasAccess['accessWord'] !== 'yes' ){
+            return array();
+        }
         $infoChildren = array(
             array(
                 'name' => ezpI18n::tr( 'agenda/menu', 'Faq' ),

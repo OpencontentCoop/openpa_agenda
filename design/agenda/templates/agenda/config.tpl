@@ -20,8 +20,17 @@ $(document).ready(function(){
             {if is_moderation_enabled()}
                 <li><strong>{'Moderazione attiva'|i18n('agenda/config')}</strong></li>
             {/if}
+            {if is_registration_enabled()}
+                <li><strong>{'Auto-registrazione attiva'|i18n('agenda/config')}</strong></li>
+            {/if}
             {if is_auto_registration_enabled()}
                 <li><strong>{'Auto-registrazione associazioni attiva'|i18n('agenda/config')}</strong></li>
+            {/if}
+            {if is_comment_enabled()}
+                <li><strong>{'Commenti abilitati'|i18n('agenda/config')}</strong></li>
+            {/if}
+            {if is_login_enabled()}
+                <li><strong>{'Login attivo'|i18n('agenda/config')}</strong></li>
             {/if}
             {if $root|has_attribute('hide_tags')}
             <li><strong>{'Tipologie nascoste in agenda principale'|i18n('agenda/config')}:</strong> {attribute_view_gui attribute=$root|attribute('hide_tags')}</li>

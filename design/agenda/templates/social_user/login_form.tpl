@@ -1,4 +1,10 @@
+{def $show_login = cond(is_login_enabled(), true(), false())
+     $show_signup = cond(is_registration_enabled(), true(), false())
+     $show_associazioni_signup = cond(is_auto_registration_enabled(), true(), false())}
+
+{if or($show_login, $show_signup, $show_associazioni_signup)}
 <section class="hgroup" id="login">
+    {if is_comment_enabled()}
     <div class="row">
         <div class="col-sm-12 col-md-12 text-center">
             <h1 style="margin-bottom: 1em">
@@ -6,24 +12,61 @@
             </h1>
         </div>
     </div>
-    {def $col_container = '6'
-         $col_inside = '8 col-md-offset-2'}
-    {if and( is_collaboration_enabled(), is_auto_registration_enabled() )}
-        {set $col_container = '4'
-             $col_inside = '12'}
     {/if}
+
+    {def $col_signin_container = 'col-sm-6 col-md-4'
+         $col_signup_container = 'col-sm-6 col-md-4'
+         $col_signupassociazione_container = 'col-sm-6 col-md-4'
+         $col_signin_inside = 'col-sm-12'
+         $col_signup_inside = 'col-sm-12'}
+
+    {if and($show_login, $show_signup|not(), $show_associazioni_signup|not())}
+        {set $col_signin_container = 'col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3'
+             $col_signin_inside = 'col-sm-12 col-md-8 col-md-offset-2'}
+    {/if}
+
+    {if and($show_login, $show_signup, $show_associazioni_signup|not())}
+        {set $col_signin_container = 'col-sm-6 col-md-6'
+             $col_signup_container = 'col-sm-6 col-md-6'
+             $col_signin_inside = 'col-sm-12 col-md-8 col-md-offset-2'
+             $col_signup_inside = 'col-sm-12 col-md-8 col-md-offset-2'}
+    {/if}
+
+    {if and($show_login, $show_signup|not(), $show_associazioni_signup)}
+        {set $col_signin_container = 'col-sm-6 col-md-6'
+             $col_signupassociazione_container = 'col-sm-6 col-md-6'
+             $col_signin_inside = 'col-sm-12 col-md-8 col-md-offset-2'}
+    {/if}
+
+    {if and($show_login|not(), $show_signup, $show_associazioni_signup)}
+        {set $col_signup_container = 'col-sm-6 col-md-6'
+             $col_signupassociazione_container = 'col-sm-6 col-md-6'
+             $col_signup_inside = 'col-sm-12 col-md-8 col-md-offset-2'}
+    {/if}
+
+    {if and($show_login|not(), $show_signup, $show_associazioni_signup|not())}
+        {set $col_signup_container = 'col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3'
+             $col_signup_inside = 'col-sm-12 col-md-8 col-md-offset-2'}
+    {/if}
+
+    {if and($show_login|not(), $show_signup|not(), $show_associazioni_signup)}
+        {set $col_signupassociazione_container = 'col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3'}
+    {/if}
+
+
     <div class="row">
-        <div class="col-sm-6 col-md-{$col_container}">
+        {if $show_login}
+        <div class="{$col_signin_container}">
             <div class="signin">
                 <div class="social_sign">
                     <h3>
-                        {'Sei già iscritto?'|i18n('social_user/signin')}<br />
+                        {'Sei già iscritto?'|i18n('social_user/signin')}
                         <strong>{'Accedi subito!'|i18n('social_user/signin')}</strong>
                     </h3>
                 </div>
                 <hr />
                 <div class="row">
-                    <div class="form col-lg-{$col_inside}">
+                    <div class="form {$col_signin_inside}">
                         <form name="loginform" method="post" action={'/user/login/'|ezurl}>
                             <input autocomplete="off" placeholder="{'Indirizzo Email'|i18n('social_user/signin')}" class="form-control" type="text" name="Login">
                             <input autocomplete="off" placeholder="{'Password'|i18n('social_user/signin')}" class="form-control" type="password" name="Password">
@@ -38,7 +81,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-{$col_container}">
+        {/if}
+        {if $show_signup}
+        <div class="{$col_signup_container}">
             <div class="signup">
                 <form name="signupform" method="post" action={'/social_user/signup/'|ezurl}>
                     <fieldset>
@@ -50,7 +95,7 @@
                         </div>
                         {*<p class="sign_title">{'Crealo subito: &egrave facile e gratuito!'|i18n('social_user/signup')}</p>*}
                         <div class="row">
-                            <div class="col-lg-{$col_inside}">
+                            <div class="{$col_signup_inside}">
                                 <input autocomplete="off" id="Name" name="Name" placeholder="{'Nome e cognome'|i18n('social_user/signup')}" class="form-control" required="" type="text" value="{if is_set($name)}{$name}{/if}" />
                                 <input autocomplete="off" id="Emailaddress" name="EmailAddress" placeholder="{'Indirizzo Email'|i18n('social_user/signup')}" class="form-control" required="" type="text" value="{if is_set($email)}{$email}{/if}" />
                                 <input autocomplete="off" id="Password" name="Password" placeholder="{'Password'|i18n('social_user/signup')}" class="form-control" required="" type="password">
@@ -70,10 +115,11 @@
                 </form>
             </div>
         </div>
-        {if and( is_collaboration_enabled(), is_auto_registration_enabled() )}
-        <div class="col-sm-12 col-md-{$col_container}">
+        {/if}
+        {if $show_associazioni_signup}
+        <div class="{$col_signupassociazione_container}">
             <div class="signup">
-                <form name="signupassociazioneform" method="post" action={'agenda/associazioni/register'|ezurl}>
+                <form name="signupassociazioneform" method="post" action={'agenda/register_associazione'|ezurl}>
                     <fieldset>
                         <div class="social_sign">
                             <h3>
@@ -96,3 +142,4 @@
         {/if}
     </div>
 </section>
+{/if}

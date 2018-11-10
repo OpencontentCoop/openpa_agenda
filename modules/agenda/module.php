@@ -53,12 +53,7 @@ $ViewList['comment'] = array(
 $ViewList['associazioni'] = array(
     'script' => 'associazioni.php',
     'params' => array('Action'),
-    'functions' => array('use'),
-    'single_post_actions' => array(
-        'PublishButton' => 'Publish',
-        'CancelButton' => 'Cancel',
-        'CustomActionButton' => 'CustomAction'
-    )
+    'functions' => array('use')
 );
 
 $ViewList['qrcode'] = array(
@@ -85,6 +80,17 @@ $ViewList['widget'] = array(
     'functions' => array('use')
 );
 
+$ViewList['register_associazione'] = array(
+    'script' => 'register_associazione.php',
+    'params' => array('Action'),
+    'functions' => array('register_associazione'),
+    'ui_context' => 'edit',
+    'single_post_actions' => array(
+        'PublishButton' => 'Publish',
+        'CancelButton' => 'Cancel',
+        'CustomActionButton' => 'CustomAction'
+    )
+);
 
 $FunctionList = array();
 $FunctionList['use'] = array();
