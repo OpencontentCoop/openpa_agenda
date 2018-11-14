@@ -74,6 +74,7 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         $attributes[] = 'layouts';
         $attributes[] = 'events';
         $attributes[] = 'file_attribute';
+        $attributes[] = 'show_qrcode';
 
         return $attributes;
     }
@@ -101,7 +102,20 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
             return $this->getFileAttribute();
         }
 
+        if ($property == 'show_qrcode') {
+            return $this->showQrCode();
+        }
+
         return parent::attribute($property);
+    }
+
+    protected function showQrCode()
+    {
+        if (isset( $this->dataMap['show_qrcode'] )) {
+            return $this->dataMap['show_qrcode']->toString() == '1';
+        }
+
+        return true;
     }
 
     protected function getFileAttribute()

@@ -5,3 +5,4 @@ AvailableEndpoint[]
 
 [OpenpaAgendaEditSettings]
 LimitEditAttributeIdentifiers[]
+

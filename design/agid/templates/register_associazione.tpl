@@ -1,9 +1,6 @@
 <div class="service_teaser vertical row">
     <div class="service_details clearfix">
 
-        <section class="hgroup">
-            <h1>{'Registra nuova associazione'|i18n('agenda/signupassociazione')}</h1>
-        </section>
 
         {if $success}
 
@@ -14,7 +11,18 @@
             </div>
 
         {else}
-        <form enctype="multipart/form-data" action="{"agenda/associazioni/register/"|ezurl(no)}" method="post"
+
+        <section class="hgroup">
+            <h1>{'Registra nuova associazione'|i18n('agenda/signupassociazione')}</h1>
+        </section>
+
+        {if and(is_set($view_parameters.error), $view_parameters.error|eq('invalid_recaptcha'))}
+            <div class="alert alert-danger">
+                <p>{'Codice di sicurezza'|i18n( 'social_user/signup' )}: {'Input required.'|i18n( 'kernel/classes/datatypes' )}</p>
+            </div>
+        {/if}
+
+        <form enctype="multipart/form-data" action="{"agenda/register_associazione/"|ezurl(no)}" method="post"
               name="RegisterAssociazione"
               class="form-signin">
 

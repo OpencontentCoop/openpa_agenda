@@ -80,9 +80,11 @@
                                     {/if*}
                                 </td>
 
+                                {if $programma_eventi.show_qrcode}
                                 <td width="80px">
                                     <img src="{$prefix}/{$event.qrcode_file_url}" alt="" height="80px"/>
                                 </td>
+                                {/if}
 
                             </tr>
                         {/foreach}
@@ -152,9 +154,11 @@
                                     {/if*}
                                 </td>
 
+                                {if $programma_eventi.show_qrcode}
                                 <td width="80px">
                                     <img src="{$prefix}/{$event.qrcode_file_url}" alt="" height="80px"/>
                                 </td>
+                                {/if}
 
                             </tr>
                         {/foreach}

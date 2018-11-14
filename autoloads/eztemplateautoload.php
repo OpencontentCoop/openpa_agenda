@@ -18,6 +18,8 @@ $eZTemplateOperatorArray[] = array(
         'current_user_has_limited_edit_agenda_event',
         'current_user_has_limited_edit_agenda_event_attribute',
         'agenda_event_class_identifier',
-        'agenda_association_class_identifier'
+        'agenda_association_class_identifier',
+        'is_login_enabled',
+        'is_registration_enabled',
     )
 );
