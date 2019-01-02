@@ -91,11 +91,9 @@ class OpenPAAgendaFullcalendarEnvironmentSettings extends DefaultEnvironmentSett
         $calendarQuery = "calendar[] = [$start,$end]";
         $queryObject = $builder->instanceQuery($calendarQuery);
         $calendarQuery = $queryObject->convert();
-        $query = new ArrayObject(
-            array_merge_recursive($query->getArrayCopy(), $calendarQuery->getArrayCopy())
-        );
+        $query['Filter'][] = $calendarQuery->getArrayCopy()['Filter'];
 
-        if (isset( $query['SearchLimit'] )) {
+        if (isset($query['SearchLimit'])) {
             if ($query['SearchLimit'] > $this->maxSearchLimit) {
                 $query['SearchLimit'] = $this->maxSearchLimit;
             }
@@ -103,7 +101,7 @@ class OpenPAAgendaFullcalendarEnvironmentSettings extends DefaultEnvironmentSett
             $query['SearchLimit'] = $this->maxSearchLimit;
         }
 
-        if (!isset( $query['SearchOffset'] )) {
+        if (!isset($query['SearchOffset'])) {
             $query['SearchOffset'] = 0;
         }
 
