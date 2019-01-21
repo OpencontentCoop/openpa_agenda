@@ -12,14 +12,19 @@
 
 
     {ezcss_load( array(  
-      'app.css',
-      'animate.css',
-      'jasny-bootstrap.min.css',
-      'custom.css',
-      'font-awesome.min.css',
-      'font-awesome-animation.min.css',
-      'debug.css',
-      'websitetoolbar.css'
+        'app.css',
+        'animate.css',
+        'jasny-bootstrap.min.css',
+        'custom.css',
+        'font-awesome.min.css',
+        'font-awesome-animation.min.css',
+        'debug.css',
+        'websitetoolbar.css',
+        'leaflet.css',
+        'MarkerCluster.css',
+        'MarkerCluster.Default.css',
+        'openpa_agenda.css',
+        'addtocalendar.css'
     ))}
 
     {ezscript_load(array(
@@ -33,7 +38,10 @@
         'restart_theme.js',
         'collapser.js',
         'placeholders.min.js',
-        'jasny-bootstrap.min.js'
+        'jasny-bootstrap.min.js',
+        'leaflet.js',
+        'leaflet.markercluster.js',
+        'leaflet.makimarkers.js'
     ))}
 
     <!--[if lt IE 9]>

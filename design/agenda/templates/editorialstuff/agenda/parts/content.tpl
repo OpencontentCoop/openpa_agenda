@@ -34,10 +34,7 @@
             </div>
         {/if}
         <div class="col-xs-4 col-md-2">
-            <a class="btn btn-info btn-lg" data-toggle="modal"
-               data-load-remote="{concat( 'layout/set/modal/content/view/full/', $post.object.main_node_id )|ezurl('no')}"
-               data-remote-target="#preview .modal-content" href="#{*$post.url*}"
-               data-target="#preview">{'Anteprima'|i18n('agenda/dashboard')}</a>
+            <a class="btn btn-info btn-lg load-preview" data-object="{$post.object.id}" href="#">{'Anteprima'|i18n('agenda/dashboard')}</a>
         </div>
         <div class="col-xs-4 col-md-2">
             <form action="{concat('editorialstuff/action/agenda/', $post.object_id)|ezurl(no)}" method="post">
@@ -130,5 +127,13 @@
 
 </div>
 
-{ezscript_require( array( 'ezjsc::jquery', 'plugins/owl-carousel/owl.carousel.min.js', "plugins/blueimp/jquery.blueimp-gallery.min.js" ) )}
-{ezcss_require( array( 'plugins/owl-carousel/owl.carousel.css', 'plugins/owl-carousel/owl.theme.css', "plugins/blueimp/blueimp-gallery.css" ) )}
+{ezscript_require( array(
+  'ezjsc::jquery',
+  'plugins/owl-carousel/owl.carousel.min.js',
+  "plugins/blueimp/jquery.blueimp-gallery.min.js"
+) )}
+{ezcss_require( array(
+  'plugins/owl-carousel/owl.carousel.css',
+  'plugins/owl-carousel/owl.theme.css',
+  "plugins/blueimp/blueimp-gallery.css"
+) )}

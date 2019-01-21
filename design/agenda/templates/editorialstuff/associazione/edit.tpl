@@ -3,7 +3,7 @@
     <h1>{$post.object.name|wash()}</h1>
     {include uri=concat('design:', $template_directory, '/parts/workflow.tpl') post=$post}
 </section>
-<hr/>
+
 <div class="row">
     <div class="col-md-{if is_set( $post.object.data_map.internal_comments )}9{else}12{/if}">
 
@@ -47,4 +47,4 @@
     </div>
 </div>
 
-{ezscript_require( array( 'modernizr.min.js', 'ezjsc::jquery', 'bootstrap-tabdrop.js', 'bootstrap/tooltip.js', 'jquery.editorialstuff_default.js' ) )}
+{ezscript_require( array( 'modernizr.min.js', 'ezjsc::jquery', 'bootstrap/tooltip.js', 'jquery.editorialstuff_default.js' ) )}

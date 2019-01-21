@@ -17,7 +17,12 @@
         'font-awesome.min.css',
         'font-awesome-animation.min.css',
         'debug.css',
-        'websitetoolbar.css'
+        'websitetoolbar.css',
+        'leaflet.css',
+        'MarkerCluster.css',
+        'MarkerCluster.Default.css',
+        'openpa_agenda.css',
+        'addtocalendar.css'
     ) )}
 
     {ezscript_load(array(
@@ -30,7 +35,10 @@
         'wow.min.js',
         'restart_theme.js',
         'collapser.js',
-        'placeholders.min.js'
+        'placeholders.min.js',
+        'leaflet.js',
+        'leaflet.markercluster.js',
+        'leaflet.makimarkers.js'
     ))}
 
     <!--[if lt IE 9]>

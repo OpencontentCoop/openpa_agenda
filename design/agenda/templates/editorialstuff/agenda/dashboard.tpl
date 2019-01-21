@@ -1,8 +1,14 @@
+{def $current_language=ezini('RegionalSettings', 'Locale')}
 <script>
   var CurrentUserIsModerator = {cond(current_user_is_agenda_moderator(), true, false)};
   var CurrentUserId = {fetch(user, current_user).contentobject_id};
   var AgendaEventClassIdentifier = "{agenda_event_class_identifier()}";
   var AgendaSubTree = "{calendar_node_id()}";
+  {def $luogo_is_enabled = false()}
+  {foreach api_class(agenda_event_class_identifier()).fields as $field}
+    {if $field.identifier|eq('luogo')}{set $luogo_is_enabled = $field.name[$current_language]}{break}{/if}
+  {/foreach}
+  var LuogoFieldIsEnabled = {cond($luogo_is_enabled, concat('"', $luogo_is_enabled, '"'), 'false')};
 </script>
 
 {ezcss_require( array(
@@ -12,8 +18,9 @@
     'MarkerCluster.css',
     'MarkerCluster.Default.css',
     'fullcalendar.min.css',
-    'plugins/owl-carousel/owl.carousel.min.js',
-    "plugins/blueimp/jquery.blueimp-gallery.min.js"
+    'plugins/owl-carousel/owl.carousel.css',
+    'plugins/owl-carousel/owl.theme.css',
+    "plugins/blueimp/blueimp-gallery.css"
 ))}
 {ezscript_require(array(
     'ezjsc::jquery',
@@ -36,7 +43,7 @@
     'leaflet.js',
     'leaflet.markercluster.js',
     'leaflet.makimarkers.js',
-    'Control.Geocoder.js'
+    'jsrender.js'
 ))}
 
 <div class="row">
@@ -49,23 +56,27 @@
           <p><a href="{concat('editorialstuff/add/',$factory_identifier)|ezurl(no)}" class="btn btn-lg btn-success">{$factory_configuration.CreationButtonText|wash()|i18n('agenda/dashboard')}</a></p>
         {/if}
 
-        <div class="clearfix">
-            <ul class="nav nav-pills space pull-left">
-                <li class="active"><a data-toggle="tab" href="#table"><i class="fa fa-list" aria-hidden="true"></i> {'Lista'|i18n('agenda/dashboard')}</a></li>
-                <li><a data-toggle="tab" href="#calendar"><i class="fa fa-calendar" aria-hidden="true"></i> {'Calendario'|i18n('agenda/dashboard')}</a></li>
-            </ul>
-            <div class="nav-section space pull-right">
-                <form class="form-inline">
-                    <div class="form-group" style="margin-bottom: 10px">
-                        <label for="state">{'Filtra per stato'|i18n('agenda/dashboard')}</label>
-                        <select id="state" data-field="state" data-placeholder="{'Seleziona'|i18n('agenda/dashboard')}" name="state">
-                            <option value=""></option>
-                            {foreach $states as $state}
-                                <option value="{$state.id|wash()}" data-state_identifier="{$state.identifier|wash()}" class="label-{$state.identifier|wash()}">{$state.current_translation.name|wash()}</option>
-                            {/foreach}
-                        </select>
-                    </div>
-                </form>
+        <div class="clearfix row">
+            <div class="col-sm-{if $luogo_is_enabled}6{else}8{/if}">
+                <ul class="nav nav-pills space">
+                    <li class="active"><a data-toggle="tab" href="#table"><i class="fa fa-list" aria-hidden="true"></i> {'Lista'|i18n('agenda/dashboard')}</a></li>
+                    <li><a data-toggle="tab" href="#calendar"><i class="fa fa-calendar" aria-hidden="true"></i> {'Calendario'|i18n('agenda/dashboard')}</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-{if $luogo_is_enabled}6{else}4{/if}">
+                <div class="space dashboard-filters">
+                    <form class="form">
+                        <div class="form-group">
+                            <label for="state">{'Stato'|i18n('agenda/dashboard')}</label>
+                            <select id="state" data-field="state" data-placeholder="{'Seleziona'|i18n('agenda/dashboard')}" name="state" class="form-control">
+                                <option value=""></option>
+                                {foreach $states as $state}
+                                    <option value="{$state.id|wash()}" data-state_identifier="{$state.identifier|wash()}" class="label-{$state.identifier|wash()}">{$state.current_translation.name|wash()}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -74,11 +85,7 @@
             <div id="calendar" class="tab-pane"></div>
         </div>
     </div>
-
-
 </div>
-
-
 
 <div class="row">
     <div class="col-md-12">
@@ -128,8 +135,10 @@
 <tr><td colspan="6"><a href="#" class="btn btn-primary btn-xs">{'Mostra meno recenti'|i18n('agenda')}</a></td></tr>
 </script>
 
+{include uri='design:agenda/parts/calendar/tpl-event.tpl'}
+
 {literal}
-    <script id="tpl-list-iniziativa" type="text/x-jsrender">
+<script id="tpl-list-iniziativa" type="text/x-jsrender">
 <tr data-contentobject_id="{{:metadata.id}}" data-node_id="{{:metadata.mainNodeId}}">
     <td>
         <a href="{{:~agendaUrl(metadata.mainNodeId)}}"><strong class="list-group-item-heading">{{:~i18n(metadata.name)}}</strong></a>
@@ -144,8 +153,9 @@
     <td style="white-space: nowrap;width:20px;">{{:~removeLink(metadata, 'editorialstuff/dashboard/agenda')}}</td>
 </tr>
 </script>
+
+</script>
 {/literal}
-{def $current_language=ezini('RegionalSettings', 'Locale')}
 {def $moment_language = $current_language|explode('-')[1]|downcase()}
 <script type="text/javascript" language="javascript" class="init">
     moment.locale('{$moment_language}');
@@ -157,7 +167,7 @@
         'geo': '{'/opendata/api/geo/search/'|ezurl(no,full)}',
         'search': '{'/opendata/api/content/search/'|ezurl(no,full)}',
         'class': '{'/opendata/api/classes/'|ezurl(no,full)}',
-        'fullcalendar': '{'/opendata/api/fullcalendar/search/'|ezurl(no,full)}',
+        'fullcalendar': '{'/agenda/calendar/'|ezurl(no,full)}',
     {rdelim});
 
     var Translations = {ldelim}
@@ -268,5 +278,6 @@
     .label-waiting {  background-color: #f0ad4e;  }
     .label-accepted {  background-color: #5cb85c;  }
     .label-refused {  background-color: #d9534f;  }
+    .dashboard-filters .form-group {{/literal}{if $luogo_is_enabled}width: 49%;float: left;margin-left: 1%{else}width: 100%{/if}{literal}};
 </style>
 {/literal}
