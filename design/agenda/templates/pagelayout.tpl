@@ -4,14 +4,6 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-{ezcss_require(array(
-    'leaflet.css',
-    'MarkerCluster.css',
-    'MarkerCluster.Default.css',
-    'openpa_agenda.css',
-    'addtocalendar.css'
-))}
-
 {include uri='design:page_head.tpl'}
 
 <body{if and( is_set( $module_result.content_info.persistent_variable.agenda_home ), $social_pagedata.banner_path, $social_pagedata.banner_title|ne('') )} class="collapsing_header"{/if}>

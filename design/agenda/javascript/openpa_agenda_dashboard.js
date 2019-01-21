@@ -11,12 +11,20 @@ $(document).ready(function () {
         calendarLocale = 'en';
     }
 
+    var facets = [];
+    if (LuogoFieldIsEnabled)
+        facets.push({field: 'luogo', 'limit': 300, 'sort': 'alpha', name: LuogoFieldIsEnabled});
+
     var mainQuery = 'null';
     if (CurrentUserIsModerator) {
       mainQuery = 'classes ['+AgendaEventClassIdentifier+'] subtree ['+AgendaSubTree+'] sort [published=>desc]';
     }else{
       mainQuery = "owner_id = '"+CurrentUserId+"' classes ["+AgendaEventClassIdentifier+"] subtree ["+AgendaSubTree+"] sort [published=>desc]";
     }
+    if (facets.length > 0) {
+        mainQuery += ' facets [' + tools.buildFacetsString(facets) + ']';
+    }
+    var _currentData = [];
     var stateSelect = $('select#state');
     var calendar = $('#calendar');
     var datatable = $('.content-data').opendataDataTable({
@@ -53,7 +61,7 @@ $(document).ready(function () {
                         var contentData = row.data;
                         if (contentData){
                             var title = typeof contentData[tools.settings('language')] != 'undefined' ? contentData[tools.settings('language')].titolo : contentData[Object.keys(contentData)[0]].titolo;
-                            return '<a href="#" data-toggle="modal" data-remote-target="#preview .modal-content" data-target="#preview" data-load-remote="' + tools.settings('accessPath') + '/layout/set/modal/content/view/full/' + row.metadata.mainNodeId + '">'+title+'</a>';
+                            return '<a href="#" class="dt-load-preview" data-object="' + row.metadata.id + '">'+title+'</a>';
                         }
                         return '';
                     },
@@ -154,19 +162,11 @@ $(document).ready(function () {
                 timeFormat: 'H(:mm)',
                 eventClick: function(calEvent, jsEvent, view) {
                     var remoteTarget = $('#preview .modal-content');
-                    $(remoteTarget).html('<em>'+Translations['Loading...']+'</em>');
-                    var remote = tools.settings('accessPath') + '/layout/set/modal/agenda/event/' + calEvent.content.metadata.mainNodeId;
-                    if(remote) {
-                        remoteTarget.load(remote, null, function(responseTxt, statusTxt, xhr) {
-                            if (statusTxt == "success") {
-                                var links = $(remoteTarget).find('.modal-body').find('a');
-                                links.each(function (i, v) {
-                                    $(v).attr('href', '#').attr('style', 'color:#ccc;');
-                                });
-                            }
-                        });
-                        $('#preview').modal('show');
-                    }
+                    $(remoteTarget).html('<em>' + Translations['Loading...'] + '</em>');
+                    var template = $.templates("#tpl-event");
+                    $.views.helpers(OpenpaAgendaHelpers);
+                    remoteTarget.html(template.render(calEvent.content).replace('col-md-6', ''));
+                    $('#preview').modal('show');
                 },
                 eventDataTransform: function(eventData){
                     var content = eventData.content;
@@ -185,6 +185,10 @@ $(document).ready(function () {
                             });
                         }
                     });
+
+                    if (!CurrentUserIsModerator && content.metadata.ownerId != CurrentUserId) {
+                        eventData.title = '↪ ' + eventData.title;
+                    }
 
                     eventData.backgroundColor = color;
                     eventData.borderColor = color;
@@ -206,8 +210,9 @@ $(document).ready(function () {
                 events: {
                     url: tools.settings().endpoint.fullcalendar,
                     data: function () {
-                        var q = datatable.buildQuery(true);
-                        return {q: q};
+                        return {
+                            filters: datatable.settings.builder
+                        };
                     }
                 }
             });
@@ -216,9 +221,47 @@ $(document).ready(function () {
         if (!calendar.fullCalendar('isFetchNeeded')) {
             calendar.fullCalendar('refetchEvents');
         }
+        _currentData = json.data;
+    }).on( 'draw.dt', function ( e, settings ) {
+        $('a.dt-load-preview').on('click', function (e) {
+            var currentId = $(this).data('object');
+            var remoteTarget = $('#preview .modal-content');
+            $(remoteTarget).html('<em>' + Translations['Loading...'] + '</em>');
+            $('#preview').modal('show');
+            var template = $.templates("#tpl-event");
+            $.views.helpers(OpenpaAgendaHelpers);
+            var inMemoryContent;
+            $.each(_currentData, function () {
+                if (this.metadata.id == currentId){
+                    inMemoryContent = this;
+                    return;
+                }
+            });
+            if (inMemoryContent){
+                remoteTarget.html(template.render(inMemoryContent).replace('col-md-6', ''));
+            }else {
+                tools.find('id = ' + currentId, function (response) {
+                    remoteTarget.html(template.render(response.searchHits[0]).replace('col-md-6', ''));
+                });
+            }
+            e.preventDefault();
+        });
     }).data('opendataDataTable')
-        .attachFilterInput(stateSelect)
-        .loadDataTable();
+        .attachFilterInput(stateSelect);
+
+    if (facets.length > 0) {
+        tools.find(mainQuery + ' limit 1', function (response) {
+            datatable.loadDataTable();
+            var form = stateSelect.parents('form');
+            $.each(response.facets, function () {
+                tools.buildFilterInput(facets, this, datatable, function (selectContainer) {
+                    form.append(selectContainer);
+                });
+            });
+        });
+    }else{
+        datatable.loadDataTable();
+    }
 
     stateSelect.val('').trigger("chosen:updated");;
 

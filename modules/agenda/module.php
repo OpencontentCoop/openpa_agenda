@@ -92,6 +92,12 @@ $ViewList['register_associazione'] = array(
     )
 );
 
+$ViewList['calendar'] = array(
+    'script' => 'calendar.php',
+    'params' => array(),
+    'functions' => array('use')
+);
+
 $FunctionList = array();
 $FunctionList['use'] = array();
 $FunctionList['config'] = array();

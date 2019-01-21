@@ -47,5 +47,42 @@
     </div>
 </div>
 
-{ezscript_require( array( 'modernizr.min.js', 'ezjsc::jquery', 'bootstrap-tabdrop.js', 'bootstrap/tooltip.js', 'jquery.editorialstuff_default.js' ) )}
-
+{include uri='design:agenda/parts/calendar/tpl-event.tpl'}
+{ezscript_require( array(
+    'modernizr.min.js',
+    'ezjsc::jquery',
+    'bootstrap/tooltip.js',
+    'jquery.editorialstuff_default.js',
+    'jquery.opendataTools.js',
+    'openpa_agenda_helpers.js',
+    'jsrender.js'
+) )}
+<script>
+var Translations = {ldelim}
+    'Titolo':'{'Titolo'|i18n('agenda/dashboard')}',
+    'Pubblicato':'{'Pubblicato'|i18n('agenda/dashboard')}',
+    'Inizio': '{'Inizio'|i18n('agenda/dashboard')}',
+    'Fine': '{'Fine'|i18n('agenda/dashboard')}',
+    'Stato': '{'Stato'|i18n('agenda/dashboard')}',
+    'Traduzioni': '{'Traduzioni'|i18n('agenda/dashboard')}',
+    'Dettaglio': '{'Dettaglio'|i18n('agenda/dashboard')}',
+    'Loading...': '{'Loading...'|i18n('agenda/dashboard')}'
+{rdelim};
+{literal}
+$(document).ready(function () {
+    $('.load-preview').on('click', function (e) {
+        var tools = $.opendataTools;
+        var currentId = $(this).data('object');
+        var remoteTarget = $('#preview .modal-content');
+        $(remoteTarget).html('<em>' + Translations['Loading...'] + '</em>');
+        $('#preview').modal('show');
+        var template = $.templates("#tpl-event");
+        $.views.helpers(OpenpaAgendaHelpers);
+        tools.find('id = ' + currentId, function (response) {
+            remoteTarget.html(template.render(response.searchHits[0]).replace('col-md-6', ''));
+        });
+        e.preventDefault();
+    })
+});
+{/literal}
+</script>

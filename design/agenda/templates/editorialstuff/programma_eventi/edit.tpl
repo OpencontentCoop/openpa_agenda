@@ -47,5 +47,5 @@
     </div>
 </div>
 
-{ezscript_require( array( 'modernizr.min.js', 'ezjsc::jquery', 'bootstrap-tabdrop.js', 'bootstrap/tooltip.js', 'jquery.editorialstuff_default.js' ) )}
+{ezscript_require( array( 'modernizr.min.js', 'ezjsc::jquery', 'bootstrap/tooltip.js', 'jquery.editorialstuff_default.js' ) )}
 

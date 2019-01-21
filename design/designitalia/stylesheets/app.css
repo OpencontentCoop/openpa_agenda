@@ -2330,7 +2330,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 .nav:before, .nav-section .nav-sub:before, .nav-facets .nav-sub:before, .nav:after, .nav-section .nav-sub:after, .nav-facets .nav-sub:after { content: " "; display: table; }
 .nav:after, .nav-section .nav-sub:after, .nav-facets .nav-sub:after { clear: both; }
 .nav > li, .nav-section .nav-sub > li, .nav-facets .nav-sub > li { position: relative; display: block; }
-.nav > li > a, .nav-section .nav-sub > li > a, .nav-facets .nav-sub > li > a { position: relative; display: block; padding: 17px 24px; }
+.nav > li > a, .nav-section .nav-sub > li > a, .nav-facets .nav-sub > li > a { position: relative; display: block; padding: 10px 15px; }
 .nav > li > a:hover, .nav-section .nav-sub > li > a:hover, .nav-facets .nav-sub > li > a:hover, .nav > li > a:focus, .nav-section .nav-sub > li > a:focus, .nav-facets .nav-sub > li > a:focus { text-decoration: none; background-color: #c6c6c6; }
 .nav > li.disabled > a, .nav-section .nav-sub > li.disabled > a, .nav-facets .nav-sub > li.disabled > a { color: #dddddd; }
 .nav > li.disabled > a:hover, .nav-section .nav-sub > li.disabled > a:hover, .nav-facets .nav-sub > li.disabled > a:hover, .nav > li.disabled > a:focus, .nav-section .nav-sub > li.disabled > a:focus, .nav-facets .nav-sub > li.disabled > a:focus { color: #dddddd; text-decoration: none; background-color: transparent; cursor: not-allowed; }
@@ -2928,7 +2928,7 @@ input.main-title { font-size: 20px; height: 60px; }
 
 .context-attributes label { font-size: 80%; color: #dddddd; font-weight: normal; }
 
-/* eztags */
+/* eztags
 div.tagssuggest ul li { background: #5bc0de; border: none; clear: none; color: #FFFFFF; float: left; font-weight: bold; line-height: 20px; margin: 0 6px 6px 0; padding: 3px 8px; border-radius: 4px; }
 
 div.tagssuggest ul li a { line-height: 15px; }
@@ -2940,7 +2940,7 @@ div.tagssuggestfieldwrap { float: left; height: 22px; margin: 0 12px 0 0; positi
 div.contentstructure ul.content_tree_menu ul { padding-left: 0; }
 
 div.tags-list p.loading, div.tags-list p.no-results { margin: 0; }
-
+*/
 /* ezopensemanticentities */
 table.semantic-edit td span { border-radius: 4px; }
 
@@ -3991,7 +3991,7 @@ blockquote { padding: 12px 24px; font-style: italic; }
 .progress-italia-login { height: 4px; }
 .progress-italia-login .progress-bar-striped { background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent); background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent); background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent); background-size: 4px 4px; }
 
-.nav-tabs > li > a { background-color: #23b0fd; color: #5a6772; text-transform: uppercase; font-weight: 700; margin-right: 0; }
+.nav-tabs > li > a { background-color: #23b0fd; color: #ffffff; text-transform: uppercase; font-weight: 700; margin-right: 5px; }
 
 .nav-tabs > li > a.active { color: #30373d; }
 

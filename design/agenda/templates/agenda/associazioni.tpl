@@ -16,8 +16,7 @@
     'openpa_agenda_associazioni.js',
     'leaflet.js',
     'leaflet.markercluster.js',
-    'leaflet.makimarkers.js',
-    'Control.Geocoder.js'
+    'leaflet.makimarkers.js'
 ))}
 
 <script type="text/javascript" language="javascript" class="init">
