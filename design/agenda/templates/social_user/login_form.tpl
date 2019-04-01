@@ -1,7 +1,7 @@
 {def $show_login = cond(is_login_enabled(), true(), false())
      $show_signup = cond(is_registration_enabled(), true(), false())
      $show_associazioni_signup = cond(is_auto_registration_enabled(), true(), false())}
-
+{def $has_gdpr = false()}
 {if or($show_login, $show_signup, $show_associazioni_signup)}
 <section class="hgroup" id="login">
     {if is_comment_enabled()}
@@ -99,9 +99,15 @@
                                 <input autocomplete="off" id="Name" name="Name" placeholder="{'Nome e cognome'|i18n('social_user/signup')}" class="form-control" required="" type="text" value="{if is_set($name)}{$name}{/if}" />
                                 <input autocomplete="off" id="Emailaddress" name="EmailAddress" placeholder="{'Indirizzo Email'|i18n('social_user/signup')}" class="form-control" required="" type="text" value="{if is_set($email)}{$email}{/if}" />
                                 <input autocomplete="off" id="Password" name="Password" placeholder="{'Password'|i18n('social_user/signup')}" class="form-control" required="" type="password">
+                                {foreach signup_custom_fields() as $custom_field}
+                                    {include uri=$custom_field.template custom_field=$custom_field}
+                                    {if and($custom_field.is_valid, is_set($custom_field.gdpr_text))}
+                                        {set $has_gdpr = true()}
+                                    {/if}
+                                {/foreach}
                             </div>
                         </div>
-                        {if and( is_set( $terms_url ), is_set( $privacy_url ) )}
+                        {if and( is_set( $terms_url ), is_set( $privacy_url ), $has_gdpr|not() )}
                             <div class="row">
                                 <div class="col-md-12">
                                     <small>
@@ -143,3 +149,4 @@
     </div>
 </section>
 {/if}
+{undef $has_gdpr}

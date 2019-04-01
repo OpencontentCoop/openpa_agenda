@@ -57,7 +57,14 @@ class OpenPAAgendaPageDataHandler implements OCPageDataHandlerInterface
 
     public function needLogin()
     {
-        return !eZUser::currentUser()->isRegistered();
+        $currentModuleParams = $GLOBALS['eZRequestedModuleParams'];
+        $request = array(
+          'module' => $currentModuleParams['module_name'],
+          'function' => $currentModuleParams['function_name'],
+          'parameters' => $currentModuleParams['parameters'],
+        );
+
+        return !eZUser::currentUser()->isRegistered() && $request['module'] == 'social_user';
     }
 
     public function attributeContacts()
