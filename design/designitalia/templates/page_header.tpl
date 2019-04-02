@@ -109,7 +109,7 @@
           </div>
         </div>
 
-        <div id="mobile-search" class="col-xs-12 hidden-md hidden-lg hidden">
+        {*<div id="mobile-search" class="col-xs-12 hidden-md hidden-lg hidden">
           <form action="#" method="post" accept-charset="UTF-8">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Cerca">
@@ -118,7 +118,7 @@
               </span>
             </div>
           </form>
-        </div>
+        </div>*}
       </div>
     </div>
   </div>
