@@ -73,7 +73,11 @@
                             <button name="LoginButton" type="submit" class="btn btn-primary btn-lg">{'Accedi'|i18n('social_user/signin')}</button>
                             <hr />
                             <div class="forgot">
+                              {if ezmodule( 'userpaex' )}
+                                <a href={'/userpaex/forgotpassword'|ezurl}>{'Hai dimenticato la password?'|i18n('social_user/signin')}</a>
+                              {else}
                                 <a href={'/user/forgotpassword'|ezurl}>{'Hai dimenticato la password?'|i18n('social_user/signin')}</a>
+                              {/if}
                             </div>
                             <input type="hidden" name="RedirectURI" value="/" />
                         </form>
