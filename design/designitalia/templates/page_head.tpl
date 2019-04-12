@@ -59,7 +59,15 @@
     <link rel="apple-touch-icon-precomposed" href="{$social_pagedata.head_images["apple-touch-icon-57x57-precomposed"]}" />
     {/if}
     {if $social_pagedata.head_images["favicon"]}
-    <link rel="shortcut icon" href="{$social_pagedata.head_images["favicon"]}">
+        <link rel="icon" href="{$social_pagedata.head_images["favicon"]}">
+    {else}
+        {def $favicon = openpaini('GeneralSettings','favicon', 'favicon.ico')}
+        {def $favicon_src = openpaini('GeneralSettings','favicon_src', 'ezimage')}
+        {if $favicon_src|eq('ezimage')}
+            <link rel="icon" href="{$favicon|ezimage(no)}" type="image/x-icon" />
+        {else}
+            <link rel="icon" href="{$favicon}" type="image/x-icon" />
+        {/if}
     {/if}
 
     {include uri="design:parts/opengraph_persistent.tpl"}
