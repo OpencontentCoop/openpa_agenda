@@ -7,7 +7,7 @@ use Opencontent\Opendata\Rest\Client\PayloadBuilder;
 use Opencontent\Opendata\Api\ContentRepository;
 
 $script = eZScript::instance(array(
-    'description' => ( "Importa eventi da un'istanza comunweb dato un host e eventualmente una query ocsql" ),
+    'description' => ( "Importa eventi da un'istanza openpa dato un host e eventualmente una query ocsql" ),
     'use-session' => false,
     'use-modules' => true,
     'use-extensions' => true

@@ -9,11 +9,6 @@
         <translation>Unter der Schirmherrschaft der</translation>
     </message>
     <message>
-        <location filename="OpenPAAgendaPageDataHandler.php" line="75"/>
-        <source>AgendaCivica - realizzato da OpenContent con ComunWeb</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../design/agenda/templates/agenda/event.tpl" line="276"/>
         <source>Commenti</source>
         <translation>Kommentare</translation>

@@ -79,7 +79,7 @@ class OpenPAAgendaPageDataHandler implements OCPageDataHandlerInterface
 
     public function textCredits()
     {
-        return ezpI18n::tr( 'agenda', 'AgendaCivica - realizzato da OpenContent con ComunWeb' );
+      return OpenPAINI::variable('CreditsSettings', 'Agenda');
     }
 
     public function googleAnalyticsId()

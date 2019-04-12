@@ -1,6 +1,6 @@
 ## Requisiti
 *  Se non ancora fatto installare tabella editorialstuff
-```php extension/openpa/bin/php/install_sql.php -sala_backend --file=/home/httpd/comunweb/html/extension/oceditorialstuff/sql/postgesql/schema.sql --run```
+```php extension/openpa/bin/php/install_sql.php -sala_backend --file=extension/oceditorialstuff/sql/postgesql/schema.sql --run```
 
  * Versione minima openpa 2.11
  * Versione minima eztags 2.2.1
@@ -23,7 +23,7 @@
 
 Se risponde "Non installato"
 
-`php extension/openpa/bin/php/install_sql.php -sala_backend --file=/home/httpd/comunweb/html/extension/eztags/sql/postgresql/schema.sql --run`
+`php extension/openpa/bin/php/install_sql.php -sala_backend --file=extension/eztags/sql/postgresql/schema.sql --run`
 
 correggere le conf di solr inserendo in java/solr/ala/conf/custom-fields.xml le stringhe
 <field name="ezf_df_tags" type="lckeyword" indexed="true" stored="true" multiValued="true" termVectors="true"/>
