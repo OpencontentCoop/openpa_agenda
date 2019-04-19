@@ -199,10 +199,12 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         if ($actionIdentifier == 'ActionCopy') {
 
             $newObject = OpenPAObjectTools::copyObject($this->getObject(), false, OpenPAAgenda::instance()->calendarNodeId());
-            $states = $this->states();
-            $default = 'moderation.draft';
-            if (isset( $states[$default] )) {
+            if (OpenPAAgenda::instance()->isModerationEnabled()) {
+              $states = $this->states();
+              $default = 'moderation.draft';
+              if (isset($states[$default])) {
                 $newObject->assignState($states[$default]);
+              }
             }
 
             $name = $newObject->attribute('name');
