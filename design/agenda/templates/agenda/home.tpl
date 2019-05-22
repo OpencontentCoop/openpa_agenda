@@ -1,6 +1,7 @@
 {def $node = agenda_root_node()}
 {def $hide_tags = $node|attribute('hide_tags').content.tag_ids
      $hide_iniziative = array()
+     $hide_all_filter = false()
      $view_all = false()}
 {if $node|has_attribute('hide_tags')}
     {set $hide_tags = $node|attribute('hide_tags').content.tag_ids}
@@ -10,8 +11,13 @@
   {set $hide_iniziative = $hide_iniziative|append($item.contentobject_id)}
 {/foreach}
 {/if}
-{if $node|has_attribute('view_all')}
-    {set $view_all = cond($node.data_map.view_all.data_int|eq(1), true(), false())}
+
+{if $node|has_attribute('hide_all_filter')}
+  {set $hide_all_filter = true()}
+{/if}
+
+{if and($hide_all_filter|not(), $node|has_attribute('view_all')) }
+  {set $view_all = true()}
 {/if}
 
 {def $agenda_query_custom = array()}

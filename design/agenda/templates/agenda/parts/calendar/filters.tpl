@@ -23,7 +23,7 @@
       <li><a href="#" data-value="weekend">{'Questo fine settimana'|i18n('agenda')}</a></li>
       <li><a href="#" data-value="next 7 days">{'I prossimi 7 giorni'|i18n('agenda')}</a></li>
       <li><a href="#" data-value="next 30 days">{'I prossimi 30 giorni'|i18n('agenda')}</a></li>
-      <li {if and(is_set($view_all), $view_all|eq(true()))}class="active"{/if}><a href="#" data-value="all">{'Tutti'|i18n('agenda')}</a></li>
+      <li {if and(is_set($hide_all_filter), $hide_all_filter|eq(true()))}class="hidden"{elseif and(is_set($view_all), $view_all|eq(true()))}class="active"{/if}><a href="#" data-value="all">{'Tutti'|i18n('agenda')}</a></li>
     </ul>
   </aside>
 

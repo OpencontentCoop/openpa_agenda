@@ -76,7 +76,7 @@
             var initCalendar = function (view) {
                 $("body").on("shown.bs.tab", function (e) {
                     if ($(e.target).attr('href') == '#agenda') {
-                        view.setFilterValue('date', 'all');
+                        //view.setFilterValue('date', 'all');
                         view.doSearch();
                         refreshCalendar(view);
                         $('.widget[data-filter="date"]').addClass('hide');

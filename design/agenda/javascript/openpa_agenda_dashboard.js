@@ -133,9 +133,9 @@ $(document).ready(function () {
                             var length = languages.length;
                             for (var i = 0; i < length; i++) {
                                 if ($.inArray(languages[i], keys) >= 0) {
-                                    string += '<img src="/share/icons/flags/' + languages[i] + '.gif" /> ';
+                                  string += '<a href="' + tools.settings('accessPath') + '/content/edit/' + row.metadata.id + '/f/' + languages[i] + '"><img src="/share/icons/flags/' + languages[i] + '.gif" /></a> ';
                                 } else {
-                                    string += '<a href="' + tools.settings('accessPath') + '/content/edit/' + row.metadata.id + '/a"><img style="opacity:0.2" src="/share/icons/flags/' + languages[i] + '.gif" /></a> ';
+                                  string += '<a href="' + tools.settings('accessPath') + '/content/edit/' + row.metadata.id + '/a"><img style="opacity:0.2" src="/share/icons/flags/' + languages[i] + '.gif" /></a> ';
                                 }
                             }
                             return string;
