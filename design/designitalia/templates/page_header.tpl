@@ -98,15 +98,23 @@
           </div>
         </div>
         <div class="col-xs-10">
-          <div id="logo" class="clearfix">
-            <a href="{'/'|ezurl(no)}" title="{$social_pagedata.site_title}" rel="{$social_pagedata.site_title}">
-              <img class="img-responsive" src="{$social_pagedata.logo_path|ezroot(no)}" alt="{$social_pagedata.site_title}" style="max-height: 75px" height="75">
-            </a>
-          </div>
-          <div id="site-name" class="clearfix">
-            <a href="{'/'|ezurl(no)}" title="{$social_pagedata.logo_title}"><h1>{$social_pagedata.logo_title}</h1></a>
-            <span class="logo_subtitle">{$social_pagedata.logo_subtitle}</span>
-          </div>
+          {if is_header_only_logo_enabled()}
+            <div id="logo" class="clearfix">
+              <a href="{'/'|ezurl(no)}" title="{$social_pagedata.site_title}" rel="{$social_pagedata.site_title}">
+                <img class="img-responsive" src="{$social_pagedata.logo_path|ezroot(no)}" alt="{$social_pagedata.site_title}" style="max-height: 75px" height="75">
+              </a>
+            </div>
+          {else}
+            <div id="logo" class="clearfix">
+              <a href="{'/'|ezurl(no)}" title="{$social_pagedata.site_title}" rel="{$social_pagedata.site_title}">
+                <img class="img-responsive" src="{$social_pagedata.logo_path|ezroot(no)}" alt="{$social_pagedata.site_title}" style="max-height: 75px" height="75">
+              </a>
+            </div>
+            <div id="site-name" class="clearfix">
+              <a href="{'/'|ezurl(no)}" title="{$social_pagedata.logo_title}"><h1>{$social_pagedata.logo_title}</h1></a>
+              <span class="logo_subtitle">{$social_pagedata.logo_subtitle}</span>
+            </div>
+          {/if}
         </div>
 
         {*<div id="mobile-search" class="col-xs-12 hidden-md hidden-lg hidden">
