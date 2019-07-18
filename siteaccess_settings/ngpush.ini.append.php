@@ -65,3 +65,4 @@ attrId_message[]
 attrId_message[article]=body
 attrId_picture[]
 attrId_picture[article]=image
+*/?>

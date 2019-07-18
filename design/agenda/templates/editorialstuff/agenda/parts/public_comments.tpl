@@ -95,8 +95,7 @@
                         ],
                         "columnDefs": [
                             {
-                                "render": function (data, type, row, meta) {
-                                    moment.locale('it');
+                                "render": function (data, type, row, meta) {                                    
                                     var validDate = moment(data, moment.ISO_8601);
                                     if (validDate.isValid()) {
                                         return '<span style="white-space:nowrap">' + validDate.format("D MMMM YYYY, hh:mm") + '</span>';

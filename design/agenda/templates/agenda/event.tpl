@@ -66,7 +66,7 @@
 
                     {if or($luogo, $node|has_attribute( 'indirizzo' ), $node|has_attribute( 'luogo_svolgimento' ),$node|has_attribute( 'comune' ))}
 					<p> <i class="fa fa-map-marker"></i>
-                        <strong>{'Dove'|i18n('agenda/event')}</strong>
+                        <strong>{'Where'|i18n('agenda/event')}</strong>
 
                         {if $luogo}
                             {$luogo.name|wash()}
@@ -117,7 +117,7 @@
                             {def $obj = fetch(content,object, hash(object_id, $item['contentobject_id']))}
                             {if $obj.can_read}
                             <div class="well well-sm">
-                                <i class="fa fa-link"></i> <strong>parte di </strong> <a href="{concat('agenda/event/',$obj.main_node_id)|ezurl(no)}">{$obj.name|wash()}</a>
+                                <i class="fa fa-link"></i> <a href="{concat('agenda/event/',$obj.main_node_id)|ezurl(no)}">{$obj.name|wash()}</a>
                             </div>
 							{/if}
                             {undef $obj}
@@ -162,7 +162,7 @@
 
 				  <div id="event-map-{$geo_attribute.id}" style="width: 100%; height: 300px;"></div>
 				  <p class="goto space text-center">
-					  <a class="btn btn-lg btn-success" target="_blank" href="https://www.google.com/maps/dir//'{$geo_attribute.content.latitude},{$geo_attribute.content.longitude}'/@{$geo_attribute.content.latitude},{$geo_attribute.content.longitude},15z?hl=it">{'Come arrivare'|i18n('agenda/event')} <i class="fa fa-external-link"></i></a>
+					  <a class="btn btn-lg btn-success" target="_blank" href="https://www.google.com/maps/dir//'{$geo_attribute.content.latitude},{$geo_attribute.content.longitude}'/@{$geo_attribute.content.latitude},{$geo_attribute.content.longitude},15z?hl=it">{'How to get there'|i18n('agenda/event')} <i class="fa fa-external-link"></i></a>
 				  </p>
 
 			  {run-once}
@@ -260,7 +260,7 @@
 
         {if $node|has_attribute('allegati')}
             <div class="col-md-12">
-                <h3>{'Allegati'|i18n('agenda/event')}</h3>
+                <h3>{'Attachments'|i18n('agenda/event')}</h3>
                 {attribute_view_gui attribute=$node|attribute('allegati')}
             </div>
         {/if}
@@ -287,7 +287,7 @@
     {if is_comment_enabled()}
     <div class="service_teaser">
         <div class="service_details comments clearfix">
-            <h2><i class="fa fa-comments"></i> {'Commenti'|i18n('agenda')}</h2>
+            <h2><i class="fa fa-comments"></i> {'Comments'|i18n('agenda')}</h2>
         {if $reply_count}
             {include uri='design:agenda/comments/comments.tpl'}
         {/if}
@@ -300,7 +300,7 @@
                 {set $offset = 0}
             {/if}
             <div class="pull-right">
-                <a class="btn btn-lg btn-primary comment-reply" href={concat("agenda/comment/", $node.node_id, "/(offset)/", $offset )|ezurl()}>{'Inserisci commento'|i18n( 'design/ocbootstrap/full/forum_topic' )}</a>
+                <a class="btn btn-lg btn-primary comment-reply" href={concat("agenda/comment/", $node.node_id, "/(offset)/", $offset )|ezurl()}>{'Insert a comment'|i18n( 'design/ocbootstrap/full/forum_topic' )}</a>
             </div>
 
             <form method="post" action={"content/action/"|ezurl}>
@@ -311,7 +311,7 @@
                 <input type="hidden" name="ContentLanguageCode" value="{ezini( 'RegionalSettings', 'ContentObjectLocale', 'site.ini')}" />
             </form>
         {else}
-            <p><em>{'Per poter commentare devi essere autenticato'|i18n('agenda')}</em></p>
+            <p><em>{'In order to leave comments, you need to be logged in'|i18n('agenda')}</em></p>
         {/if}
 
         </div>

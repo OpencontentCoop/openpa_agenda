@@ -37,22 +37,22 @@ $(document).ready(function () {
             "order": [[3, "desc"]],
             "columns": [
                 {"data": "metadata.remoteId", "name": 'remote_id', "title": '', "sortable": false},
-                {"data": "data", "name": 'titolo', "title": Translations['Titolo']},
+                {"data": "data", "name": 'titolo', "title": Translations['Title']},
                 {
                     "data": "metadata",
                     "name": 'raw[meta_owner_name_t]',
-                    "title": 'Autore'
+                    "title": Translations['Author']
                 },
-                {"data": "metadata.published", "name": 'published', "title": Translations['Pubblicato']},
-                {"data": "data", "name": 'from_time', "title": Translations['Inizio']},
-                {"data": "data", "name": 'from_time', "title": Translations['Fine']},
-                {"data": "metadata.stateIdentifiers", "name": 'state', "title": Translations['Stato'], "sortable": false},
-                {"data": "metadata.id", "name": 'id', "title": Translations['Traduzioni'], "sortable": false}
+                {"data": "metadata.published", "name": 'published', "title": Translations['Published']},
+                {"data": "data", "name": 'from_time', "title": Translations['Start date']},
+                {"data": "data", "name": 'from_time', "title": Translations['End date']},
+                {"data": "metadata.stateIdentifiers", "name": 'state', "title": Translations['Status'], "sortable": false},
+                {"data": "metadata.id", "name": 'id', "title": Translations['Translations'], "sortable": false}
             ],
             "columnDefs": [
                 {
                     "render": function (data, type, row) {
-                        return '<a class="btn btn-info" href="' + tools.settings('accessPath') + '/editorialstuff/edit/agenda/' + row.metadata.id + '">'+Translations['Dettaglio']+'</a>';
+                        return '<a class="btn btn-info" href="' + tools.settings('accessPath') + '/editorialstuff/edit/agenda/' + row.metadata.id + '">'+Translations['Detail']+'</a>';
                     },
                     "targets": [0]
                 },
@@ -128,16 +128,17 @@ $(document).ready(function () {
                             var keys = $.map(contentData, function (value, key) {
                                 return key;
                             });
-                            var string = '';
+                            var string = '<div style="white-space:nowrap">';
                             var languages = tools.settings('languages');
                             var length = languages.length;
                             for (var i = 0; i < length; i++) {
                                 if ($.inArray(languages[i], keys) >= 0) {
-                                  string += '<a href="' + tools.settings('accessPath') + '/content/edit/' + row.metadata.id + '/f/' + languages[i] + '"><img src="/share/icons/flags/' + languages[i] + '.gif" /></a> ';
+                                  string += '<a href="' + tools.settings('accessPath') + '/content/edit/' + row.metadata.id + '/f/' + languages[i] + '"><img style="max-width:none" src="/share/icons/flags/' + languages[i] + '.gif" /></a> ';
                                 } else {
-                                  string += '<a href="' + tools.settings('accessPath') + '/content/edit/' + row.metadata.id + '/a"><img style="opacity:0.2" src="/share/icons/flags/' + languages[i] + '.gif" /></a> ';
+                                  string += '<a href="' + tools.settings('accessPath') + '/content/edit/' + row.metadata.id + '/a"><img style="max-width:none;opacity:0.2" src="/share/icons/flags/' + languages[i] + '.gif" /></a> ';
                                 }
                             }
+                            string += '</div>';
                             return string;
                         }
                         return '';

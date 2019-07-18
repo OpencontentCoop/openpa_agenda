@@ -1,3 +1,6 @@
+{def $current_language = ezini('RegionalSettings', 'Locale')}
+{def $current_locale = fetch( 'content', 'locale' , hash( 'locale_code', $current_language ))}
+{def $moment_language = $current_locale.http_locale_code|explode('-')[0]|downcase()|extract_left( 2 )}
 {ezscript_require( array(
     'ezjsc::jquery',
     'jquery.opendataTools.js',
@@ -8,9 +11,7 @@
     'leaflet.markercluster.js',
     'leaflet.makimarkers.js',
     'fullcalendar/fullcalendar.js',
-    'fullcalendar/locale/it.js',
-    'fullcalendar/locale/de.js',
-    'fullcalendar/locale/en.js',
+    concat('fullcalendar/locale/', $moment_language, '.js'),
     'openpa_agenda_helpers.js',
     'jquery.opendataSearchView.js',
     'openpa_agenda_filters/base.js',
@@ -66,9 +67,6 @@
 {if is_set($filters)|not()}{def $filters = array()}{/if}
 {undef $has_tags_tipo $has_tags_luogo $has_tags_theme}
 
-{def $current_language=ezini('RegionalSettings', 'Locale')}
-{def $moment_language = $current_language|explode('-')[1]|downcase()}
-
 <script>
     moment.locale('{$moment_language}');
     $.opendataTools.settings('is_collaboration_enabled', {cond(is_collaboration_enabled(), 'true', 'false')});
@@ -101,7 +99,7 @@
 
 {literal}
 <style>
-    .patronage small span::before {content: "{/literal}{'Patrocinato da'|i18n('agenda')}{literal} ";}
+    .patronage small span::before {content: "{/literal}{'Sponsored by'|i18n('agenda')}{literal} ";}
 </style>
 {/literal}
 

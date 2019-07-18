@@ -8,3 +8,4 @@ AvailableEndpoint[]
 #TrentinoCulturaServer=
 #TrentinoCulturaLogin=
 #TrentinoCulturaPassword=
+*/?>

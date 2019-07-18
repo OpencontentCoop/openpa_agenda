@@ -1,4 +1,6 @@
-{def $current_language=ezini('RegionalSettings', 'Locale')}
+{def $current_language = ezini('RegionalSettings', 'Locale')}
+{def $current_locale = fetch( 'content', 'locale' , hash( 'locale_code', $current_language ))}
+{def $moment_language = $current_locale.http_locale_code|explode('-')[0]|downcase()|extract_left( 2 )}
 <script>
   var CurrentUserIsModerator = {cond(current_user_is_agenda_moderator(), true, false)};
   var CurrentUserId = {fetch(user, current_user).contentobject_id};
@@ -49,7 +51,7 @@
 <div class="row">
   <div class="col-md-12">
       <section class="hgroup">
-        <h1>{'Gestisci eventi'|i18n('agenda/dashboard')}</h1>
+        <h1>{'Manage events'|i18n('agenda/dashboard')}</h1>
       </section>
 
         {if $factory_configuration.CreationRepositoryNode}
@@ -59,16 +61,16 @@
         <div class="clearfix row">
             <div class="col-sm-{if $luogo_is_enabled}6{else}8{/if}">
                 <ul class="nav nav-pills space">
-                    <li class="active"><a data-toggle="tab" href="#table"><i class="fa fa-list" aria-hidden="true"></i> {'Lista'|i18n('agenda/dashboard')}</a></li>
-                    <li><a data-toggle="tab" href="#calendar"><i class="fa fa-calendar" aria-hidden="true"></i> {'Calendario'|i18n('agenda/dashboard')}</a></li>
+                    <li class="active"><a data-toggle="tab" href="#table"><i class="fa fa-list" aria-hidden="true"></i> {'List'|i18n('agenda/dashboard')}</a></li>
+                    <li><a data-toggle="tab" href="#calendar"><i class="fa fa-calendar" aria-hidden="true"></i> {'Calendar'|i18n('agenda/dashboard')}</a></li>
                 </ul>
             </div>
             <div class="col-sm-{if $luogo_is_enabled}6{else}4{/if}">
                 <div class="space dashboard-filters">
                     <form class="form">
                         <div class="form-group">
-                            <label for="state">{'Stato'|i18n('agenda/dashboard')}</label>
-                            <select id="state" data-field="state" data-placeholder="{'Seleziona'|i18n('agenda/dashboard')}" name="state" class="form-control">
+                            <label for="state">{'Status'|i18n('agenda/dashboard')}</label>
+                            <select id="state" data-field="state" data-placeholder="{'Select'|i18n('agenda/dashboard')}" name="state" class="form-control">
                                 <option value=""></option>
                                 {foreach $states as $state}
                                     <option value="{$state.id|wash()}" data-state_identifier="{$state.identifier|wash()}" class="label-{$state.identifier|wash()}">{$state.current_translation.name|wash()}</option>
@@ -92,24 +94,24 @@
       <section class="hgroup">
         <div class="form-inline pull-right" id="search-iniziativa">
           <div class="form-group">
-            <label for="searchIniziativaByName" class="hide">{'Cerca per nome...'|i18n('agenda')}</label>
+            <label for="searchIniziativaByName" class="hide">{'Search by name ...'|i18n('agenda')}</label>
             <input type="text" class="form-control" id="searchIniziativaByName" placeholder="{'Cerca'|i18n('agenda')}">
           </div>
           <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> </button>
           <button type="reset" class="btn btn-default" style="display: none;"><i class="fa fa-times"></i> </button>
         </div>
-        <h1>{'Gestisci iniziative'|i18n('agenda/dashboard')}</h1>
+        <h1>{'Manage initiatives'|i18n('agenda/dashboard')}</h1>
       </section>
     </div>
     <div class="col-md-12">
         <table class="table table-striped table-bordered">
             <thead>
             <tr>
-                <th>{'Titolo'|i18n('agenda/dashboard')}</th>
-                <th>{'Autore'|i18n('agenda/dashboard')}</th>
-                <th>{'Pubblicato'|i18n('agenda/dashboard')}</th>
-                <th>{'Modificato'|i18n('agenda/dashboard')}</th>
-                <th>{'Traduzioni'|i18n('agenda/dashboard')}</th>
+                <th>{'Title'|i18n('agenda/dashboard')}</th>
+                <th>{'Author'|i18n('agenda/dashboard')}</th>
+                <th>{'Published'|i18n('agenda/dashboard')}</th>
+                <th>{'Changed'|i18n('agenda/dashboard')}</th>
+                <th>{'Translations'|i18n('agenda/dashboard')}</th>
                 <th></th>
             </tr>
             </thead>
@@ -127,12 +129,12 @@
 
 <script id="tpl-list-empty" type="text/x-jsrender">
 <tr><td colspan="6"><a href="#">
-    <i class="fa fa-times"></i> {'Nessun contenuto trovato'|i18n('agenda')}
+    <i class="fa fa-times"></i> {'No result found'|i18n('agenda')}
 </a></td></tr>
 </script>
 
 <script id="tpl-list-load-other" type="text/x-jsrender">
-<tr><td colspan="6"><a href="#" class="btn btn-primary btn-xs">{'Mostra meno recenti'|i18n('agenda')}</a></td></tr>
+<tr><td colspan="6"><a href="#" class="btn btn-primary btn-xs">{'Show less recent'|i18n('agenda')}</a></td></tr>
 </script>
 
 {include uri='design:agenda/parts/calendar/tpl-event.tpl'}
@@ -156,7 +158,6 @@
 
 </script>
 {/literal}
-{def $moment_language = $current_language|explode('-')[1]|downcase()}
 <script type="text/javascript" language="javascript" class="init">
     moment.locale('{$moment_language}');
     $.opendataTools.settings('accessPath', "{'/'|ezurl(no,full)}");
@@ -171,13 +172,14 @@
     {rdelim});
 
     var Translations = {ldelim}
-        'Titolo':'{'Titolo'|i18n('agenda/dashboard')}',
-        'Pubblicato':'{'Pubblicato'|i18n('agenda/dashboard')}',
-        'Inizio': '{'Inizio'|i18n('agenda/dashboard')}',
-        'Fine': '{'Fine'|i18n('agenda/dashboard')}',
-        'Stato': '{'Stato'|i18n('agenda/dashboard')}',
-        'Traduzioni': '{'Traduzioni'|i18n('agenda/dashboard')}',
-        'Dettaglio': '{'Dettaglio'|i18n('agenda/dashboard')}',
+        'Title':'{'Title'|i18n('agenda/dashboard')}',
+        'Published':'{'Published'|i18n('agenda/dashboard')}',
+        'Start date': '{'Start date'|i18n('agenda/dashboard')}',
+        'End date': '{'End date'|i18n('agenda/dashboard')}',
+        'Status': '{'Status'|i18n('agenda/dashboard')}',
+        'Translations': '{'Translations'|i18n('agenda/dashboard')}',
+        'Author': '{'Author'|i18n('agenda/dashboard')}',
+        'Detail': '{'Detail'|i18n('agenda/dashboard')}',
         'Loading...': '{'Loading...'|i18n('agenda/dashboard')}'
     {rdelim};
 

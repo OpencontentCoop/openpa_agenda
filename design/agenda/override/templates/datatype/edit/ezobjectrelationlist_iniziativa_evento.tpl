@@ -37,7 +37,7 @@
     <div class="space">
         <div class="form-inline pull-right" id="search-iniziativa">
             <div class="form-group">
-                <label for="searchIniziativaByName" class="hide">{'Cerca per nome...'|i18n('agenda')}</label>
+                <label for="searchIniziativaByName" class="hide">{'Search by name ...'|i18n('agenda')}</label>
                 <input type="text" class="form-control" id="searchIniziativaByName" placeholder="{'Cerca'|i18n('agenda')}">
             </div>
             <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> </button>
@@ -77,12 +77,12 @@
 
 <script id="tpl-list-empty" type="text/x-jsrender">
 <a href="#" class="list-group-item">
-    <i class="fa fa-times"></i> {'Nessun contenuto trovato'|i18n('agenda')}
+    <i class="fa fa-times"></i> {'No result found'|i18n('agenda')}
 </a>
 </script>
 
 <script id="tpl-list-load-other" type="text/x-jsrender">
-<a href="#" class="list-group-item btn btn-primary btn-xs">{'Mostra meno recenti'|i18n('agenda')}</a>
+<a href="#" class="list-group-item btn btn-primary btn-xs">{'Show less recent'|i18n('agenda')}</a>
 </script>
 
 {literal}

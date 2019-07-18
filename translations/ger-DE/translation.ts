@@ -1,910 +1,599 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.0">
-<context>
+  <context>
     <name>agenda</name>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="118"/>
-        <source>Patrocinato da</source>
-        <translation>Unter der Schirmherrschaft der</translation>
+      <source>Sponsored by</source>
+      <translation>Unter der Schirmherrschaft der</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/event.tpl" line="276"/>
-        <source>Commenti</source>
-        <translation>Kommentare</translation>
+      <source>Comments</source>
+      <translation>Kommentare</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/event.tpl" line="300"/>
-        <source>Per poter commentare devi essere autenticato</source>
-        <translation>Für ein Kommentar, musst du dich vorher anmelden!</translation>
+      <source>In order to leave comments, you need to be logged in</source>
+      <translation>Für ein Kommentar, musst du dich vorher anmelden!</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="8"/>
-        <source>Programma</source>
-        <translation>Veranstaltungsprogramm</translation>
+      <source>Programme</source>
+      <translation>Veranstaltungsprogramm</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="8"/>
-        <source>Scarica il programma in pdf</source>
-        <translation>pdf-Datei downloaden</translation>
+      <source>Download the pdf programme</source>
+      <translation>pdf-Datei downloaden</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="15"/>
-        <source>Rubrica</source>
-        <translation type="unfinished"></translation>
+      <source>Address Book</source>
+      <translation>Liste</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="15"/>
-        <source>associazioni</source>
-        <translation>Vereine</translation>
+      <source>Associations</source>
+      <translation>Vereine</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="15"/>
-        <source>Registro ufficiale del comune</source>
-        <translation>Das offizielle Register der Gemeinde</translation>
+      <source>Official Register of the town</source>
+      <translation>Das offizielle Register der Gemeinde</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="22"/>
-        <source>Sei un'associazione?</source>
-        <translation>Bis du ein Verein?</translation>
+      <source>Are you an association?</source>
+      <translation>Bis du ein Verein?</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="22"/>
-        <source>Scopri come partecipare!</source>
-        <translation>Nimm einfach teil!</translation>
+      <source>Find out how to participate!</source>
+      <translation>Nimm einfach teil!</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="49"/>
-        <source>Calendario</source>
-        <translation>Kalender</translation>
+      <source>List</source>
+      <translation>Liste</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="50"/>
-        <source>Sulla mappa</source>
-        <translation>Auf der map</translation>
+      <source>Calendar</source>
+      <translation>Kalender</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="64"/>
-        <source>Quando?</source>
-        <translation>Wann</translation>
+      <source>On the map</source>
+      <translation>Auf der map</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="67"/>
-        <source>Oggi</source>
-        <translation>Heute</translation>
+      <source>When?</source>
+      <translation>Wann</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="68"/>
-        <source>Questo fine settimana</source>
-        <translation>Am Wochenende</translation>
+      <source>Today</source>
+      <translation>Heute</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="69"/>
-        <source>I prossimi 7 giorni</source>
-        <translation>Die nächsten 7 Tage</translation>
+      <source>This weekend</source>
+      <translation>Am Wochenende</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="70"/>
-        <source>I prossimi 30 giorni</source>
-        <translation>Die nächsten 30 Tage</translation>
+      <source>Next 7 days</source>
+      <translation>Die nächsten 7 Tage</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="71"/>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="78"/>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="85"/>
-        <source>Tutti</source>
-        <translation>Alle</translation>
+      <source>Next 30 days</source>
+      <translation>Die nächsten 30 Tage</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="76"/>
-        <source>Cosa?</source>
-        <translation>Was ist los?</translation>
+      <source>All</source>
+      <translation>Alle</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="83"/>
-        <source>Chi sei?</source>
-        <translation>Für wen?</translation>
+      <source>Topics</source>
+      <translation>Themen</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="90"/>
-        <source>Manifestazione</source>
-        <translation>Veranstaltung</translation>
+      <source>What?</source>
+      <translation>Was ist los?</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="92"/>
-        <source>Tutte</source>
-        <translation>Alle Veranstaltungen</translation>
+      <source>Who are you?</source>
+      <translation>Für wen?</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="113"/>
-        <source>Loading...</source>
-        <translation type="unfinished"></translation>
+      <source>Where?</source>
+      <translation>Wo?</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/home.tpl" line="119"/>
-        <source>Nessun evento trovato</source>
-        <translation>Kein Event gefunden</translation>
+      <source>Event collection</source>
+      <translation>Veranstaltung</translation>
     </message>
     <message>
-      <location filename="../../design/agenda/templates/agenda/home.tpl" line="135"/>
-      <source>Carica altri eventi</source>
+      <source>All event collections</source>
+      <translation>Alle Veranstaltungen</translation>
+    </message>
+    <message>
+      <source>Loading...</source>
+      <translation>Warten bitte...</translation>
+    </message>
+    <message>
+      <source>No events found</source>
+      <translation>Kein Event gefunden</translation>
+    </message>
+    <message>
+      <source>Close</source>
+      <translation>schließen</translation>
+    </message>
+    <message>
+      <source>Load More Results</source>
       <translation>Weitere Events laden</translation>
     </message>
     <message>
-      <source>Chiudi</source>
-      <translation>schließen</translation>
-    </message>
-</context>
-<context>
-    <name>agenda/event</name>
-    <message>
-        <location filename="../../design/agenda/templates/agenda/event.tpl" line="112" />
-        <source>Dove</source>
-        <translation>Wo</translation>
+      <source>Search by name ...</source>
+      <translation>Suche mit Name</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/event.tpl" line="218" />
-        <source>Come arrivare</source>
-        <translation>So erreichen Sie den Veranstaltungsort</translation>
+      <source>Cerca</source>
+      <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/event.tpl" line="255" />
-        <source>Allegati</source>
-        <translation>Zubehör</translation>
+      <source>No result found</source>
+      <translation>Kein Event gefunden</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/event.tpl" line="295" />
-        <source>Maggiori informazioni</source>
-        <translation>Weitere Informationen</translation>
-    </message>
-</context>
-<context>
-    <name>agenda/event/hours</name>
-    <message>
-        <location filename="../../design/agenda/templates/atoms/dates.tpl" line="23" />
-        <source>da</source>
-        <translation>vom</translation>
+      <source>Show less recent</source>
+      <translation>Weniger aktuelle anzeigen</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/atoms/dates.tpl" line="25" />
-        <source>a</source>
-        <translation>bis</translation>
-    </message>
-</context>
-<context>
-    <name>agenda/event/days</name>
-    <message>
-        <location filename="../../design/agenda/templates/atoms/dates.tpl" line="32" />
-        <source>da</source>
-        <translation>vom</translation>
+      <source>Load more events</source>
+      <translation>Weitere Events laden</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/atoms/dates.tpl" line="34" />
-        <source>a</source>
-        <translation>bis zum</translation>
-    </message>
-</context>
-    <context>
-    <name>agenda/event/comments</name>
-    <message>
-        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="23" />
-        <source>Inserisci risposta</source>
-        <translation>Antwort hinzufügen</translation>
+      <source>Show more items</source>
+      <translation>Weitere Events laden</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="25" />
-        <source>Inserisci commento</source>
-        <translation>Kommentar hinzufügen</translation>
+      <source>Add to your calendar</source>
+      <translation>Zum Kalender hinzufügen</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="204" />
-        <source>Pubblica il commento</source>
-        <translation>Kommentar veröffentlichen</translation>
+      <source>More information</source>
+      <translation>Weitere Informationen</translation>
     </message>
-    <message>
-        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="205" />
-        <source>Annulla</source>
-        <translation>Löschen</translation>
-    </message>
-</context>
-<context>
+  </context>
+  <context>
     <name>agenda/config</name>
     <message>
-        <location filename="../../design/agenda/templates/agenda/config/moderators_table.tpl" line="42"/>
-        <location filename="../../design/agenda/templates/agenda/config/users_table.tpl" line="31"/>
-        <source>Blocca</source>
-        <translation type="unfinished"></translation>
+      <source>Lock</source>
+      <translation>Sperren</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/config/moderators_table.tpl" line="42"/>
-        <location filename="../../design/agenda/templates/agenda/config/users_table.tpl" line="31"/>
-        <source>Sblocca</source>
-        <translation type="unfinished"></translation>
+      <source>Unlock</source>
+      <translation>Freischalten</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/config.tpl" line="9"/>
-        <source>Modifica impostazioni generali</source>
-        <translation type="unfinished"></translation>
+      <source>Change general settings</source>
+      <translation>Ändern Sie die allgemeinen Einstellungen</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/config.tpl" line="18"/>
-        <source>Utenti</source>
-        <translation type="unfinished"></translation>
+      <source>Moderation is active</source>
+      <translation>Moderation ist aktiv</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/config.tpl" line="19"/>
-        <source>Moderatori</source>
-        <translation type="unfinished"></translation>
+      <source>User registration is active</source>
+      <translation>Benutzerregistrierung ist aktiv</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/config.tpl" line="29"/>
-        <location filename="../../design/agenda/templates/agenda/config.tpl" line="46"/>
-        <source>Cerca</source>
-        <translation type="unfinished"></translation>
+      <source>Associations registration is active</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/config.tpl" line="34"/>
-        <source>Aggiungi moderatore</source>
-        <translation type="unfinished"></translation>
+      <source>Comments enabled</source>
+      <translation>Kommentare sind aktiviert</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/config.tpl" line="36"/>
-        <source>Aggiungi utente esistente</source>
-        <translation type="unfinished"></translation>
+      <source>Login is active</source>
+      <translation>Login ist aktiv</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/config.tpl" line="51"/>
-        <source>Esporta in CSV</source>
-        <translation type="unfinished"></translation>
+      <source>Topics to hide in the main agenda</source>
+      <translation>Themen, die in der Hauptagenda zu verbergen sind</translation>
     </message>
-</context>
-<context>
+    <message>
+      <source>Event collections to hide in the main agenda</source>
+      <translation>Veranstaltungssammlungen, die sich in der Hauptagenda verstecken</translation>
+    </message>
+    <message>
+      <source>Users</source>
+      <translation>Benutzer</translation>
+    </message>
+    <message>
+      <source>Moderators</source>
+      <translation>Moderatoren</translation>
+    </message>
+    <message>
+      <source>External Users</source>
+      <translation>Externe Benutzer</translation>
+    </message>
+    <message>
+      <source>Search</source>
+      <translation>Suche</translation>
+    </message>
+    <message>
+      <source>Add a moderator</source>
+      <translation>Fügen Sie einen Moderator hinzu</translation>
+    </message>
+    <message>
+      <source>Add Existing User</source>
+      <translation>Fügen Sie einen vorhandenen Benutzer hinzu</translation>
+    </message>
+    <message>
+      <source>Add user</source>
+      <translation>Nutzer hinzufügen</translation>
+    </message>
+    <message>
+      <source>Export to CSV</source>
+      <translation>In CSV exportieren</translation>
+    </message>
+    <message>
+      <source>Add %classname</source>
+      <translation>%classname hinzufügen</translation>
+    </message>
+  </context>
+  <context>
     <name>agenda/dashboard</name>
     <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/dashboard.tpl" line="2"/>
-        <source>Gestisci eventi</source>
-        <translation>Veranstaltugen bearbeiten</translation>
+      <source>Title</source>
+      <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/dashboard.tpl" line="71"/>
-        <source>Crea un nuovo evento</source>
-        <translation>Neue Veranstaltung erstellen</translation>
+      <source>Published</source>
+      <translation>Veröffentlicht</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/dashboard.tpl" line="83"/>
-        <source>Filtra per stato</source>
-        <translation>Status Filter</translation>
+      <source>Start date</source>
+      <translation>Startdatum</translation>
     </message>
     <message>
-        <source>Non necessita moderazione</source>
-        <translation>Moderation nicht notwendig</translation>
+      <source>End date</source>
+      <translation>Enddatum</translation>
     </message>
     <message>
-        <source>In lavorazione</source>
-        <translation>in Bearbeitung</translation>
+      <source>Status</source>
+      <translation>Status</translation>
     </message>
     <message>
-        <source>In attesa di moderazione</source>
-        <translation>Warten auf Moderation</translation>
+      <source>Manage events</source>
+      <translation>Veranstaltugen bearbeiten</translation>
     </message>
     <message>
-        <source>Accettato</source>
-        <translation>Angenommen</translation>
+      <source>Manage initiatives</source>
+      <translation>Initiativen verwalten</translation>
     </message>
     <message>
-        <source>Rifiutato</source>
-        <translation>Abgelehnt</translation>
+      <source>Author</source>
+      <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/dashboard.tpl" line="45"/>
-        <source>Titolo</source>
-        <translation>Titel</translation>
+      <source>Changed</source>
+      <translation>Geändert</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/dashboard.tpl" line="46"/>
-        <source>Pubblicato</source>
-        <translation type="unfinished"></translation>
+      <source>Translations</source>
+      <translation>Übersetzungen</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/dashboard.tpl" line="47"/>
-        <source>Inizio</source>
-        <translation>Startdatum</translation>
+      <source>Detail</source>
+      <translation>Detail</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/dashboard.tpl" line="48"/>
-        <source>Fine</source>
-        <translation>Enddatum</translation>
+      <source>Loading...</source>
+      <translation>Warten bitte...</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/dashboard.tpl" line="49"/>
-        <source>Stato</source>
-        <translation>Status</translation>
+      <source>List</source>
+      <translation>Liste</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/dashboard.tpl" line="50"/>
-        <source>Traduzioni</source>
-        <translation>Übersetzung</translation>
+      <source>Calendar</source>
+      <translation>Kalender</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/dashboard.tpl" line="51"/>
-        <source>Dettaglio</source>
-        <translation>Detail</translation>
+      <source>Select</source>
+      <translation>Wählen</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/dashboard.tpl" line="52"/>
-        <source>Loading...</source>
-        <translation type="unfinished"></translation>
+      <source>Edit</source>
+      <translation>Abändern</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/dashboard.tpl" line="77"/>
-        <source>Lista</source>
-        <translation>Liste</translation>
+      <source>Preview</source>
+      <translation>Vorschau</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/dashboard.tpl" line="78"/>
-        <source>Calendario</source>
-        <translation>Kalender</translation>
+      <source>Publication date</source>
+      <translation>Veröffentlicht</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/dashboard.tpl" line="84"/>
-        <source>Seleziona</source>
-        <translation type="unfinished"></translation>
+      <source>Images</source>
+      <translation>Fotos</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/content.tpl" line="12"/>
-        <source>Modifica</source>
-        <translation>Abändern</translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/content.tpl" line="41"/>
-        <source>Cancella</source>
-        <translation>Löschen</translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/edit.tpl" line="15"/>
-        <source>Contenuto</source>
-        <translation>Inhalt</translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/edit.tpl" line="15"/>
-        <source>Galleria immagini</source>
-        <translation>Gallery</translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/edit.tpl" line="15"/>
-        <source>Commenti</source>
-        <translation>Kommentare</translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/edit.tpl" line="15"/>
-        <source>Press kit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/edit.tpl" line="15"/>
-        <source>Cronologia</source>
-        <translation>Chronologie</translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/content.tpl" line="40"/>
-        <source>Anteprima</source>
-        <translation>Vorschau</translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/content.tpl" line="48"/>
-        <source>Autore</source>
-        <translation>Autor</translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/content.tpl" line="55"/>
-        <source>Data di pubblicazione</source>
-        <translation>Veröffentlicht</translation>
-    </message>
-    <message>
-      <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/media.tpl" line="7"/>
-      <source>Nuovo</source>
+      <source>New</source>
       <translation>Neu</translation>
     </message>
     <message>
-      <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/media.tpl" line="19"/>
-      <source>Libreria</source>
+      <source>Image library</source>
       <translation>Bildarchiv</translation>
     </message>
     <message>
-      <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/media/images.tpl" line="16"/>
-      <source>Immagini</source>
-      <translation>Fotos</translation>
+      <source>Create new event</source>
+      <translation type="unfinished"/>
     </message>
-</context>
-<context>
+    <message>
+      <source>Create new association</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Create new event program</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
+  <context>
+    <name>agenda/event</name>
+    <message>
+      <source>Where</source>
+      <translation>Wo</translation>
+    </message>
+    <message>
+      <source>How to get there</source>
+      <translation>So erreichen Sie den Veranstaltungsort</translation>
+    </message>
+    <message>
+      <source>Attachments</source>
+      <translation>Zubehör</translation>
+    </message>
+  </context>
+  <context>
+    <name>agenda/event/comments</name>
+    <message>
+      <source>Enter answer</source>
+      <translation>Antwort hinzufügen</translation>
+    </message>
+    <message>
+      <source>Insert your comment</source>
+      <translation>Kommentar hinzufügen</translation>
+    </message>
+    <message>
+      <source>Publish your comment</source>
+      <translation>Kommentar veröffentlichen</translation>
+    </message>
+    <message>
+      <source>Cancel</source>
+      <translation>Löschen</translation>
+    </message>
+  </context>
+  <context>
+    <name>agenda/event/days</name>
+    <message>
+      <source>from</source>
+      <translation>vom</translation>
+    </message>
+    <message>
+      <source>to</source>
+      <translation>bis zum</translation>
+    </message>
+  </context>
+  <context>
+    <name>agenda/event/hours</name>
+    <message>
+      <source>from</source>
+      <translation>vom</translation>
+    </message>
+    <message>
+      <source>to</source>
+      <translation>bis</translation>
+    </message>
+  </context>
+  <context>
     <name>agenda/mail/registration</name>
     <message>
-        <location filename="../../design/agenda/templates/agenda/mail/mail_pagelayout.tpl" line="119"/>
-        <source>%privacy_link_start%Informazioni sulla privacy%privacy_link_end%</source>
-        <translation>%privacy_link_start%Datenschutz und privacy%privacy_link_end%</translation>
+      <source>%privacy_link_start%Privacy info%privacy_link_end%</source>
+      <translation>%privacy_link_start%Datenschutz und privacy%privacy_link_end%</translation>
     </message>
     <message>
-        <location filename="../../design/agenda/templates/agenda/mail/mail_pagelayout.tpl" line="120"/>
-        <source>%terms_link_start%Termini di utilizzo%terms_link_end%</source>
-        <translation>%terms_link_start%Nutzungsbedingungen%terms_link_end%</translation>
+      <source>%terms_link_start%Terms of use%terms_link_end%</source>
+      <translation>%terms_link_start%Nutzungsbedingungen%terms_link_end%</translation>
     </message>
-</context>
-<context>
+  </context>
+  <context>
     <name>agenda/menu</name>
     <message>
-        <location filename="OpenPAAgendaPageDataHandler.php" line="94"/>
-        <source>Faq</source>
-        <translation>Faq</translation>
+      <source>FAQ</source>
+      <translation>Faq</translation>
     </message>
     <message>
-        <location filename="OpenPAAgendaPageDataHandler.php" line="99"/>
-        <source>Privacy</source>
-        <translation>Datenshutz und Privacy</translation>
+      <source>Privacy</source>
+      <translation>Datenshutz und Privacy</translation>
     </message>
     <message>
-        <location filename="OpenPAAgendaPageDataHandler.php" line="104"/>
-        <source>Termini di utilizzo</source>
-        <translation>Nutzungsbedingungen</translation>
+      <source>Terms of use</source>
+      <translation>Nutzungsbedingungen</translation>
     </message>
     <message>
-        <location filename="OpenPAAgendaPageDataHandler.php" line="113"/>
-        <source>Agenda</source>
-        <translation>Kalender</translation>
+      <source>Agenda</source>
+      <translation>Kalender</translation>
     </message>
     <message>
-        <location filename="OpenPAAgendaPageDataHandler.php" line="120"/>
-        <source>Associazioni</source>
-        <translation>Vereine</translation>
+      <source>Associations</source>
+      <translation>Vereine</translation>
     </message>
     <message>
-        <location filename="OpenPAAgendaPageDataHandler.php" line="130"/>
-        <source>Gestisci eventi</source>
-        <translation>Veranstaltugen bearbeiten</translation>
+      <source>Manage events</source>
+      <translation>Veranstaltugen bearbeiten</translation>
     </message>
     <message>
-        <location filename="OpenPAAgendaPageDataHandler.php" line="138"/>
-        <source>Informazioni</source>
-        <translation>Informationen</translation>
+      <source>Information</source>
+      <translation>Informationen</translation>
     </message>
     <message>
-        <location filename="OpenPAAgendaPageDataHandler.php" line="152"/>
-        <source>Profilo</source>
-        <translation>Profil</translation>
+      <source>Profile</source>
+      <translation>Profil</translation>
     </message>
     <message>
-        <location filename="OpenPAAgendaPageDataHandler.php" line="158"/>
-        <source>Notifiche</source>
-        <translation>Benachrichtigungseinstellungen</translation>
+      <source>Settings</source>
+      <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="OpenPAAgendaPageDataHandler.php" line="168"/>
-        <location filename="../../design/agenda/templates/agenda/config.tpl" line="2"/>
-        <source>Settings</source>
-        <translation>Einstellungen</translation>
+      <source>Manage associations</source>
+      <translation>Vereine verwalten</translation>
     </message>
     <message>
-        <location filename="OpenPAAgendaPageDataHandler.php" line="178"/>
-        <source>Gestisci associazioni</source>
-        <translation>Vereine verwalten</translation>
+      <source>Manage PDF Programme</source>
+      <translation>Pdf-Programm bearbeiten</translation>
     </message>
     <message>
-        <location filename="OpenPAAgendaPageDataHandler.php" line="184"/>
-        <source>Gestisci programma in pdf</source>
-        <translation>Pdf-Programm bearbeiten</translation>
+      <source>Logout</source>
+      <translation>Abmelden</translation>
+    </message>
+  </context>
+  <context>
+    <name>agenda/signupassociazione</name>
+    <message>
+      <source>Do you want to register your association?</source>
+      <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="OpenPAAgendaPageDataHandler.php" line="191"/>
-        <source>Esci</source>
-        <translation>Abmelden</translation>
+      <source>To register an association, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events.</source>
+      <translation type="unfinished"/>
     </message>
-</context>
-<context>
+    <message>
+      <source>Register an association</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Info were saved and sent for validation</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Register a new association</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Register</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Annulla</source>
+      <translation>Warten auf Moderation</translation>
+    </message>
+  </context>
+  <context>
     <name>agenda/states</name>
     <message>
-        <location filename="../../design/agenda/templates/agenda/comments/comment.tpl" line="32"/>
-        <source>In attesa di moderazione</source>
-        <translation>Warten auf Moderation</translation>
+      <source>Waiting for moderation</source>
+      <translation>Warten auf Moderation</translation>
     </message>
-</context>
-<context>
-    <name>design/admin/content/browse</name>
-    <message>
-        <location filename="../../design/agenda/templates/content/browse/multiupload.tpl" line="60"/>
-        <location filename="../../design/agenda/templates/content/browse/multiupload.tpl" line="121"/>
-        <source>Cancel</source>
-        <translation>Annullieren</translation>
-    </message>
-</context>
-<context>
-    <name>design/admin/content/edit</name>
-    <message>
-        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="39"/>
-        <source>Required data is either missing or is invalid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="48"/>
-        <source>The following locations are invalid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="57"/>
-        <source>The following data is invalid according to the custom validation rules</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>design/admin/content/edit_attribute</name>
-    <message>
-        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="126"/>
-        <source>not translatable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="145"/>
-        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="170"/>
-        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="183"/>
-        <source>required</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="146"/>
-        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="171"/>
-        <location filename="../../design/agenda/override/templates/comment_edit.tpl" line="184"/>
-        <source>information collector</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>design/admin/content/upload</name>
-    <message>
-        <location filename="../../design/agenda/templates/content/browse/multiupload.tpl" line="119"/>
-        <source>Upload</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>design/ezwebin/pagelayout</name>
-    <message>
-        <location filename="../../design/agenda/templates/content/browse/default.tpl" line="51"/>
-        <source>Search</source>
-        <translation>Suche</translation>
-    </message>
-</context>
-<context>
-    <name>design/ocbootstrap/content/browse</name>
-    <message>
-        <location filename="../../design/agenda/templates/content/browse/default.tpl" line="42"/>
-        <source>Browse</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/browse/default.tpl" line="45"/>
-        <source>To select objects, choose the appropriate radiobutton or checkbox(es), and click the &quot;Select&quot; button.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/browse/default.tpl" line="46"/>
-        <source>To select an object that is a child of one of the displayed objects, click the parent object name to display a list of its children.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/browse/default.tpl" line="95"/>
-        <source>Select</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/browse/default.tpl" line="99"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>design/ocbootstrap/full/forum_topic</name>
-    <message>
-        <location filename="../../design/agenda/templates/agenda/comments/comment.tpl" line="24"/>
-        <source>Moderated by</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/agenda/event.tpl" line="289"/>
-        <source>Inserisci commento</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>design/standard/content/browse</name>
-    <message>
-        <location filename="../../design/agenda/templates/content/browse/multiupload.tpl" line="62"/>
-        <source>Browse</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>design/standard/content/datatype</name>
-    <message>
-        <location filename="../../design/agenda/override/templates/datatype/edit/ezobjectrelationlist_associazioni_evento.tpl" line="47"/>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezobjectrelationlist.tpl" line="174"/>
-        <source>Parent node</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/override/templates/datatype/edit/ezobjectrelationlist_associazioni_evento.tpl" line="49"/>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezobjectrelationlist.tpl" line="176"/>
-        <source>Allowed classes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/override/templates/datatype/edit/ezobjectrelationlist_associazioni_evento.tpl" line="56"/>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezobjectrelationlist.tpl" line="183"/>
-        <source>Any</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/override/templates/datatype/edit/ezobjectrelationlist_associazioni_evento.tpl" line="59"/>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezobjectrelationlist.tpl" line="186"/>
-        <source>There are no objects of allowed classes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezobjectrelationlist.tpl" line="65"/>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezobjectrelationlist.tpl" line="149"/>
-        <source>No relation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezobjectrelationlist.tpl" line="194"/>
-        <source>Create new object with name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezobjectrelationlist.tpl" line="220"/>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezobjectrelationlist.tpl" line="221"/>
-        <source>Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezobjectrelationlist.tpl" line="222"/>
-        <source>Section</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezobjectrelationlist.tpl" line="223"/>
-        <source>Published</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezobjectrelationlist.tpl" line="224"/>
-        <source>Order</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezobjectrelationlist.tpl" line="272"/>
-        <source>Add existing objects</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezobjectrelationlist.tpl" line="272"/>
-        <source>Browse to add existing objects in this relation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezuser.tpl" line="19"/>
-        <source>Username</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezuser.tpl" line="23"/>
-        <source>Email</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezuser.tpl" line="27"/>
-        <source>Confirm email</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezuser.tpl" line="31"/>
-        <source>Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/content/datatype/edit/ezuser.tpl" line="34"/>
-        <source>Confirm password</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>extension/ezstarrating/datatype</name>
-    <message>
-        <location filename="../../design/agenda/templates/agenda/event.tpl" line="36"/>
-        <location filename="../../design/agenda/templates/openpa/full/associazione.tpl" line="24"/>
-        <source>Currently %current_rating out of 5 Stars.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/agenda/event.tpl" line="42"/>
-        <location filename="../../design/agenda/templates/openpa/full/associazione.tpl" line="30"/>
-        <source>Thank you for rating!</source>
-        <comment>When rating</comment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ezcomments/comment/add/form</name>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/comments.tpl" line="54"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/comments.tpl" line="54"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/comments.tpl" line="54"/>
-        <source>Title:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/comments.tpl" line="64"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/comments.tpl" line="64"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/comments.tpl" line="64"/>
-        <source>Content:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/comments.tpl" line="76"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/comments.tpl" line="76"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/comments.tpl" line="76"/>
-        <source>Notify me of new comments</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ezcomments/comment/view</name>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/comments.tpl" line="128"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/comments.tpl" line="128"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/comments.tpl" line="128"/>
-        <source>View all %total_count comments</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ngpush/status</name>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/social.tpl" line="43"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/social.tpl" line="43"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/social.tpl" line="43"/>
-        <source>Please wait, requesting...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/social.tpl" line="44"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/social.tpl" line="44"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/social.tpl" line="44"/>
-        <source>This entry has already been pushed.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/social.tpl" line="45"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/social.tpl" line="45"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/social.tpl" line="45"/>
-        <source>Message is too long!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/social.tpl" line="77"/>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/social.tpl" line="182"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/social.tpl" line="77"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/social.tpl" line="182"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/social.tpl" line="77"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/social.tpl" line="182"/>
-        <source>Waiting...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/social.tpl" line="83"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/social.tpl" line="83"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/social.tpl" line="83"/>
-        <source>You have %number characters remaining.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/social.tpl" line="108"/>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/social.tpl" line="236"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/social.tpl" line="108"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/social.tpl" line="236"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/social.tpl" line="108"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/social.tpl" line="236"/>
-        <source>Push</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/social.tpl" line="254"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/social.tpl" line="254"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/social.tpl" line="254"/>
-        <source>Push to all services</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/social.tpl" line="260"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/social.tpl" line="260"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/social.tpl" line="260"/>
-        <source>No defined push services.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ngpush/ui</name>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/social.tpl" line="90"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/social.tpl" line="90"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/social.tpl" line="90"/>
-        <source>Insert hashtags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/social.tpl" line="112"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/social.tpl" line="112"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/social.tpl" line="112"/>
-        <source>Insert full link</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../design/agenda/templates/editorialstuff/agenda/parts/social.tpl" line="115"/>
-        <location filename="../../design/agenda/templates/editorialstuff/associazione/parts/social.tpl" line="115"/>
-        <location filename="../../design/agenda/templates/editorialstuff/programma_eventi/parts/social.tpl" line="115"/>
-        <source>Insert short link</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ocsocialdesign</name>
-    <message>
-        <location filename="../../design/agenda/templates/pagelayout.tpl" line="43"/>
-        <source>Contatti</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
+  </context>
+  <context>
     <name>openpa_agenda</name>
     <message>
-        <location filename="agendaitem.php" line="31"/>
-        <source>Contenuto</source>
-        <translation type="unfinished"></translation>
+      <source>Content</source>
+      <translation>Hauptinhalte</translation>
     </message>
     <message>
-        <location filename="agendaitem.php" line="40"/>
-        <source>Galleria immagini</source>
-        <translation type="unfinished"></translation>
+      <source>Image Gallery</source>
+      <translation>Gallery</translation>
     </message>
     <message>
-        <location filename="agendaitem.php" line="57"/>
-        <source>Social Network</source>
-        <translation type="unfinished"></translation>
+      <source>Share</source>
+      <translation>Share</translation>
     </message>
     <message>
-        <location filename="agendaitem.php" line="65"/>
-        <source>Commenti</source>
-        <translation type="unfinished"></translation>
+      <source>Comments</source>
+      <translation>Kommentare</translation>
     </message>
     <message>
-        <location filename="agendaitem.php" line="72"/>
-        <source>Press kit</source>
-        <translation type="unfinished"></translation>
+      <source>Press kit</source>
+      <translation>Press kit</translation>
     </message>
     <message>
-        <location filename="agendaitem.php" line="78"/>
-        <source>Cronologia</source>
-        <translation type="unfinished"></translation>
+      <source>History</source>
+      <translation>Chronologie</translation>
     </message>
-</context>
-<context>
-    <name>social_user/signin</name>
     <message>
-        <location filename="../../design/agenda/templates/social_user/login_form.tpl" line="5"/>
-        <source>Per lasciare i tuoi commenti, devi iscriverti!</source>
-        <translation>Für ein Kommentar, musst du dich vorher anmelden!</translation>
+      <source>Flyer</source>
+      <translation type="unfinished"/>
     </message>
-</context>
-
+  </context>
+  <context>
+    <name>agenda/leaflet</name>
+    <message>
+      <source>Two columns (18 events)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Three columns (20 events)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Three columns (40 events)</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Title</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Abstract</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Period</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Hours</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Duration</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Location</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Delete selected events</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Add existing event</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Choose the layout for the flyer</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Save and download flyer</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>selected events</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Event abstracts greater than %number characters will be automatically cut.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>You can use the form below to customize the event abstract on the flyer.</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>missing characters</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>characters in excess</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Automatically generated abstract</source>
+      <translation type="unfinished"/>
+    </message>
+  </context>
 </TS>

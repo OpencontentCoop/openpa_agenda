@@ -13,7 +13,7 @@
 
 <div class="container">
     <section class="hgroup">
-        <h1>Libreria immagini</h1>
+        <h1>{'Image library'|i18n('agenda/dashboard')}</h1>
     </section>
 
     <div class="row">
@@ -53,18 +53,20 @@
 
     <form class="form" id="search-images">
         <div class="row">
-          <div data-filter="license" class="form-group col-md-9">
+          <div data-filter="license" class="form-group col-md-7">
               <ul class="list-inline">
-                <li><a href="#" data-value="all" class="label label-default">{'Tutti'|i18n('agenda')}</a></li>
+                <li><a href="#" data-value="all" class="label label-default">{'All'|i18n('agenda')}</a></li>
               </ul>
           </div>
-          <div class="col-md-3 form-inline">
-            <div class="form-group">
-                <label for="searchImagesByName" class="hide">{'Cerca per nome...'|i18n('agenda')}</label>
-                <input type="text" class="form-control" id="searchImagesByName" placeholder="{'Cerca'|i18n('agenda')}">
+          <div class="col-md-5 form-inline">
+            <div class="input-group">
+                <label for="searchImagesByName" class="hide">{'Search by name ...'|i18n('agenda')}</label>
+                <input type="text" class="form-control" id="searchImagesByName" placeholder="{'Search'|i18n('editorialstuff/dashboard')}">            
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> </button>
+                    <button type="reset" class="btn btn-danger hide"><i class="fa fa-times"></i> </button>
+                </div>
             </div>
-            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> </button>
-            <button type="reset" class="btn btn-default" style="display: none;"><i class="fa fa-times"></i> </button>
           </div>
         </div>
     </form>
@@ -116,14 +118,14 @@
 <script id="tpl-image-empty" type="text/x-jsrender">
 <div class="col-xs-12">
 <a href="#">
-    <i class="fa fa-times"></i> {'Nessun contenuto trovato'|i18n('agenda')}
+    <i class="fa fa-times"></i> {'No result found'|i18n('agenda')}
 </a>
 </div>
 </script>
 
 <script id="tpl-image-load-other" type="text/x-jsrender">
 <div class="col-xs-12 text-center ">
-<a href="#" class="btn btn-primary btn-xs">{'Mostra altri elementi'|i18n('agenda')}</a>
+<a href="#" class="btn btn-primary btn-xs">{'Show more items'|i18n('agenda')}</a>
 </div>
 </script>
 
@@ -233,13 +235,13 @@
         init: function (view, filter) {
             searchForm.find('button[type="submit"]').on('click', function (e) {
                 var currentValue = searchForm.find('#searchImagesByName').val();
-                searchForm.find('button[type="reset"]').show();
+                searchForm.find('button[type="reset"]').removeClass('hide');
                 filter.setCurrent(currentValue);
                 view.doSearch();
                 e.preventDefault();
             });
             searchForm.find('button[type="reset"]').on('click', function (e) {
-                searchForm.find('button[type="reset"]').hide();
+                searchForm.find('button[type="reset"]').addClass('hide');
                 searchForm.find('#searchImagesByName').val('');
                 filter.setCurrent('');
                 view.doSearch();

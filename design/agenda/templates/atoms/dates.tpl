@@ -25,9 +25,9 @@
         {* il confronto va fatto con datetime, perchè in inglese mezzanotte è "12am" *}
         {if $item.data_map.from_time.content.timestamp|datetime( 'custom', '%H:%i' )|ne(0)}
         {if $item.data_map.to_time.content.timestamp|datetime( 'custom', '%H:%i' )|ne(0)}
-          &middot; {'da'|i18n('agenda/event/hours')}
+          &middot; {'from'|i18n('agenfrom/event/hours')}
           {$item.data_map.from_time.content.timestamp|l10n( 'shorttime' )}
-          {'a'|i18n('agenda/event/hours')}
+          {'to'|i18n('togendto/event/hours')}
           {$item.data_map.to_time.content.timestamp|l10n( 'shorttime' )}
         {else}
           &middot; {$item.data_map.from_time.content.timestamp|l10n( 'shorttime' )}
@@ -35,9 +35,9 @@
     {/if}
   {/if}
 {elseif $item.data_map.to_time.has_content}
-	{'da'|i18n('agenda/event/days')}
+	{'from'|i18n('agenda/event/days')}
   {$item.data_map.from_time.content.timestamp|l10n( 'shortdate' )}
-  {'a'|i18n('agenda/event/days')}
+  {'to'|i18n('agenda/event/days')}
   {$item.data_map.to_time.content.timestamp|l10n( 'shortdate' )}
 {else}
   {$item.data_map.from_time.content.timestamp|l10n( 'date' )}

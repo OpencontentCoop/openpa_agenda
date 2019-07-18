@@ -59,13 +59,13 @@
 ) )}
 <script>
 var Translations = {ldelim}
-    'Titolo':'{'Titolo'|i18n('agenda/dashboard')}',
-    'Pubblicato':'{'Pubblicato'|i18n('agenda/dashboard')}',
-    'Inizio': '{'Inizio'|i18n('agenda/dashboard')}',
-    'Fine': '{'Fine'|i18n('agenda/dashboard')}',
-    'Stato': '{'Stato'|i18n('agenda/dashboard')}',
-    'Traduzioni': '{'Traduzioni'|i18n('agenda/dashboard')}',
-    'Dettaglio': '{'Dettaglio'|i18n('agenda/dashboard')}',
+    'Title':'{'Title'|i18n('agenda/dashboard')}',
+    'Published':'{'Published'|i18n('agenda/dashboard')}',
+    'Start date': '{'Start date'|i18n('agenda/dashboard')}',
+    'End date': '{'End date'|i18n('agenda/dashboard')}',
+    'Status': '{'Status'|i18n('agenda/dashboard')}',
+    'Translations': '{'Translations'|i18n('agenda/dashboard')}',
+    'Detail': '{'Detail'|i18n('agenda/dashboard')}',
     'Loading...': '{'Loading...'|i18n('agenda/dashboard')}'
 {rdelim};
 {literal}

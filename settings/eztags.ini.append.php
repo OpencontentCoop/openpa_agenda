@@ -11,3 +11,4 @@ IndexParentTagsPerClassAttribute[]=event/luogo_evento
 IndexParentTagsPerClassAttribute[]=agenda_event/luogo_evento
 IndexParentTagsPerClassAttribute[]=event/tematica_evento
 IndexParentTagsPerClassAttribute[]=agenda_event/tematica_evento
+*/ ?>

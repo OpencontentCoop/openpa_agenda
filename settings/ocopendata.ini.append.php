@@ -7,3 +7,4 @@ AvailablePresets[]=fullcalendar
 CheckAccess=false
 Debug=disabled
 PHPClass=OpenPAAgendaFullcalendarEnvironmentSettings
+*/ ?>

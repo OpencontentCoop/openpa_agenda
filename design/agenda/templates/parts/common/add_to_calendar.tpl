@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-12">
         <span class="addtocalendar atc-style-blue">
-            <a class="atcb-link"><i class="fa fa-calendar" aria-hidden="true"></i> {'Aggiungi al tuo calendario'|i18n('agenda')}</a>
+            <a class="atcb-link"><i class="fa fa-calendar" aria-hidden="true"></i> {'Add to your calendar'|i18n('agenda')}</a>
             <var class="atc_event">
             {if $node.data_map.from_time.has_content}
                 <var class="atc_date_start">{$node.data_map.from_time.content.timestamp|datetime( custom, '%Y-%m-%d %H:%i:%s')}</var>

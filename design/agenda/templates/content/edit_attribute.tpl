@@ -12,20 +12,19 @@
     {/if}
 {/foreach}
 
-<ul class="nav nav-tabs">
-    {if $count|gt(0)}
-        {set $count = 0}
-        {foreach $content_attributes_grouped_data_map as $attribute_group => $content_attributes_grouped}
-            {if $attribute_group|ne('hidden')}
-                <li class="{if $count|eq(0)} active{/if}">
-                    <a data-toggle="tab" href="#attribute-group-{$attribute_group}">{$attribute_categorys[$attribute_group]}</a>
-                </li>
-                {set $count = $count|inc()}
-            {/if}
-        {/foreach}
-    {/if}
-    <li class="pull-right"><a data-toggle="tab" href="#contentactions">Informazioni generali</a></li>
+{if $count|gt(1)}
+<ul class="nav nav-tabs">    
+    {set $count = 0}
+    {foreach $content_attributes_grouped_data_map as $attribute_group => $content_attributes_grouped}
+        {if $attribute_group|ne('hidden')}
+            <li class="{if $count|eq(0)} active{/if}">
+                <a data-toggle="tab" href="#attribute-group-{$attribute_group}">{$attribute_categorys[$attribute_group]}</a>
+            </li>
+            {set $count = $count|inc()}
+        {/if}
+    {/foreach}    
 </ul>
+{/if}
 
 <div class="tab-content">
     {set $count = 0}
@@ -129,7 +128,4 @@
             {/foreach}
         </div>
     {/foreach}
-    <div class="clearfix attribute-edit tab-pane" id="contentactions">
-        {include uri="design:content/edit_right_menu.tpl"}
-    </div>
 </div>

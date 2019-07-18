@@ -16,49 +16,49 @@
   </aside>
 
   <aside class="widget agenda-filters" data-filter="date">
-    <h4>{'Quando?'|i18n('agenda')}</h4>
+    <h4>{'When?'|i18n('agenda')}</h4>
     <div class="datepicker" id="datepicker" style="display: none"></div>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#" data-value="today">{'Oggi'|i18n('agenda')}</a></li>
-      <li><a href="#" data-value="weekend">{'Questo fine settimana'|i18n('agenda')}</a></li>
-      <li><a href="#" data-value="next 7 days">{'I prossimi 7 giorni'|i18n('agenda')}</a></li>
-      <li><a href="#" data-value="next 30 days">{'I prossimi 30 giorni'|i18n('agenda')}</a></li>
-      <li {if and(is_set($hide_all_filter), $hide_all_filter|eq(true()))}class="hidden"{elseif and(is_set($view_all), $view_all|eq(true()))}class="active"{/if}><a href="#" data-value="all">{'Tutti'|i18n('agenda')}</a></li>
+      <li><a href="#" data-value="today">{'Today'|i18n('agenda')}</a></li>
+      <li><a href="#" data-value="weekend">{'This weekend'|i18n('agenda')}</a></li>
+      <li><a href="#" data-value="next 7 days">{'Next 7 days'|i18n('agenda')}</a></li>
+      <li><a href="#" data-value="next 30 days">{'Next 30 days'|i18n('agenda')}</a></li>
+      <li {if and(is_set($hide_all_filter), $hide_all_filter|eq(true()))}class="hidden"{elseif and(is_set($view_all), $view_all|eq(true()))}class="active"{/if}><a href="#" data-value="all">{'All'|i18n('agenda')}</a></li>
     </ul>
   </aside>
 
   <aside class="widget agenda-filters" data-filter="theme" style="display: none">
-    <h4>{'Tematica'|i18n('agenda')}</h4>
+    <h4>{'Topics'|i18n('agenda')}</h4>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#" data-value="all">{'Tutte'|i18n('agenda')}</a></li>
+      <li><a href="#" data-value="all">{'All event collections'|i18n('agenda')}</a></li>
     </ul>
   </aside>
 
   <aside class="widget agenda-filters" data-filter="type" style="display: none">
-    <h4>{'Cosa?'|i18n('agenda')}</h4>
+    <h4>{'What?'|i18n('agenda')}</h4>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#" data-value="all">{'Tutti'|i18n('agenda')}</a></li>
+      <li><a href="#" data-value="all">{'All'|i18n('agenda')}</a></li>
     </ul>
   </aside>
 
   <aside class="widget agenda-filters" data-filter="target" style="display: none">
-    <h4>{'Chi sei?'|i18n('agenda')}</h4>
+    <h4>{'Who are you?'|i18n('agenda')}</h4>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#" data-value="all">{'Tutti'|i18n('agenda')}</a></li>
+      <li><a href="#" data-value="all">{'All'|i18n('agenda')}</a></li>
     </ul>
   </aside>
 
   <aside class="widget agenda-filters" data-filter="where" style="display: none">
-    <h4>{'Dove?'|i18n('agenda')}</h4>
+    <h4>{'Where?'|i18n('agenda')}</h4>
     <ul class="nav nav-pills nav-stacked">
-        <li><a href="#" data-value="all">{'Tutti'|i18n('agenda')}</a></li>
+        <li><a href="#" data-value="all">{'All'|i18n('agenda')}</a></li>
     </ul>
   </aside>
 
   <aside class="widget agenda-filters" data-filter="iniziativa" style="display: none">
-    <h4>{'Manifestazione'|i18n('agenda')}</h4>
+    <h4>{'Event collection '|i18n('agenda')}</h4>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#" data-value="all">{'Tutte'|i18n('agenda')}</a></li>
+      <li><a href="#" data-value="all">{'All event collections'|i18n('agenda')}</a></li>
     </ul>
   </aside>
 </div>

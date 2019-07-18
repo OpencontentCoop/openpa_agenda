@@ -13,3 +13,4 @@ TTL=0
 
 [AccessSettings]
 UseContentPdfPolicy=disabled
+*/ ?>

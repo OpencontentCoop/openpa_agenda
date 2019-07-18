@@ -116,8 +116,8 @@
                         <td align='center' valign='top'>
                           <small>
                             &copy; {currentdate()|datetime('custom', '%Y')} {$social_pagedata.logo_title} -
-                            {'%privacy_link_start%Informazioni sulla privacy%privacy_link_end%'|i18n('agenda/mail/registration',, hash( '%privacy_link_start%', concat( '<a href=http://', $social_pagedata.site_url, '/agenda/info/privacy/>' ), '%privacy_link_end%', '</a>' ))} -
-                            {'%terms_link_start%Termini di utilizzo%terms_link_end%'|i18n('agenda/mail/registration',, hash( '%terms_link_start%', concat( '<a href=http://', $social_pagedata.site_url, '/agenda/info/terms/>' ), '%terms_link_end%', '</a>' ))}
+                            {'%privacy_link_start%Privacy info%privacy_link_end%'|i18n('agenda/mail/registration',, hash( '%privacy_link_start%', concat( '<a href=http://', $social_pagedata.site_url, '/agenda/info/privacy/>' ), '%privacy_link_end%', '</a>' ))} -
+                            {'%terms_link_start%Terms of use%terms_link_end%'|i18n('agenda/mail/registration',, hash( '%terms_link_start%', concat( '<a href=http://', $social_pagedata.site_url, '/agenda/info/terms/>' ), '%terms_link_end%', '</a>' ))}
                           </small>
                         </td>
                     </tr>

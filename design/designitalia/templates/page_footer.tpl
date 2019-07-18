@@ -32,7 +32,7 @@
   <div class="container-fluid footer-container">
     <div class="row">
       <div class="col-md-4 col-sm-6">
-        <h3>{'Contatti'|i18n('ocsocialdesign')}</h3>
+        <h3>{'Contacts'|i18n('ocsocialdesign')}</h3>
         <p>{attribute_view_gui attribute=$social_pagedata.attribute_contacts}</p>
       </div>
 

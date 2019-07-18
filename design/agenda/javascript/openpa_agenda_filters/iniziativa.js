@@ -11,6 +11,14 @@ var OpenpaAgendaIniziativaFilter = $.extend({}, OpenpaAgendaBaseFilter, {
     buildQuery: function () {
         var currentValues = this.getCurrent();
         if (currentValues.length && jQuery.inArray('all', currentValues) == -1) {
+            currentValues = jQuery.map( currentValues, function( element ) {
+              return element.replace(/"/g, '\\\"')
+                .replace(/'/g, "\\'")
+                .replace(/\(/g, "\\(")
+                .replace(/\)/g, "\\)")
+                .replace(/\[/g, "\\[")
+                .replace(/\]/g, "\\]");
+            });
             return 'iniziativa in [\'' + currentValues.join("','") + '\']';
         }
     }

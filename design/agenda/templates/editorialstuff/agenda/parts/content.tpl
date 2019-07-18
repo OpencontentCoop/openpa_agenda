@@ -9,7 +9,7 @@
                     <input type="hidden" name="ContentObjectLanguageCode"
                            value="{ezini( 'RegionalSettings', 'ContentObjectLocale', 'site.ini')}"/>
                     <button class="btn btn-info btn-lg" type="submit" name="EditButton">
-                        {'Modifica'|i18n('agenda/dashboard')}
+                        {'Edit'|i18n('agenda/dashboard')}
                     </button>
                     <input type="hidden" name="HasMainAssignment" value="1"/>
                     <input type="hidden" name="ContentObjectID" value="{$post.object.id}"/>
@@ -34,7 +34,7 @@
             </div>
         {/if}
         <div class="col-xs-4 col-md-2">
-            <a class="btn btn-info btn-lg load-preview" data-object="{$post.object.id}" href="#">{'Anteprima'|i18n('agenda/dashboard')}</a>
+            <a class="btn btn-info btn-lg load-preview" data-object="{$post.object.id}" href="#">{'Preview'|i18n('agenda/dashboard')}</a>
         </div>
         <div class="col-xs-4 col-md-2">
             <form action="{concat('editorialstuff/action/agenda/', $post.object_id)|ezurl(no)}" method="post">
@@ -44,7 +44,7 @@
                     <button class="btn btn-warning btn-lg"
                             type="submit"
                             name="ActionCopy">
-                        Copia evento
+                        {'Copy'|i18n('design/standard/content/copy')}
                     </button>
 
                 </p>
@@ -55,7 +55,7 @@
         <div class="col-xs-4 col-md-2">
             <form method="post" action="{"content/action"|ezurl(no)}" style="display: inline;">
 
-            <button class="btn btn-danger btn-lg" type="submit" name="ActionRemove">Elimina</button>
+            <button class="btn btn-danger btn-lg" type="submit" name="ActionRemove">{'Delete'|i18n('design/standard/gui')}</button>
 
             <input type="hidden" name="ContentObjectID" value="{$post.object.id}" />
             <input type="hidden" name="NodeID" value="{$post.object.main_node_id}" />
@@ -74,14 +74,14 @@
 
 
     <div class="row edit-row">
-        <div class="col-md-2"><strong><em>{'Autore'|i18n('agenda/dashboard')}</em></strong></div>
+        <div class="col-md-2"><strong><em>{'Author'|i18n('agenda/dashboard')}</em></strong></div>
         <div class="col-md-10">
             {if $post.object.owner}{$post.object.owner.name|wash()}{else}?{/if}
         </div>
     </div>
 
     <div class="row edit-row">
-        <div class="col-md-2"><strong><em>{'Data di pubblicazione'|i18n('agenda/dashboard')}</em></strong></div>
+        <div class="col-md-2"><strong><em>{'Publication date'|i18n('agenda/dashboard')}</em></strong></div>
         <div class="col-md-10">
             <p>{$post.object.published|l10n(shortdatetime)}</p>
             {if $post.object.current_version|gt(1)}
@@ -91,22 +91,6 @@
             {/if}
         </div>
     </div>
-
-{*
-    <div class="row edit-row">
-        <div class="col-md-2"><strong><em>Collocazioni</em></strong></div>
-        <div class="col-md-10">
-            <ul class="list-unstyled">
-                {foreach $post.object.assigned_nodes as $item}
-                    <li>
-                        <a href={$item.url_alias|ezurl()}>{$item.path_with_names}</a>
-                        {if $item.node_id|eq($post.object.main_node_id)}(principale){/if}
-                    </li>
-                {/foreach}
-            </ul>
-        </div>
-    </div>
-*}
 
 	{def $attribute_categories = ezini( 'ClassAttributeSettings', 'CategoryList', 'content.ini' )}
     {foreach $post.content_attributes_grouped_data_map as $category => $attributes}
