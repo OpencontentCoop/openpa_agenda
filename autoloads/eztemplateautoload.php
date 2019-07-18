@@ -21,5 +21,8 @@ $eZTemplateOperatorArray[] = array(
         'agenda_association_class_identifier',
         'is_login_enabled',
         'is_registration_enabled',
+        'associazioni_root_node_id',
+        'fill_social_matrix', 'social_matrix_fields', 'social_links',
+        'visibility_states'
     )
 );

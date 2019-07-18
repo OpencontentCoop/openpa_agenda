@@ -11,7 +11,7 @@ PolicyOmitList[]=agenda/use
 
 [Event]
 Listeners[]=content/cache@OpenPAAgendaModuleFunctions::onClearObjectCache
-
+Listeners[]=request/input@OpenPAAgendaModuleFunctions::checkUserRegister
 
 [Cache]
 CacheItems[]=agenda

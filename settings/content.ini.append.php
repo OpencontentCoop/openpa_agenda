@@ -5,5 +5,5 @@
 CategoryList[geo]=Dove
 CategoryList[time]=Quando
 CategoryList[config]=Configurazioni
-
+CategoryList[view]=Visualizzazioni
 */ ?>

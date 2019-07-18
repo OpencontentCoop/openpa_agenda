@@ -72,13 +72,16 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
         if ($afterState->attribute('identifier') == 'private'){
             $this->disableUser();
             $this->flushObject();
-            eZSearch::addObject($this->getObject(), true);
         }elseif ($afterState->attribute('identifier') == 'public'){
             $this->enableUser();
             $this->flushObject();
-            eZSearch::addObject($this->getObject(), true);
             $this->notify();
         }
+
+        if ($beforeState->attribute('identifier') != $afterState->attribute('identifier')) {
+            $this->setObjectLastModified();
+        }
+
         return parent::onChangeState($beforeState, $afterState);
     }
 

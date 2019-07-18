@@ -68,7 +68,7 @@
                 <div class="row">
                     <div class="form {$col_signin_inside}">
                         <form name="loginform" method="post" action={'/user/login/'|ezurl}>
-                            <input autocomplete="off" placeholder="{'Indirizzo Email'|i18n('social_user/signin')}" class="form-control" type="text" name="Login">
+                            <input autocomplete="off" placeholder="{'Email address'|i18n('social_user/signin')}" class="form-control" type="text" name="Login">
                             <input autocomplete="off" placeholder="{'Password'|i18n('social_user/signin')}" class="form-control" type="password" name="Password">
                             <button name="LoginButton" type="submit" class="btn btn-primary btn-lg">{'Log in'|i18n('social_user/signin')}</button>
                             <hr />
@@ -97,7 +97,6 @@
                                 {'It takes just 5 seconds to register!'|i18n('social_user/signup')}
                             </h3>
                         </div>
-                        {*<p class="sign_title">{'Create an account now: it's easy and free!'|i18n('social_user/signup')}</p>*}
                         <div class="row">
                             <div class="{$col_signup_inside}">
                                 <input autocomplete="off" id="Name" name="Name" placeholder="{'Name and surname'|i18n('social_user/signup')}" class="form-control" required="" type="text" value="{if is_set($name)}{$name}{/if}" />

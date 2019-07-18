@@ -14,5 +14,11 @@ if ( is_numeric( $NodeId ) && OpenPAAgenda::instance()->checkAccess($NodeId))
 }
 else
 {
-    $module->redirectTo('/');
+    $redirect = '/';
+    if (OpenPAAgenda::instance()->isSiteRoot()) {
+        $node = eZContentObjectTreeNode::fetch(OpenPAAgenda::calendarNodeId());
+        $redirect = $node->attribute('url_alias');
+    }
+
+    $module->redirectTo($redirect);
 }

@@ -111,7 +111,7 @@
                             <table border='0' cellpadding='0' cellspacing='0' width='100%'>
                                 <tr>
                                     <td align='center' valign='top'>
-                                        <h2>{'Thank you for your willingness to participate!'|i18n('social_user/mail/registration')}</h2>
+                                        <h2>{'Thank you want to participate!'|i18n('social_user/mail/registration')}</h2>
                                     </td>
                                 </tr>
                                 <tr>
@@ -122,7 +122,7 @@
                                 <tr>
                                     <td align='center' style='border-top: 1px solid #dce1e5;border-bottom: 1px solid #dce1e5;' valign='top'>
                                         <p>
-                                            <strong>{'First name'|i18n('social_user/mail/registration')}:</strong>
+                                            <strong>{'Name'|i18n('social_user/mail/registration')}:</strong>
                                             {$user.contentobject.name|wash()}
                                         </p>
                                         <p>

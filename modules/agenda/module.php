@@ -98,6 +98,19 @@ $ViewList['calendar'] = array(
     'functions' => array('use')
 );
 
+$ViewList['visibility'] = array(
+    'script' => 'visibility.php',
+    'params' => array("ID", "Visibility"),
+    'functions' => array('config')
+);
+
+$ViewList['add_place'] = array(
+    'script' => 'add_place.php',
+    'params' => array("ParentNodeId"),
+    'functions' => array('use')
+);
+
+
 $FunctionList = array();
 $FunctionList['use'] = array();
 $FunctionList['config'] = array();

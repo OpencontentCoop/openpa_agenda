@@ -39,6 +39,8 @@ class OpenPAAgenda
 
     private static $_instance;
 
+    private $eventClassType;
+
     public static function instance()
     {
         if (self::$_instance === null) {
@@ -59,6 +61,22 @@ class OpenPAAgenda
     public function getEventClassIdentifier()
     {
         return eZINI::instance('editorialstuff.ini')->variable('agenda', 'ClassIdentifier');
+    }
+
+    public function getEventClassType()
+    {
+        if ($this->eventClassType === null) {
+            $eventClassIdentifier = OpenPAAgenda::instance()->getEventClassIdentifier();
+            $eventClass = eZContentClass::fetchByIdentifier($eventClassIdentifier);
+            if (!$eventClass instanceof eZContentClass) {
+                $this->eventClassType = false;
+            }else {
+                $eventClassDataMap = $eventClass->dataMap();
+                $this->eventClassType = isset($eventClassDataMap['time_interval']) ? 'CPEV' : 'default';
+            }
+        }
+
+        return $this->eventClassType;
     }
 
     public function getAssociationClassIdentifier()
@@ -277,7 +295,7 @@ class OpenPAAgenda
         return OpenPABase::getCustomSiteaccessName( 'agenda' );
     }
 
-    public function imagePath($identifier)
+    public function imagePath($identifier, $aliasName = 'original')
     {
         $data = false;
         if (isset( $this->rootDataMap[$identifier] )) {
@@ -286,7 +304,7 @@ class OpenPAAgenda
             {
                 /** @var eZImageAliasHandler $content */
                 $content = $this->rootDataMap[$identifier]->content();
-                $original = $content->attribute( 'original' );
+                $original = $content->attribute( $aliasName );
                 $data = $original['full_path'];
             }
             else
@@ -499,5 +517,26 @@ class OpenPAAgenda
     public function isRegistrationEnabled()
     {        
         return $this->getAttributeString('enable_registration') == 1 || $this->getAttributeString('enable_registration') == '';
+    }
+
+    public function getVisibilityStates()
+    {
+        $stateGroup = eZContentObjectStateGroup::fetchByIdentifier('privacy');
+        if ($stateGroup instanceof eZContentObjectStateGroup){
+            $visibilityStates = [];
+            /** @var eZContentObjectState $state */
+            foreach ($stateGroup->states() as $state){
+                $visibilityStates[$state->attribute('identifier')] = $state;
+            }
+
+            return $visibilityStates;
+        }
+
+        return [];
+    }
+
+    public function isSiteRoot()
+    {
+        return $this->rootNode()->attribute('node_id') == eZINI::instance('content.ini')->variable('NodeSettings', 'RootNode');
     }
 }

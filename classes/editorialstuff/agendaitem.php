@@ -28,6 +28,11 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
                 eZSearch::addObject($this->getObject(), true);
             }
         }
+
+        if ($beforeState->attribute('identifier') != $afterState->attribute('identifier')) {
+            $this->setObjectLastModified();
+        }
+
         return parent::onChangeState($beforeState, $afterState);
     }
 
@@ -75,7 +80,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
             )
         );
         $access = $currentUser->hasAccessTo('editorialstuff', 'media');
-        if ($access['accessWord'] == 'yes' && in_array('images', $this->factory->attributeIdentifiers())) {
+        if ($access['accessWord'] == 'yes' && in_array('image', $this->factory->attributeIdentifiers())) {
             $tabs[] = array(
                 'identifier' => 'media',
                 'name' => ezpI18n::tr('openpa_agenda', 'Image Gallery'),

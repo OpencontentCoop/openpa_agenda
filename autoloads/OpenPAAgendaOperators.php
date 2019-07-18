@@ -27,6 +27,11 @@ class OpenPAAgendaOperators
             'agenda_association_class_identifier',
             'is_registration_enabled',
             'is_login_enabled',
+            'associazioni_root_node_id',
+            'fill_social_matrix',
+            'social_matrix_fields',
+            'social_links',
+            'visibility_states',
         );
     }
 
@@ -57,6 +62,10 @@ class OpenPAAgendaOperators
             ),
             'current_user_has_limited_edit_agenda_event_attribute' => array(
                 'attribute' => array( 'type' => 'object', 'required' => true )
+            ),
+            'fill_social_matrix' => array(
+                'attribute' => array('type' => 'object', 'required' => true),
+                'fields' => array('type' => 'array', 'required' => false, 'default' => OpenPAAttributeSocialHandler::getContactsFields())
             ),
         );
     }
@@ -96,6 +105,28 @@ class OpenPAAgendaOperators
         $agenda = OpenPAAgenda::instance();
         switch( $operatorName )
         {
+            case 'visibility_states':
+                $operatorValue = OpenPAAgenda::instance()->getVisibilityStates();
+                break;
+
+            case 'social_links':
+                $operatorValue = OpenPAAttributeSocialHandler::getContactsData(OpenPAAgenda::instance()->getAttribute('social'));
+                break;
+
+            case 'social_matrix_fields':
+                $operatorValue = OpenPAAttributeSocialHandler::getContactsFields();
+                break;
+
+            case 'fill_social_matrix':
+                $attribute = $namedParameters['attribute'];
+                $fields = $namedParameters['fields'];
+                $operatorValue = OpenPAAttributeSocialHandler::fillContactsData($attribute, $fields);
+                break;
+
+            case 'associazioni_root_node_id':
+                return $operatorValue = OpenPAAgenda::associationsNodeId();
+                break;
+
             case 'is_registration_enabled':
                 return $operatorValue = $agenda->isRegistrationEnabled();
                 break;

@@ -30,10 +30,7 @@ ClassName=AgendaFactory
 ClassIdentifier=event
 CreationButtonText=Create new event
 AttributeIdentifiers[]
-AttributeIdentifiers[images]=images
-AttributeIdentifiers[videos]=video
-AttributeIdentifiers[audios]=audio
-AttributeIdentifiers[tags]=argomento
+AttributeIdentifiers[images]=image
 StateGroup=moderation
 States[skipped]=Non necessita di moderazione
 States[draft]=In lavorazione

@@ -55,14 +55,14 @@
 
 <div class="row editorialstuff">
   <div class="col-sm-12">
-    
+
     {include name=navigator
             uri='design:navigator/google.tpl'
             page_uri=concat('editorialstuff/dashboard/', $factory_identifier )
             item_count=$post_count
             view_parameters=$view_parameters
             item_limit=$view_parameters.limit}
-    
+
     <div class="table-responsive">
     <table class="table table-striped" cellpadding="0" cellspacing="0" border="0">
       <tr>
@@ -77,14 +77,14 @@
     {foreach $posts as $post}
       <tr>
 
-          <td class="text-center">            
+          <td class="text-center">
             {if is_set($post.object.languages[ezini('RegionalSettings','Locale')])}
             <a href="{concat( 'editorialstuff/edit/', $factory_identifier, '/', $post.object.id )|ezurl('no')}" title="Dettaglio" class="btn btn-info">
                 {'Detail'|i18n('editorialstuff/dashboard')}
-            </a>            
+            </a>
             {/if}
           </td>
-          
+
           <td>
             {if $post.object.owner}{$post.object.owner.name|wash()}{else}?{/if}
           </td>
@@ -98,7 +98,7 @@
             {include uri=concat('design:', $template_directory, '/parts/state.tpl')}
           </td>
           {/if}
-          
+
           <td>
             <a data-toggle="modal" data-load-remote="{concat( 'layout/set/modal/content/view/full/', $post.object.main_node_id )|ezurl('no')}" data-remote-target="#preview .modal-content" href="#{*$post.url*}" data-target="#preview">{$post.object.name}</a>
           </td>
@@ -110,25 +110,25 @@
                 {else}
                     <a href="{concat('/content/edit/', $post.object.id, '/a')|ezurl(no)}"><img style="max-width:none;opacity:0.2" src="/share/icons/flags/{$language}.gif" /></a>
                 {/if}
-            {/foreach}            
+            {/foreach}
           </td>
-          
+
           <td>
             {include uri='design:parts/toolbar/node_trash.tpl' current_node=$post.node redirect_if_cancel=concat('editorialstuff/dashboard/', $factory_identifier ) redirect_after_remove=concat('editorialstuff/dashboard/', $factory_identifier ) }
           </td>
-      
+
       </tr>
     {/foreach}
     </table>
     </div>
-    
+
     {include name=navigator
             uri='design:navigator/google.tpl'
             page_uri=concat('editorialstuff/dashboard/', $factory_identifier )
             item_count=$post_count
             view_parameters=$view_parameters
             item_limit=$view_parameters.limit}
-    
+
   </div>
 </div>
 

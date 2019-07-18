@@ -75,6 +75,9 @@ foreach( $otherFolders as $folder )
     }
 }
 
+$Http->setSessionVariable('RedirectURIAfterPublish', '/agenda/config/' . $Part);
+$Http->setSessionVariable('RedirectIfDiscarded', '/agenda/config/' . $Part);
+
 $tpl->setVariable( 'root', $root );
 $tpl->setVariable( 'current_user', $currentUser );
 $tpl->setVariable( 'persistent_variable', array() );

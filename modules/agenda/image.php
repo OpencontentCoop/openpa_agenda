@@ -28,9 +28,17 @@ if ($object instanceof eZContentObject && $object->canRead()){
 
                 $file->passthrough();
                 eZExecution::cleanExit();
+            }else{
+                $message = 'File not found';
             }
+        }else{
+            $message = 'Alias path not found';
         }
+    }else{
+        $message = 'Datamap image not found';
     }
+}else{
+    $message = 'User con not read this content';
 }
 
 header( $_SERVER['SERVER_PROTOCOL'] . " 500 Internal Server Error" );
@@ -42,3 +50,4 @@ echo <<<EOF
 <h1>$message</h1>
 </body></html>
 EOF;
+eZExecution::cleanExit();

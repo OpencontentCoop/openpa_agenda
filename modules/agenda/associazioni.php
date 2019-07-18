@@ -18,21 +18,26 @@ if (OpenPAAgenda::instance()->isCollaborationModeEnabled() || eZUser::currentUse
     } else {
         $currentUser = eZUser::currentUser();
 
-        $tpl->setVariable('current_user', $currentUser);
-        $tpl->setVariable('persistent_variable', array());
+        if (OpenPAAgenda::instance()->isSiteRoot()) {
+            $node = eZContentObjectTreeNode::fetch(OpenPAAgenda::associationsNodeId());
+            $Module->redirectTo($node->attribute('url_alias'));
+        }else{
+            $tpl->setVariable('current_user', $currentUser);
+            $tpl->setVariable('persistent_variable', array());
 
-        $Result = array();
-        $Result['persistent_variable'] = $tpl->variable('persistent_variable');
-        $Result['content'] = $tpl->fetch('design:agenda/associazioni.tpl');
-        $Result['node_id'] = 0;
+            $Result = array();
+            $Result['persistent_variable'] = $tpl->variable('persistent_variable');
+            $Result['content'] = $tpl->fetch('design:agenda/associazioni.tpl');
+            $Result['node_id'] = 0;
 
-        $contentInfoArray = array('url_alias' => 'agenda/associazioni');
-        $contentInfoArray['persistent_variable'] = array();
-        if ($tpl->variable('persistent_variable') !== false) {
-            $contentInfoArray['persistent_variable'] = $tpl->variable('persistent_variable');
+            $contentInfoArray = array('url_alias' => 'agenda/associazioni');
+            $contentInfoArray['persistent_variable'] = array();
+            if ($tpl->variable('persistent_variable') !== false) {
+                $contentInfoArray['persistent_variable'] = $tpl->variable('persistent_variable');
+            }
+            $Result['content_info'] = $contentInfoArray;
+            $Result['path'] = array();
         }
-        $Result['content_info'] = $contentInfoArray;
-        $Result['path'] = array();
     }
 
 } else {

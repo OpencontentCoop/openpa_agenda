@@ -12,6 +12,10 @@ class OpenPAAgendaModuleFunctions
                 && in_array($rootNode->attribute('node_id'), $nodeList)
             ) {
                 self::clearAgendaCache(self::GLOBAL_PREFIX);
+                if (OpenPAAgenda::instance()->isSiteRoot()) {
+                    OpenPAPageData::clearOnModifyHomepage();
+                    eZCache::clearByTag('template');
+                }
             }
         } catch (Exception $e) {
             eZDebugSetting::writeError('agenda', $e->getMessage(), __METHOD__);
@@ -168,5 +172,13 @@ class OpenPAAgendaModuleFunctions
     public static function clearCache()
     {
         self::clearAgendaCache('');
+    }
+
+    public static function checkUserRegister(eZURI $uri)
+    {
+        if (!OpenPAAgenda::instance()->isRegistrationEnabled() && $uri->URI == 'user/register'){
+            eZDebug::writeError("Forbidden action user/register", __METHOD__);
+            header('Location: /');
+        }
     }
 }

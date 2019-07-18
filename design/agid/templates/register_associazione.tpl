@@ -7,7 +7,7 @@
             <div class="alert alert-info text-center">
                 <i class="fa fa-check fa-5x"></i>
                 <h3>{"Info were saved and sent for validation"|i18n('agenda/signupassociazione')}</h3>
-                <h4>{"When they are validated you will receive an email notification to the email address you entered"|i18n('social_user/signup')}</h4>
+                <h4>{"When they are validated you will receive an email notification to the email address you entered"|i18n('agenda/signupassociazione')}</h4>
             </div>
 
         {else}

@@ -177,7 +177,7 @@ if (OpenPAAgenda::instance()->isAutoRegistrationEnabled()) {
                         'version' => $version->attribute('version')
                     ));
 
-                    if ($operationResult['status'] !== eZModuleOperationInfo::STATUS_CONTINUE) {
+                    if ($operationResult['status'] !== eZModuleOperationInfo::STATUS_REPEAT || $operationResult['status'] !== eZModuleOperationInfo::STATUS_CONTINUE) {
                         eZDebug::writeError('Unexpected operation status: ' . $operationResult['status'], __FILE__);
                     }
 
