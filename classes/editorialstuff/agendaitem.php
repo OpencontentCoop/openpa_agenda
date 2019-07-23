@@ -19,7 +19,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
 
     public function onChangeState(eZContentObjectState $beforeState, eZContentObjectState $afterState)
     {
-        if ($afterState->attribute('indentifier') == 'waiting' && !OpenPAAgenda::instance()->isModerationEnabled()){
+        if ($afterState->attribute('identifier') == 'waiting' && !OpenPAAgenda::instance()->isModerationEnabled()){
             $states = $this->states();
             $accepted = 'moderation.accepted';
             if (isset( $states[$accepted] )) {
