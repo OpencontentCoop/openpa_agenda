@@ -160,7 +160,10 @@
 {literal}
   <script type="text/javascript">
     $(document).ready(function() {
-      $('.password-field').password({strengthMeter:false});
+      $('.password-field').password({
+        strengthMeter:false,
+        message: "{/literal}{'Show/hide password'|i18n('ocbootstrap')}{literal}",
+      });
     });
   </script>
 {/literal}
