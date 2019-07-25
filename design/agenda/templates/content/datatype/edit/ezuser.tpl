@@ -1,9 +1,3 @@
-{ezscript_require(array(
-  "password-score/password-score.js",
-  "password-score/password-score-options.js",
-  "password-score/bootstrap-strength-meter.js"
-))}
-
 {default attribute_base=ContentObjectAttribute html_class='full' placeholder=false()}
 {if $placeholder}<label>{$placeholder}</label>{/if}
     <!-- {$attribute.content.contentobject_id} {$attribute.content.is_enabled} -->
@@ -31,32 +25,36 @@
 {if ezini( 'UserSettings', 'RequireConfirmEmail' )|eq( 'true' )}
     <p><input autocomplete="off" placeholder="{'Confirm email'|i18n( 'design/standard/content/datatype' )}" id="{$id_base}_email_confirm" class="{$html_class} ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="text" name="{$attribute_base}_data_user_email_confirm_{$attribute.id}" value="{cond( ezhttp_hasvariable( concat( $attribute_base, '_data_user_email_confirm_', $attribute.id ), 'post' ), ezhttp( concat( $attribute_base, '_data_user_email_confirm_', $attribute.id ), 'post')|wash( xhtml ), $attribute.content.email )}" /></p>
 {/if}
-
+<div class="{if and($attribute.content.has_stored_login, $attribute.content.login|ne(''))}hide{/if}">
     {* Password #1. *}
     <p>
       <input autocomplete="off" placeholder="{'Password'|i18n( 'design/standard/content/datatype' )}" id="{$id_base}_password" class="{$html_class} ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="password" name="{$attribute_base}_data_user_password_{$attribute.id}" value="{if $attribute.content.original_password}{$attribute.content.original_password}{else}{if $attribute.content.has_stored_login}_ezpassword{/if}{/if}" />
-      <span id="{$id_base}_help" style="font-size: .8em"></span>
+      {include uri='design:parts/password_meter.tpl'}
     </p>
 
     {* Password #2. *}
     <p><input autocomplete="off" placeholder="{'Confirm password'|i18n( 'design/standard/content/datatype' )}" id="{$id_base}_password_confirm" class="{$html_class} ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="password" name="{$attribute_base}_data_user_password_confirm_{$attribute.id}" value="{if $attribute.content.original_password_confirm}{$attribute.content.original_password_confirm}{else}{if $attribute.content.has_stored_login}_ezpassword{/if}{/if}" /></p>
+</div>
 
-
-  <script type="text/javascript">
-    $(document).ready(function() {ldelim}
-      $('#{$id_base}_password').strengthMeter('text', {ldelim}
-        container: $('#{$id_base}_help'),
-        hierarchy: {ldelim}
-        '0':  ['text-danger', 'Valutazione della complessità: pessima'],
-        '10': ['text-danger', 'Valutazione della complessità: molto debole'],
-        '20': ['text-warning', 'Valutazione della complessità: debole'],
-        '30': ['text-info', 'Valutazione della complessità: buona'],
-        '40': ['text-success', 'Valutazione della complessità: molto buona'],
-        '50': ['text-success', 'Valutazione della complessità: ottima']
-          {rdelim}
-        {rdelim});
-      {rdelim});
-  </script>
+{if or($attribute.content.has_stored_login|not(), $attribute.content.login|eq(''))}
+    {ezscript_require(array(
+        "password-score/password-score.js",
+        "password-score/password-score-options.js",
+        "password-score/bootstrap-strength-meter.js",
+        "password-score/password.js"
+    ))}
+    {ezcss_require(array('password-score/password.css'))}
+{literal}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#{/literal}{$id_base}{literal}_password').password({
+                minLength:{/literal}{ezini('UserSettings', 'MinPasswordLength')}{literal}
+            });
+            $('#{/literal}{$id_base}{literal}_password_confirm').password({strengthMeter:false});
+        });
+    </script>
+{/literal}
+{/if}
 
 
 {/default}
