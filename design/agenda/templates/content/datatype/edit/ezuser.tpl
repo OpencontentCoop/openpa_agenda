@@ -36,7 +36,7 @@
     <p><input autocomplete="off" placeholder="{'Confirm password'|i18n( 'design/standard/content/datatype' )}" id="{$id_base}_password_confirm" class="{$html_class} ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="password" name="{$attribute_base}_data_user_password_confirm_{$attribute.id}" value="{if $attribute.content.original_password_confirm}{$attribute.content.original_password_confirm}{else}{if $attribute.content.has_stored_login}_ezpassword{/if}{/if}" /></p>
 </div>
 
-{if or($attribute.content.has_stored_login|not(), $attribute.content.login|eq(''))}
+{if or($attribute.object.current_version|eq(1), $attribute.content.has_stored_login|not(), $attribute.content.login|eq(''))}
     {ezscript_require(array(
         "password-score/password-score.js",
         "password-score/password-score-options.js",
