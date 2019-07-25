@@ -25,7 +25,7 @@
 {if ezini( 'UserSettings', 'RequireConfirmEmail' )|eq( 'true' )}
     <p><input autocomplete="off" placeholder="{'Confirm email'|i18n( 'design/standard/content/datatype' )}" id="{$id_base}_email_confirm" class="{$html_class} ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="text" name="{$attribute_base}_data_user_email_confirm_{$attribute.id}" value="{cond( ezhttp_hasvariable( concat( $attribute_base, '_data_user_email_confirm_', $attribute.id ), 'post' ), ezhttp( concat( $attribute_base, '_data_user_email_confirm_', $attribute.id ), 'post')|wash( xhtml ), $attribute.content.email )}" /></p>
 {/if}
-<div class="{if and($attribute.content.has_stored_login, $attribute.content.login|ne(''))}hide{/if}">
+<div class="{if and($attribute.object.current_version|ne(1), $attribute.content.has_stored_login, $attribute.content.login|ne(''))}hide{/if}">
     {* Password #1. *}
     <p>
       <input autocomplete="off" placeholder="{'Password'|i18n( 'design/standard/content/datatype' )}" id="{$id_base}_password" class="{$html_class} ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="password" name="{$attribute_base}_data_user_password_{$attribute.id}" value="{if $attribute.content.original_password}{$attribute.content.original_password}{else}{if $attribute.content.has_stored_login}_ezpassword{/if}{/if}" />
