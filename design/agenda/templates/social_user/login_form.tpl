@@ -102,7 +102,7 @@
                             <div class="{$col_signup_inside}">
                                 <input autocomplete="off" id="Name" name="Name" placeholder="{'Nome e cognome'|i18n('social_user/signup')}" class="form-control" required="" type="text" value="{if is_set($name)}{$name}{/if}" />
                                 <input autocomplete="off" id="Emailaddress" name="EmailAddress" placeholder="{'Indirizzo Email'|i18n('social_user/signup')}" class="form-control" required="" type="text" value="{if is_set($email)}{$email}{/if}" />
-                                <input autocomplete="off" id="Password" name="Password" placeholder="{'Password'|i18n('social_user/signup')}" class="form-control" required="" type="password">
+                                <input autocomplete="off" id="Password" name="Password" placeholder="{'Password'|i18n('social_user/signup')}" class="form-control password-field" required="" type="password">
                                 {foreach signup_custom_fields() as $custom_field}
                                     {include uri=$custom_field.template custom_field=$custom_field}
                                     {if and($custom_field.is_valid, is_set($custom_field.gdpr_text))}
@@ -154,3 +154,16 @@
 </section>
 {/if}
 {undef $has_gdpr}
+
+
+{ezscript_require(array("password-score/password.js"))}
+{literal}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.password-field').password({
+        strengthMeter:false,
+        message: "{/literal}{'Show/hide password'|i18n('ocbootstrap')}{literal}",
+      });
+    });
+  </script>
+{/literal}
