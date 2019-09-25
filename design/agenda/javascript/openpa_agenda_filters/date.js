@@ -32,6 +32,9 @@ var OpenpaAgendaDateFilter = {
     },
 
     buildQuery: function () {
+        if ($.opendataTools.settings('currentAgendaView') === '#agenda') {        
+            return '';
+        }
         var currentDateList = this.getCurrent();
         var currentDate = currentDateList.length > 0 ? currentDateList[0] : null;
         if (currentDate) {

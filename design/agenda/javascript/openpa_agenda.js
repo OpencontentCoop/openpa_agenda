@@ -59,11 +59,7 @@
                             });
                         }
                     );
-                    map.scrollWheelZoom.disable();
-
-                    $("body").on("shown.bs.tab", function () {
-                        tools.refreshMap();
-                    });
+                    map.scrollWheelZoom.disable();                    
                 }
             };
 
@@ -71,20 +67,6 @@
                 if (response.totalCount > 0) {
                     tools.loadMarkersInMap(query);
                 }
-            };
-
-            var initCalendar = function (view) {
-                $("body").on("shown.bs.tab", function (e) {
-                    if ($(e.target).attr('href') == '#agenda') {
-                        //view.setFilterValue('date', 'all');
-                        view.doSearch();
-                        refreshCalendar(view);
-                        $('.widget[data-filter="date"]').addClass('hide');
-                        isChangeView = true;
-                    } else {
-                        $('.widget[data-filter="date"]').removeClass('hide');
-                    }
-                });
             };
 
             var refreshCalendar = function (view, response) {
@@ -131,13 +113,8 @@
                 }
             };
 
-            var loadCalendarResults = function (response, query, appendResults, view) {
-                if (!isChangeView) {
-                    refreshCalendar(view, response);
-                } else {
-                    isChangeView = false;
-                }
-
+            var loadCalendarResults = function (response, query, appendResults, view) {                
+                refreshCalendar(view, response);                
             };
 
             var loadListResults = function (response, query, appendResults, view) {
@@ -167,19 +144,37 @@
 
             var data = $(this.element).data('opendataSearchView');
             if (!data) {
-                $(this.element).opendataSearchView({
+                $(this.element).opendataSearchView({                    
                     query: $.opendataTools.settings('base_query'),
                     onInit: function (view) {
                         initMap();
-                        initCalendar(view);
+                        $.opendataTools.settings('currentAgendaView', '#list');
+                        $('body').on('shown.bs.tab', function (e) {
+                            if ($(e.target).parents('aside').hasClass('agenda-views')) {                            
+                                $.opendataTools.settings('currentAgendaView', $(e.target).attr('href'));                               
+                                if ($.opendataTools.settings('currentAgendaView') === '#geo') {
+                                    $.opendataTools.refreshMap();
+                                }
+                                if ($.opendataTools.settings('currentAgendaView') === '#agenda') {                                                                        
+                                    $('.widget[data-filter="date"]').addClass('hide');                                    
+                                } else {
+                                    $('.widget[data-filter="date"]').removeClass('hide');
+                                }                                
+                                view.doSearch();
+                            }
+                        });
                     },
                     onBeforeSearch: function (query, view) {
                         view.container.html(spinner);
                     },
-                    onLoadResults: function (response, query, appendResults, view) {
-                        loadListResults(response, query, appendResults, view);
-                        loadMapResults(response, query, appendResults, view);
-                        loadCalendarResults(response, query, appendResults, view);
+                    onLoadResults: function (response, query, appendResults, view) {                                                
+                        if ($.opendataTools.settings('currentAgendaView') === '#list') {
+                            loadListResults(response, query, appendResults, view);
+                        } else if ($.opendataTools.settings('currentAgendaView') === '#geo') {
+                            loadMapResults(response, query, appendResults, view);
+                        } else if ($.opendataTools.settings('currentAgendaView') === '#agenda') {
+                            loadCalendarResults(response, query, appendResults, view);
+                        }
                     },
                     onLoadErrors: function (errorCode, errorMessage, jqXHR, view) {
                         view.container.html('<div class="alert alert-danger">' + errorMessage + '</div>')
