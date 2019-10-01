@@ -1,5 +1,5 @@
 <section class="hgroup">
-    <h1>Gestisci programma in pdf</h1>
+    <h1>{'Manage PDF Programme'|i18n('agenda/menu')}</h1>
 </section>
 
 {ezcss_require( array(
@@ -25,9 +25,7 @@
     'leaflet.markercluster.js',
     'leaflet.makimarkers.js',
     'fullcalendar/fullcalendar.js',
-    'fullcalendar/locale/it.js',
-    'fullcalendar/locale/de.js',
-    'fullcalendar/locale/en.js',
+    concat('fullcalendar/locale/', fetch( 'content', 'locale' , hash( 'locale_code', ezini('RegionalSettings', 'Locale') )).http_locale_code|explode('-')[0]|downcase()|extract_left( 2 ), '.js'),
     'openpa_agenda_helpers.js',
     'jquery.opendataSearchView.js',
     'openpa_agenda_filters/base.js',
@@ -52,13 +50,13 @@
         {rdelim});
 
     var Translations = {ldelim}
-        'Titolo':'{'Titolo'|i18n('agenda/dashboard')}',
-        'Pubblicato':'{'Pubblicato'|i18n('agenda/dashboard')}',
-        'Inizio': '{'Inizio'|i18n('agenda/dashboard')}',
-        'Fine': '{'Fine'|i18n('agenda/dashboard')}',
-        'Stato': '{'Stato'|i18n('agenda/dashboard')}',
-        'Traduzioni': '{'Traduzioni'|i18n('agenda/dashboard')}',
-        'Dettaglio': '{'Dettaglio'|i18n('agenda/dashboard')}',
+        'Title':'{'Title'|i18n('agenda/dashboard')}',
+        'Published':'{'Published'|i18n('agenda/dashboard')}',
+        'Start date': '{'Start date'|i18n('agenda/dashboard')}',
+        'End date': '{'End date'|i18n('agenda/dashboard')}',
+        'Status': '{'Status'|i18n('agenda/dashboard')}',
+        'Translations': '{'Translations'|i18n('agenda/dashboard')}',
+        'Detail': '{'Detail'|i18n('agenda/dashboard')}',
         'Loading...': '{'Loading...'|i18n('agenda/dashboard')}'
         {rdelim};
 

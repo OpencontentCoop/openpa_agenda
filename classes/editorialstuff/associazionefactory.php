@@ -28,4 +28,11 @@ class AssociazioneFactory extends OCEditorialStuffPostDefaultFactory
         return 'editorialstuff/associazione';
     }
 
+    public function dashboardModuleResult( $parameters, OCEditorialStuffHandlerInterface $handler, eZModule $module )
+    {
+        //eZINI::instance('ezfind.ini')->setVariable('LanguageSearch', 'SearchMainLanguageOnly', 'disabled');
+
+        return parent::dashboardModuleResult( $parameters, $handler, $module );
+    }
+
 }

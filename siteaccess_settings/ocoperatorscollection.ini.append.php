@@ -2,3 +2,5 @@
 
 [ObjectRelationsMultiupload]
 ClassAttributeIdentifiers[]=images
+
+*/?>

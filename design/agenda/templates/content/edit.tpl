@@ -46,7 +46,7 @@
 
       <h1>
         <i class='icon-edit'></i>
-        <span>Modifica {$object.name|wash}</span>
+        <span>{'Edit'|i18n('design/standard/node/view')} {$object.name|wash}</span>
         <small>{$class.name|wash}</small>
     </h1>
   </div>

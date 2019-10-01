@@ -70,7 +70,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         $tabs = array(
             array(
                 'identifier' => 'content',
-                'name' => ezpI18n::tr('openpa_agenda', 'Contenuto'),
+                'name' => ezpI18n::tr('openpa_agenda', 'Content'),
                 'template_uri' => "design:{$templatePath}/parts/content.tpl"
             )
         );
@@ -78,7 +78,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         if ($access['accessWord'] == 'yes' && in_array('images', $this->factory->attributeIdentifiers())) {
             $tabs[] = array(
                 'identifier' => 'media',
-                'name' => ezpI18n::tr('openpa_agenda', 'Galleria immagini'),
+                'name' => ezpI18n::tr('openpa_agenda', 'Image Gallery'),
                 'template_uri' => "design:{$templatePath}/parts/media.tpl"
             );
         }
@@ -107,7 +107,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         if (OpenPAAgenda::instance()->isCommentEnabled()) {
             $tabs[] = array(
                 'identifier' => 'comments',
-                'name' => ezpI18n::tr('openpa_agenda', 'Commenti'),
+                'name' => ezpI18n::tr('openpa_agenda', 'Comments'),
                 'template_uri' => "design:{$templatePath}/parts/public_comments.tpl"
             );
         }
@@ -120,7 +120,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
 
         $tabs[] = array(
             'identifier' => 'history',
-            'name' => ezpI18n::tr('openpa_agenda', 'Cronologia'),
+            'name' => ezpI18n::tr('openpa_agenda', 'History'),
             'template_uri' => "design:{$templatePath}/parts/history.tpl"
         );
 

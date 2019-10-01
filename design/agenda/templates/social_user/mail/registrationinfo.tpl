@@ -1,5 +1,5 @@
 {def $social_pagedata = social_pagedata()}
-{set-block scope=root variable=subject}{'Benvenuto in %1'|i18n('social_user/mail/registration',,array($social_pagedata.site_title))}{/set-block}
+{set-block scope=root variable=subject}{'Welcome to %1'|i18n('social_user/mail/registration',,array($social_pagedata.site_title))}{/set-block}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -111,22 +111,22 @@
                             <table border='0' cellpadding='0' cellspacing='0' width='100%'>
                                 <tr>
                                     <td align='center' valign='top'>
-                                        <h2>{'Grazie di voler partecipare!'|i18n('social_user/mail/registration')}</h2>
+                                        <h2>{'Thank you for your willingness to participate!'|i18n('social_user/mail/registration')}</h2>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align='center' valign='top'>
-                                        <h4 style='color: #f90f00 !important'>{'Ecco le informazione del tuo profilo'|i18n('social_user/mail/registration')}</h4>
+                                        <h4 style='color: #f90f00 !important'>{'Please find here your profile information'|i18n('social_user/mail/registration')}</h4>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align='center' style='border-top: 1px solid #dce1e5;border-bottom: 1px solid #dce1e5;' valign='top'>
                                         <p>
-                                            <strong>{'Nome'|i18n('social_user/mail/registration')}:</strong>
+                                            <strong>{'First name'|i18n('social_user/mail/registration')}:</strong>
                                             {$user.contentobject.name|wash()}
                                         </p>
                                         <p>
-                                            <strong>{'Indirizzo email'|i18n('social_user/mail/registration')}:</strong>
+                                            <strong>{'Email address'|i18n('social_user/mail/registration')}:</strong>
                                             {$user.email|wash()}
                                         </p>
                                     </td>
@@ -136,7 +136,7 @@
                                         <td align='center' bgcolor='#f90f00' valign='top'>
                                             <h3>
                                                 <a href="{concat('social_user/activate/', $hash, '/', $user.contentobject.main_node_id)|ezurl(no,full)}" style="color: #ffffff !important">
-                                                    {'Clicca su questo link per confermare il tuo account'|i18n('social_user/mail/registration')}
+                                                    {'Click on the link to confirm your account'|i18n('social_user/mail/registration')}
                                                 </a>
                                             </h3>
                                         </td>
@@ -145,8 +145,8 @@
                                 <tr>
                                     <td align='center' valign='top'>
                                         <p>
-                                            {'Se desideri cambiare le impostazioni del tuo profilo clicca %profile_link_start%qui%profile_link_end%'|i18n('social_user/mail/registration',, hash( '%profile_link_start%', concat( '<a href="', '/user/edit'|ezurl(no,full), '"/>' ), '%profile_link_end%', '</a>' ))}<br />
-                                            {'Per abilitare o disabilitare le notifiche email clicca %notification_link_start%qui%notification_link_end%'|i18n('social_user/mail/registration',, hash( '%notification_link_start%', concat( '<a href="', '/notification/settings'|ezurl(no,full), '"/>' ), '%notification_link_end%', '</a>' ))}
+                                            {'If you want to change your profile settings Click %profile_link_start%here% profile_link_end%'|i18n('social_user/mail/registration',, hash( '%profile_link_start%', concat( '<a href="', '/user/edit'|ezurl(no,full), '"/>' ), '%profile_link_end%', '</a>' ))}<br />
+                                            {'To enable or disable email notifications Click %notification_link_start% here% notification_link_end%'|i18n('social_user/mail/registration',, hash( '%notification_link_start%', concat( '<a href="', '/notification/settings'|ezurl(no,full), '"/>' ), '%notification_link_end%', '</a>' ))}
                                         </p>
                                     </td>
                                 </tr>

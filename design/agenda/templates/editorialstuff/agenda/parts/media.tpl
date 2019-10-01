@@ -4,7 +4,7 @@
         <div class="col-xs-6 col-md-2">
             <form action="" enctype="multipart/form-data" method="post" id="upload-form">
               <span class="btn btn-info btn-lg fileinput-button">
-                <span>{'Nuovo'|i18n('agenda/dashboard')}</span>
+                <span>{'New'|i18n('agenda/dashboard')}</span>
                 <input id="upload-media" type="file" name="MediaFile[]"
                        data-url="{concat('editorialstuff/media/', $factory_identifier, '/upload/', $post.object.id )|ezurl(no)}">
               </span>
@@ -13,10 +13,10 @@
                 <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
             </div>
         </div>
-        <div class="col-xs-6 col-md-2">
+        <div class="col-xs-6 col-md-4">
             <a class="btn btn-info btn-lg"
                href="{concat('editorialstuff/media/', $factory_identifier, '/browse/', $post.object.id )|ezurl(no)}">
-                {'Libreria'|i18n('agenda/dashboard')}
+                {'Image library'|i18n('agenda/dashboard')}
             </a>
         </div>
     </div>

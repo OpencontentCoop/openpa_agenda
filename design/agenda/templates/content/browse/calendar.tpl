@@ -6,21 +6,22 @@
     'moment.min.js',
     'jquery.opendataTools.js',
     'fullcalendar/fullcalendar.min.js',
-    'fullcalendar/locale/it.js',
-    'fullcalendar/locale/de.js',
-    'fullcalendar/locale/en.js',
+    concat('fullcalendar/locale/', fetch( 'content', 'locale' , hash( 'locale_code', ezini('RegionalSettings', 'Locale') )).http_locale_code|explode('-')[0]|downcase()|extract_left( 2 ), '.js'),
     'openpa_agenda_fullcalendar.js'
 ))}
 
 <div class="container">
     <section class="hgroup">
-        <h1>Seleziona eventi</h1>
+        <h1>{'Select'|i18n('agenda/dashboard')}</h1>
     </section>
 
     <div class="row">
+        <div class="col-md-8">
+            <div id="calendar"></div>
+        </div>
         <div class="col-md-4">
 
-            <form name="browse" action="{$browse.from_page|ezurl(no)}" method="post">
+            <form name="browse" action="{$browse.from_page|ezurl(no)}" method="post" class="well">
 
                 {*<input type="checkbox" name="SelectedNodeIDArray[]" value="" />*}
 
@@ -48,11 +49,6 @@
 
 
             </form>
-
-        </div>
-        <div class="col-md-8">
-
-            <div id="calendar"></div>
 
         </div>
     </div>

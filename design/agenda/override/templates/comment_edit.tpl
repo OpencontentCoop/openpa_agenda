@@ -20,9 +20,9 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         {if $current_reply}
-          {'Inserisci risposta'|i18n('agenda/event/comments')}
+          {'Enter answer'|i18n('agenda/event/comments')}
         {else}
-          {'Inserisci commento'|i18n('agenda/event/comments')}
+          {'Insert your comment'|i18n('agenda/event/comments')}
         {/if}
       </h4>
     </div>
@@ -34,7 +34,7 @@
     {section show=or( $validation.attributes, $validation.placement, $validation.custom_rules )}
       <div class="alert alert-warning alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert">
-          <span aria-hidden="true">&times;</span><span class="sr-only">{'Chiudi'|i18n('agenda')}</span></button>
+          <span aria-hidden="true">&times;</span><span class="sr-only">{'Close'|i18n('agenda')}</span></button>
         {section show=$validation.attributes}
           <p>{'Required data is either missing or is invalid'|i18n( 'design/admin/content/edit' )}:</p>
           <ul class="list-unstyled">
@@ -67,7 +67,7 @@
 
         {section show=$validation_log}
           <div class="alert alert-warning alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">{'Chiudi'|i18n('agenda')}</span></button>
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">{'Close'|i18n('agenda')}</span></button>
             {section var=ValidationLogs loop=$validation_log}
               <p>{$ValidationLogs.item.name|wash}:</p>
               <ul>
@@ -201,8 +201,8 @@
     </div>
 
     <div class="buttonblock">
-      <input class="btn btn-lg btn-danger pull-right" type="submit" name="PublishButton" value="{'Pubblica il commento'|i18n('agenda/event/comments')}" />
-      <input class="btn btn-lg btn-warning" type="submit" name="DiscardButton" value="{'Annulla'|i18n('agenda/event/comments')}" />
+      <input class="btn btn-lg btn-danger pull-right" type="submit" name="PublishButton" value="{'Publish your comment'|i18n('agenda/event/comments')}" />
+      <input class="btn btn-lg btn-warning" type="submit" name="DiscardButton" value="{'Cancel'|i18n('agenda/event/comments')}" />
       <input type="hidden" name="DiscardConfirm" value="0" />
       <input type="hidden" name="RedirectIfDiscarded" value="{if is_set( $forum )}{concat('agenda/event/',$forum.node_id,'/(offset)/',$view_parameters.offset)}{else}/agenda{/if}" />
       <input type="hidden" name="RedirectURIAfterPublish" value="{if is_set( $forum )}{concat('agenda/event/',$forum.node_id,'/(offset)/',$view_parameters.offset)}{else}/agenda{/if}" />

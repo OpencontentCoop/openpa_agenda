@@ -4,51 +4,59 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
 {
 
     protected $abstract_length = 220;
-    protected $layouts = array(
-        array(
-            'id'                   => 2,
-            'columns'              => 2,
-            'events_per_page'      => 6,
-            'title'                => 'Due colonne (18 eventi)',
-            'displayed_attributes' => array(
-                'name'                => 'Titolo',
-                'abstract'            => 'Abstract',
-                'periodo_svolgimento' => 'Periodo',
-                'orario_svolgimento'  => 'Orario',
-                'durata'              => 'Durata',
-                'luogo_svolgimento'   => 'Luogo svolgimento'
-            )
-        ),
-        array(
-            'id'              => 3,
-            'columns'         => 3,
-            'events_per_page' => 4,
-            'title'           => 'Tre colonne (20 eventi)',
-            'displayed_attributes' => array(
-                'name'                => 'Titolo',
-                'abstract'            => 'Abstract',
-                'periodo_svolgimento' => 'Periodo',
-                'orario_svolgimento'  => 'Orario',
-                'durata'              => 'Durata',
-                'luogo_svolgimento'   => 'Luogo svolgimento'
-            )
-        ),
-        array(
-            'id'                   => 4,
-            'columns'              => 3,
-            'events_per_page'      => 8,
-            'title'                => 'Tre colonne (40 eventi)',
-            'displayed_attributes' => array(
-                'name'                => 'Titolo',
-                'periodo_svolgimento' => 'Periodo',
-                'orario_svolgimento'  => 'Orario',
-                'durata'              => 'Durata',
-                'luogo_svolgimento'   => 'Luogo svolgimento'
-            )
-        )
-    );
+    
+    protected $layouts = array();
 
     protected $events = array();
+
+    public function __construct( array $data = array(), OCEditorialStuffPostFactoryInterface $factory )
+    {
+        parent::__construct($data, $factory);
+
+        $this->layouts = array(
+            array(
+                'id'                   => 2,
+                'columns'              => 2,
+                'events_per_page'      => 6,
+                'title'                => ezpI18n::tr('agenda/leaflet', 'Two columns (18 events)'),
+                'displayed_attributes' => array(
+                    'name'                => ezpI18n::tr('agenda/leaflet', 'Title'),
+                    'abstract'            => ezpI18n::tr('agenda/leaflet', 'Abstract'),
+                    'periodo_svolgimento' => ezpI18n::tr('agenda/leaflet', 'Period'),
+                    'orario_svolgimento'  => ezpI18n::tr('agenda/leaflet', 'Hours'),
+                    'durata'              => ezpI18n::tr('agenda/leaflet', 'Duration'),
+                    'luogo_svolgimento'   => ezpI18n::tr('agenda/leaflet', 'Location')
+                )
+            ),
+            array(
+                'id'              => 3,
+                'columns'         => 3,
+                'events_per_page' => 4,
+                'title'           => ezpI18n::tr('agenda/leaflet', 'Three columns (20 events)'),
+                'displayed_attributes' => array(
+                    'name'                => ezpI18n::tr('agenda/leaflet', 'Title'),
+                    'abstract'            => ezpI18n::tr('agenda/leaflet', 'Abstract'),
+                    'periodo_svolgimento' => ezpI18n::tr('agenda/leaflet', 'Period'),
+                    'orario_svolgimento'  => ezpI18n::tr('agenda/leaflet', 'Hours'),
+                    'durata'              => ezpI18n::tr('agenda/leaflet', 'Duration'),
+                    'luogo_svolgimento'   => ezpI18n::tr('agenda/leaflet', 'Location')
+                )
+            ),
+            array(
+                'id'                   => 4,
+                'columns'              => 3,
+                'events_per_page'      => 8,
+                'title'                => ezpI18n::tr('agenda/leaflet', 'Three columns (40 events)'),
+                'displayed_attributes' => array(
+                    'name'                => ezpI18n::tr('agenda/leaflet', 'Title'),
+                    'periodo_svolgimento' => ezpI18n::tr('agenda/leaflet', 'Period'),
+                    'orario_svolgimento'  => ezpI18n::tr('agenda/leaflet', 'Hours'),
+                    'durata'              => ezpI18n::tr('agenda/leaflet', 'Duration'),
+                    'luogo_svolgimento'   => ezpI18n::tr('agenda/leaflet', 'Location')
+                )
+            )
+        );
+    }
 
     public function onCreate()
     {
@@ -339,7 +347,7 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         $tabs = array(
             array(
                 'identifier' => 'content',
-                'name' => 'Contenuto',
+                'name' => ezpI18n::tr('openpa_agenda', 'Content'),
                 'template_uri' => "design:{$templatePath}/parts/content.tpl"
             )
         );
@@ -347,14 +355,14 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         if ($this->getObject()->canEdit()) {
             $tabs[] = array(
                 'identifier' => 'leaflet',
-                'name' => 'Volantino',
+                'name' => ezpI18n::tr('openpa_agenda', 'Flyer'),
                 'template_uri' => "design:{$templatePath}/parts/leaflet.tpl"
             );
         }
 
         $tabs[] = array(
             'identifier' => 'history',
-            'name' => 'Cronologia',
+            'name' => ezpI18n::tr('openpa_agenda', 'History'),
             'template_uri' => "design:{$templatePath}/parts/history.tpl"
         );
 

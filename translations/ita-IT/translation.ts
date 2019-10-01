@@ -5,95 +5,95 @@
     <name>agenda</name>
     <message>
       <source>Sponsored by</source>
-      <translation type="unfinished"/>
+      <translation>Patrocinato da</translation>
     </message>
     <message>
       <source>Comments</source>
-      <translation type="unfinished"/>
+      <translation>Commenti</translation>
     </message>
     <message>
       <source>In order to leave comments, you need to be logged in</source>
-      <translation type="unfinished"/>
+      <translation>Per inserire commenti devi essere registrato</translation>
     </message>
     <message>
       <source>Programme</source>
-      <translation type="unfinished"/>
+      <translation>Programma</translation>
     </message>
     <message>
       <source>Download the pdf programme</source>
-      <translation type="unfinished"/>
+      <translation>Scarica il programma in pdf</translation>
     </message>
     <message>
       <source>Address Book</source>
-      <translation type="unfinished"/>
+      <translation>Rubrica</translation>
     </message>
     <message>
       <source>Associations</source>
-      <translation type="unfinished"/>
+      <translation>associazioni</translation>
     </message>
     <message>
       <source>Official Register of the town</source>
-      <translation type="unfinished"/>
+      <translation>Registro ufficiale del comune</translation>
     </message>
     <message>
       <source>Are you an association?</source>
-      <translation type="unfinished"/>
+      <translation>Sei un'associazione?</translation>
     </message>
     <message>
       <source>Find out how to participate!</source>
-      <translation type="unfinished"/>
+      <translation>Scopri come partecipare!</translation>
     </message>
     <message>
       <source>List</source>
-      <translation type="unfinished"/>
+      <translation>Elenco</translation>
     </message>
     <message>
       <source>Calendar</source>
-      <translation type="unfinished"/>
+      <translation>Calendario</translation>
     </message>
     <message>
       <source>On the map</source>
-      <translation type="unfinished"/>
+      <translation>Sulla mappa</translation>
     </message>
     <message>
       <source>When?</source>
-      <translation type="unfinished"/>
+      <translation>Quando?</translation>
     </message>
     <message>
       <source>Today</source>
-      <translation type="unfinished"/>
+      <translation>Oggi</translation>
     </message>
     <message>
       <source>This weekend</source>
-      <translation type="unfinished"/>
+      <translation>Questo fine settimana</translation>
     </message>
     <message>
       <source>Next 7 days</source>
-      <translation type="unfinished"/>
+      <translation>I prossimi 7 giorni</translation>
     </message>
     <message>
       <source>Next 30 days</source>
-      <translation type="unfinished"/>
+      <translation>I prossimi 30 giorni</translation>
     </message>
     <message>
       <source>All</source>
-      <translation type="unfinished"/>
+      <translation>Tutti</translation>
     </message>
     <message>
       <source>Topics</source>
-      <translation type="unfinished"/>
+      <translation>Tematica</translation>
     </message>
     <message>
       <source>What?</source>
-      <translation type="unfinished"/>
+      <translation>Cosa?</translation>
     </message>
     <message>
       <source>Who are you?</source>
-      <translation type="unfinished"/>
+      <translation>Chi sei?</translation>
     </message>
     <message>
       <source>Where?</source>
-      <translation type="unfinished"/>
+      <translation>Dove?</translation>
     </message>
     <message>
       <source>Event collection</source>
@@ -101,27 +101,27 @@
     </message>
     <message>
       <source>All event collections</source>
-      <translation type="unfinished"/>
+      <translation>Tutte</translation>
     </message>
     <message>
       <source>Loading...</source>
-      <translation type="unfinished"/>
+      <translation>Loading...</translation>
     </message>
     <message>
       <source>No events found</source>
-      <translation type="unfinished"/>
+      <translation>Nessun evento trovato</translation>
     </message>
     <message>
       <source>Close</source>
-      <translation type="unfinished"/>
+      <translation>Chiudi</translation>
     </message>
     <message>
       <source>Load More Results</source>
-      <translation type="unfinished"/>
+      <translation>Carica altri risultati</translation>
     </message>
     <message>
       <source>Search by name ...</source>
-      <translation type="unfinished"/>
+      <translation>Cerca per nome...</translation>
     </message>
     <message>
       <source>Cerca</source>
@@ -129,330 +129,330 @@
     </message>
     <message>
       <source>No result found</source>
-      <translation type="unfinished"/>
+      <translation>Nessun contenuto trovato</translation>
     </message>
     <message>
       <source>Show less recent</source>
-      <translation type="unfinished"/>
+      <translation>Mostra meno recenti</translation>
     </message>
     <message>
       <source>Load more events</source>
-      <translation type="unfinished"/>
+      <translation>Carica altri eventi</translation>
     </message>
     <message>
       <source>Show more items</source>
-      <translation type="unfinished"/>
+      <translation>Mostra altri elementi</translation>
     </message>
     <message>
       <source>Add to your calendar</source>
-      <translation type="unfinished"/>
+      <translation>Aggiungi al tuo calendario</translation>
     </message>
     <message>
       <source>More information</source>
-      <translation type="unfinished"/>
+      <translation>Maggiori informazioni</translation>
     </message>
   </context>
   <context>
     <name>agenda/config</name>
     <message>
       <source>Lock</source>
-      <translation type="unfinished"/>
+      <translation>Blocca</translation>
     </message>
     <message>
       <source>Unlock</source>
-      <translation type="unfinished"/>
+      <translation>Sblocca</translation>
     </message>
     <message>
       <source>Change general settings</source>
-      <translation type="unfinished"/>
+      <translation>Modifica impostazioni generali</translation>
     </message>
     <message>
       <source>Moderation is active</source>
-      <translation type="unfinished"/>
+      <translation>Moderazione attiva</translation>
     </message>
     <message>
       <source>User registration is active</source>
-      <translation type="unfinished"/>
+      <translation>Auto-registrazione attiva</translation>
     </message>
     <message>
       <source>Associations registration is active</source>
-      <translation type="unfinished"/>
+      <translation>Auto-registrazione associazioni attiva</translation>
     </message>
     <message>
       <source>Comments enabled</source>
-      <translation type="unfinished"/>
+      <translation>Commenti abilitati</translation>
     </message>
     <message>
       <source>Login is active</source>
-      <translation type="unfinished"/>
+      <translation>Login attivo</translation>
     </message>
     <message>
       <source>Topics to hide in the main agenda</source>
-      <translation type="unfinished"/>
+      <translation>Tipologie nascoste in agenda principale</translation>
     </message>
     <message>
       <source>Event collections to hide in the main agenda</source>
-      <translation type="unfinished"/>
+      <translation>Iniziative nascoste in agenda principale</translation>
     </message>
     <message>
       <source>Users</source>
-      <translation type="unfinished"/>
+      <translation>Utenti</translation>
     </message>
     <message>
       <source>Moderators</source>
-      <translation type="unfinished"/>
+      <translation>Moderatori</translation>
     </message>
     <message>
       <source>External Users</source>
-      <translation type="unfinished"/>
+      <translation>Utenti Esterni</translation>
     </message>
     <message>
       <source>Search</source>
-      <translation type="unfinished"/>
+      <translation>Cerca</translation>
     </message>
     <message>
       <source>Add a moderator</source>
-      <translation type="unfinished"/>
+      <translation>Aggiungi moderatore</translation>
     </message>
     <message>
       <source>Add Existing User</source>
-      <translation type="unfinished"/>
+      <translation>Aggiungi utente esistente</translation>
     </message>
     <message>
       <source>Add user</source>
-      <translation type="unfinished"/>
+      <translation>Aggiungi utente</translation>
     </message>
     <message>
       <source>Export to CSV</source>
-      <translation type="unfinished"/>
+      <translation>Esporta in CSV</translation>
     </message>
     <message>
       <source>Add %classname</source>
-      <translation type="unfinished"/>
+      <translation>Aggiungi %classname</translation>
     </message>
   </context>
   <context>
     <name>agenda/dashboard</name>
     <message>
       <source>Title</source>
-      <translation type="unfinished"/>
+      <translation>Titolo</translation>
     </message>
     <message>
       <source>Published</source>
-      <translation type="unfinished"/>
+      <translation>Pubblicato</translation>
     </message>
     <message>
       <source>Start date</source>
-      <translation type="unfinished"/>
+      <translation>Inizio</translation>
     </message>
     <message>
       <source>End date</source>
-      <translation type="unfinished"/>
+      <translation>Fine</translation>
     </message>
     <message>
       <source>Status</source>
-      <translation type="unfinished"/>
+      <translation>Stato</translation>
     </message>
     <message>
       <source>Manage events</source>
-      <translation type="unfinished"/>
+      <translation>Gestisci eventi</translation>
     </message>
     <message>
       <source>Manage initiatives</source>
-      <translation type="unfinished"/>
+      <translation>Gestisci iniziative</translation>
     </message>
     <message>
       <source>Author</source>
-      <translation type="unfinished"/>
+      <translation>Autore</translation>
     </message>
     <message>
       <source>Changed</source>
-      <translation type="unfinished"/>
+      <translation>Modificato</translation>
     </message>
     <message>
       <source>Translations</source>
-      <translation type="unfinished"/>
+      <translation>Traduzioni</translation>
     </message>
     <message>
       <source>Detail</source>
-      <translation type="unfinished"/>
+      <translation>Dettaglio</translation>
     </message>
     <message>
       <source>Loading...</source>
-      <translation type="unfinished"/>
+      <translation>Loading...</translation>
     </message>
     <message>
       <source>List</source>
-      <translation type="unfinished"/>
+      <translation>Lista</translation>
     </message>
     <message>
       <source>Calendar</source>
-      <translation type="unfinished"/>
+      <translation>Calendario</translation>
     </message>
     <message>
       <source>Select</source>
-      <translation type="unfinished"/>
+      <translation>Seleziona</translation>
     </message>
     <message>
       <source>Edit</source>
-      <translation type="unfinished"/>
+      <translation>Modifica</translation>
     </message>
     <message>
       <source>Preview</source>
-      <translation type="unfinished"/>
+      <translation>Anteprima</translation>
     </message>
     <message>
       <source>Publication date</source>
-      <translation type="unfinished"/>
+      <translation>Data di pubblicazione</translation>
     </message>
     <message>
       <source>Images</source>
-      <translation type="unfinished"/>
+      <translation>Immagini</translation>
     </message>
     <message>
       <source>New</source>
-      <translation type="unfinished"/>
+      <translation>Nuovo</translation>
     </message>
     <message>
       <source>Image library</source>
-      <translation type="unfinished"/>
+      <translation>Libreria</translation>
     </message>
     <message>
       <source>Create new event</source>
-      <translation type="unfinished"/>
+      <translation>Crea nuovo evento</translation>
     </message>
     <message>
       <source>Create new association</source>
-      <translation type="unfinished"/>
+      <translation>Crea nuova associazione</translation>
     </message>
     <message>
       <source>Create new event program</source>
-      <translation type="unfinished"/>
+      <translation>Crea nuovo programma eventi</translation>
     </message>
   </context>
   <context>
     <name>agenda/event</name>
     <message>
       <source>Where</source>
-      <translation type="unfinished"/>
+      <translation>Dove</translation>
     </message>
     <message>
       <source>How to get there</source>
-      <translation type="unfinished"/>
+      <translation>Come arrivare</translation>
     </message>
     <message>
       <source>Attachments</source>
-      <translation type="unfinished"/>
+      <translation>Allegati</translation>
     </message>
   </context>
   <context>
     <name>agenda/event/comments</name>
     <message>
       <source>Enter answer</source>
-      <translation type="unfinished"/>
+      <translation>Inserisci risposta</translation>
     </message>
     <message>
       <source>Insert your comment</source>
-      <translation type="unfinished"/>
+      <translation>Inserisci commento</translation>
     </message>
     <message>
       <source>Publish your comment</source>
-      <translation type="unfinished"/>
+      <translation>Pubblica il commento</translation>
     </message>
     <message>
       <source>Cancel</source>
-      <translation type="unfinished"/>
+      <translation>Annulla</translation>
     </message>
   </context>
   <context>
     <name>agenda/event/days</name>
     <message>
       <source>from</source>
-      <translation type="unfinished"/>
+      <translation>da</translation>
     </message>
     <message>
       <source>to</source>
-      <translation type="unfinished"/>
+      <translation>a</translation>
     </message>
   </context>
   <context>
     <name>agenda/event/hours</name>
     <message>
       <source>from</source>
-      <translation type="unfinished"/>
+      <translation>da</translation>
     </message>
     <message>
       <source>to</source>
-      <translation type="unfinished"/>
+      <translation>a</translation>
     </message>
   </context>
   <context>
     <name>agenda/mail/registration</name>
     <message>
       <source>%privacy_link_start%Privacy info%privacy_link_end%</source>
-      <translation type="unfinished"/>
+      <translation>%privacy_link_start%Informazioni sulla privacy%privacy_link_end%</translation>
     </message>
     <message>
       <source>%terms_link_start%Terms of use%terms_link_end%</source>
-      <translation type="unfinished"/>
+      <translation>%terms_link_start%Termini di utilizzo%terms_link_end%</translation>
     </message>
   </context>
   <context>
     <name>agenda/menu</name>
     <message>
       <source>FAQ</source>
-      <translation type="unfinished"/>
+      <translation>Faq</translation>
     </message>
     <message>
       <source>Privacy</source>
-      <translation type="unfinished"/>
+      <translation>Privacy</translation>
     </message>
     <message>
       <source>Terms of use</source>
-      <translation type="unfinished"/>
+      <translation>Termini di utilizzo</translation>
     </message>
     <message>
       <source>Agenda</source>
-      <translation type="unfinished"/>
+      <translation>Agenda</translation>
     </message>
     <message>
       <source>Associations</source>
-      <translation type="unfinished"/>
+      <translation>Associazioni</translation>
     </message>
     <message>
       <source>Manage events</source>
-      <translation type="unfinished"/>
+      <translation>Gestisci eventi</translation>
     </message>
     <message>
       <source>Information</source>
-      <translation type="unfinished"/>
+      <translation>Informazioni</translation>
     </message>
     <message>
       <source>Profile</source>
-      <translation type="unfinished"/>
+      <translation>Profilo</translation>
     </message>
     <message>
       <source>Settings</source>
-      <translation type="unfinished"/>
+      <translation>Settings</translation>
     </message>
     <message>
       <source>Manage associations</source>
-      <translation type="unfinished"/>
+      <translation>Gestisci associazioni</translation>
     </message>
     <message>
       <source>Manage PDF Programme</source>
-      <translation type="unfinished"/>
+      <translation>Gestisci programma in pdf</translation>
     </message>
     <message>
       <source>Logout</source>
-      <translation type="unfinished"/>
+      <translation>Esci</translation>
     </message>
   </context>
   <context>
     <name>agenda/signupassociazione</name>
     <message>
       <source>Do you want to register your association?</source>
-      <translation type="unfinished"/>
+      <translation>Vuoi registrare la tua associazione?</translation>
     </message>
     <message>
       <source>To register an association, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events.</source>
@@ -460,19 +460,19 @@
     </message>
     <message>
       <source>Register an association</source>
-      <translation type="unfinished"/>
+      <translation>Registra associazione</translation>
     </message>
     <message>
       <source>Info were saved and sent for validation</source>
-      <translation type="unfinished"/>
+      <translation>I dati sono stati salvati e inviati per la validazione</translation>
     </message>
     <message>
       <source>Register a new association</source>
-      <translation type="unfinished"/>
+      <translation>Registra nuova associazione</translation>
     </message>
     <message>
       <source>Register</source>
-      <translation type="unfinished"/>
+      <translation>Registra</translation>
     </message>
     <message>
       <source>Annulla</source>
@@ -483,124 +483,117 @@
     <name>agenda/states</name>
     <message>
       <source>Waiting for moderation</source>
-      <translation type="unfinished"/>
+      <translation>In attesa di moderazione</translation>
     </message>
   </context>
   <context>
     <name>openpa_agenda</name>
     <message>
       <source>Content</source>
-      <translation type="unfinished"/>
+      <translation>Contenuto</translation>
     </message>
     <message>
       <source>Image Gallery</source>
-      <translation type="unfinished"/>
+      <translation>Galleria immagini</translation>
     </message>
     <message>
       <source>Share</source>
-      <translation type="unfinished"/>
+      <translation>Share</translation>
     </message>
     <message>
       <source>Comments</source>
-      <translation type="unfinished"/>
+      <translation>Commenti</translation>
     </message>
     <message>
       <source>Press kit</source>
-      <translation type="unfinished"/>
+      <translation>Press kit</translation>
     </message>
     <message>
       <source>History</source>
-      <translation type="unfinished"/>
+      <translation>Cronologia</translation>
     </message>
     <message>
       <source>Flyer</source>
-      <translation type="unfinished"/>
+      <translation>Volantino</translation>
     </message>
   </context>
   <context>
     <name>agenda/leaflet</name>
     <message>
       <source>Two columns (18 events)</source>
-      <translation type="unfinished"/>
+      <translation>Due colonne (18 eventi)</translation>
     </message>
     <message>
       <source>Three columns (20 events)</source>
-      <translation type="unfinished"/>
+      <translation>Tre colonne (20 eventi)</translation>
     </message>
     <message>
       <source>Three columns (40 events)</source>
-      <translation type="unfinished"/>
+      <translation>Tre colonne (40 eventi)</translation>
     </message>
     <message>
       <source>Title</source>
-      <translation type="unfinished"/>
+      <translation>Titolo</translation>
     </message>
     <message>
       <source>Abstract</source>
-      <translation type="unfinished"/>
+      <translation>Abstract</translation>
     </message>
     <message>
       <source>Period</source>
-      <translation type="unfinished"/>
+      <translation>Periodo</translation>
     </message>
     <message>
       <source>Hours</source>
-      <translation type="unfinished"/>
+      <translation>Orario</translation>
     </message>
     <message>
       <source>Duration</source>
-      <translation type="unfinished"/>
+      <translation>Durata</translation>
     </message>
     <message>
       <source>Location</source>
-      <translation type="unfinished"/>
+      <translation>Luogo</translation>
     </message>
     <message>
       <source>Delete selected events</source>
-      <translation type="unfinished"/>
+      <translation>Rimuovi selezionati</translation>
     </message>
     <message>
       <source>Add existing event</source>
-      <translation type="unfinished"/>
+      <translation>Aggiungi evento</translation>
     </message>
     <message>
       <source>Choose the layout for the flyer</source>
-      <translation type="unfinished"/>
+      <translation>Scegli il layout per il volantino</translation>
     </message>
     <message>
       <source>Save and download flyer</source>
-      <translation type="unfinished"/>
+      <translation>Salva e scarica il volantino</translation>
     </message>
     <message>
       <source>selected events</source>
-      <translation type="unfinished"/>
+      <translation>eventi selezionati</translation>
     </message>
     <message>
       <source>Event abstracts greater than %number characters will be automatically cut.</source>
-      <translation type="unfinished"/>
+      <translation>Gli abstract degli eventi superiori a %number caratteri verrano tagliati automaticamente.</translation>
     </message>
     <message>
       <source>You can use the form below to customize the event abstract on the flyer.</source>
-      <translation type="unfinished"/>
+      <translation>Puoi utilizzare il form in basso per personalizzare l'abstract dell'evento sul volantino.</translation>
     </message>
     <message>
       <source>missing characters</source>
-      <translation type="unfinished"/>
+      <translation>caratteri mancanti</translation>
     </message>
     <message>
       <source>characters in excess</source>
-      <translation type="unfinished"/>
+      <translation>caratteri in eccesso</translation>
     </message>
     <message>
       <source>Automatically generated abstract</source>
-      <translation type="unfinished"/>
-    </message>
-  </context>
-  <context>
-    <name></name>
-    <message>
-      <source></source>
-      <translation type="unfinished"/>
+      <translation>Abstract generato automaticamente</translation>
     </message>
   </context>
 </TS>

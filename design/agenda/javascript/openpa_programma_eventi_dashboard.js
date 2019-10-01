@@ -24,23 +24,23 @@ $(document).ready(function () {
             "order": [[3, "desc"]],
             "columns": [
                 {"data": "metadata.remoteId", "name": 'remote_id', "title": '', "sortable": false},
-                {"data": "data", "name": 'title', "title": Translations['Titolo']},
+                {"data": "data", "name": 'title', "title": Translations['Title']},
                 {
                     "data": "metadata",
                     "name": 'raw[meta_owner_name_t]',
                     "title": 'Autore'
                 },
-                {"data": "metadata.published", "name": 'published', "title": Translations['Pubblicato']},
-                {"data": "data", "name": 'from_time', "title": Translations['Inizio']},
-                {"data": "data", "name": 'to_time', "title": Translations['Fine']},
-                {"data": "metadata.stateIdentifiers", "name": 'state', "title": Translations['Stato'], "sortable": false},
-                {"data": "metadata.id", "name": 'id', "title": Translations['Traduzioni'], "sortable": false},
+                {"data": "metadata.published", "name": 'published', "title": Translations['Published']},
+                {"data": "data", "name": 'from_time', "title": Translations['Start date']},
+                {"data": "data", "name": 'to_time', "title": Translations['End date']},
+                {"data": "metadata.stateIdentifiers", "name": 'state', "title": Translations['Status'], "sortable": false},
+                {"data": "metadata.id", "name": 'id', "title": Translations['Translations'], "sortable": false},
                 {"data": "metadata.id", "name": 'id', "title": '', "sortable": false}
             ],
             "columnDefs": [
                 {
                     "render": function (data, type, row) {
-                        return '<a class="btn btn-info" href="' + tools.settings('accessPath') + '/editorialstuff/edit/programma_eventi/' + row.metadata.id + '">'+Translations['Dettaglio']+'</a>';
+                        return '<a class="btn btn-info" href="' + tools.settings('accessPath') + '/editorialstuff/edit/programma_eventi/' + row.metadata.id + '">'+Translations['Detail']+'</a>';
                     },
                     "targets": [0]
                 },

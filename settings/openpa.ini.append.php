@@ -8,3 +8,4 @@ LimitEditAttributeIdentifiers[]
 
 [CreditsSettings]
 Agenda=OpenAgenda - realizzato da OpenContent con OpenPA
+*/ ?>

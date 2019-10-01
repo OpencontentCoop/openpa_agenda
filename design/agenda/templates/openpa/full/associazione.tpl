@@ -176,7 +176,7 @@
 
             {if $node|has_attribute('contatti')}
                 <button class="btn btn-info btn-lg center-block space" type="button" data-toggle="collapse" data-target="#info" aria-expanded="false" aria-controls="info">
-                    <i class="fa fa-info-circle"></i> Maggiori informazioni
+                    <i class="fa fa-info-circle"></i> {'More information'|i18n('agenda')}
                 </button>
                 <div class="collapse space" id="info">
                     <div class="well">

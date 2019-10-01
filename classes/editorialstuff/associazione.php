@@ -9,7 +9,7 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
         $tabs = array(
             array(
                 'identifier' => 'content',
-                'name' => 'Contenuto',
+                'name' => ezpI18n::tr('openpa_agenda', 'Content'),
                 'template_uri' => "design:{$templatePath}/parts/content.tpl"
             )
         );
@@ -46,7 +46,7 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
 
         $tabs[] = array(
             'identifier' => 'history',
-            'name' => 'Cronologia',
+            'name' => ezpI18n::tr('openpa_agenda', 'History'),
             'template_uri' => "design:{$templatePath}/parts/history.tpl"
         );
         return $tabs;

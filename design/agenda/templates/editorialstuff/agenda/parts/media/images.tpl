@@ -11,7 +11,7 @@
     {/if}
   {/foreach}
 
-  <h3>{'Immagini'|i18n('agenda/dashboard')}</h3>
+  <h3>{'Images'|i18n('agenda/dashboard')}</h3>
   
   {ezscript_require( array( "ezjsc::jquery", "plugins/blueimp/jquery.blueimp-gallery.min.js" ) )}
   {ezcss_require( array( "plugins/blueimp/blueimp-gallery.css" ) )}

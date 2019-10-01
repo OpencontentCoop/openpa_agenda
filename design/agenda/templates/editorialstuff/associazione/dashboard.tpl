@@ -9,18 +9,18 @@
               action={concat('editorialstuff/dashboard/', $factory_identifier )|ezurl()}>
 
             {if $factory_configuration.CreationRepositoryNode}
-                <a href="{concat('editorialstuff/add/',$factory_identifier)|ezurl(no)}" class="btn btn-primary">{$factory_configuration.CreationButtonText|wash()}</a>
+                <a href="{concat('editorialstuff/add/',$factory_identifier)|ezurl(no)}" class="btn btn-primary">{$factory_configuration.CreationButtonText|wash()|i18n('agenda/dashboard')}</a>
             {/if}
 
             <div class="form-group">
-                <input type="text" class="form-control" name="query" placeholder="Ricerca libera"
+                <input type="text" class="form-control" name="query" placeholder="{'Search'|i18n('editorialstuff/dashboard')}"
                        value="{$view_parameters.query|wash()}"/>
             </div>
 
             {if $states|count()}
             <div class="form-group">
                 <select class="form-control" name="state" id="dashboard-state-select">
-                    <option value="">Tutti</option>
+                    <option value="">{'All'|i18n('editorialstuff/dashboard')}</option>
                     {foreach $states as $state}
                         <option value="{$state.id}" {if $view_parameters.state|eq($state.id)} selected="selected"{/if} >{$state.current_translation.name|wash}</option>
                     {/foreach}
@@ -29,31 +29,22 @@
             {/if}
 
             {def $intervals = array(
-                hash( 'value', '-P1D', 'name', 'Ultimo giorno' ),
-                hash( 'value', '-P1W', 'name', 'Ultimi 7 giorni' ),
-                hash( 'value', '-P1M', 'name', 'Ultimi 30 giorni' ),
-                hash( 'value', '-P2M', 'name', 'Ultimi 2 mesi' )
+                hash( 'value', '-P1D', 'name', 'Last day'|i18n('editorialstuff/dashboard') ),
+                hash( 'value', '-P1W', 'name', 'Last 7 days'|i18n('editorialstuff/dashboard') ),
+                hash( 'value', '-P1M', 'name', 'Last 30 days'|i18n('editorialstuff/dashboard') ),
+                hash( 'value', '-P2M', 'name', 'Last two months'|i18n('editorialstuff/dashboard') )
             )}
 
             <div class="form-group">
                 <select class="form-control" name="interval" id="dashboard-interval-select">
-                    <option value="">Periodo</option>
+                    <option value="">{'Period'|i18n('editorialstuff/dashboard')}</option>
                     {foreach $intervals as $interval}
                         <option value="{$interval.value}" {if $view_parameters.interval|eq($interval.value)} selected="selected"{/if}>{$interval.name|wash()}</option>
                     {/foreach}
                 </select>
             </div>
 
-            {*<div class="form-group">
-              <select class="form-control" name="tag" id="dashboard-tag-select">
-                <option value="">Argomento</option>
-                {foreach $tags as $tag}
-                  <option value="{$tag.keyword}" {if $view_parameters.tag|eq($tag.keyword)} selected="selected"{/if}>{$tag.keyword|wash()}</option>
-                {/foreach}
-              </select>
-            </div> *}
-
-            <button type="submit" class="btn btn-info" id="dashboard-search-button">Cerca</button>
+            <button type="submit" class="btn btn-info" id="dashboard-search-button">{'Search'|i18n('editorialstuff/dashboard')}</button>
         </form>
     </div>
 </div>
@@ -76,19 +67,22 @@
     <table class="table table-striped" cellpadding="0" cellspacing="0" border="0">
       <tr>
         <th><small></small></th>
-        <th><small>Autore</small></th>
-        <th><small>Data</small></th>
-          {if $states|count()}<th><small>Stato</small></th>{/if}
-        <th><small>Titolo</small></th>
+        <th><small>{'Author'|i18n('editorialstuff/dashboard')}</small></th>
+        <th><small>{'Date'|i18n('editorialstuff/dashboard')}</small></th>
+          {if $states|count()}<th><small>{'State'|i18n('editorialstuff/dashboard')}</small></th>{/if}
+        <th><small>{'Title'|i18n('editorialstuff/dashboard')}</small></th>
+        <th>{'Translations'|i18n('agenda/dashboard')}</th>
         <th></th>
       </tr>
     {foreach $posts as $post}
       <tr>
 
           <td class="text-center">            
+            {if is_set($post.object.languages[ezini('RegionalSettings','Locale')])}
             <a href="{concat( 'editorialstuff/edit/', $factory_identifier, '/', $post.object.id )|ezurl('no')}" title="Dettaglio" class="btn btn-info">
-                Dettaglio
+                {'Detail'|i18n('editorialstuff/dashboard')}
             </a>            
+            {/if}
           </td>
           
           <td>
@@ -107,6 +101,16 @@
           
           <td>
             <a data-toggle="modal" data-load-remote="{concat( 'layout/set/modal/content/view/full/', $post.object.main_node_id )|ezurl('no')}" data-remote-target="#preview .modal-content" href="#{*$post.url*}" data-target="#preview">{$post.object.name}</a>
+          </td>
+
+          <td>
+            {foreach ezini('RegionalSettings','SiteLanguageList') as $language}
+                {if is_set($post.object.languages[$language])}
+                    <a href="{concat('/content/edit/', $post.object.id, '/f/', $language)|ezurl(no)}"><img style="max-width:none" src="/share/icons/flags/{$language}.gif" /></a>
+                {else}
+                    <a href="{concat('/content/edit/', $post.object.id, '/a')|ezurl(no)}"><img style="max-width:none;opacity:0.2" src="/share/icons/flags/{$language}.gif" /></a>
+                {/if}
+            {/foreach}            
           </td>
           
           <td>
@@ -129,7 +133,7 @@
 </div>
 
 {else}
-<div class="alert alert-warning">Nessun contenuto</div>
+<div class="alert alert-warning">{'No result found'|i18n('agenda')}</div>
 {/if}
 
 <div id="preview" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="previewlLabel" aria-hidden="true">

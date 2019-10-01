@@ -36,7 +36,7 @@
             <div class="container">
                 <div class="row">
                     <div class="footer_teaser col-sm-6 col-md-6">
-                        <h3>{'Contatti'|i18n('ocsocialdesign')}</h3>
+                        <h3>{'Contacts'|i18n('ocsocialdesign')}</h3>
                         <p>{attribute_view_gui attribute=$social_pagedata.attribute_contacts}</p>
                     </div>
                     <div class="footer_teaser col-sm-6 col-md-6">

@@ -1,5 +1,6 @@
-{def $current_language=ezini('RegionalSettings', 'Locale')}
-{def $moment_language = $current_language|explode('-')[1]|downcase()}
+{def $current_language = ezini('RegionalSettings', 'Locale')}
+{def $current_locale = fetch( 'content', 'locale' , hash( 'locale_code', $current_language ))}
+{def $moment_language = $current_locale.http_locale_code|explode('-')[0]|downcase()|extract_left( 2 )}
 {literal}
 (function () {
 

@@ -6,9 +6,7 @@
     'moment.min.js',
     'jquery.opendataTools.js',
     'fullcalendar/fullcalendar.min.js',
-    'fullcalendar/locale/it.js',
-    'fullcalendar/locale/de.js',
-    'fullcalendar/locale/en.js',
+    concat('fullcalendar/locale/', fetch( 'content', 'locale' , hash( 'locale_code', ezini('RegionalSettings', 'Locale') )).http_locale_code|explode('-')[0]|downcase()|extract_left( 2 ), '.js'),
     'openpa_agenda_helpers.js',
     'openpa_agenda_fullcalendar.js',
     'jquery.opendataSearchView.js',
@@ -77,12 +75,12 @@
 
 <script id="tpl-list-empty" type="text/x-jsrender">
 <a href="#" class="list-group-item">
-    <i class="fa fa-times"></i> {'Nessun contenuto trovato'|i18n('agenda')}
+    <i class="fa fa-times"></i> {'No result found'|i18n('agenda')}
 </a>
 </script>
 
 <script id="tpl-list-load-other" type="text/x-jsrender">
-<a href="#" class="list-group-item btn btn-primary btn-xs">{'Carica altri risultati'|i18n('agenda')}</a>
+<a href="#" class="list-group-item btn btn-primary btn-xs">{'Load More Results'|i18n('agenda')}</a>
 </script>
 
 {literal}

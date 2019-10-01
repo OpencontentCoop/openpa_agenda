@@ -28,7 +28,7 @@ Identifiers[]=commenti
 [agenda]
 ClassName=AgendaFactory
 ClassIdentifier=event
-CreationButtonText=Crea un nuovo evento
+CreationButtonText=Create new event
 AttributeIdentifiers[]
 AttributeIdentifiers[images]=images
 AttributeIdentifiers[videos]=video
@@ -48,7 +48,7 @@ Actions[waiting-refused]=NotifyEventOwner
 [associazione]
 ClassName=AssociazioneFactory
 ClassIdentifier=associazione
-CreationButtonText=Crea una nuova associazione
+CreationButtonText=Create new association
 AttributeIdentifiers[]
 StateGroup=privacy
 States[public]=Pubblico
@@ -58,7 +58,7 @@ NotificationAttributeIdentifiers[]
 [programma_eventi]
 ClassName=ProgrammaEventiFactory
 ClassIdentifier=programma_eventi
-CreationButtonText=Crea un nuovo programma eventi
+CreationButtonText=Create new event program
 AttributeIdentifiers[]
 StateGroup=programma_eventi
 States[public]=Pubblico
@@ -78,3 +78,4 @@ NotificationAttributeIdentifiers[]
 Actions[]
 AttributeIdentifiers[]
 
+*/ ?>
