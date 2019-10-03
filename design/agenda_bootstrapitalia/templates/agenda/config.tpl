@@ -12,7 +12,13 @@
 <div class="row">
     <div class="col-md-12">
         <ul class="list-unstyled">
-            <li>{'Change general settings'|i18n('agenda/config')} {include name=edit uri='design:parts/toolbar/node_edit.tpl' current_node=$root redirect_if_discarded='/agenda/config' redirect_after_publish='/agenda/config'}</li>
+            {if $root.can_edit}
+                <li>
+                    <a class="btn btn-primary btn-xs" href="{concat('/content/edit/', $root.contentobject_id, '/f/', ezini( 'RegionalSettings', 'ContentObjectLocale', 'site.ini'))|ezurl(no)}">
+                        <i class="fa fa-pencil mr-1"></i> {'Change general settings'|i18n('agenda/config')}
+                    </a>
+                </li>
+            {/if}
             {if is_moderation_enabled()}
                 <li><strong>{'Moderation is active'|i18n('agenda/config')}</strong></li>
             {/if}
