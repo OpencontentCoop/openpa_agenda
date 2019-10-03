@@ -90,6 +90,9 @@ class OpenPAAgenda
         return true;
     }
 
+    /**
+     * @return eZContentObject
+     */
     public function rootObject()
     {
         return $this->root;

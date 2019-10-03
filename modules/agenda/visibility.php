@@ -20,6 +20,7 @@ if ($object instanceof eZContentObject && $object->canEdit()){
                 foreach ($reverseList as $reverse){
                     eZSearch::addObject($reverse, true);
                 }
+                eZContentCacheManager::clearContentCache(OpenPAAgenda::instance()->rootObject()->attribute('id'));
                 $data = 'success';
             }
         }else{
