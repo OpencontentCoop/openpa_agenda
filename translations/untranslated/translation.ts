@@ -711,7 +711,15 @@
         <message>
             <source>The comment is now in state %state.</source>
             <translation type="unfinished"/>
-        </message>          
+        </message>
+        <message>
+            <source>Notify on</source>
+            <translation type="unfinished"/>
+        </message>
+        <message>
+            <source>We inform you that the status of the content "%name" has been changed.</source>
+            <translation type="unfinished"/>
+        </message>
     </context>
     <context>
         <name>agenda/place</name>

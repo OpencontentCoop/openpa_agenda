@@ -713,7 +713,15 @@
         <message>
             <source>The comment is now in state %state.</source>
             <translation>Il commento è ora in stato %name</translation>
-        </message>          
+        </message>
+        <message>
+            <source>Notify on</source>
+            <translation>Notifica su</translation>
+        </message>
+        <message>
+            <source>We inform you that the status of the content "%name" has been changed.</source>
+            <translation>La informiamo che lo stato del contenuto "%name" è stato cambiato.</translation>
+        </message>
     </context>
     <context>
         <name>agenda/place</name>
