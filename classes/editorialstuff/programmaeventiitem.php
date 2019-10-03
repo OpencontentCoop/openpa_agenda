@@ -211,7 +211,7 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         $http = eZHTTPTool::instance();
         $subActionIdentifier = $http->postVariable($actionIdentifier);
 
-        if ($subActionIdentifier == 'SaveAndGetProgram') {
+        if ($subActionIdentifier == 'SaveProgram') {
 
             $this->saveProgram();
 
