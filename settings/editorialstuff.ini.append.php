@@ -30,6 +30,7 @@ ClassName=AgendaFactory
 ClassIdentifier=event
 CreationButtonText=Create new event
 AttributeIdentifiers[]
+AttributeIdentifiers[image]=image
 AttributeIdentifiers[images]=images
 StateGroup=moderation
 States[skipped]=Non necessita di moderazione
