@@ -168,7 +168,7 @@ class OpenPAAgendaPageDataHandler extends ezjscServerFunctions implements OCPage
 
         $menu[] = array(
             'name' => ezpI18n::tr( 'agenda/menu', 'Information' ),
-            'url' => 'agenda/info',
+            'url' => '',
             'highlight' => false,
             'has_children' => true,
             'children' => $infoChildren
