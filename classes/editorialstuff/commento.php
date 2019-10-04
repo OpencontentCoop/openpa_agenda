@@ -20,7 +20,8 @@ class Commento extends OCEditorialStuffPost
     {
         if ($beforeState->attribute('id') !== $afterState->attribute('id'))
         {
-            OpenPAAgenda::notifyCommentOwner($this);     
+            $this->setObjectLastModified();
+            OpenPAAgenda::notifyCommentOwner($this);
         }
     }
     
