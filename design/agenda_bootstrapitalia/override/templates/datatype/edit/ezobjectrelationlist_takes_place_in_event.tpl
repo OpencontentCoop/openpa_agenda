@@ -3,15 +3,28 @@
 
 {def $visibility_states = visibility_states()}
 {def $current_language = ezini('RegionalSettings', 'Locale')}
+{def $owner_list = array(fetch(user,current_user).contentobject_id)}
+{foreach $attribute.object.author_array as $author}
+    {set $owner_list = $owner_list|append($author.contentobject_id)}
+{/foreach}
 
-{def $public_places = api_search(concat("classes [place] subtree [",$parent_node_id,"] and state in [", $visibility_states.public.id, "] sort [name=>asc] limit 100"))}
+{def $public_places_query = concat("classes [place] subtree [",$parent_node_id,"] and state in [", $visibility_states.public.id, "] sort [name=>asc] limit 100")}
+{debug-log msg='public_places_query' var=$public_places_query}
+{def $public_places = api_search($public_places_query)}
 
-{def $private_places = api_search(concat("classes [place] subtree [",$parent_node_id,"] and state in [", $visibility_states.private.id, "] and owner_id in [", fetch(user,current_user).contentobject_id, "] sort [name=>asc] limit 100"))}
+{def $private_places_query = concat("classes [place] subtree [",$parent_node_id,"] and state in [", $visibility_states.private.id, "] and owner_id in [", $owner_list|implode(','), "] sort [name=>asc] limit 100")}
+{debug-log msg='private_places_query' var=$private_places_query}
+{def $private_places = api_search($private_places_query)}
 
-{def $all_used_places_id_list = api_search(concat("classes [event] and owner_id in [", fetch(user,current_user).contentobject_id, "] and facets [takes_place_in.id|count|100] limit 1")).facets[0].data|array_keys}
+{def $all_used_places_id_list_query = concat("classes [event] and owner_id in [", $owner_list|implode(','), "] and facets [takes_place_in.id|count|100] limit 1")}
+{debug-log msg='all_used_places_id_list_query' var=$all_used_places_id_list_query}
+{def $all_used_places_id_list = api_search($all_used_places_id_list_query).facets[0].data|array_keys}
+
 {def $shared_places = hash('totalCount', 0)}
 {if count($all_used_places_id_list)}
-    {set $shared_places = api_search(concat("classes [place] subtree [",$parent_node_id,"] and state in [", $visibility_states.private.id, "] and owner_id !in [", fetch(user,current_user).contentobject_id, "] and id in [", $all_used_places_id_list|implode(','), "] sort [name=>asc] limit 100"))}
+    {def $shared_places_query = concat("classes [place] subtree [",$parent_node_id,"] and state in [", $visibility_states.private.id, "] and owner_id !in [", $owner_list|implode(','), "] and id in [", $all_used_places_id_list|implode(','), "] sort [name=>asc] limit 100")}
+    {debug-log msg='shared_places_query' var=$shared_places_query}
+    {set $shared_places = api_search($shared_places_query)}
 {/if}
 
 {def $current_selection = array()}
