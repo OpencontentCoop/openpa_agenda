@@ -7,7 +7,6 @@
 {if count($place_ids)}
     {set $place_id_name_list = api_search(concat('select-fields [metadata.id=>metadata.name] classes [place] and subtree [1] and id in [', $place_ids|implode(','), '] and state in [', visibility_states().public.id, ']' ))}
 {/if}
-{def $place_id_name_list = array()}
 {def $private_place_id_name_list = array()}
 {def $has_place = false()}
 {if count($place_ids)}

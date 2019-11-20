@@ -62,10 +62,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col mt-4" style="width: 85px;max-width: 85px">
+            <div class="col-1 mt-4">
                 {include uri='design:parts/vertical_pills.tpl' views=array('list','geo','agenda')}
             </div>
-            <div class="col">
+            <div class="col-11">
                 {include uri='design:parts/views.tpl' views=array('list','geo','agenda') view_style=''}
             </div>
         </div>

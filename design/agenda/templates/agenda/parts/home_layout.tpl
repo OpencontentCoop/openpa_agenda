@@ -26,7 +26,7 @@
             <div class="service_teaser vertical">
                 <div class="service_photo">
                     <h2 class="section_header gradient-background">
-                        <a href="{'agenda/Associations/'|ezurl(no)}"><b>{'Address Book'|i18n('agenda')}</b> {'Associations'|i18n('agenda')}</a>
+                        <a href="{'agenda/associazioni/'|ezurl(no)}"><b>{'Address Book'|i18n('agenda')}</b> {'Associations'|i18n('agenda')}</a>
                         {if agenda_root()|has_attribute('testo_rubrica_associazioni')}
                             <small>{agenda_root()|attribute('testo_rubrica_associazioni').data_text|wash( xhtml )}</small>
                         {else}

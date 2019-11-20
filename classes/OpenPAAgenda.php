@@ -55,6 +55,8 @@ class OpenPAAgenda
         $this->root = eZContentObject::fetchByRemoteID(self::rootRemoteId());
         if ($this->root instanceof eZContentObject) {
             $this->rootDataMap = $this->root->attribute('data_map');
+        }else{
+            $this->root = new eZContentObject([]);
         }
     }
 

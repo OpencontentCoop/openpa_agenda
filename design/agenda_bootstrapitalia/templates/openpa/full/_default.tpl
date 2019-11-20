@@ -32,7 +32,7 @@
 
 {def $related_event_classe_attributes = hash(
     'topic', array('topics'),
-    'private_organization', array('organizer', 'attendee', 'composer', 'performer', 'sponsor', 'translator', 'funder'),
+    'private_organization', array('organizer'),
     'place', array('takes_place_in'),
     'online_contact_point', array('has_online_contact_point'),
     'offer', array('has_offer')

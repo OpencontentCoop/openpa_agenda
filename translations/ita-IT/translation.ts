@@ -228,11 +228,11 @@
         </message>
         <message>
             <source>User registration is active</source>
-            <translation>Auto-registrazione attiva</translation>
+            <translation>Registrazione utenti attiva</translation>
         </message>
         <message>
             <source>Associations registration is active</source>
-            <translation>Auto-registrazione associazioni attiva</translation>
+            <translation>Registrazione associazioni attiva</translation>
         </message>
         <message>
             <source>Comments enabled</source>
@@ -522,11 +522,8 @@
             <translation>Vuoi registrare la tua associazione?</translation>
         </message>
         <message>
-            <source>To register an association, you must click on the button and fill out the required info. After our
-                operators have checked your info, you can use the credentials you've chosen to log in and post new
-                events.
-            </source>
-            <translation type="unfinished"/>
+            <source>To register an association, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events.</source>
+            <translation>Per registrare la tua associzione, clicca sul bottone e compila le informazioni richieste. Dopo la validazione dei dati da parte di un operatore, potrai usare le credenziali che hai inserito per accedere all'interfaccia di pubblicazione di nuovi eventi.</translation>
         </message>
         <message>
             <source>Register an association</source>
@@ -680,7 +677,7 @@
         <name>agenda/mail</name>
         <message>
             <source>Association registration</source>
-            <translation>Regitrazione associazione</translation>
+            <translation>Registrazione associazione</translation>
         </message>
         <message>
             <source>We inform you that the data concerning the %name association have been validated.</source>

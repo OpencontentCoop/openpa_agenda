@@ -31,7 +31,7 @@ ClassIdentifier=event
 CreationButtonText=Create new event
 AttributeIdentifiers[]
 AttributeIdentifiers[image]=image
-AttributeIdentifiers[images]=images
+AttributeIdentifiers[images]=image
 StateGroup=moderation
 States[skipped]=Non necessita di moderazione
 States[draft]=In lavorazione

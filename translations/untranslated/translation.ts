@@ -522,10 +522,7 @@
             <translation type="unfinished"/>
         </message>
         <message>
-            <source>To register an association, you must click on the button and fill out the required info. After our
-                operators have checked your info, you can use the credentials you've chosen to log in and post new
-                events.
-            </source>
+            <source>To register an association, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events.</source>
             <translation type="unfinished"/>
         </message>
         <message>

@@ -54,6 +54,7 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
 
     public function onCreate()
     {
+        $this->updateOwner();
         if ($this->getObject()->attribute('current_version') == 1 && eZUser::currentUser()->isAnonymous()) {
             $states = $this->states();
             $default = 'privacy.private';
@@ -129,6 +130,7 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
 
     public function onUpdate()
     {
+        $this->updateOwner();
         OpenPAAgenda::notifyModerationGroup($this);
     }
 
@@ -199,6 +201,14 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
             if ($module) {
                 $module->redirectTo("editorialstuff/edit/{$this->getFactory()->identifier()}/{$this->id()}#tab_social");
             }
+        }
+    }
+
+    private function updateOwner()
+    {
+        if ($this->getObject()->attribute('owner_id') != $this->id()) {
+            $this->getObject()->setAttribute('owner_id', $this->id());
+            $this->getObject()->store();
         }
     }
 }

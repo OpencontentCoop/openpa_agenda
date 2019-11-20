@@ -68,6 +68,7 @@ var Translations = {ldelim}
     'Detail': '{'Detail'|i18n('agenda/dashboard')}',
     'Loading...': '{'Loading...'|i18n('agenda/dashboard')}'
 {rdelim};
+$.opendataTools.settings('accessPath', "{''|ezurl(no,full)}");
 {literal}
 $(document).ready(function () {
     $('.load-preview').on('click', function (e) {

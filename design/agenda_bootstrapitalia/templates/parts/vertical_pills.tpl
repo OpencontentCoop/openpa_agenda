@@ -1,4 +1,4 @@
-<ul class="nav d-block nav-pills border-right border-primary pb-3">
+<ul class="nav d-block nav-pills border-right border-primary pb-3 overflow-hidden">
     {if $views|contains('grid')}
         <li class="nav-item py-3 text-center">
             <a data-toggle="tab"
