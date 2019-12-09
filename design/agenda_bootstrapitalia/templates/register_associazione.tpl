@@ -13,7 +13,7 @@
 
         <div class="row">
             <div class="col p-3">
-                <h1>{'Register a new association'|i18n('agenda/signupassociazione')}</h1>
+                <h1>{'Register a new organization'|i18n('agenda/signupassociazione')}</h1>
 
                 {if and(is_set($view_parameters.error), $view_parameters.error|eq('invalid_recaptcha'))}
                 <div class="alert alert-danger">
@@ -73,6 +73,7 @@
                     <div class="anchor-offset row p-3 mb-4">
                         <div class="col">
                             <h5>{'Security code'|i18n( 'social_user/signup' )}</h5>
+                            <small class="form-text text-muted mb-1">{'Confirm us that you are not a robot'|i18n( 'social_user/signup' )}</small>
                             {if $recaptcha_public_key|not()}
                                 <div class="message-warning">
                                     {'reCAPTCHA API key not found'|i18n( 'social_user/signup' )}
@@ -88,8 +89,8 @@
                 </div>
 
                 <div class="clearfix">
-                    <input class="btn btn-lg btn-success float-right" type="submit" name="PublishButton" value="{'Store'|i18n('ocbootstrap')}" onclick="window.setTimeout( disableButtons, 1 ); return true;"/>
-                    <input class="btn btn-lg btn-dark" type="submit" name="CancelButton" value="{'Discard'|i18n('ocbootstrap')}" onclick="window.setTimeout( disableButtons, 1 ); return true;"/>
+                    <input class="btn btn-lg btn-success float-right" type="submit" name="PublishButton" value="{'Register'|i18n('agenda/signupassociazione')}" onclick="window.setTimeout( disableButtons, 1 ); return true;"/>
+                    <input class="btn btn-lg btn-dark" type="submit" name="CancelButton" value="{'Cancel'|i18n('agenda/signupassociazione')}" onclick="window.setTimeout( disableButtons, 1 ); return true;"/>
                 </div>
 
             {else}
@@ -97,7 +98,7 @@
                     <p>{"Unable to register new user"|i18n("design/ocbootstrap/user/register")}</p>
                 </div>
                 <input class="btn btn-primary" type="submit" id="CancelButton" name="CancelButton"
-                       value="{'Annulla'|i18n('agenda/signupassociazione')}"
+                       value="{'Cancel'|i18n('agenda/signupassociazione')}"
                        onclick="window.setTimeout( disableButtons, 1 ); return true;"/>
             {/if}
         </form>

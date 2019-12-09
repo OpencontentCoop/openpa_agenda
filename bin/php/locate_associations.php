@@ -1,7 +1,7 @@
 <?php
 require 'autoload.php';
 
-$script = eZScript::instance( array( 'description' => ( "OpenPA Agenda Locate associations \n\n" ),
+$script = eZScript::instance( array( 'description' => ( "OpenPA Agenda Locate Organizations \n\n" ),
                                      'use-session' => false,
                                      'use-modules' => true,
                                      'use-extensions' => true ) );

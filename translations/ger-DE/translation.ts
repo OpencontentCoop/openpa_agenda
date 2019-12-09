@@ -28,7 +28,7 @@
             <translation>Liste</translation>
         </message>
         <message>
-            <source>Associations</source>
+            <source>Organizations</source>
             <translation>Vereine</translation>
         </message>
         <message>
@@ -36,7 +36,7 @@
             <translation>Das offizielle Register der Gemeinde</translation>
         </message>
         <message>
-            <source>Are you an association?</source>
+            <source>Are you an organization?</source>
             <translation>Bis du ein Verein?</translation>
         </message>
         <message>
@@ -187,7 +187,7 @@
             <translation>Benutzerregistrierung ist aktiv</translation>
         </message>
         <message>
-            <source>Associations registration is active</source>
+            <source>Organizations registration is active</source>
             <translation type="unfinished"/>
         </message>
         <message>
@@ -334,7 +334,7 @@
             <translation type="unfinished"/>
         </message>
         <message>
-            <source>Create new association</source>
+            <source>Create new organization</source>
             <translation type="unfinished"/>
         </message>
         <message>
@@ -428,7 +428,7 @@
             <translation>Kalender</translation>
         </message>
         <message>
-            <source>Associations</source>
+            <source>Organizations</source>
             <translation>Vereine</translation>
         </message>
         <message>
@@ -448,7 +448,7 @@
             <translation>Einstellungen</translation>
         </message>
         <message>
-            <source>Manage associations</source>
+            <source>Manage organizations</source>
             <translation>Vereine verwalten</translation>
         </message>
         <message>
@@ -470,18 +470,15 @@
     <context>
         <name>agenda/signupassociazione</name>
         <message>
-            <source>Do you want to register your association?</source>
+            <source>Do you want to register your organization?</source>
             <translation type="unfinished"/>
         </message>
         <message>
-            <source>To register an association, you must click on the button and fill out the required info. After our
-                operators have checked your info, you can use the credentials you've chosen to log in and post new
-                events.
-            </source>
+            <source>To register an organization, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events.</source>
             <translation type="unfinished"/>
         </message>
         <message>
-            <source>Register an association</source>
+            <source>Register an organization</source>
             <translation type="unfinished"/>
         </message>
         <message>
@@ -489,16 +486,20 @@
             <translation type="unfinished"/>
         </message>
         <message>
-            <source>Register a new association</source>
+            <source>Register a new organization</source>
             <translation type="unfinished"/>
         </message>
         <message>
             <source>Register</source>
-            <translation type="unfinished"/>
+            <translation>Rekord</translation>
         </message>
         <message>
-            <source>Annulla</source>
-            <translation>Warten auf Moderation</translation>
+            <source>Cancel</source>
+            <translation>stornieren</translation>
+        </message>
+        <message>
+            <source>Confirm us that you are not a robot</source>
+            <translation>Bestätige uns, dass du kein Roboter bist</translation>
         </message>
     </context>
     <context>
@@ -536,6 +537,10 @@
         </message>
         <message>
             <source>Flyer</source>
+            <translation type="unfinished"/>
+        </message>
+        <message>
+            <source>Save</source>
             <translation type="unfinished"/>
         </message>
     </context>

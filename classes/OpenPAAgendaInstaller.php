@@ -239,7 +239,7 @@ class OpenPAAgendaInstaller implements OpenPAInstaller
             $groupObject = eZContentFunctions::createAndPublishObject( $params );
             if( !$groupObject instanceof eZContentObject )
             {
-                throw new Exception( 'Failed creating Association group node' );
+                throw new Exception( 'Failed creating Organizations group node' );
             }
         }
 

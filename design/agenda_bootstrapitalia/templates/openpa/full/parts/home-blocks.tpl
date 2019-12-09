@@ -50,7 +50,7 @@
             <div class="card card-bg card-big rounded shadow no-after bg-danger m-0">
                 <div class="card-body p-3">
                     <h5 class="card-title mb-0">
-                        <a class="stretched-link text-white text-decoration-none" href="{'agenda/info/faq/'|ezurl(no)}">{"Are you an association?"|i18n('agenda')}</a>
+                        <a class="stretched-link text-white text-decoration-none" href="{'agenda/info/faq/'|ezurl(no)}">{"Are you an organization?"|i18n('agenda')}</a>
                     </h5>
                     <p class="card-text text-white  text-sans-serif pt-0">
                         {if agenda_root()|has_attribute('testo_partecipa_associazioni')}

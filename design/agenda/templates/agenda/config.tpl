@@ -24,7 +24,7 @@ $(document).ready(function(){
                 <li><strong>{'User registration is active'|i18n('agenda/config')}</strong></li>
             {/if}
             {if is_auto_registration_enabled()}
-                <li><strong>{'Associations registration is active'|i18n('agenda/config')}</strong></li>
+                <li><strong>{'Organizations registration is active'|i18n('agenda/config')}</strong></li>
             {/if}
             {if is_comment_enabled()}
                 <li><strong>{'Comments enabled'|i18n('agenda/config')}</strong></li>

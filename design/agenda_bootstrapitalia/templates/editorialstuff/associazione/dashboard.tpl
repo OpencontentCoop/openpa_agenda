@@ -14,7 +14,7 @@
                 <li role="presentation" class="nav-item">
                     <a class="text-decoration-none nav-link active" style="font-size: 1.8em" data-toggle="tab"
                        href="#events">
-                        {'Manage associations'|i18n('agenda/dashboard')}
+                        {'Manage organizations'|i18n('agenda/dashboard')}
                     </a>
                 </li>
             </ul>

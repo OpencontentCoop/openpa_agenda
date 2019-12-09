@@ -58,9 +58,9 @@
                                     {if is_auto_registration_enabled()}
                                         <li class="nav-item">
                                             <a class="nav-link text-truncate btn btn-danger rounded-0 text-white"
-                                               title="{'Do you want to register your association?'|i18n('agenda/signupassociazione')}"
+                                               title="{'Do you want to register your organization?'|i18n('agenda/signupassociazione')}"
                                                href="{'agenda/register_associazione'|ezurl(no)}">
-                                                <span>{'Register an association'|i18n('agenda/signupassociazione')}</span>
+                                                <span>{'Register an organization'|i18n('agenda/signupassociazione')}</span>
                                             </a>
                                         </li>
                                     {/if}

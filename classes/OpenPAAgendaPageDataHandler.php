@@ -159,7 +159,7 @@ class OpenPAAgendaPageDataHandler extends ezjscServerFunctions implements OCPage
 
         if ($this->agenda()->isCollaborationModeEnabled()) {
             $menu[] = array(
-                'name' => $isSiteRoot ? $organizationsNode->attribute('name') : ezpI18n::tr('agenda/menu', 'Associations'),
+                'name' => $isSiteRoot ? $organizationsNode->attribute('name') : ezpI18n::tr('agenda/menu', 'Organizations'),
                 'url' => $isSiteRoot ? $organizationsNodeUrl : 'agenda/associazioni',
                 'highlight' => false,
                 'has_children' => false
@@ -210,7 +210,7 @@ class OpenPAAgendaPageDataHandler extends ezjscServerFunctions implements OCPage
 
         if ($hasAccessConfig['accessWord'] == 'yes') {
             $userMenu[] = array(
-                'name' => ezpI18n::tr('agenda/menu', 'Manage associations'),
+                'name' => ezpI18n::tr('agenda/menu', 'Manage organizations'),
                 'url' => 'editorialstuff/dashboard/associazione',
                 'highlight' => false,
                 'has_children' => false

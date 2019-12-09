@@ -64,7 +64,7 @@
             <translation>Rubrica</translation>
         </message>
         <message>
-            <source>Associations</source>
+            <source>Organizations</source>
             <translation>associazioni</translation>
         </message>
         <message>
@@ -72,7 +72,7 @@
             <translation>Registro ufficiale del comune</translation>
         </message>
         <message>
-            <source>Are you an association?</source>
+            <source>Are you an organization?</source>
             <translation>Sei un'associazione?</translation>
         </message>
         <message>
@@ -231,7 +231,7 @@
             <translation>Registrazione utenti attiva</translation>
         </message>
         <message>
-            <source>Associations registration is active</source>
+            <source>Organizations registration is active</source>
             <translation>Registrazione associazioni attiva</translation>
         </message>
         <message>
@@ -382,7 +382,7 @@
             <translation>Crea nuovo evento</translation>
         </message>
         <message>
-            <source>Create new association</source>
+            <source>Create new organization</source>
             <translation>Crea nuova associazione</translation>
         </message>
         <message>
@@ -476,7 +476,7 @@
             <translation>Agenda</translation>
         </message>
         <message>
-            <source>Associations</source>
+            <source>Organizations</source>
             <translation>Associazioni</translation>
         </message>
         <message>
@@ -496,7 +496,7 @@
             <translation>Settings</translation>
         </message>
         <message>
-            <source>Manage associations</source>
+            <source>Manage organizations</source>
             <translation>Gestisci associazioni</translation>
         </message>
         <message>
@@ -518,15 +518,15 @@
     <context>
         <name>agenda/signupassociazione</name>
         <message>
-            <source>Do you want to register your association?</source>
+            <source>Do you want to register your organizations?</source>
             <translation>Vuoi registrare la tua associazione?</translation>
         </message>
         <message>
-            <source>To register an association, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events.</source>
-            <translation>Per registrare la tua associzione, clicca sul bottone e compila le informazioni richieste. Dopo la validazione dei dati da parte di un operatore, potrai usare le credenziali che hai inserito per accedere all'interfaccia di pubblicazione di nuovi eventi.</translation>
+            <source>To register an organization, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events.</source>
+            <translation>Per registrare la tua associazione, clicca sul bottone e compila le informazioni richieste. Dopo la validazione dei dati da parte di un operatore, potrai usare le credenziali che hai inserito per accedere all'interfaccia di pubblicazione di nuovi eventi.</translation>
         </message>
         <message>
-            <source>Register an association</source>
+            <source>Register an organization</source>
             <translation>Registra associazione</translation>
         </message>
         <message>
@@ -538,7 +538,7 @@
             <translation>Quando saranno validati ti verrà inviata una notifica mail all'indirizzo che hai specificato</translation>
         </message>
         <message>
-            <source>Register a new association</source>
+            <source>Register a new organization</source>
             <translation>Registra nuova associazione</translation>
         </message>
         <message>
@@ -546,8 +546,12 @@
             <translation>Registra</translation>
         </message>
         <message>
-            <source>Annulla</source>
-            <translation type="unfinished"/>
+            <source>Cancel</source>
+            <translation>Annulla</translation>
+        </message>
+        <message>
+            <source>Confirm us that you are not a robot</source>
+            <translation>Conferma di non essere un robot</translation>
         </message>
     </context>
     <context>
@@ -586,6 +590,10 @@
         <message>
             <source>Flyer</source>
             <translation>Volantino</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Salva</translation>
         </message>
     </context>
     <context>
@@ -676,11 +684,11 @@
     <context>
         <name>agenda/mail</name>
         <message>
-            <source>Association registration</source>
+            <source>Organization registration</source>
             <translation>Registrazione associazione</translation>
         </message>
         <message>
-            <source>We inform you that the data concerning the %name association have been validated.</source>
+            <source>We inform you that the data concerning the %name organization have been validated.</source>
             <translation>Le comunchiamo che i dati dell'associazione %name sono stati validati.</translation>
         </message>
         <message>

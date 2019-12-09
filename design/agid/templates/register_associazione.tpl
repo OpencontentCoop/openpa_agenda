@@ -13,7 +13,7 @@
         {else}
 
         <section class="hgroup">
-            <h1>{'Register a new association'|i18n('agenda/signupassociazione')}</h1>
+            <h1>{'Register a new organization'|i18n('agenda/signupassociazione')}</h1>
         </section>
 
         {if and(is_set($view_parameters.error), $view_parameters.error|eq('invalid_recaptcha'))}

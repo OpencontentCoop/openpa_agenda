@@ -132,18 +132,18 @@
                     <fieldset>
                         <div class="social_sign">
                             <h3>
-                                <strong>{'Do you want to register your association?'|i18n('agenda/signupassociazione')}<br /></strong>
+                                <strong>{'Do you want to register your organization?'|i18n('agenda/signupassociazione')}<br /></strong>
                             </h3>
                         </div>
                         <hr />
                         <p>
-                            {"To register an association, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events."|i18n('agenda/signupassociazione')}
+                            {"To register an organization, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events."|i18n('agenda/signupassociazione')}
                         </p>
                         <div class="row">
                             <div class="col-lg-12">
                             </div>
                         </div>
-                        <button name="RegisterAssociazioneButton" type="submit" class="btn btn-success btn-lg" style="margin-top: 18px">{'Register an association'|i18n('agenda/signupassociazione')}</button>
+                        <button name="RegisterAssociazioneButton" type="submit" class="btn btn-success btn-lg" style="margin-top: 18px">{'Register an organization'|i18n('agenda/signupassociazione')}</button>
                     </fieldset>
                 </form>
             </div>

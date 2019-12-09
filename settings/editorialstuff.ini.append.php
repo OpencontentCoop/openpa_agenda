@@ -46,7 +46,7 @@ Actions[waiting-refused]=NotifyEventOwner
 [associazione]
 ClassName=AssociazioneFactory
 ClassIdentifier=associazione
-CreationButtonText=Create new association
+CreationButtonText=Create new organization
 AttributeIdentifiers[]
 StateGroup=privacy
 States[public]=Pubblico
