@@ -32,7 +32,7 @@
             <div class="card card-bg card-big rounded shadow no-after bg-secondary m-0">
                 <div class="card-body p-3">
                     <h5 class="card-title mb-0">
-                        <a class="stretched-link text-white text-decoration-none" href="{concat('content/view/full/',associazioni_root_node_id())|ezurl(no)}"><b>{'Address Book'|i18n('agenda')}</b> {'Associations'|i18n('agenda')}</a>
+                        <a class="stretched-link text-white text-decoration-none" href="{concat('content/view/full/',associazioni_root_node_id())|ezurl(no)}"><b>{'Address Book'|i18n('agenda')}</b> {'Organizations'|i18n('agenda')}</a>
                     </h5>
                     <p class="card-text text-white text-sans-serif pt-0">
                         {if agenda_root()|has_attribute('testo_rubrica_associazioni')}
