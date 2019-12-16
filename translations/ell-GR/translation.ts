@@ -223,7 +223,7 @@
       <translation>Η εγγραφή χρήστη είναι ενεργή</translation>
     </message>
     <message>
-      <source>Organization registration is active</source>
+      <source>Organizations registration is active</source>
       <translation>Η εγγραφή οργανισμών είναι ενεργή</translation>
     </message>
     <message>
@@ -308,6 +308,10 @@
     <message>
       <source>Manage initiatives</source>
       <translation>Διαχείριση πρωτοβουλιών</translation>
+    </message>
+    <message>
+      <source>Manage organizations</source>
+      <translation>Διαχείριση οργανισμών</translation>
     </message>
     <message>
       <source>Author</source>

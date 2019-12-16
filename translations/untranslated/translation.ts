@@ -223,7 +223,7 @@
       <translation type="unfinished"/>
     </message>
     <message>
-      <source>Organization registration is active</source>
+      <source>Organizations registration is active</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -307,6 +307,10 @@
     </message>
     <message>
       <source>Manage initiatives</source>
+      <translation type="unfinished"/>
+    </message>
+    <message>
+      <source>Manage organizations</source>
       <translation type="unfinished"/>
     </message>
     <message>

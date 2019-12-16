@@ -223,7 +223,7 @@
       <translation>Registrazione utenti attiva</translation>
     </message>
     <message>
-      <source>Organization registration is active</source>
+      <source>Organizations registration is active</source>
       <translation>Registrazione organizzazioni attiva</translation>
     </message>
     <message>
@@ -308,6 +308,10 @@
     <message>
       <source>Manage initiatives</source>
       <translation>Gestisci iniziative</translation>
+    </message>
+    <message>
+      <source>Manage organizations</source>
+      <translation>Gestisci organizzazioni</translation>
     </message>
     <message>
       <source>Author</source>

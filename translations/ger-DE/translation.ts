@@ -223,7 +223,7 @@
       <translation>Benutzerregistrierung ist aktiv</translation>
     </message>
     <message>
-      <source>Organization registration is active</source>
+      <source>Organizations registration is active</source>
       <translation type="unfinished"/>
     </message>
     <message>
@@ -308,6 +308,10 @@
     <message>
       <source>Manage initiatives</source>
       <translation>Initiativen verwalten</translation>
+    </message>
+    <message>
+      <source>Manage organizations</source>
+      <translation>Vereine verwalten</translation>
     </message>
     <message>
       <source>Author</source>
