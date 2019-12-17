@@ -28,7 +28,7 @@
             <div class="mt-5">
                 <a href="{$node.parent.url_alias|ezurl(no)}" class="btn btn-outline-primary btn-icon">
                     {display_icon('it-calendar', 'svg', 'icon icon-primary')}                
-                    <span>Vai al calendario eventi</span>
+                    <span>{'Go to event calendar'|i18n('bootstrapitalia')}</span>
                 </a>
             </div>
 
