@@ -65,6 +65,12 @@
                         {'Terms of use'|i18n('agenda/menu')}
                     </a>
                 </li>
+                <li class="list-inline-item">
+                    <a href="{'agenda/stat'|ezurl(no)}"
+                       title="{'Got to page:'|i18n('openpa_bootstrapitalia')} {'Statistics'|i18n('agenda/stat')}">
+                        {'Statistics'|i18n('agenda/stat')}
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -110,6 +110,11 @@ $ViewList['add_place'] = array(
     'functions' => array('use')
 );
 
+$ViewList['stat'] = array(
+    'script' => 'stat.php',
+    'params' => array('Identifier'),
+    'functions' => array('use')
+);
 
 $FunctionList = array();
 $FunctionList['use'] = array();
