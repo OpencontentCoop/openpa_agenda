@@ -785,4 +785,31 @@
       <translation>Seleziona il luogo esistente</translation>
     </message>
   </context>
+  <context>
+    <name>agenda/stat</name>
+    <message>
+      <source>Statistics</source>
+      <translation>Statistiche</translation>
+    </message>
+    <message>
+      <source>Monthly</source>
+      <translation>Mensile</translation>
+    </message>
+    <message>
+      <source>Quarterly</source>
+      <translation>Trimestrale</translation>
+    </message>
+    <message>
+      <source>Half-yearly</source>
+      <translation>Semestrale</translation>
+    </message>
+    <message>
+      <source>Yearly</source>
+      <translation>Annuale</translation>
+    </message>
+    <message>
+      <source>There is no data to produce the chart</source>
+      <translation>Non ci sono dati per produrre il grafico</translation>
+    </message>
+  </context>
 </TS>

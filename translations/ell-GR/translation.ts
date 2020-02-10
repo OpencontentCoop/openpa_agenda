@@ -125,11 +125,11 @@
     </message>
     <message>
       <source>Search</source>
-      <translation>Ψάξιμο</translation>
+      <translation>Αναζήτηση</translation>
     </message>
     <message>
       <source>No result found</source>
-      <translation>Δε βρέθηκε αποτέλεσμα</translation>
+      <translation>Κανένα αποτέλεσμα</translation>
     </message>
     <message>
       <source>Show less recent</source>
@@ -145,7 +145,7 @@
     </message>
     <message>
       <source>Add to your calendar</source>
-      <translation>Προσθήκη στο ημερολόγιο</translation>
+      <translation>Προσθήκη στο ημερολόγιο μου</translation>
     </message>
     <message>
       <source>More information</source>
@@ -153,23 +153,23 @@
     </message>
     <message>
       <source>Add filter</source>
-      <translation>φίλτρο Προσθήκη</translation>
+      <translation>Προσθήκη φίλτρου</translation>
     </message>
     <message>
       <source>Confirm</source>
-      <translation>Επιβεβαιώνω</translation>
+      <translation>Επιβεβαίωση</translation>
     </message>
     <message>
       <source>Sections</source>
-      <translation>ενότητες</translation>
+      <translation>Ενότητες</translation>
     </message>
     <message>
       <source>Content type</source>
-      <translation>Τύπος περιεχομένου</translation>
+      <translation>Είδος περιεχομένου</translation>
     </message>
     <message>
       <source>Options</source>
-      <translation>επιλογές</translation>
+      <translation>Επιλογές</translation>
     </message>
     <message>
       <source>Apply filters</source>
@@ -177,15 +177,15 @@
     </message>
     <message>
       <source>Found a result</source>
-      <translation>Βρέθηκε ένα αποτέλεσμα</translation>
+      <translation>Βρέθηκε 1 αποτέλεσμα</translation>
     </message>
     <message>
       <source>Found %number results</source>
-      <translation>Βρέθηκαν αποτελέσματα αριθμός%</translation>
+      <translation>Βρέθηκαν %number αποτελέσματα</translation>
     </message>
     <message>
       <source>No results found</source>
-      <translation>Δεν βρέθηκαν αποτελέσματα</translation>
+      <translation>Δε βρέθηκαν αποτελέσματα</translation>
     </message>
     <message>
       <source>Search in</source>
@@ -193,11 +193,11 @@
     </message>
     <message>
       <source>Even past events</source>
-      <translation>Ακόμη και γεγονότα του παρελθόντος</translation>
+      <translation>Να συμπεριληφθούν παλαιότερες εκδηλώσεις</translation>
     </message>
     <message>
       <source>Also shows past events</source>
-      <translation>Επίσης, παρουσιάζει τα γεγονότα του παρελθόντος</translation>
+      <translation>Εμφάνιση και των παλαιότερων εκδηλώσεων</translation>
     </message>
   </context>
   <context>
@@ -287,7 +287,7 @@
     </message>
     <message>
       <source>Published</source>
-      <translation>Δημοσιευμένο</translation>
+      <translation>Δημοσιεύτηκε</translation>
     </message>
     <message>
       <source>Start date</source>
@@ -383,7 +383,7 @@
     </message>
     <message>
       <source>Manage event</source>
-      <translation>διαχειριστείτε εκδήλωση</translation>
+      <translation>Διαχείριση εκδήλωσης</translation>
     </message>
   </context>
   <context>
@@ -508,7 +508,7 @@
     <name>agenda/signup</name>
     <message>
       <source>Subscribe</source>
-      <translation>Εγγραφείτε</translation>
+      <translation>Εγγραφή</translation>
     </message>
   </context>
   <context>
@@ -539,15 +539,15 @@
     </message>
     <message>
       <source>Cancel</source>
-      <translation>Ματαίωση</translation>
+      <translation>Ακύρωση</translation>
     </message>
     <message>
       <source>Confirm us that you are not a robot</source>
-      <translation>Επιβεβαιώστε μας ότι δεν είστε ρομπότ</translation>
+      <translation>Δεν είμαι ρομπότ</translation>
     </message>
     <message>
       <source>When they are validated you will receive an email notification to the email address you entered</source>
-      <translation>Όταν επικυρωθούν θα λάβετε μια ειδοποίηση μέσω ηλεκτρονικού ταχυδρομείου στη διεύθυνση ηλεκτρονικού ταχυδρομείου που εισαγάγατε</translation>
+      <translation>Μετά την επιβεβαίωση, θα λάβετε ειδοποίηση μέσω ηλεκτρονικού ταχυδρομείου στην ηλεκτρονική διεύθυνση που έχετε καταχωρίσει</translation>
     </message>
   </context>
   <context>
@@ -585,26 +585,26 @@
     </message>
     <message>
       <source>Flyer</source>
-      <translation>Αεροπόρος</translation>
+      <translation>Φυλλάδιο</translation>
     </message>
     <message>
       <source>Save</source>
-      <translation>Σώσει</translation>
+      <translation>Αποθήκευση</translation>
     </message>
   </context>
   <context>
     <name>agenda/leaflet</name>
     <message>
       <source>Two columns (18 events)</source>
-      <translation>Δύο στήλες (18 επεισόδια)</translation>
+      <translation>Δύο στήλες (18 εκδηλώσεις)</translation>
     </message>
     <message>
       <source>Three columns (20 events)</source>
-      <translation>Τρεις στήλες (20 επεισόδια)</translation>
+      <translation>Τρεις στήλες (20 εκδηλώσεις)</translation>
     </message>
     <message>
       <source>Three columns (40 events)</source>
-      <translation>Τρεις στήλες (40 επεισόδια)</translation>
+      <translation>Τρεις στήλες (40 εκδηλώσεις)</translation>
     </message>
     <message>
       <source>Title</source>
@@ -612,7 +612,7 @@
     </message>
     <message>
       <source>Abstract</source>
-      <translation>Αφηρημένη</translation>
+      <translation>Περίληψη</translation>
     </message>
     <message>
       <source>Period</source>
@@ -620,7 +620,7 @@
     </message>
     <message>
       <source>Hours</source>
-      <translation>Ωρες</translation>
+      <translation>Ωράριο</translation>
     </message>
     <message>
       <source>Duration</source>
@@ -636,19 +636,19 @@
     </message>
     <message>
       <source>Add existing event</source>
-      <translation>Προσθέστε τα υπάρχοντα εκδήλωση</translation>
+      <translation>Προσθήκη υπάρχουσας εκδήλωσης</translation>
     </message>
     <message>
       <source>Choose the layout for the flyer</source>
-      <translation>Επιλέξτε τη διάταξη για το φυλλάδιο</translation>
+      <translation>Επιλογή διάταξης για το φυλλάδιο</translation>
     </message>
     <message>
       <source>Save flyer</source>
-      <translation>Αποθήκευση φυλλάδιο</translation>
+      <translation>Αποθήκευση φυλλαδίου</translation>
     </message>
     <message>
       <source>Save and download flyer</source>
-      <translation>Αποθήκευση και λήψη φυλλάδιο</translation>
+      <translation>Αποθήκευση και λήψη φυλλαδίου</translation>
     </message>
     <message>
       <source>selected events</source>
@@ -656,101 +656,101 @@
     </message>
     <message>
       <source>Event abstracts greater than %number characters will be automatically cut.</source>
-      <translation>Εκδήλωση αφαιρεί μεγαλύτερο από% τον αριθμό χαρακτήρων θα κοπεί αυτόματα.</translation>
+      <translation>Περιλήψεις εκδηλώσεων μεγαλύτερες από %number χαρακτήρες θα απορρίπτονται αυτόματα</translation>
     </message>
     <message>
       <source>You can use the form below to customize the event abstract on the flyer.</source>
-      <translation>Μπορείτε να χρησιμοποιήσετε την παρακάτω φόρμα για να προσαρμόσετε το αφηρημένο εκδήλωση στο φυλλάδιο.</translation>
+      <translation>Μπορείτε να χρησιμοποιήσετε την παρακάτω φόρμα για τη διαμόρφωση της περίληψης στο φυλλάδιο</translation>
     </message>
     <message>
       <source>missing characters</source>
-      <translation>λείπουν χαρακτήρες</translation>
+      <translation>χαρακτήρες απομένουν</translation>
     </message>
     <message>
       <source>characters in excess</source>
-      <translation>χαρακτήρες που υπερβαίνουν</translation>
+      <translation>επιπλέον χαρακτήρες</translation>
     </message>
     <message>
       <source>Automatically generated abstract</source>
-      <translation>Δημιουργείται αυτόματα αφηρημένο</translation>
+      <translation>Περίληψη που δημιουργήθηκε αυτόματα</translation>
     </message>
   </context>
   <context>
     <name>agenda/mail</name>
     <message>
       <source>Organization registration</source>
-      <translation>εγγραφή οργάνωση</translation>
+      <translation>Εγγραφή οργανισμού</translation>
     </message>
     <message>
       <source>We inform you that the data concerning the %name organization have been validated.</source>
-      <translation>Σας ενημερώνουμε ότι τα δεδομένα που αφορούν την οργάνωση όνομα% έχουν επικυρωθεί.</translation>
+      <translation>Σας ενημερώνουμε ότι τα δεδομένα που αφορούν τον οργανισμό %name έχουν επιβεβαιωθεί</translation>
     </message>
     <message>
       <source>It is therefore possible to log in to the system and insert content.</source>
-      <translation>Επομένως, είναι δυνατό να συνδεθείτε στο σύστημα και ενθέτου περιεχόμενο.</translation>
+      <translation>Μπορείτε πλέον να συνδεθείτε στο σύστημα και να εισάγετε περιεχόμενο</translation>
     </message>
     <message>
       <source>Comment to</source>
-      <translation>Σχόλιο για την</translation>
+      <translation>Σχόλιο για</translation>
     </message>
     <message>
       <source>We inform you that your comment %message to the %name event is now in status %state.</source>
-      <translation>Σας ενημερώνουμε ότι τα σχόλια σας% μηνύματος με το όνομα% εκδήλωση είναι τώρα σε κατάσταση% κρατική.</translation>
+      <translation>Σας ενημερώνουμε ότι το σχόλιο σας %message στην εκδήλωση %event είναι πλέον %state.</translation>
     </message>
     <message>
       <source>We inform you that that the content %name has been published/updated.</source>
-      <translation>Σας ενημερώνουμε ότι η ονομασία% έχει δημοσιευθεί / ενημέρωση.</translation>
+      <translation>Σας ενημερώνουμε ότι το περιεχόμενο %name έχει δημοσιευθεί/ενημερωθεί.</translation>
     </message>
     <message>
       <source>The current status is %name.</source>
-      <translation>Η τρέχουσα κατάσταση είναι το όνομά%.</translation>
+      <translation>Η τρέχουσα κατάσταση είναι %name</translation>
     </message>
     <message>
       <source>We inform you that the comment %message has been published to the event %name.</source>
-      <translation>Σας πληροφορούμε ότι το σχόλιο% μήνυμα έχει δημοσιευθεί στην εκδήλωση του ονόματος%.</translation>
+      <translation>Σας ενημερώνουμε ότ το σχόλιο σας %message έχει δημοσιευθεί στην εκδήλωση %event</translation>
     </message>
     <message>
       <source>The comment is now in state %state.</source>
-      <translation>Το σχόλιο είναι τώρα στην κατάσταση% κρατική.</translation>
+      <translation>Το σχόλιο σας είναι %state</translation>
     </message>
     <message>
       <source>Notify on</source>
-      <translation>Ειδοποίηση για</translation>
+      <translation>Ειδοποίηση όταν</translation>
     </message>
     <message>
       <source>We inform you that the status of the content "%name" has been changed.</source>
-      <translation>Σας ενημερώνουμε ότι η κατάσταση του περιεχομένου «όνομα%» έχει αλλάξει.</translation>
+      <translation>Σας ενημερώνουμε ότι η κατάσταση του περιεχομένου %name'' έχει αλλάξει</translation>
     </message>
   </context>
   <context>
     <name>agenda/place</name>
     <message>
       <source>Nowhere</source>
-      <translation>Πουθενά</translation>
+      <translation>Καμία τοποθεσία</translation>
     </message>
     <message>
       <source>Select place</source>
-      <translation>Επιλέξτε την τοποθεσία</translation>
+      <translation>Επιλέξτε τοποθεσία</translation>
     </message>
     <message>
       <source>Editor choice</source>
-      <translation>επιλογή συντάκτη</translation>
+      <translation>Επιλογή συντάκτη</translation>
     </message>
     <message>
       <source>Shared</source>
-      <translation>Shared</translation>
+      <translation>Κοινοποιήθηκε</translation>
     </message>
     <message>
       <source>Your own</source>
-      <translation>Το δικό σου</translation>
+      <translation>Τα δικά σας</translation>
     </message>
     <message>
       <source>Add your own place</source>
-      <translation>Προσθέστε το δικό σας χώρο</translation>
+      <translation>Προσθέστε νέα τοποθεσία</translation>
     </message>
     <message>
       <source>A place already exists with similar geolocation</source>
-      <translation>Ένα μέρος υπάρχει ήδη με παρόμοια geolocation</translation>
+      <translation>Υπάρχει μία τοποθεσία με παρόμοια γεωγραφική θέση</translation>
     </message>
     <message>
       <source>Detect position</source>
@@ -758,7 +758,7 @@
     </message>
     <message>
       <source>Name</source>
-      <translation>Ονομα</translation>
+      <translation>Όνομα</translation>
     </message>
     <message>
       <source>Address</source>
@@ -766,7 +766,7 @@
     </message>
     <message>
       <source>Latitude</source>
-      <translation>Γεωγραφικό πλάτος</translation>
+      <translation>Γεωγραφικός πλάτος</translation>
     </message>
     <message>
       <source>Longitude</source>
@@ -774,15 +774,42 @@
     </message>
     <message>
       <source>Store place</source>
-      <translation>Κατάστημα χώρα</translation>
+      <translation>Αποθήκευση τοποθεσίας</translation>
     </message>
     <message>
       <source>Store mine and ignore existent</source>
-      <translation>Αποθηκεύστε το δικό μου και να αγνοήσει ανύπαρκτη</translation>
+      <translation>Αποθήκευση της δικής μου και αγνόηση των υπολοίπων</translation>
     </message>
     <message>
       <source>Select existent place</source>
-      <translation>Επιλέξτε ανύπαρκτη χώρα</translation>
+      <translation>Επιλογή υπάρχουσας τοποθεσίας</translation>
+    </message>
+  </context>
+  <context>
+    <name>agenda/stat</name>
+    <message>
+      <source>Statistics</source>
+      <translation>Στατιστικά στοιχεία</translation>
+    </message>
+    <message>
+      <source>Monthly</source>
+      <translation>Μηνιαία</translation>
+    </message>
+    <message>
+      <source>Quarterly</source>
+      <translation>Τριμηνιαία</translation>
+    </message>
+    <message>
+      <source>Half-yearly</source>
+      <translation>Εξαμινιαία</translation>
+    </message>
+    <message>
+      <source>Yearly</source>
+      <translation>Ετήσια</translation>
+    </message>
+    <message>
+      <source>There is no data to produce the chart</source>
+      <translation>Δεν υπάρχουν δεδομένα για την παραγωγή γραφήματος</translation>
     </message>
   </context>
 </TS>

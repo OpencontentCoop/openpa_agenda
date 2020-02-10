@@ -785,4 +785,31 @@
       <translation type="unfinished"/>
     </message>
   </context>
+  <context>
+    <name>agenda/stat</name>
+    <message>
+      <source>Statistics</source>
+      <translation>Statistiken</translation>
+    </message>
+    <message>
+      <source>Monthly</source>
+      <translation>Monatlich</translation>
+    </message>
+    <message>
+      <source>Quarterly</source>
+      <translation>Vierteljährlich</translation>
+    </message>
+    <message>
+      <source>Half-yearly</source>
+      <translation>Halbjährlich</translation>
+    </message>
+    <message>
+      <source>Yearly</source>
+      <translation>Jährlich</translation>
+    </message>
+    <message>
+      <source>There is no data to produce the chart</source>
+      <translation>Es gibt keine Daten das Diagramm zu erzeugen</translation>
+    </message>
+  </context>
 </TS>
