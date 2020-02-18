@@ -75,6 +75,7 @@
             <a href="{openpaini('CreditsSettings', 'Url', 'http://www.opencontent.it/openpa')}" title="{openpaini('CreditsSettings', 'Title', 'OpenPA - Strumenti di comunicazione per la pubblica amministrazione')}">
                 {openpaini('CreditsSettings', 'Name', 'OpenCity')} {if openpaini('CreditsSettings', 'CodeVersion', false())}<a href="{openpaini('CreditsSettings', 'CodeUrl', false())}">{openpaini('CreditsSettings', 'CodeVersion', false())}</a>{/if}
             </a>
+            &#8212; concept & design based on <a class="text-decoration-none" href="https://designers.italia.it/kit/comuni/">{display_icon('it-designers-italia', 'svg', 'icon icon-xs icon-primary')} Designers Italia</a>
         </div>
     </div>
 </footer>

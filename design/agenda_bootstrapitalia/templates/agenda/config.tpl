@@ -225,7 +225,7 @@
                         <td>{{:~i18n(metadata.classDefinition.name)}}</td>
                     {{/if}}
                     <td>{{:~i18n(metadata.ownerName)}}</td>
-                    <td>{{:~formatDate(metadata.published,'DD/MM/YYYY HH:MM')}}</td>
+                    <td>{{:~formatDate(metadata.published,'DD/MM/YYYY HH:mm')}}</td>
                     <td class="text-nowrap">
                         {{for translations}}
                             {{if active}}

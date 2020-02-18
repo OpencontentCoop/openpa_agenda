@@ -68,12 +68,12 @@
     </td>
     <td>{{:~i18n(metadata.name)}}</td>
     <td>{{:~i18n(metadata.ownerName)}}</td>
-    <td>{{:~formatDate(metadata.published,'DD/MM/YYYY HH:MM')}}</td>
+    <td>{{:~formatDate(metadata.published,'DD/MM/YYYY HH:mm')}}</td>
     <td>
         {{if ~i18n(data,'time_interval').default_value && ~i18n(data,'time_interval').default_value.count > 1}}
             {{:~formatDate(~i18n(data,'time_interval').default_value.from_time,'DD/MM/YYYY')}}: {{:~i18n(data,'time_interval').text}}
         {{else}}
-            {{:~formatDate(~i18n(data,'time_interval').default_value.from_time,'DD/MM/YYYY HH:MM')}} - {{:~formatDate(~i18n(data,'time_interval').default_value.to_time,'DD/MM/YYYY HH:MM')}}
+            {{:~formatDate(~i18n(data,'time_interval').default_value.from_time,'DD/MM/YYYY HH:mm')}} - {{:~formatDate(~i18n(data,'time_interval').default_value.to_time,'DD/MM/YYYY HH:mm')}}
         {{/if}}
     </td>
     <td>

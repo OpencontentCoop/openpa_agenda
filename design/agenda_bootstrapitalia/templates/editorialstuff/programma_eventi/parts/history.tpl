@@ -1,12 +1,6 @@
 <div class="panel-body" style="background: #fff">
     <div class="table-responsive">
         <table class="table table-striped">
-            <tr>
-                <th>Data</th>
-                <th>Autore</th>
-                <th>Azione</th>
-            </tr>
-
             {foreach $post.history as $time => $history_items}
                 {foreach $history_items as $item}
                     <tr>
