@@ -85,7 +85,7 @@
     </message>
     <message>
       <source>What?</source>
-      <translation>Τι πράγμα;</translation>
+      <translation>Κατηγορία</translation>
     </message>
     <message>
       <source>Who are you?</source>
@@ -383,7 +383,7 @@
     </message>
     <message>
       <source>Manage event</source>
-      <translation>Διαχείριση εκδήλωσης</translation>
+      <translation>Επεξεργασία Εκδήλωσης</translation>
     </message>
   </context>
   <context>
@@ -554,7 +554,7 @@
     <name>agenda/states</name>
     <message>
       <source>Waiting for moderation</source>
-      <translation>Αναμονή για συντονισμό</translation>
+      <translation>Αναμονή για έλεγχο</translation>
     </message>
   </context>
   <context>
