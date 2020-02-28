@@ -327,7 +327,7 @@
     </message>
     <message>
       <source>Detail</source>
-      <translation>Λεπτομέρεια</translation>
+      <translation>Περισσότερα</translation>
     </message>
     <message>
       <source>Loading...</source>
