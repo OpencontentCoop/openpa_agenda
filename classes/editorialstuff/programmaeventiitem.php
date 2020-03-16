@@ -165,6 +165,16 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
 
         $logo = eZClusterFileHandler::instance(OpenPAAgenda::instance()->imagePath('logo', 'medium'));
         $logo->fetch();
+        switch ($logo->dataType()) {
+            case 'image/jpeg':
+                $logoMime = 'jpeg';
+                break;
+            case 'image/gif':
+                $logoMime = 'gif';
+                break;
+            default:
+                $logoMime = 'png';
+        }
 
         $currentLayout = $httpTool->postVariable('layout');
         foreach ($this->layouts as $layout) {
@@ -176,10 +186,12 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         $tpl = eZTemplate::factory();
         $tpl->resetVariables();
         $tpl->setVariable('root_node', $rootNode);
+        $tpl->setVariable('logo_base64_src', 'data:image/' . $logoMime . ';base64,' . base64_encode($logo->fetchContents()));
         $tpl->setVariable('programma_eventi', $this);
         $tpl->setVariable('root_dir', eZSys::rootDir());
         $tpl->setVariable('layout', $currentLayout);
-        $content = $tpl->fetch('design:pdf/programma_eventi/leaflet.tpl');
+
+        $pdfContent = $this->generatePdf($tpl);
 
         /** @var eZContentClass $objectClass */
         $objectClass = $this->getObject()->attribute('content_class');
@@ -187,23 +199,82 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         $fileName = $objectClass->urlAliasName($this->getObject(), false, $languageCode);
         $fileName = eZURLAliasML::convertToAlias($fileName) . '.pdf';
 
-        $paradoxPdf = new ParadoxPDF();
-        $pdfContent = $paradoxPdf->generatePDF($content);
-
-        $ini = eZINI::instance();
-        $viewCacheEnabled = true; // ( $ini->variable( 'ContentSettings', 'ViewCaching' ) == 'enabled' );
-        if (!$viewCacheEnabled) {
-            echo $content;
-            eZDisplayDebug();
-            eZExecution::cleanExit();
-        }
-
         eZFile::create($fileName, eZSys::cacheDirectory(), $pdfContent);
         if (isset($this->dataMap['file'])) {
             $this->dataMap['file']->fromString(eZSys::cacheDirectory() . '/' . $fileName);
             $this->dataMap['file']->store();
             $this->flushObject();
         }
+    }
+
+    private function generatePdf(eZTemplate $tpl, $debug = false)
+    {
+        $wkhtmltopdf = false;
+        if (isset($_ENV['WKHTMLTOPDF_URI'])) {
+            $wkhtmltopdf = $_ENV['WKHTMLTOPDF_URI'];
+        } elseif (isset($_SERVER['WKHTMLTOPDF_URI'])) {
+            $wkhtmltopdf = $_SERVER['WKHTMLTOPDF_URI'];
+        }
+
+        if ($wkhtmltopdf) {
+            return $this->generatePdfWithWkhtmltopdf($wkhtmltopdf, $tpl, $debug);
+        } else {
+            return $this->generatePdfWithParadox($tpl, $debug);
+        }
+    }
+
+    private function generatePdfWithWkhtmltopdf($url, eZTemplate $tpl, $debug = false)
+    {
+        $content = $tpl->fetch('design:pdf/programma_eventi/leaflet_wkhtml.tpl');
+        if ($debug) {
+            echo $content;
+            eZDisplayDebug();
+            eZExecution::cleanExit();
+        }
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $body = json_encode([
+            'contents' => base64_encode(trim($content)),
+            'options' => array(
+                'orientation' => 'Landscape',
+                'page-size' => 'A4',
+                'margin-top' => '5mm',
+                'margin-left' => '5mm',
+                'margin-right' => '5mm',
+                'margin-bottom' => '5mm',
+                'encoding' => 'UTF-8',
+            ),
+            'header' => base64_encode('<!DOCTYPE html><html></html>'),
+            'footer' => base64_encode('<!DOCTYPE html><html></html>')
+        ]);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+        $pdfContent = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo curl_error($ch);
+            eZExecution::cleanExit();
+        }
+        $info = curl_getinfo($ch);
+        if ($info['http_code'] != 200) {
+            echo $pdfContent;
+            eZExecution::cleanExit();
+        }
+
+        return $pdfContent;
+    }
+
+    private function generatePdfWithParadox(eZTemplate $tpl, $debug = false)
+    {
+        $content = $tpl->fetch('design:pdf/programma_eventi/leaflet.tpl');
+        if ($debug) {
+            echo $content;
+            eZDisplayDebug();
+            eZExecution::cleanExit();
+        }
+        $paradoxPdf = new ParadoxPDF();
+        return $paradoxPdf->generatePDF($content);
     }
 
     public function executeAction($actionIdentifier, $actionParameters, eZModule $module = null)
@@ -359,6 +430,7 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
             'auto' => true,
             'key' => $key,
             'qrcode_file_url' => $qrCodeFile->name(),
+            'qrcode_base64_src' => 'data:image/png;base64,' . base64_encode($qrCodeFile->fetchContents()),
             'qrcode_url' => '/agenda/qrcode/' . $objectEvent->mainNodeID()
         );
 
@@ -378,7 +450,7 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
     private function mapCPEVEventData(eZContentObject $objectEvent, $customEventsAttributes)
     {
         $eventDataMap = $objectEvent->dataMap();
-        $timeInterval = json_decode($eventDataMap['time_interval']->toString(), true);
+        $timeInterval = $eventDataMap['time_interval']->content();
         $eventsCount = count($timeInterval['events']);
         $key = $timeInterval['events'][0]['id'];
         $qrCodeFile = OpenPAAgendaQRCode::getFile($objectEvent->mainNodeID());
@@ -406,6 +478,7 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
             'auto' => true,
             'key' => $key,
             'qrcode_file_url' => $qrCodeFile->name(),
+            'qrcode_base64_src' => 'data:image/png;base64,' . base64_encode($qrCodeFile->fetchContents()),
             'qrcode_url' => '/agenda/qrcode/' . $objectEvent->mainNodeID()
         );
 

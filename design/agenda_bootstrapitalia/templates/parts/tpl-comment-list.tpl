@@ -62,7 +62,7 @@
 <script id="tpl-comment-item" type="text/x-jsrender">
 <tr>
     <td>{{:~i18n(metadata.ownerName)}}</td>
-    <td>{{:~formatDate(metadata.published,'DD/MM/YYYY HH:MM')}}</td>
+    <td>{{:~formatDate(metadata.published,'DD/MM/YYYY HH:mm')}}</td>
     <td>{{:~i18n(data,'message')}}</td>
     <td class="text-nowrap">
         {{for states ~commentId=metadata.id ~current=moderationStateIdentifier}}

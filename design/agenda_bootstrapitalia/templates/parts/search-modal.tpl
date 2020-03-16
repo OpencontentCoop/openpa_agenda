@@ -1,6 +1,8 @@
 {set_defaults(hash('show_private_place', false()))}
-{def $type_tags = api_tagtree('Eventi/Tematiche eventi').children}
-{def $target_tags = api_tagtree('Eventi/Target utenti').children}
+{def $event_class = fetch(content, class, hash('class_id', 'event'))}
+{def $type_tags = api_tagtree($event_class.data_map['has_public_event_typology'].data_int1).children}
+{def $target_tag_root = fetch('tags', 'tag', hash('tag_id', $event_class.data_map['target_audience'].data_int1)).parent_id}
+{def $target_tags = api_tagtree($target_tag_root).children}
 {def $place_facets = api_search(concat($base_query, ' facets [takes_place_in.id|count|600,owner_id|count|600] limit 1'))}
 {def $place_ids = array_keys($place_facets.facets[0].data)}
 {def $place_id_name_list = array()}

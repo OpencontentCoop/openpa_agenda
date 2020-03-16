@@ -66,7 +66,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-1 mt-4">
+            <div class="col-1 mt-4 hide">
                 {include uri='design:parts/vertical_pills.tpl' views=array('list')}
             </div>
             <div class="col-12">
