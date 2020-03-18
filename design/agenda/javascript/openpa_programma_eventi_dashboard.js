@@ -85,7 +85,7 @@ $(document).ready(function () {
                     "render": function (data, type, row) {
                         return $.map(data, function (value, key) {
                             var parts = value.split('.');
-                            if (parts[0] == 'moderation') {
+                            if (parts[0] == 'programma_eventi') {
                                 return $.map(stateSelect.find('option'), function (option) {
                                     var $option = $(option);
                                     if ($option.data('state_identifier') == parts[1]) {

@@ -64,10 +64,8 @@
 {literal}
     <style>
         .chosen-search input, .chosen-container-multi input{height: auto !important}
-        .label-skipped {  background-color: #999;  }
-        .label-waiting {  background-color: #f0ad4e;  }
-        .label-accepted {  background-color: #5cb85c;  }
-        .label-refused {  background-color: #d9534f;  }
+        .label-public {  background-color: #5cb85c;  }
+        .label-private {  background-color: #d9534f;  }
     </style>
 {/literal}
 
@@ -75,7 +73,16 @@
     <div class="col-sm-12" id="dashboard-filters-container">
         <form class="form-inline" role="form" method="get"
               action={concat('editorialstuff/dashboard/', $factory_identifier )|ezurl()}>
-
+            {if $states|count()}
+                <div class="hide">
+                    <select id="state" data-field="state" data-placeholder="{'Select'|i18n('agenda/dashboard')}" name="state" class="form-control">
+                        <option value=""></option>
+                        {foreach $states as $state}
+                            <option value="{$state.id|wash()}" data-state_identifier="{$state.identifier|wash()}" class="label-{$state.identifier|wash()}">{$state.current_translation.name|wash()}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            {/if}
             {if $factory_configuration.CreationRepositoryNode}
                 <a href="{concat('editorialstuff/add/',$factory_identifier)|ezurl(no)}"  class="btn btn-lg btn-success">{$factory_configuration.CreationButtonText|wash()}</a>
             {/if}
