@@ -5,6 +5,8 @@
 Actions[]=NotifyEventOwner
 Actions[]=NotifyCommentOwner
 Actions[]=NotifyModerationGroup
+Actions[]=TriggerPublishEvent
+Actions[]=TriggerDeleteEvent
 
 [NotifyEventOwner]
 ClassName=OpenPAAgenda
@@ -18,6 +20,13 @@ MethodName=notifyCommentOwner
 ClassName=OpenPAAgenda
 MethodName=notifyModerationGroup
 
+[TriggerPublishEvent]
+ClassName=OpenPAAgendaEventEmitter
+MethodName=triggerPublishEvent
+
+[TriggerDeleteEvent]
+ClassName=OpenPAAgendaEventEmitter
+MethodName=triggerDeleteEvent
 
 [AvailableFactories]
 Identifiers[]=agenda
@@ -40,8 +49,17 @@ States[accepted]=Accettato
 States[refused]=Rifiutato
 Actions[]
 Actions[draft-waiting]=NotifyModerationGroup
-Actions[waiting-accepted]=NotifyEventOwner
-Actions[waiting-refused]=NotifyEventOwner
+Actions[waiting-accepted]=NotifyEventOwner|TriggerPublishEvent
+Actions[waiting-refused]=NotifyEventOwner|TriggerDeleteEvent
+Actions[draft-accepted]=TriggerPublishEvent
+Actions[refused-accepted]=TriggerPublishEvent
+Actions[accepted-refused]=TriggerDeleteEvent
+Actions[accepted-draft]=TriggerDeleteEvent
+Actions[accepted-waiting]=TriggerDeleteEvent
+Actions[draft-skipped]=TriggerPublishEvent
+Actions[waiting-skipped]=TriggerPublishEvent
+Actions[accepted-skipped]=TriggerPublishEvent
+Actions[refused-skipped]=TriggerPublishEvent
 
 [associazione]
 ClassName=AssociazioneFactory

@@ -15,6 +15,10 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         if (!OpenPAAgenda::instance()->isModerationEnabled()){
             OpenPAAgenda::notifyModerationGroup($this);
         }
+
+        if ($this->is('accepted') || $this->is('skipped')) {
+            OpenPAAgendaEventEmitter::triggerPublishEvent($this);
+        }
     }
 
     public function onChangeState(eZContentObjectState $beforeState, eZContentObjectState $afterState)
@@ -34,6 +38,11 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         }
 
         return parent::onChangeState($beforeState, $afterState);
+    }
+
+    public function onRemove()
+    {
+        OpenPAAgendaEventEmitter::triggerDeleteEvent($this);
     }
 
     public function attributes()
@@ -66,6 +75,11 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
     {
         eZSearch::addObject($this->object, true);
         OpenPAAgenda::notifyModerationGroup($this);
+        if ($this->is('accepted') || $this->is('skipped')) {
+            OpenPAAgendaEventEmitter::triggerPublishEvent($this);
+        }else{
+            OpenPAAgendaEventEmitter::triggerDeleteEvent($this);
+        }
     }
 
     public function tabs()

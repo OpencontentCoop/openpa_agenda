@@ -189,7 +189,7 @@ class OpenPAAgenda
         $programStateGroup = eZContentObjectStateGroup::fetchByIdentifier(self::$programStateGroupIdentifier);
         if ($programStateGroup instanceof eZContentObjectStateGroup){
             $programStatePublic = eZContentObjectState::fetchByIdentifier(
-                'public', 
+                'public',
                 $programStateGroup->attribute('id')
             );
             if ($programStatePublic instanceof eZContentObjectState){
@@ -201,7 +201,7 @@ class OpenPAAgenda
             'Language' => eZLocale::currentLocaleCode(),
             'SortBy' => array('published', false),
             'ClassFilterType' => 'include',
-            'ClassFilterArray' => array('programma_eventi'),            
+            'ClassFilterArray' => array('programma_eventi'),
             'Limit' => 1
         )), OpenPAAgenda::programNodeId());
         if (isset($programs[0]) && $programs[0] instanceof eZContentObjectTreeNode){
@@ -286,8 +286,12 @@ class OpenPAAgenda
             $sitaccessIdentifier = self::getAgendaSiteAccessName();
         }
         $path = "settings/siteaccess/{$sitaccessIdentifier}/";
-        $ini = new eZINI( 'site.ini.append', $path, null, null, null, true, true );
-        return rtrim( $ini->variable( 'SiteSettings', 'SiteURL' ), '/' );
+        $ini = new eZINI( 'site.ini.append.php', $path, null, null, null, true, true );
+        if ($ini->hasVariable( 'SiteSettings', 'SiteURL' )) {
+            return rtrim($ini->variable('SiteSettings', 'SiteURL'), '/');
+        }
+
+        return rtrim(eZINI::instance()->variable('SiteSettings', 'SiteURL'), '/');
     }
 
     public static function isAgendaSiteAccessName( $currentSiteAccessName )
@@ -515,12 +519,12 @@ class OpenPAAgenda
     }
 
     public function isLoginEnabled()
-    {        
+    {
         return $this->getAttributeString('enable_login') == 1 || $this->getAttributeString('enable_login') == '';
     }
 
     public function isRegistrationEnabled()
-    {        
+    {
         return $this->getAttributeString('enable_registration') == 1 || $this->getAttributeString('enable_registration') == '';
     }
 
