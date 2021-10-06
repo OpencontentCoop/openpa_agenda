@@ -92,3 +92,5 @@
 </a>
 
 {undef $social_pagedata $has_social}
+
+<style>.block-calendar-default .fc-day-grid-container {ldelim} height: auto !important;{rdelim}</style>
