@@ -1,5 +1,9 @@
 <?php
 
+if (!interface_exists('OCWebHookTriggerInterface')){
+    interface OCWebHookTriggerInterface{}
+}
+
 class OpenAgendaDeleteEventWebHookTrigger implements OCWebHookTriggerInterface, OCWebHookCustomEndpointSerializerInterface
 {
     const IDENTIFIER = 'openagenda_delete_event';
