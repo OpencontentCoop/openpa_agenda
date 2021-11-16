@@ -21,16 +21,14 @@ class OpenPAAgendaEventEmitter
 
     private static function trigger($event, $post, $payloadFormat)
     {
-        if (class_exists('OCWebHookEmitter')) {
-            $payloads = self::getPayload($post, $payloadFormat);
-            if (is_array($payloads)) {
-                foreach ($payloads as $payload) {
-                    OCWebHookEmitter::emit(
-                        $event,
-                        $payload,
-                        OCWebHookQueue::defaultHandler()
-                    );
-                }
+        $payloads = self::getPayload($post, $payloadFormat);
+        if (is_array($payloads)) {
+            foreach ($payloads as $payload) {
+                OCWebHookEmitter::emit(
+                    $event,
+                    $payload,
+                    OCWebHookQueue::defaultHandler()
+                );
             }
         }
     }

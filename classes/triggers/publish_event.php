@@ -1,9 +1,5 @@
 <?php
 
-if (!interface_exists('OCWebHookTriggerInterface')){
-    interface OCWebHookTriggerInterface{}
-}
-
 class OpenAgendaPublishEventWebHookTrigger implements OCWebHookTriggerInterface
 {
     const IDENTIFIER = 'openagenda_publish_event';

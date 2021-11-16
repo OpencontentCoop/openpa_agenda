@@ -17,7 +17,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         }
 
         if ($this->is('accepted') || $this->is('skipped')) {
-            OpenPAAgendaEventEmitter::triggerPublishEvent($this);
+            $this->emit('publish');
         }
     }
 
@@ -42,7 +42,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
 
     public function onRemove()
     {
-        OpenPAAgendaEventEmitter::triggerDeleteEvent($this);
+        $this->emit('delete');
     }
 
     public function attributes()
@@ -76,9 +76,9 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         eZSearch::addObject($this->object, true);
         OpenPAAgenda::notifyModerationGroup($this);
         if ($this->is('accepted') || $this->is('skipped')) {
-            OpenPAAgendaEventEmitter::triggerPublishEvent($this);
+            $this->emit('publish');
         }else{
-            OpenPAAgendaEventEmitter::triggerDeleteEvent($this);
+            $this->emit('delete');
         }
     }
 
@@ -91,8 +91,15 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
                 'identifier' => 'content',
                 'name' => ezpI18n::tr('openpa_agenda', 'Content'),
                 'template_uri' => "design:{$templatePath}/parts/content.tpl"
-            )
+            ),
         );
+        if (eZINI::instance('openpa.ini')->variable('OpenpaAgenda', 'EnableOverlapGui') == 'enabled') {
+            $tabs[] = array(
+                'identifier' => 'overlap',
+                'name' => ezpI18n::tr('openpa_agenda', 'Overlap'),
+                'template_uri' => "design:{$templatePath}/parts/overlap.tpl"
+            );
+        }
         $access = $currentUser->hasAccessTo('editorialstuff', 'media');
         if ($access['accessWord'] == 'yes' && in_array('image', $this->factory->attributeIdentifiers())) {
             $tabs[] = array(
@@ -232,6 +239,18 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
             $language = eZLocale::currentLocaleCode();
             if ($module) {
                 $module->redirectTo("content/edit/{$newObject->attribute('id')}/{$newObject->attribute('current_version')}/$language");
+            }
+        }
+    }
+
+    protected function emit($type)
+    {
+        if (class_exists('OCWebHookEmitter')) {
+            if ($type == 'publish'){
+                OpenPAAgendaEventEmitter::triggerPublishEvent($this);
+            }
+            if ($type == 'delete') {
+                OpenPAAgendaEventEmitter::triggerDeleteEvent($this);
             }
         }
     }
