@@ -1,0 +1,7 @@
+.block-calendar-default .fc-day-grid-container {
+    height: auto !important;
+}
+
+#edit-takes_place_in .leaflet-container {
+    height: 1000px !important;
+}

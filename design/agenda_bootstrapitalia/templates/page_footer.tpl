@@ -21,17 +21,17 @@
 
             <section class="pb-4">
                 <div class="row">
-                    
+
                     <div class="col pb-2">
                         <h4><span>{'Informations'|i18n('openpa/footer')}</span></h4>
                         <p>{attribute_view_gui attribute=$social_pagedata.attribute_footer}</p>
                     </div>
-                    
+
                     <div class="col pb-2">
                         <h4><span>{'Contacts'|i18n('openpa/footer')}</span></h4>
                         <p>{attribute_view_gui attribute=$social_pagedata.attribute_contacts}</p>
                     </div>
-                    
+
                     {if $has_social}
                     <div class="col pb-2">
                         <h4><span>{'Follow us'|i18n('openpa/footer')}</span></h4>
@@ -49,25 +49,25 @@
             <ul class="it-footer-small-prints-list list-inline mb-0 d-flex flex-column flex-md-row">
                 <li class="list-inline-item">
                     <a href="{'agenda/info/faq'|ezurl(no)}"
-                       title="{'Got to page:'|i18n('openpa_bootstrapitalia')} {'FAQ'|i18n('agenda/menu')}">
+                       title="{'FAQ'|i18n('agenda/menu')}">
                         {'FAQ'|i18n('agenda/menu')}
                     </a>
                 </li>
                 <li class="list-inline-item">
                     <a href="{'agenda/info/privacy'|ezurl(no)}"
-                       title="{'Got to page:'|i18n('openpa_bootstrapitalia')} {'Privacy'|i18n('agenda/menu')}">
+                       title="{'Privacy'|i18n('agenda/menu')}">
                         {'Privacy'|i18n('agenda/menu')}
                     </a>
                 </li>
                 <li class="list-inline-item">
                     <a href="{'agenda/info/terms'|ezurl(no)}"
-                       title="{'Got to page:'|i18n('openpa_bootstrapitalia')} {'Terms of use'|i18n('agenda/menu')}">
+                       title="{'Terms of use'|i18n('agenda/menu')}">
                         {'Terms of use'|i18n('agenda/menu')}
                     </a>
                 </li>
                 <li class="list-inline-item">
                     <a href="{'agenda/stat'|ezurl(no)}"
-                       title="{'Got to page:'|i18n('openpa_bootstrapitalia')} {'Statistics'|i18n('agenda/stat')}">
+                       title="{'Statistics'|i18n('agenda/stat')}">
                         {'Statistics'|i18n('agenda/stat')}
                     </a>
                 </li>
@@ -92,5 +92,3 @@
 </a>
 
 {undef $social_pagedata $has_social}
-
-<style>.block-calendar-default .fc-day-grid-container {ldelim} height: auto !important;{rdelim}</style>

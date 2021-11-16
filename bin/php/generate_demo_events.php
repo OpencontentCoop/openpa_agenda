@@ -70,19 +70,19 @@ try {
         eZCLI::instance()->output(" - get random $type text");
         switch ($type) {
             case 'short':
-                $data = json_decode(file_get_contents('http://www.randomtext.me/api/gibberish/p-1/5-7'), true);
+                $data = file_get_contents('https://loripsum.net/api/1/veryshort/plaintext');
 
-                return $data['text_out'];
+                return $data;
 
             case 'medium':
-                $data = json_decode(file_get_contents('http://www.randomtext.me/api/gibberish/p-2/10-15'), true);
+                $data = file_get_contents('https://loripsum.net/api/2/medium');
 
-                return $data['text_out'];
+                return $data;
 
             case 'long':
-                $data = json_decode(file_get_contents('http://www.randomtext.me/api/gibberish/p-8/10-15'), true);
+                $data = file_get_contents('https://loripsum.net/api/6/decorate');
 
-                return $data['text_out'];
+                return $data;
         }
 
         return '';
@@ -254,11 +254,6 @@ try {
                     break;
 
                 case 'has_public_event_typology':
-                    {
-                        $attributes[$identifier] = getRandomTag($attribute->attribute(eZTagsType::SUBTREE_LIMIT_FIELD));
-                    }
-                    break;
-
                 case 'target_audience':
                     {
                         $attributes[$identifier] = getRandomTag($attribute->attribute(eZTagsType::SUBTREE_LIMIT_FIELD));

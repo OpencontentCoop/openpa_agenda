@@ -17,10 +17,12 @@
 {* todo header_links *}
 {def $header_links = array()}
 
+{if is_set($avail_translation)|not()}
+    {def $avail_translation = array()}
+{/if}
 {def $current_language = false()
      $available_languages = array()
-     $lang_selector = array()
-     $avail_translation = array()}
+     $lang_selector = array()}
 {if and( is_set( $DesignKeys:used.url_alias ), $DesignKeys:used.url_alias|count|ge( 1 ) )}
     {set $avail_translation = language_switcher( $DesignKeys:used.url_alias )}
 {else}
@@ -167,4 +169,4 @@
 </script>
 
 </div>
-{undef $header_service $header_service_list $is_area_tematica $header_links $current_language $available_languages $lang_selector $avail_translation}
+{undef $header_service $header_service_list $is_area_tematica $header_links $current_language $available_languages $lang_selector}

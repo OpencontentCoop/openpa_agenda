@@ -3,14 +3,14 @@
     {include uri=concat('design:', $template_directory, '/parts/workflow.tpl') post=$post}
 </div>
 <section class="container pt-0">
-    <div class="row">
+    <div class="row w-100">
         <div class="col-md-{if is_set( $post.object.data_map.internal_comments )}9{else}12{/if}">
 
             <ul class="nav nav-tabs nav-fill overflow-hidden">
                 {foreach $post.tabs as $index=> $tab}
                     <li role="presentation" class="nav-item">
                         <a class="text-decoration-none nav-link{if $index|eq(0)} active{/if}" data-toggle="tab" href="#{$tab.identifier}">
-                            <span style="font-size: 1.2em">{$tab.name|i18n('agenda/dashboard')}</span>
+                            <span style="font-size: 1.2em">{$tab.name|wash()}</span>
                             {if $tab.identifier|eq('comments')}
                                 <span class="ml-1 badge badge-light">{api_search(concat('classes [comment] subtree [',$post.node.node_id,'] limit 1')).totalCount}</span>
                             {/if}
@@ -21,7 +21,7 @@
 
             <div class="tab-content mt-3">
                 {foreach $post.tabs as $index=> $tab}
-                <div role="tabpanel" class="tab-pane{if $index|eq(0)} active{/if}" id="{$tab.identifier}">
+                <div role="tabpanel" class="mb-4 tab-pane{if $index|eq(0)} active{/if}" id="{$tab.identifier}">
                     {include uri=$tab.template_uri post=$post}
                 </div>
                 {/foreach}

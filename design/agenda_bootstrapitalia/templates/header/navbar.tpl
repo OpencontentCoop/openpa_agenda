@@ -35,7 +35,7 @@
                                         <li class="nav-item">
                                             <a class="main-nav-link nav-link text-truncate"
                                                href="{$item.url|ezurl(no)}"
-                                               title="{'Got to page:'|i18n('openpa_bootstrapitalia')} {$item.name|wash()}">
+                                               title="{$item.name|wash()}">
                                                 <span>{$item.name|wash()}</span>
                                             </a>
                                         </li>
