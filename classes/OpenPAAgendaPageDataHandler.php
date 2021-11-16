@@ -265,4 +265,40 @@ class OpenPAAgendaPageDataHandler extends ezjscServerFunctions implements OCPage
             return eZHTTPTool::instance()->sessionVariable($sessionKey);
         }
     }
+
+    public static function overlapInfo($args)
+    {
+        $overlaps = ['totalCount' => 0];
+        $currentEventId = (int)$args[0];
+        $radius = isset($args[1]) && $args[1] != 'false' ? $args[1] : false;
+        $contentSearch = new \Opencontent\Opendata\Api\ContentSearch();
+        $env = new DefaultEnvironmentSettings();
+        $contentSearch->setCurrentEnvironmentSettings($env);
+        $currentEventSearch = $contentSearch->search('id = ' . $currentEventId, []);
+        if ($currentEventSearch->totalCount > 0) {
+            $content = $currentEventSearch->searchHits[0];
+            $locale = eZLocale::currentLocaleCode();
+            $events = isset($content['data'][$locale]['time_interval']['events']) ? $content['data'][$locale]['time_interval']['events'] : [];
+            $takePlaceIn = isset($content['data'][$locale]['takes_place_in'][0]['id']) ? $content['data'][$locale]['takes_place_in'][0]['id'] : false;
+            if (count($events) == 0) { //fallback in italian
+                $events = isset($content['data']['ita-IT']['time_interval']['events']) ? $content['data']['ita-IT']['time_interval']['events'] : [];
+            }
+            if (!$takePlaceIn) { //fallback in italian
+                $takePlaceIn = isset($content['data']['ita-IT']['takes_place_in'][0]['id']) ? $content['data']['ita-IT']['takes_place_in'][0]['id'] : false;
+            }
+            if (count($events) > 0) {
+                $queryEvents = [];
+                foreach ($events as $event) {
+                    $queryEvents[] = 'calendar[time_interval] = [\'' . date('Y-m-d H:i', strtotime($event['start'])) . '\',\'' . date('Y-m-d H:i', strtotime($event['end'])) . '\']';
+                }
+                $query = "classes [event] and id != '$currentEventId' and (" . implode(' or ', $queryEvents) . ")";
+                if ($radius && $takePlaceIn) {
+                    $query .= ' and and raw['.ezfIndexSubAttributeGeo::RPT_FIELD.'] = \'"IsWithin\(POLYGON\(\(' . $radius . '\)\)\) distErrPct=0"\'';
+                }
+                $overlaps = $contentSearch->search($query);
+            }
+        }
+        echo json_encode($overlaps);
+        eZExecution::cleanExit();
+    }
 }

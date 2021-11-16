@@ -5,7 +5,7 @@
     <name>agenda</name>
     <message>
       <source>Sponsored by</source>
-      <translation>Unter der Schirmherrschaft der</translation>
+      <translation>Unter der Schirmherrschaft von</translation>
     </message>
     <message>
       <source>Comments</source>
@@ -21,7 +21,7 @@
     </message>
     <message>
       <source>Download the pdf programme</source>
-      <translation>pdf-Datei downloaden</translation>
+      <translation>PDF-Datei downloaden</translation>
     </message>
     <message>
       <source>Address Book</source>
@@ -33,7 +33,7 @@
     </message>
     <message>
       <source>Official Register of the town</source>
-      <translation>Das offizielle Register der Gemeinde</translation>
+      <translation>Offizielles Register der Gemeinde</translation>
     </message>
     <message>
       <source>Are you an organization?</source>
@@ -53,11 +53,11 @@
     </message>
     <message>
       <source>On the map</source>
-      <translation>Auf der map</translation>
+      <translation>Auf dem Lageplan</translation>
     </message>
     <message>
       <source>When?</source>
-      <translation>Wann</translation>
+      <translation>Wann?</translation>
     </message>
     <message>
       <source>Today</source>
@@ -77,7 +77,7 @@
     </message>
     <message>
       <source>All</source>
-      <translation type="unfinished"/>
+      <translation>Alles</translation>
     </message>
     <message>
       <source>Topics</source>
@@ -105,7 +105,7 @@
     </message>
     <message>
       <source>Loading...</source>
-      <translation>Warten bitte...</translation>
+      <translation>Bitte warten...</translation>
     </message>
     <message>
       <source>No events found</source>
@@ -113,7 +113,7 @@
     </message>
     <message>
       <source>Close</source>
-      <translation>schließen</translation>
+      <translation>Schließen</translation>
     </message>
     <message>
       <source>Load More Results</source>
@@ -121,11 +121,11 @@
     </message>
     <message>
       <source>Search by name ...</source>
-      <translation>Suche mit Name</translation>
+      <translation>Suche nach Name...</translation>
     </message>
     <message>
       <source>Search</source>
-      <translation>Suche</translation>
+      <translation>Suchen</translation>
     </message>
     <message>
       <source>No result found</source>
@@ -141,7 +141,7 @@
     </message>
     <message>
       <source>Show more items</source>
-      <translation>Weitere Events laden</translation>
+      <translation>Weitere Events abzeigen</translation>
     </message>
     <message>
       <source>Add to your calendar</source>
@@ -153,51 +153,51 @@
     </message>
     <message>
       <source>Add filter</source>
-      <translation type="unfinished"/>
+      <translation>Filter hinzufügen</translation>
     </message>
     <message>
       <source>Confirm</source>
-      <translation type="unfinished"/>
+      <translation>Bestätigen</translation>
     </message>
     <message>
       <source>Sections</source>
-      <translation type="unfinished"/>
+      <translation>Sektionen</translation>
     </message>
     <message>
       <source>Content type</source>
-      <translation type="unfinished"/>
+      <translation>Inhaltstyp</translation>
     </message>
     <message>
       <source>Options</source>
-      <translation type="unfinished"/>
+      <translation>Optionen</translation>
     </message>
     <message>
       <source>Apply filters</source>
-      <translation type="unfinished"/>
+      <translation>Filter anwenden</translation>
     </message>
     <message>
       <source>Found a result</source>
-      <translation type="unfinished"/>
+      <translation>Ein Ergebnis gefunden</translation>
     </message>
     <message>
       <source>Found %number results</source>
-      <translation type="unfinished"/>
+      <translation>Gefundene %zahl Ergebnisse</translation>
     </message>
     <message>
       <source>No results found</source>
-      <translation type="unfinished"/>
+      <translation>Keine Ergebnisse gefunden</translation>
     </message>
     <message>
       <source>Search in</source>
-      <translation type="unfinished"/>
+      <translation>Suche in</translation>
     </message>
     <message>
       <source>Even past events</source>
-      <translation type="unfinished"/>
+      <translation>Auch frühere Veranstaltungen</translation>
     </message>
     <message>
       <source>Also shows past events</source>
-      <translation type="unfinished"/>
+      <translation>Auch vergangene Veranstaltungen anzeigen</translation>
     </message>
   </context>
   <context>
@@ -224,7 +224,7 @@
     </message>
     <message>
       <source>Organizations registration is active</source>
-      <translation type="unfinished"/>
+      <translation>Registrierung einer aktiven Organisation</translation>
     </message>
     <message>
       <source>Comments enabled</source>
@@ -240,7 +240,7 @@
     </message>
     <message>
       <source>Event collections to hide in the main agenda</source>
-      <translation>Veranstaltungssammlungen, die sich in der Hauptagenda verstecken</translation>
+      <translation>Veranstaltungssammlungen, die in der Hauptagenda versteckt sind</translation>
     </message>
     <message>
       <source>Users</source>
@@ -371,19 +371,19 @@
     </message>
     <message>
       <source>Create new event</source>
-      <translation type="unfinished"/>
+      <translation>Neue Veranstaltung erstellen</translation>
     </message>
     <message>
       <source>Create new organization</source>
-      <translation type="unfinished"/>
+      <translation>Neuer Verein erstellen</translation>
     </message>
     <message>
       <source>Create new event program</source>
-      <translation type="unfinished"/>
+      <translation>Neues Veranstaltungsprogramm erstellen</translation>
     </message>
     <message>
       <source>Manage event</source>
-      <translation type="unfinished"/>
+      <translation>Veranstaltung verwalten</translation>
     </message>
   </context>
   <context>
@@ -461,7 +461,7 @@
     </message>
     <message>
       <source>Privacy</source>
-      <translation>Datenshutz und Privacy</translation>
+      <translation>Datenschutz</translation>
     </message>
     <message>
       <source>Terms of use</source>
@@ -515,7 +515,7 @@
     <name>agenda/signupassociazione</name>
     <message>
       <source>Do you want to register your organization?</source>
-      <translation type="unfinished"/>
+      <translation>Möchten Sie Ihren Verein registrieren?</translation>
     </message>
     <message>
       <source>To register an organization, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events.</source>
@@ -523,31 +523,31 @@
     </message>
     <message>
       <source>Register an organization</source>
-      <translation type="unfinished"/>
+      <translation>Verein registrieren</translation>
     </message>
     <message>
       <source>Info were saved and sent for validation</source>
-      <translation type="unfinished"/>
+      <translation>Die Daten wurden gespeichert und zur Validierung gesendet</translation>
     </message>
     <message>
       <source>Register a new organization</source>
-      <translation type="unfinished"/>
+      <translation>Neuer Verein registrieren</translation>
     </message>
     <message>
       <source>Register</source>
-      <translation>Rekord</translation>
+      <translation>Registrieren</translation>
     </message>
     <message>
       <source>Cancel</source>
-      <translation>stornieren</translation>
+      <translation>Abbrechen</translation>
     </message>
     <message>
       <source>Confirm us that you are not a robot</source>
-      <translation>Bestätige uns, dass du kein Roboter bist</translation>
+      <translation>Bestätigen Sie, dass Sie kein Roboter sind</translation>
     </message>
     <message>
       <source>When they are validated you will receive an email notification to the email address you entered</source>
-      <translation type="unfinished"/>
+      <translation>Wenn sie bestätigt sind, erhalten Sie eine E-Mail-Benachrichtigung an die von Ihnen angegebene E-Mail-Adresse</translation>
     </message>
   </context>
   <context>
@@ -565,11 +565,11 @@
     </message>
     <message>
       <source>Image Gallery</source>
-      <translation>Gallery</translation>
+      <translation>Bilder-Galerie</translation>
     </message>
     <message>
       <source>Share</source>
-      <translation>Share</translation>
+      <translation>Teilen</translation>
     </message>
     <message>
       <source>Comments</source>
@@ -577,7 +577,7 @@
     </message>
     <message>
       <source>Press kit</source>
-      <translation>Press kit</translation>
+      <translation>Pressemappe</translation>
     </message>
     <message>
       <source>History</source>
@@ -585,204 +585,208 @@
     </message>
     <message>
       <source>Flyer</source>
-      <translation type="unfinished"/>
+      <translation>Faltblatt</translation>
     </message>
     <message>
       <source>Save</source>
-      <translation type="unfinished"/>
+      <translation>Speichern</translation>
+    </message>
+    <message>
+      <source>Overlap</source>
+      <translation>Überlappung</translation>
     </message>
   </context>
   <context>
     <name>agenda/leaflet</name>
     <message>
       <source>Two columns (18 events)</source>
-      <translation type="unfinished"/>
+      <translation>Zwei Spalten (18 Veranstaltungen)</translation>
     </message>
     <message>
       <source>Three columns (20 events)</source>
-      <translation type="unfinished"/>
+      <translation>Drei Spalten (20 Ereignisse)</translation>
     </message>
     <message>
       <source>Three columns (40 events)</source>
-      <translation type="unfinished"/>
+      <translation>Drei Spalten (40 Veranstaltungen)</translation>
     </message>
     <message>
       <source>Title</source>
-      <translation type="unfinished"/>
+      <translation>Titel</translation>
     </message>
     <message>
       <source>Abstract</source>
-      <translation type="unfinished"/>
+      <translation>Zusammenfassung</translation>
     </message>
     <message>
       <source>Period</source>
-      <translation type="unfinished"/>
+      <translation>Zeitraum</translation>
     </message>
     <message>
       <source>Hours</source>
-      <translation type="unfinished"/>
+      <translation>Zeit</translation>
     </message>
     <message>
       <source>Duration</source>
-      <translation type="unfinished"/>
+      <translation>Dauer</translation>
     </message>
     <message>
       <source>Location</source>
-      <translation type="unfinished"/>
+      <translation>Ort</translation>
     </message>
     <message>
       <source>Delete selected events</source>
-      <translation type="unfinished"/>
+      <translation>Markierte entfernen</translation>
     </message>
     <message>
       <source>Add existing event</source>
-      <translation type="unfinished"/>
+      <translation>Aggiungi Veranstaltung hinzufügen</translation>
     </message>
     <message>
       <source>Choose the layout for the flyer</source>
-      <translation type="unfinished"/>
+      <translation>Wählen Sie das Layout für den Faltblatt aus</translation>
     </message>
     <message>
       <source>Save flyer</source>
-      <translation type="unfinished"/>
+      <translation>Speichern Sie den Faltblatt</translation>
     </message>
     <message>
       <source>Save and download flyer</source>
-      <translation type="unfinished"/>
+      <translation>Den Flyer speichern und herunterladen</translation>
     </message>
     <message>
       <source>selected events</source>
-      <translation type="unfinished"/>
+      <translation>Ausgewählte Veranstaltungen</translation>
     </message>
     <message>
       <source>Event abstracts greater than %number characters will be automatically cut.</source>
-      <translation type="unfinished"/>
+      <translation>Abstracts von Ereignissen, die größer als die %-Zahl der Zeichen sind, werden automatisch gekürzt.</translation>
     </message>
     <message>
       <source>You can use the form below to customize the event abstract on the flyer.</source>
-      <translation type="unfinished"/>
+      <translation>Sie können das Formular unten verwenden, um den Veranstaltungsauszug auf dem Flyer anzupassen.</translation>
     </message>
     <message>
       <source>missing characters</source>
-      <translation type="unfinished"/>
+      <translation>Fehlende Buchstaben</translation>
     </message>
     <message>
       <source>characters in excess</source>
-      <translation type="unfinished"/>
+      <translation>Berzählige Buchstaben</translation>
     </message>
     <message>
       <source>Automatically generated abstract</source>
-      <translation type="unfinished"/>
+      <translation>Automatisch erzeugte Zusammenfassung</translation>
     </message>
   </context>
   <context>
     <name>agenda/mail</name>
     <message>
       <source>Organization registration</source>
-      <translation type="unfinished"/>
+      <translation>Registrierung des Vereins</translation>
     </message>
     <message>
       <source>We inform you that the data concerning the %name organization have been validated.</source>
-      <translation type="unfinished"/>
+      <translation>Wir informieren Sie, dass die Daten bezüglich des Vereins %name validiert wurden.</translation>
     </message>
     <message>
       <source>It is therefore possible to log in to the system and insert content.</source>
-      <translation type="unfinished"/>
+      <translation>Es ist daher möglich, sich am System anzumelden und Inhalte einzufügen.</translation>
     </message>
     <message>
       <source>Comment to</source>
-      <translation type="unfinished"/>
+      <translation>Kommentar zu</translation>
     </message>
     <message>
       <source>We inform you that your comment %message to the %name event is now in status %state.</source>
-      <translation type="unfinished"/>
+      <translation>Wir teilen Ihnen mit, dass sich Ihr Kommentar %message zur Veranstaltung %name jetzt im Status %state befindet.</translation>
     </message>
     <message>
       <source>We inform you that that the content %name has been published/updated.</source>
-      <translation type="unfinished"/>
+      <translation>Wir informieren Sie, dass der Inhalt %name veröffentlicht/aktualisiert wurde.</translation>
     </message>
     <message>
       <source>The current status is %name.</source>
-      <translation type="unfinished"/>
+      <translation>Der aktuelle Status ist %name.</translation>
     </message>
     <message>
       <source>We inform you that the comment %message has been published to the event %name.</source>
-      <translation type="unfinished"/>
+      <translation>Wir informieren Sie, dass der Kommentar %message zu der Veranstaltung %name veröffentlicht wurde.</translation>
     </message>
     <message>
       <source>The comment is now in state %state.</source>
-      <translation type="unfinished"/>
+      <translation>Der Kommentar befindet sich jetzt im Zustand %state.</translation>
     </message>
     <message>
       <source>Notify on</source>
-      <translation type="unfinished"/>
+      <translation>Benachrichtigen über</translation>
     </message>
     <message>
       <source>We inform you that the status of the content "%name" has been changed.</source>
-      <translation type="unfinished"/>
+      <translation>Wir informieren Sie, dass der Status des Inhalts "%name" geändert wurde.</translation>
     </message>
   </context>
   <context>
     <name>agenda/place</name>
     <message>
       <source>Nowhere</source>
-      <translation type="unfinished"/>
+      <translation>Nirgendwo</translation>
     </message>
     <message>
       <source>Select place</source>
-      <translation type="unfinished"/>
+      <translation>Ort auswählen</translation>
     </message>
     <message>
       <source>Editor choice</source>
-      <translation type="unfinished"/>
+      <translation>Wahl der Redaktion</translation>
     </message>
     <message>
       <source>Shared</source>
-      <translation type="unfinished"/>
+      <translation>Geteilt</translation>
     </message>
     <message>
       <source>Your own</source>
-      <translation type="unfinished"/>
+      <translation>Von Ihnen erstellt</translation>
     </message>
     <message>
       <source>Add your own place</source>
-      <translation type="unfinished"/>
+      <translation>Eigenen Platz hinzufügen</translation>
     </message>
     <message>
       <source>A place already exists with similar geolocation</source>
-      <translation type="unfinished"/>
+      <translation>Ein Ort mit ähnlicher Geolokalisierung existiert bereits</translation>
     </message>
     <message>
       <source>Detect position</source>
-      <translation type="unfinished"/>
+      <translation>Position ermitteln</translation>
     </message>
     <message>
       <source>Name</source>
-      <translation type="unfinished"/>
+      <translation>Name</translation>
     </message>
     <message>
       <source>Address</source>
-      <translation type="unfinished"/>
+      <translation>Adresse</translation>
     </message>
     <message>
       <source>Latitude</source>
-      <translation type="unfinished"/>
+      <translation>Breitengrad</translation>
     </message>
     <message>
       <source>Longitude</source>
-      <translation type="unfinished"/>
+      <translation>Längengrad</translation>
     </message>
     <message>
       <source>Store place</source>
-      <translation type="unfinished"/>
+      <translation>Ort speichern</translation>
     </message>
     <message>
       <source>Store mine and ignore existent</source>
-      <translation type="unfinished"/>
+      <translation>Meine Daten speichern und Vorhandenes ignorieren</translation>
     </message>
     <message>
       <source>Select existent place</source>
-      <translation type="unfinished"/>
+      <translation>Vorhandenen Ort auswählen</translation>
     </message>
   </context>
   <context>
@@ -809,7 +813,7 @@
     </message>
     <message>
       <source>There is no data to produce the chart</source>
-      <translation>Es gibt keine Daten das Diagramm zu erzeugen</translation>
+      <translation>Es gibt keine Daten zur Erstellung des Diagramms</translation>
     </message>
   </context>
 </TS>

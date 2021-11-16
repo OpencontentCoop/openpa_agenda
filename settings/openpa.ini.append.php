@@ -1,5 +1,8 @@
 <?php /* #?ini charset="utf-8"?
 
+[OpenpaAgenda]
+EnableOverlapGui=disabled
+
 [OpenpaAgendaPushSettings]
 AvailableEndpoint[]
 

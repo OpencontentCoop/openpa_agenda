@@ -591,6 +591,10 @@
       <source>Save</source>
       <translation>Salva</translation>
     </message>
+    <message>
+      <source>Overlap</source>
+      <translation>Sovrapposizioni</translation>
+    </message>
   </context>
   <context>
     <name>agenda/leaflet</name>
@@ -652,7 +656,7 @@
     </message>
     <message>
       <source>selected events</source>
-      <translation>eventi selezionati</translation>
+      <translation>Eventi selezionati</translation>
     </message>
     <message>
       <source>Event abstracts greater than %number characters will be automatically cut.</source>

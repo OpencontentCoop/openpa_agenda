@@ -5,591 +5,591 @@
     <name>agenda</name>
     <message>
       <source>Sponsored by</source>
-      <translation type="unfinished"/>
+      <translation>Sponsorisé par</translation>
     </message>
     <message>
       <source>Comments</source>
-      <translation type="unfinished"/>
+      <translation>commentaires</translation>
     </message>
     <message>
       <source>In order to leave comments, you need to be logged in</source>
-      <translation type="unfinished"/>
+      <translation>Afin de laisser des commentaires, vous devez être connecté</translation>
     </message>
     <message>
       <source>Programme</source>
-      <translation type="unfinished"/>
+      <translation>Programme</translation>
     </message>
     <message>
       <source>Download the pdf programme</source>
-      <translation type="unfinished"/>
+      <translation>Téléchargez le programme PDF</translation>
     </message>
     <message>
       <source>Address Book</source>
-      <translation type="unfinished"/>
+      <translation>Carnet d'adresses</translation>
     </message>
     <message>
       <source>Organizations</source>
-      <translation type="unfinished"/>
+      <translation>Organisations</translation>
     </message>
     <message>
       <source>Official Register of the town</source>
-      <translation type="unfinished"/>
+      <translation>Registre officiel de la ville</translation>
     </message>
     <message>
       <source>Are you an organization?</source>
-      <translation type="unfinished"/>
+      <translation>Êtes-vous une organisation?</translation>
     </message>
     <message>
       <source>Find out how to participate!</source>
-      <translation type="unfinished"/>
+      <translation>Découvrez comment participer!</translation>
     </message>
     <message>
       <source>List</source>
-      <translation type="unfinished"/>
+      <translation>Lister</translation>
     </message>
     <message>
       <source>Calendar</source>
-      <translation type="unfinished"/>
+      <translation>Calendrier</translation>
     </message>
     <message>
       <source>On the map</source>
-      <translation type="unfinished"/>
+      <translation>Sur la carte</translation>
     </message>
     <message>
       <source>When?</source>
-      <translation type="unfinished"/>
+      <translation>Lorsque?</translation>
     </message>
     <message>
       <source>Today</source>
-      <translation type="unfinished"/>
+      <translation>Aujourd'hui</translation>
     </message>
     <message>
       <source>This weekend</source>
-      <translation type="unfinished"/>
+      <translation>Cette fin de semaine</translation>
     </message>
     <message>
       <source>Next 7 days</source>
-      <translation type="unfinished"/>
+      <translation>7 prochains jours</translation>
     </message>
     <message>
       <source>Next 30 days</source>
-      <translation type="unfinished"/>
+      <translation>30 prochains jours</translation>
     </message>
     <message>
       <source>All</source>
-      <translation type="unfinished"/>
+      <translation>Tous</translation>
     </message>
     <message>
       <source>Topics</source>
-      <translation type="unfinished"/>
+      <translation>Les sujets</translation>
     </message>
     <message>
       <source>What?</source>
-      <translation type="unfinished"/>
+      <translation>Quoi?</translation>
     </message>
     <message>
       <source>Who are you?</source>
-      <translation type="unfinished"/>
+      <translation>Qui es-tu?</translation>
     </message>
     <message>
       <source>Where?</source>
-      <translation type="unfinished"/>
+      <translation>Où?</translation>
     </message>
     <message>
       <source>Event collection</source>
-      <translation type="unfinished"/>
+      <translation>Collection d'événements</translation>
     </message>
     <message>
       <source>All event collections</source>
-      <translation type="unfinished"/>
+      <translation>Toutes les collections d'événements</translation>
     </message>
     <message>
       <source>Loading...</source>
-      <translation type="unfinished"/>
+      <translation>Chargement...</translation>
     </message>
     <message>
       <source>No events found</source>
-      <translation type="unfinished"/>
+      <translation>Aucun événement trouvé</translation>
     </message>
     <message>
       <source>Close</source>
-      <translation type="unfinished"/>
+      <translation>proche</translation>
     </message>
     <message>
       <source>Load More Results</source>
-      <translation type="unfinished"/>
+      <translation>Charger plus de résultats</translation>
     </message>
     <message>
       <source>Search by name ...</source>
-      <translation type="unfinished"/>
+      <translation>Recherche par nom ...</translation>
     </message>
     <message>
       <source>Search</source>
-      <translation type="unfinished"/>
+      <translation>Chercher</translation>
     </message>
     <message>
       <source>No result found</source>
-      <translation type="unfinished"/>
+      <translation>Aucun résultat trouvé</translation>
     </message>
     <message>
       <source>Show less recent</source>
-      <translation type="unfinished"/>
+      <translation>Montrer moins récent</translation>
     </message>
     <message>
       <source>Load more events</source>
-      <translation type="unfinished"/>
+      <translation>Charger plus d'événements</translation>
     </message>
     <message>
       <source>Show more items</source>
-      <translation type="unfinished"/>
+      <translation>Montrer plus d'articles</translation>
     </message>
     <message>
       <source>Add to your calendar</source>
-      <translation type="unfinished"/>
+      <translation>Ajouter à votre calendrier</translation>
     </message>
     <message>
       <source>More information</source>
-      <translation type="unfinished"/>
+      <translation>Plus d'information</translation>
     </message>
     <message>
       <source>Add filter</source>
-      <translation type="unfinished"/>
+      <translation>Filtre</translation>
     </message>
     <message>
       <source>Confirm</source>
-      <translation type="unfinished"/>
+      <translation>Confirmer</translation>
     </message>
     <message>
       <source>Sections</source>
-      <translation type="unfinished"/>
+      <translation>Sections</translation>
     </message>
     <message>
       <source>Content type</source>
-      <translation type="unfinished"/>
+      <translation>Type de contenu</translation>
     </message>
     <message>
       <source>Options</source>
-      <translation type="unfinished"/>
+      <translation>Option</translation>
     </message>
     <message>
       <source>Apply filters</source>
-      <translation type="unfinished"/>
+      <translation>Appliquer des filtres</translation>
     </message>
     <message>
       <source>Found a result</source>
-      <translation type="unfinished"/>
+      <translation>Trouvé un résultat</translation>
     </message>
     <message>
       <source>Found %number results</source>
-      <translation type="unfinished"/>
+      <translation>Résultats% nombre résultats</translation>
     </message>
     <message>
       <source>No results found</source>
-      <translation type="unfinished"/>
+      <translation>Aucun résultat trouvé</translation>
     </message>
     <message>
       <source>Search in</source>
-      <translation type="unfinished"/>
+      <translation>Rechercher dans</translation>
     </message>
     <message>
       <source>Even past events</source>
-      <translation type="unfinished"/>
+      <translation>Même des événements passés</translation>
     </message>
     <message>
       <source>Also shows past events</source>
-      <translation type="unfinished"/>
+      <translation>Montre aussi des événements passés</translation>
     </message>
   </context>
   <context>
     <name>agenda/config</name>
     <message>
       <source>Lock</source>
-      <translation type="unfinished"/>
+      <translation>Fermer à clé</translation>
     </message>
     <message>
       <source>Unlock</source>
-      <translation type="unfinished"/>
+      <translation>Ouvrir</translation>
     </message>
     <message>
       <source>Change general settings</source>
-      <translation type="unfinished"/>
+      <translation>Modifier les paramètres généraux</translation>
     </message>
     <message>
       <source>Moderation is active</source>
-      <translation type="unfinished"/>
+      <translation>La modération est active</translation>
     </message>
     <message>
       <source>User registration is active</source>
-      <translation type="unfinished"/>
+      <translation>L'enregistrement de l'utilisateur est actif</translation>
     </message>
     <message>
       <source>Organizations registration is active</source>
-      <translation type="unfinished"/>
+      <translation>L'enregistrement des organisations est actif</translation>
     </message>
     <message>
       <source>Comments enabled</source>
-      <translation type="unfinished"/>
+      <translation>Commentaires activés</translation>
     </message>
     <message>
       <source>Login is active</source>
-      <translation type="unfinished"/>
+      <translation>La connexion est active</translation>
     </message>
     <message>
       <source>Topics to hide in the main agenda</source>
-      <translation type="unfinished"/>
+      <translation>Sujets à cacher dans l'agenda principal</translation>
     </message>
     <message>
       <source>Event collections to hide in the main agenda</source>
-      <translation type="unfinished"/>
+      <translation>Collections d'événements à se cacher dans l'agenda principal</translation>
     </message>
     <message>
       <source>Users</source>
-      <translation type="unfinished"/>
+      <translation>Utilisateurs</translation>
     </message>
     <message>
       <source>Moderators</source>
-      <translation type="unfinished"/>
+      <translation>Modérateurs</translation>
     </message>
     <message>
       <source>External Users</source>
-      <translation type="unfinished"/>
+      <translation>Utilisateurs externes</translation>
     </message>
     <message>
       <source>Search</source>
-      <translation type="unfinished"/>
+      <translation>Chercher</translation>
     </message>
     <message>
       <source>Add a moderator</source>
-      <translation type="unfinished"/>
+      <translation>Ajouter un modérateur</translation>
     </message>
     <message>
       <source>Add Existing User</source>
-      <translation type="unfinished"/>
+      <translation>Ajouter l'utilisateur existant</translation>
     </message>
     <message>
       <source>Add user</source>
-      <translation type="unfinished"/>
+      <translation>Ajouter un utilisateur</translation>
     </message>
     <message>
       <source>Export to CSV</source>
-      <translation type="unfinished"/>
+      <translation>Exporter vers la CSV</translation>
     </message>
     <message>
       <source>Add %classname</source>
-      <translation type="unfinished"/>
+      <translation>Ajouter% de classeName</translation>
     </message>
   </context>
   <context>
     <name>agenda/dashboard</name>
     <message>
       <source>Title</source>
-      <translation type="unfinished"/>
+      <translation>Titre</translation>
     </message>
     <message>
       <source>Published</source>
-      <translation type="unfinished"/>
+      <translation>Publié</translation>
     </message>
     <message>
       <source>Start date</source>
-      <translation type="unfinished"/>
+      <translation>Date de début</translation>
     </message>
     <message>
       <source>End date</source>
-      <translation type="unfinished"/>
+      <translation>Date de fin</translation>
     </message>
     <message>
       <source>Status</source>
-      <translation type="unfinished"/>
+      <translation>Statut</translation>
     </message>
     <message>
       <source>Manage events</source>
-      <translation type="unfinished"/>
+      <translation>Gérer les événements</translation>
     </message>
     <message>
       <source>Manage initiatives</source>
-      <translation type="unfinished"/>
+      <translation>Gérer les initiatives</translation>
     </message>
     <message>
       <source>Manage organizations</source>
-      <translation type="unfinished"/>
+      <translation>Gérer les organisations</translation>
     </message>
     <message>
       <source>Author</source>
-      <translation type="unfinished"/>
+      <translation>Auteur</translation>
     </message>
     <message>
       <source>Changed</source>
-      <translation type="unfinished"/>
+      <translation>Modifié</translation>
     </message>
     <message>
       <source>Translations</source>
-      <translation type="unfinished"/>
+      <translation>Traductions</translation>
     </message>
     <message>
       <source>Detail</source>
-      <translation type="unfinished"/>
+      <translation>Détail</translation>
     </message>
     <message>
       <source>Loading...</source>
-      <translation type="unfinished"/>
+      <translation>Chargement...</translation>
     </message>
     <message>
       <source>List</source>
-      <translation type="unfinished"/>
+      <translation>Lister</translation>
     </message>
     <message>
       <source>Calendar</source>
-      <translation type="unfinished"/>
+      <translation>Calendrier</translation>
     </message>
     <message>
       <source>Select</source>
-      <translation type="unfinished"/>
+      <translation>Sélectionner</translation>
     </message>
     <message>
       <source>Edit</source>
-      <translation type="unfinished"/>
+      <translation>Éditer</translation>
     </message>
     <message>
       <source>Preview</source>
-      <translation type="unfinished"/>
+      <translation>Aperçu</translation>
     </message>
     <message>
       <source>Publication date</source>
-      <translation type="unfinished"/>
+      <translation>Date de publication</translation>
     </message>
     <message>
       <source>Images</source>
-      <translation type="unfinished"/>
+      <translation>Images</translation>
     </message>
     <message>
       <source>New</source>
-      <translation type="unfinished"/>
+      <translation>Nouveau</translation>
     </message>
     <message>
       <source>Image library</source>
-      <translation type="unfinished"/>
+      <translation>Bibliothèque d'images</translation>
     </message>
     <message>
       <source>Create new event</source>
-      <translation type="unfinished"/>
+      <translation>Créer un nouvel événement</translation>
     </message>
     <message>
       <source>Create new organization</source>
-      <translation type="unfinished"/>
+      <translation>Créer une nouvelle organisation</translation>
     </message>
     <message>
       <source>Create new event program</source>
-      <translation type="unfinished"/>
+      <translation>Créer un nouveau programme d'événements</translation>
     </message>
     <message>
       <source>Manage event</source>
-      <translation type="unfinished"/>
+      <translation>Gérer l'événement</translation>
     </message>
   </context>
   <context>
     <name>agenda/event</name>
     <message>
       <source>Where</source>
-      <translation type="unfinished"/>
+      <translation>Où</translation>
     </message>
     <message>
       <source>How to get there</source>
-      <translation type="unfinished"/>
+      <translation>Comment aller là</translation>
     </message>
     <message>
       <source>Attachments</source>
-      <translation type="unfinished"/>
+      <translation>Accessoires</translation>
     </message>
   </context>
   <context>
     <name>agenda/event/comments</name>
     <message>
       <source>Enter answer</source>
-      <translation type="unfinished"/>
+      <translation>Entrer dans la réponse</translation>
     </message>
     <message>
       <source>Insert your comment</source>
-      <translation type="unfinished"/>
+      <translation>Insérez votre commentaire</translation>
     </message>
     <message>
       <source>Publish your comment</source>
-      <translation type="unfinished"/>
+      <translation>Publier votre commentaire</translation>
     </message>
     <message>
       <source>Cancel</source>
-      <translation type="unfinished"/>
+      <translation>Annuler</translation>
     </message>
   </context>
   <context>
     <name>agenda/event/days</name>
     <message>
       <source>from</source>
-      <translation type="unfinished"/>
+      <translation>de</translation>
     </message>
     <message>
       <source>to</source>
-      <translation type="unfinished"/>
+      <translation>à</translation>
     </message>
   </context>
   <context>
     <name>agenda/event/hours</name>
     <message>
       <source>from</source>
-      <translation type="unfinished"/>
+      <translation>de</translation>
     </message>
     <message>
       <source>to</source>
-      <translation type="unfinished"/>
+      <translation>à</translation>
     </message>
   </context>
   <context>
     <name>agenda/mail/registration</name>
     <message>
       <source>%privacy_link_start%Privacy info%privacy_link_end%</source>
-      <translation type="unfinished"/>
+      <translation>% Privacy_Link_Start% Info de confidentialité% Privacy_Link_end%</translation>
     </message>
     <message>
       <source>%terms_link_start%Terms of use%terms_link_end%</source>
-      <translation type="unfinished"/>
+      <translation>% tergimes_link_start% Conditions d'utilisation% Terms_Link_end%</translation>
     </message>
   </context>
   <context>
     <name>agenda/menu</name>
     <message>
       <source>FAQ</source>
-      <translation type="unfinished"/>
+      <translation>FAQ</translation>
     </message>
     <message>
       <source>Privacy</source>
-      <translation type="unfinished"/>
+      <translation>Intimité</translation>
     </message>
     <message>
       <source>Terms of use</source>
-      <translation type="unfinished"/>
+      <translation>Conditions d'utilisation</translation>
     </message>
     <message>
       <source>Agenda</source>
-      <translation type="unfinished"/>
+      <translation>Ordre du jour</translation>
     </message>
     <message>
       <source>Organizations</source>
-      <translation type="unfinished"/>
+      <translation>Organisations</translation>
     </message>
     <message>
       <source>Manage events</source>
-      <translation type="unfinished"/>
+      <translation>Gérer les événements</translation>
     </message>
     <message>
       <source>Information</source>
-      <translation type="unfinished"/>
+      <translation>Informations</translation>
     </message>
     <message>
       <source>Profile</source>
-      <translation type="unfinished"/>
+      <translation>Profil</translation>
     </message>
     <message>
       <source>Settings</source>
-      <translation type="unfinished"/>
+      <translation>Paramètres</translation>
     </message>
     <message>
       <source>Manage organizations</source>
-      <translation type="unfinished"/>
+      <translation>Gérer les organisations</translation>
     </message>
     <message>
       <source>Manage PDF Programme</source>
-      <translation type="unfinished"/>
+      <translation>Gérer le programme PDF</translation>
     </message>
     <message>
       <source>Logout</source>
-      <translation type="unfinished"/>
+      <translation>Se déconnecter</translation>
     </message>
   </context>
   <context>
     <name>agenda/signup</name>
     <message>
       <source>Subscribe</source>
-      <translation type="unfinished"/>
+      <translation>S'abonner</translation>
     </message>
   </context>
   <context>
     <name>agenda/signupassociazione</name>
     <message>
       <source>Do you want to register your organization?</source>
-      <translation type="unfinished"/>
+      <translation>Voulez-vous enregistrer votre organisation?</translation>
     </message>
     <message>
       <source>To register an organization, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events.</source>
-      <translation type="unfinished"/>
+      <translation>Pour enregistrer une organisation, vous devez cliquer sur le bouton et remplir les informations requises. Une fois que nos opérateurs ont vérifié vos informations, vous pouvez utiliser les informations d'identification que vous avez choisies pour vous connecter et poster de nouveaux événements.</translation>
     </message>
     <message>
       <source>Register an organization</source>
-      <translation type="unfinished"/>
+      <translation>Enregistrer une organisation</translation>
     </message>
     <message>
       <source>Info were saved and sent for validation</source>
-      <translation type="unfinished"/>
+      <translation>Les informations ont été enregistrées et envoyées pour validation</translation>
     </message>
     <message>
       <source>Register a new organization</source>
-      <translation type="unfinished"/>
+      <translation>Enregistrer une nouvelle organisation</translation>
     </message>
     <message>
       <source>Register</source>
-      <translation type="unfinished"/>
+      <translation>S'inscrire</translation>
     </message>
     <message>
       <source>Cancel</source>
-      <translation type="unfinished"/>
+      <translation>Annuler</translation>
     </message>
     <message>
       <source>Confirm us that you are not a robot</source>
-      <translation type="unfinished"/>
+      <translation>Confirmez-nous que vous n'êtes pas un robot</translation>
     </message>
     <message>
       <source>When they are validated you will receive an email notification to the email address you entered</source>
-      <translation type="unfinished"/>
+      <translation>Lorsqu'ils sont validés, vous recevrez une notification par courrier électronique à l'adresse e-mail que vous avez entrée.</translation>
     </message>
   </context>
   <context>
     <name>agenda/states</name>
     <message>
       <source>Waiting for moderation</source>
-      <translation type="unfinished"/>
+      <translation>En attente de modération</translation>
     </message>
   </context>
   <context>
     <name>openpa_agenda</name>
     <message>
       <source>Content</source>
-      <translation type="unfinished"/>
+      <translation>Teneur</translation>
     </message>
     <message>
       <source>Image Gallery</source>
-      <translation type="unfinished"/>
+      <translation>Galerie d'images</translation>
     </message>
     <message>
       <source>Share</source>
-      <translation type="unfinished"/>
+      <translation>Partager</translation>
     </message>
     <message>
       <source>Comments</source>
-      <translation type="unfinished"/>
+      <translation>commentaires</translation>
     </message>
     <message>
       <source>Press kit</source>
-      <translation type="unfinished"/>
+      <translation>dossier de presse</translation>
     </message>
     <message>
       <source>History</source>
-      <translation type="unfinished"/>
+      <translation>Histoire</translation>
     </message>
     <message>
       <source>Flyer</source>
-      <translation type="unfinished"/>
+      <translation>Prospectus</translation>
     </message>
     <message>
       <source>Save</source>
-      <translation type="unfinished"/>
+      <translation>sauvegarder</translation>
     </message>
     <message>
       <source>Overlap</source>
@@ -600,220 +600,220 @@
     <name>agenda/leaflet</name>
     <message>
       <source>Two columns (18 events)</source>
-      <translation type="unfinished"/>
+      <translation>Deux colonnes (18 événements)</translation>
     </message>
     <message>
       <source>Three columns (20 events)</source>
-      <translation type="unfinished"/>
+      <translation>Trois colonnes (20 événements)</translation>
     </message>
     <message>
       <source>Three columns (40 events)</source>
-      <translation type="unfinished"/>
+      <translation>Trois colonnes (40 événements)</translation>
     </message>
     <message>
       <source>Title</source>
-      <translation type="unfinished"/>
+      <translation>Titre</translation>
     </message>
     <message>
       <source>Abstract</source>
-      <translation type="unfinished"/>
+      <translation>Résumé</translation>
     </message>
     <message>
       <source>Period</source>
-      <translation type="unfinished"/>
+      <translation>Période</translation>
     </message>
     <message>
       <source>Hours</source>
-      <translation type="unfinished"/>
+      <translation>Les heures</translation>
     </message>
     <message>
       <source>Duration</source>
-      <translation type="unfinished"/>
+      <translation>Durée</translation>
     </message>
     <message>
       <source>Location</source>
-      <translation type="unfinished"/>
+      <translation>Emplacement</translation>
     </message>
     <message>
       <source>Delete selected events</source>
-      <translation type="unfinished"/>
+      <translation>Supprimer les événements sélectionnés</translation>
     </message>
     <message>
       <source>Add existing event</source>
-      <translation type="unfinished"/>
+      <translation>Ajouter un événement existant</translation>
     </message>
     <message>
       <source>Choose the layout for the flyer</source>
-      <translation type="unfinished"/>
+      <translation>Choisissez la mise en page pour le dépliant</translation>
     </message>
     <message>
       <source>Save flyer</source>
-      <translation type="unfinished"/>
+      <translation>Sauver le flyer</translation>
     </message>
     <message>
       <source>Save and download flyer</source>
-      <translation type="unfinished"/>
+      <translation>Sauvegarder et télécharger Flyer</translation>
     </message>
     <message>
       <source>selected events</source>
-      <translation type="unfinished"/>
+      <translation>Événements sélectionnés</translation>
     </message>
     <message>
       <source>Event abstracts greater than %number characters will be automatically cut.</source>
-      <translation type="unfinished"/>
+      <translation>Les résumés d'événement supérieur à% de caractères numériques seront automatiquement coupés.</translation>
     </message>
     <message>
       <source>You can use the form below to customize the event abstract on the flyer.</source>
-      <translation type="unfinished"/>
+      <translation>Vous pouvez utiliser le formulaire ci-dessous pour personnaliser l'évacuation de l'événement sur le dépliant.</translation>
     </message>
     <message>
       <source>missing characters</source>
-      <translation type="unfinished"/>
+      <translation>caractères manquants</translation>
     </message>
     <message>
       <source>characters in excess</source>
-      <translation type="unfinished"/>
+      <translation>caractères en excès</translation>
     </message>
     <message>
       <source>Automatically generated abstract</source>
-      <translation type="unfinished"/>
+      <translation>Résumé généré automatiquement</translation>
     </message>
   </context>
   <context>
     <name>agenda/mail</name>
     <message>
       <source>Organization registration</source>
-      <translation type="unfinished"/>
+      <translation>Enregistrement de l'organisation</translation>
     </message>
     <message>
       <source>We inform you that the data concerning the %name organization have been validated.</source>
-      <translation type="unfinished"/>
+      <translation>Nous vous informons que les données concernant l'organisation% du nom ont été validées.</translation>
     </message>
     <message>
       <source>It is therefore possible to log in to the system and insert content.</source>
-      <translation type="unfinished"/>
+      <translation>Il est donc possible de vous connecter au système et d'insérer du contenu.</translation>
     </message>
     <message>
       <source>Comment to</source>
-      <translation type="unfinished"/>
+      <translation>Commenter à</translation>
     </message>
     <message>
       <source>We inform you that your comment %message to the %name event is now in status %state.</source>
-      <translation type="unfinished"/>
+      <translation>Nous vous informons que votre commentaire% Message à l'événement% Nom est maintenant dans l'état Statut% State.</translation>
     </message>
     <message>
       <source>We inform you that that the content %name has been published/updated.</source>
-      <translation type="unfinished"/>
+      <translation>Nous vous informons que le nom du contenu du contenu a été publié / mis à jour.</translation>
     </message>
     <message>
       <source>The current status is %name.</source>
-      <translation type="unfinished"/>
+      <translation>L'état actuel est le nom de%.</translation>
     </message>
     <message>
       <source>We inform you that the comment %message has been published to the event %name.</source>
-      <translation type="unfinished"/>
+      <translation>Nous vous informons que le commentaire% Message a été publié sur le nom de% de l'événement.</translation>
     </message>
     <message>
       <source>The comment is now in state %state.</source>
-      <translation type="unfinished"/>
+      <translation>Le commentaire est maintenant dans l'état de l'état de l'état.</translation>
     </message>
     <message>
       <source>Notify on</source>
-      <translation type="unfinished"/>
+      <translation>Notifier</translation>
     </message>
     <message>
       <source>We inform you that the status of the content "%name" has been changed.</source>
-      <translation type="unfinished"/>
+      <translation>Nous vous informons que l'état du contenu "% nom" a été modifié.</translation>
     </message>
   </context>
   <context>
     <name>agenda/place</name>
     <message>
       <source>Nowhere</source>
-      <translation type="unfinished"/>
+      <translation>Nulle part</translation>
     </message>
     <message>
       <source>Select place</source>
-      <translation type="unfinished"/>
+      <translation>Sélectionner</translation>
     </message>
     <message>
       <source>Editor choice</source>
-      <translation type="unfinished"/>
+      <translation>Choix de l'éditeur</translation>
     </message>
     <message>
       <source>Shared</source>
-      <translation type="unfinished"/>
+      <translation>partagé</translation>
     </message>
     <message>
       <source>Your own</source>
-      <translation type="unfinished"/>
+      <translation>Le tien</translation>
     </message>
     <message>
       <source>Add your own place</source>
-      <translation type="unfinished"/>
+      <translation>Ajoutez votre propre lieu</translation>
     </message>
     <message>
       <source>A place already exists with similar geolocation</source>
-      <translation type="unfinished"/>
+      <translation>Un endroit existe déjà avec une géolocalisation similaire</translation>
     </message>
     <message>
       <source>Detect position</source>
-      <translation type="unfinished"/>
+      <translation>Détecter la position</translation>
     </message>
     <message>
       <source>Name</source>
-      <translation type="unfinished"/>
+      <translation>Nom</translation>
     </message>
     <message>
       <source>Address</source>
-      <translation type="unfinished"/>
+      <translation>Adresse</translation>
     </message>
     <message>
       <source>Latitude</source>
-      <translation type="unfinished"/>
+      <translation>Latitude</translation>
     </message>
     <message>
       <source>Longitude</source>
-      <translation type="unfinished"/>
+      <translation>Longitude</translation>
     </message>
     <message>
       <source>Store place</source>
-      <translation type="unfinished"/>
+      <translation>Lieu de magasin</translation>
     </message>
     <message>
       <source>Store mine and ignore existent</source>
-      <translation type="unfinished"/>
+      <translation>Stocker le mien et ignorer existant</translation>
     </message>
     <message>
       <source>Select existent place</source>
-      <translation type="unfinished"/>
+      <translation>Sélectionner un lieu existant</translation>
     </message>
   </context>
   <context>
     <name>agenda/stat</name>
     <message>
       <source>Statistics</source>
-      <translation type="unfinished"/>
+      <translation>Statistiques</translation>
     </message>
     <message>
       <source>Monthly</source>
-      <translation type="unfinished"/>
+      <translation>Mensuel</translation>
     </message>
     <message>
       <source>Quarterly</source>
-      <translation type="unfinished"/>
+      <translation>Trimestriel</translation>
     </message>
     <message>
       <source>Half-yearly</source>
-      <translation type="unfinished"/>
+      <translation>Semestriel</translation>
     </message>
     <message>
       <source>Yearly</source>
-      <translation type="unfinished"/>
+      <translation>Annuel</translation>
     </message>
     <message>
       <source>There is no data to produce the chart</source>
-      <translation type="unfinished"/>
+      <translation>Il n'y a pas de données pour produire le graphique</translation>
     </message>
   </context>
 </TS>
