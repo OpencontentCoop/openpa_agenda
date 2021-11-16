@@ -379,7 +379,7 @@
     </message>
     <message>
       <source>Create new event program</source>
-      <translation>Δημιουργία νέου προγράμματος εκδήλωση</translation>
+      <translation>Δημιουργία νέου προγράμματος συμβάντων</translation>
     </message>
     <message>
       <source>Manage event</source>
@@ -590,6 +590,10 @@
     <message>
       <source>Save</source>
       <translation>Αποθήκευση</translation>
+    </message>
+    <message>
+      <source>Overlap</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>

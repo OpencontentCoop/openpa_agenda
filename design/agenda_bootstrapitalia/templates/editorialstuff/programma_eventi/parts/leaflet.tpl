@@ -51,7 +51,7 @@
 </div>
 
 {foreach $post.events as $event}
-    <table class="table event hide">
+    <table class="table event hide" style="height:100%">
         <tbody>
         <tr>
             <td class="position-relative">
@@ -62,21 +62,18 @@
                             {if sub($event.to_time,$event.from_time)|gt(86399)}
                                 - {$event.to_time|datetime('custom', '%j %F')}
                             {/if}
-                            <br />{$event.periodo_svolgimento}
-                        </small>
-                    </li>
-
-                    <li>
-                        <small>
+                            {if $event.periodo_svolgimento}
+                                - {$event.periodo_svolgimento}
+                            {/if}
                             {if $event.luogo_svolgimento}
-                                {$event.luogo_svolgimento}
+                                - <span style="font-weight: bold">{$event.luogo_svolgimento}</span>
                             {/if}
                         </small>
                     </li>
                 </ul>
 
                 <h4>
-                    {$event.name|wash()}
+                    {$event.name|oc_shorten(150)|wash()}
                 </h4>
                 <textarea class="event-abstract" name="Events[{$event.id}]" style="border:1px solid #eee;padding: 0;font-weight: normal;">{$event.abstract}</textarea>
                 <div class="position-absolute hide" style="bottom: 0; font-size: 10px !important;padding: 3px;background: #eee">

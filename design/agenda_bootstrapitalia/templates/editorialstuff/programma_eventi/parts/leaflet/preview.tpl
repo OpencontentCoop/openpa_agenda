@@ -41,8 +41,8 @@
                     page2.html('');
                     preview.removeClass().addClass('flyer-body layout-'+currentLayout.id);
                     for (i = 1; i <= cols; i++) {
-                        page1.append('<div class="col p-3 column-'+i+'"><table class="table event-container"></table></div>');
-                        page2.append('<div class="col p-3 column-'+i+'"><table class="table event-container"></table></div>');
+                        page1.append('<div class="col p-3 column-'+i+'"><table class="table event-container" style="height:100%"></table></div>');
+                        page2.append('<div class="col p-3 column-'+i+'"><table class="table event-container" style="height:100%"></table></div>');
                     }
                     var eventDisplayed = 0;
                     var maxPerPage = cols*eventsPerCol;

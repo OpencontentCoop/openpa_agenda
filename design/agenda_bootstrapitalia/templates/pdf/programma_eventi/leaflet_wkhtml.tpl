@@ -18,66 +18,9 @@
         <tr>
             {for 1 to $layout.columns as $counter}
                 <td class="columns-{$layout.columns}">
-                    <table class="table event-container">
+                    <table class="table event-container" style="height:100%">
                         {foreach $programma_eventi.events as $event max $per_page offset $offset}
-                            <tr>
-                                <td>
-                                    <ul class="unstyled">
-                                        <li><small>
-                                            {if $displayed_attributes|contains( 'periodo_svolgimento' )}
-                                                {if $event.periodo_svolgimento}
-                                                    {$event.periodo_svolgimento}
-                                                {else}
-                                                    {$event.from_time|datetime('custom', '%j %F')}
-                                                    {if sub($event.to_time,$event.from_time)|gt(86399)}
-                                                        - {$event.to_time|datetime('custom', '%j %F')}
-                                                    {/if}
-                                                {/if}
-                                            {/if}
-
-                                            {if and($event.orario_svolgimento, $displayed_attributes|contains( 'orario_svolgimento' ))}
-                                                - {$event.orario_svolgimento}
-                                            {/if}
-
-                                            {if and($event.durata, $displayed_attributes|contains( 'durata' ))}
-                                                - {$event.durata}
-                                            {/if}
-                                        </small></li>
-
-                                        {if and($event.luogo_svolgimento, $displayed_attributes|contains( 'luogo_svolgimento' ))}
-                                            <li><small>
-                                                {if $event.luogo_svolgimento}
-                                                    {$event.luogo_svolgimento}
-                                                {/if}
-                                            </small></li>
-                                        {/if}
-
-                                    </ul>
-
-
-                                    <h4>{$event.name|wash()}</h4>
-                                    {if and($event.abstract, $displayed_attributes|contains( 'abstract' ))}
-                                        <div class="event-abstract"> {$event.abstract}</div>
-                                    {/if}
-
-                                    {*if $event.associazione}
-                                        <p>
-                                            <small>
-                                                {foreach $event.associazione.relation_list as $associazione}
-                                                    {$associazione.name[$language]}{delimiter}, {/delimiter}
-                                                {/foreach}
-                                            </small>
-                                        </p>
-                                    {/if*}
-                                </td>
-
-                                {if $programma_eventi.show_qrcode}
-                                <td width="80px">
-                                    <img src="{$event.qrcode_base64_src}" alt="" height="80px"/>
-                                </td>
-                                {/if}
-
-                            </tr>
+                            {include uri="design:pdf/programma_eventi/leaflet_event_row.tpl" use_base64_src=true()}
                         {/foreach}
                     </table>
                 </td>
@@ -92,66 +35,9 @@
         <tr>
             {for 1 to $last_page_columns as $counter}
                 <td class="columns-{$layout.columns}">
-                    <table class="table event-container">
+                    <table class="table event-container" style="height:100%">
                         {foreach $programma_eventi.events as $event max $per_page offset $offset}
-                            <tr>
-                                <td>
-                                    <ul class="unstyled">
-                                        <li><small>
-                                            {if $displayed_attributes|contains( 'periodo_svolgimento' )}
-                                                {if $event.periodo_svolgimento}
-                                                    {$event.periodo_svolgimento}
-                                                {else}
-                                                    {$event.from_time|datetime('custom', '%j %F')}
-                                                    {if sub($event.to_time,$event.from_time)|gt(86399)}
-                                                        - {$event.to_time|datetime('custom', '%j %F')}
-                                                    {/if}
-                                                {/if}
-                                            {/if}
-
-                                            {if and($event.orario_svolgimento, $displayed_attributes|contains( 'orario_svolgimento' ))}
-                                                - {$event.orario_svolgimento}
-                                            {/if}
-
-                                            {if and($event.durata, $displayed_attributes|contains( 'durata' ))}
-                                                - {$event.durata}
-                                            {/if}
-                                        </small></li>
-
-                                        {if and($event.luogo_svolgimento, $displayed_attributes|contains( 'luogo_svolgimento' ))}
-                                            <li><small>
-                                                {if $event.luogo_svolgimento}
-                                                    {$event.luogo_svolgimento}
-                                                {/if}
-                                            </small></li>
-                                        {/if}
-
-                                    </ul>
-
-
-                                    <h4>{$event.name|wash()}</h4>
-                                    {if and($event.abstract, $displayed_attributes|contains( 'abstract' ))}
-                                        <div class="event-abstract"> {$event.abstract}</div>
-                                    {/if}
-
-                                    {*if $event.associazione}
-                                        <p>
-                                            <small>
-                                                {foreach $event.associazione.relation_list as $associazione}
-                                                    {$associazione.name[$language]}{delimiter}, {/delimiter}
-                                                {/foreach}
-                                            </small>
-                                        </p>
-                                    {/if*}
-                                </td>
-
-                                {if $programma_eventi.show_qrcode}
-                                <td width="80px">
-                                    <img src="{$event.qrcode_base64_src}" alt="" height="80px"/>
-                                </td>
-                                {/if}
-
-                            </tr>
+                            {include uri="design:pdf/programma_eventi/leaflet_event_row.tpl" use_base64_src=true()}
                         {/foreach}
                     </table>
                 </td>

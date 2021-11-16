@@ -1,33 +1,44 @@
 {literal}
     <style>
         .flyer-body {
-            font-family: "Arial", sans-serif;
-            font-size: 9pt;
+            font-family: "Arial", "Helvetica", sans-serif;
+            font-size:10pt;
         }
 
-        .flyer-body p {
+        /* Control page rendring: please refer to doc/doc.txt */
+        @page {
+            /*size: a4 portrait;*/
+            size: a4 landscape;
+            margin: .05in;
+            @top-left {
+                content: element(header);
+            }
+            @bottom-right {
+                content: element(footer);
+            }
+        }
+
+        .flyer-body p{
             margin: 0;
         }
 
-        .flyer-body a {
-            color: #000;
-            text-decoration: none;
+        .flyer-body a{
+            color:#000;
+            text-decoration:none;
         }
 
-        .flyer-body hr {
+        .flyer-body hr{
             background: #000;
             height: 1px;
             border: none;
         }
 
-        .flyer-body table.event-container {
+        .flyer-body table.event-container{
             margin-bottom: 0;
         }
-
-        .flyer-body table.event-container tr:first-child td {
-            border: none;
+        .flyer-body table.event-container tr:first-child td{
+            border:none;
         }
-
         .flyer-body table.event-container tr td {
             border-top: 1px solid #dddddd;
         }
@@ -83,20 +94,19 @@
 
 
         .flyer-body table {
-            page-break-inside: auto;
+            page-break-inside:auto;
             width: 100%;
         }
-
         .flyer-body tr {
-            page-break-inside: avoid;
-            page-break-after: auto
+            page-break-inside:avoid;
+            page-break-after:auto
         }
 
         .flyer-body ul,
         .flyer-body ol {
             margin: 0;
             list-style: none;
-            padding: 0;
+            padding:0;
         }
 
         .flyer-body ul.inline,
@@ -126,79 +136,78 @@
             text-align: center;
         }
 
-        .flyer-body .event-abstract {
+        .flyer-body .event-abstract{
             font-size: .8em;
         }
 
-        .flyer-body.layout-2 * {
-            font-size: 13px !important;
+        .flyer-body.layout-2 *{
+            font-size:8pt !important;
         }
 
-        .flyer-body.layout-2 h4 {
+        .flyer-body.layout-2 h4{
             margin: 5px 0;
         }
 
-        .flyer-body.layout-2 .event-abstract {
-            line-height: 1.5;
-            font-size: 11px !important;
+        .flyer-body.layout-2 .event-abstract{
+            line-height:1.5;
+            font-size:8pt !important;
         }
 
         .flyer-body.layout-2 .table td {
-            padding: 8px;
+            padding: 8pt;
         }
 
-        .flyer-body.layout-3 * {
-            font-size: 13px !important;
+        .flyer-body.layout-3 *{
+            font-size:8pt !important;
         }
 
-        .flyer-body.layout-3 h4 {
+        .flyer-body.layout-3 h4{
             margin: 5px 0;
         }
 
-        .flyer-body.layout-3 .event-abstract {
-            line-height: 1.5;
-            font-size: 11px !important;
+        .flyer-body.layout-3 .event-abstract{
+            line-height:1.5;
+            font-size:8pt !important;
         }
 
         .flyer-body.layout-3 .table td {
             padding: 8px;
         }
 
-        .flyer-body.layout-4 * {
-            font-size: 12px !important;
-            line-height: 1;
+        .flyer-body.layout-4 *{
+            font-size:8pt !important;
+            line-height: normal;
+        }
+        .flyer-body.layout-4 small{
+            font-size:10pt !important;
         }
 
-        .flyer-body.layout-4 small {
-            font-size: 10px !important;
-        }
-
-        .flyer-body.layout-4 h4 {
+        .flyer-body.layout-4 h4{
             margin: 0;
-            font-size: 10px !important;
+            font-size:10pt !important;
         }
 
-        .flyer-body.layout-4 .event-abstract {
-            line-height: 1;
-            font-size: 9px !important;
+        .flyer-body.layout-4 .event-abstract{
+            line-height:normal;
+            font-size:8pt !important;
         }
 
         .flyer-body.layout-4 .table td {
             padding: 5px;
         }
 
-        .flyer-body #copertina h1.title {
+        .flyer-body #copertina h1.title{
             text-transform: uppercase;
-            font-size: 16px !important;
+            font-size: 16pt !important;
         }
 
-        .flyer-body #copertina h3.subtitle {
-            font-size: 14px !important;
+        .flyer-body #copertina h3.subtitle{
+            font-size: 14pt !important;
         }
 
-        .flyer-body #copertina div.contacts {
-            text-align: center;
-            line-height: 1.5;
+        .flyer-body #copertina div.contacts{
+            text-align:center;
+            line-height:1.5;
         }
 
     </style>

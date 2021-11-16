@@ -22,7 +22,7 @@
                        href="{concat('editorialstuff/media/', $factory_identifier, '/remove/', $post.object.id, '/image/', $main_image.contentobject_id )|ezurl(no)}"><i class="fa fa-trash-o"></i></a>
                 </p>
                 <a class="gallery-strip-thumbnail"
-                   href={$main_image|attribute('image').content['imagefullwide'].url|ezroot} title="{$main_image.name|wash()}"
+                   href={$main_image|attribute('image').content['imagefull'].url|ezroot} title="{$main_image.name|wash()}"
                    data-gallery>
                     {attribute_view_gui attribute=$main_image|attribute('image') image_class=large fluid=false()}
                     {$main_image.name|wash()}
@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <a class="gallery-strip-thumbnail"
-                       href={$item|attribute('image').content['imagefullwide'].url|ezroot} title="{$item.name|wash()}"
+                       href={$item|attribute('image').content['imagefull'].url|ezroot} title="{$item.name|wash()}"
                        data-gallery>
                         {attribute_view_gui attribute=$item|attribute('image') image_class=squarethumb fluid=false()}
                         <small class="d-block">{$item.name|wash()}</small>

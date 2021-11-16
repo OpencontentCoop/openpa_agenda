@@ -9,7 +9,7 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
 
     protected $events = array();
 
-    public function __construct(array $data = array(), OCEditorialStuffPostFactoryInterface $factory)
+    public function __construct(array $data, OCEditorialStuffPostFactoryInterface $factory)
     {
         parent::__construct($data, $factory);
 
@@ -56,6 +56,13 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
                 )
             )
         );
+
+        if (OpenPAAgenda::instance()->getEventClassType() === 'CPEV') {
+            foreach ($this->layouts as $index => $layout){
+                unset($this->layouts[$index]['displayed_attributes']['orario_svolgimento']);
+                unset($this->layouts[$index]['displayed_attributes']['durata']);
+            }
+        }
     }
 
     public function onCreate()
@@ -190,8 +197,10 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         $tpl->setVariable('programma_eventi', $this);
         $tpl->setVariable('root_dir', eZSys::rootDir());
         $tpl->setVariable('layout', $currentLayout);
+        $debug = false;
+        $tpl->setVariable('debug', $debug);
 
-        $pdfContent = $this->generatePdf($tpl);
+        $pdfContent = $this->generatePdf($tpl, $debug);
 
         /** @var eZContentClass $objectClass */
         $objectClass = $this->getObject()->attribute('content_class');
@@ -241,10 +250,10 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
             'options' => array(
                 'orientation' => 'Landscape',
                 'page-size' => 'A4',
-                'margin-top' => '5mm',
-                'margin-left' => '5mm',
-                'margin-right' => '5mm',
-                'margin-bottom' => '5mm',
+                'margin-top' => '2mm',
+                'margin-left' => '2mm',
+                'margin-right' => '2mm',
+                'margin-bottom' => '2mm',
                 'encoding' => 'UTF-8',
             ),
             'header' => base64_encode('<!DOCTYPE html><html></html>'),
@@ -363,7 +372,6 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         }
     }
 
-
     /**
      * @return array[]
      */
@@ -463,15 +471,16 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
                 $place .= $object->attribute('name') . ' ';
             }
         }
+
         $data = array(
             'id' => $objectEvent->attribute('id'),
             'main_node_id' => $objectEvent->mainNodeID(),
-            'name' => $objectEvent->attribute('name'),
-            'periodo_svolgimento' => isset($timeInterval['text']) ? $timeInterval['text'] : '',
+            'name' => trim($objectEvent->attribute('name')),
+            'periodo_svolgimento' => isset($timeInterval['text']) && $eventsCount > 1 ? $timeInterval['text'] : '',
             'from_time' => strtotime($timeInterval['events'][0]['start']),
             'to_time' => strtotime($timeInterval['events'][$eventsCount - 1]['end']),
-            'orario_svolgimento' => '',
-            'durata' => '',
+            'orario_svolgimento' => false,
+            'durata' => false,
             'luogo_svolgimento' => trim($place),
             'abstract' => substr(strip_tags($eventDataMap['event_abstract']->hasContent() ? $eventDataMap['event_abstract']->toString() : $eventDataMap['description']->toString()),
                 0, $this->abstract_length),
