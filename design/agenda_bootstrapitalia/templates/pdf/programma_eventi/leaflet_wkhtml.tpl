@@ -43,7 +43,7 @@ $count_events = count($events)}
     {def $first_event_end = recurrences_strtotime($recurrences[0].end)}
     <table class="p-all">
         <tr>
-            <td style="vertical-align: top;padding-right: 10pt;position: relative">
+            <td style="vertical-align: top;padding-right: 10pt;position: relative;{if $programma_eventi.show_qrcode}height:170px{/if}">
                 <div class="calendar">
                     <span class="date">
                         {$first_event_start|datetime( 'custom', '%j' )}
