@@ -116,6 +116,12 @@ $ViewList['stat'] = array(
     'functions' => array('use')
 );
 
+$ViewList['leaflet'] = array(
+    'script' => 'leaflet.php',
+    'params' => array('Id'),
+    'functions' => array('use')
+);
+
 $FunctionList = array();
 $FunctionList['use'] = array();
 $FunctionList['config'] = array();

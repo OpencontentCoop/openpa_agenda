@@ -2,12 +2,13 @@
 
 class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEditorialStuffPostInputActionInterface
 {
-
     protected $abstract_length = 220;
 
     protected $layouts = array();
 
     protected $events = array();
+
+    protected $pdfFilePath;
 
     public function __construct(array $data, OCEditorialStuffPostFactoryInterface $factory)
     {
@@ -161,13 +162,62 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         $params = array(
             'language' => eZLocale::currentLocaleCode()
         );
+        $currentLayout = $httpTool->postVariable('layout');
+        foreach ($this->layouts as $layout) {
+            if ($layout['id'] == $currentLayout) {
+                $currentLayout = $layout;
+            }
+        }
         $params['attributes'] = array(
-            'events_layout' => implode('&', $events)
+            'events_layout' => implode('&', $events),
+            'layout' => $currentLayout,
         );
+
         eZContentFunctions::updateAndPublishObject($this->getObject(), $params);
         $this->flushObject();
         $this->dataMap = $this->getObject()->attribute('data_map');
 
+        $filePath = $this->generatePdfFilePath();
+        $pdfContent = $this->generatePdf($currentLayout);
+        eZFile::create(basename($filePath), dirname($filePath), $pdfContent);
+        if (isset($this->dataMap['file'])) {
+            $this->dataMap['file']->fromString($filePath);
+            $this->dataMap['file']->store();
+            $this->flushObject();
+            @unlink($this->generatePdfFilePath());
+        }
+    }
+
+    private function generatePdfFilePath()
+    {
+        if (!$this->pdfFilePath) {
+            /** @var eZContentClass $objectClass */
+            $objectClass = $this->getObject()->attribute('content_class');
+            $languageCode = eZContentObject::defaultLanguage();
+            $fileName = $objectClass->urlAliasName($this->getObject(), false, $languageCode);
+            $fileName = eZURLAliasML::convertToAlias($fileName) . '.pdf';
+            $this->pdfFilePath = eZSys::cacheDirectory() . '/' . $fileName;
+        }
+
+        return $this->pdfFilePath;
+    }
+
+    public static function useWkhtmltopdf()
+    {
+        $wkhtmltopdf = false;
+        if (isset($_ENV['WKHTMLTOPDF_URI'])) {
+            $wkhtmltopdf = $_ENV['WKHTMLTOPDF_URI'];
+        } elseif (isset($_SERVER['WKHTMLTOPDF_URI'])) {
+            $wkhtmltopdf = $_SERVER['WKHTMLTOPDF_URI'];
+        } elseif (OpenPAINI::variable('OpenpaAgenda', 'WkHtmlToPdfUri', false) !== false) {
+            $wkhtmltopdf = OpenPAINI::variable('OpenpaAgenda', 'WkHtmlToPdfUri');
+        }
+
+        return $wkhtmltopdf;
+    }
+
+    public function generatePdf($currentLayout, $debug = false)
+    {
         $rootNode = eZContentObjectTreeNode::fetch(OpenPAAgenda::instance()->rootObject()->attribute('main_node_id'));
 
         $logo = eZClusterFileHandler::instance(OpenPAAgenda::instance()->imagePath('logo', 'medium'));
@@ -183,47 +233,17 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
                 $logoMime = 'png';
         }
 
-        $currentLayout = $httpTool->postVariable('layout');
-        foreach ($this->layouts as $layout) {
-            if ($layout['id'] == $currentLayout) {
-                $currentLayout = $layout;
-            }
-        }
-
         $tpl = eZTemplate::factory();
         $tpl->resetVariables();
         $tpl->setVariable('root_node', $rootNode);
         $tpl->setVariable('logo_base64_src', 'data:image/' . $logoMime . ';base64,' . base64_encode($logo->fetchContents()));
         $tpl->setVariable('programma_eventi', $this);
         $tpl->setVariable('root_dir', eZSys::rootDir());
+        $tpl->setVariable('cwd', getcwd());
         $tpl->setVariable('layout', $currentLayout);
-        $debug = false;
         $tpl->setVariable('debug', $debug);
 
-        $pdfContent = $this->generatePdf($tpl, $debug);
-
-        /** @var eZContentClass $objectClass */
-        $objectClass = $this->getObject()->attribute('content_class');
-        $languageCode = eZContentObject::defaultLanguage();
-        $fileName = $objectClass->urlAliasName($this->getObject(), false, $languageCode);
-        $fileName = eZURLAliasML::convertToAlias($fileName) . '.pdf';
-
-        eZFile::create($fileName, eZSys::cacheDirectory(), $pdfContent);
-        if (isset($this->dataMap['file'])) {
-            $this->dataMap['file']->fromString(eZSys::cacheDirectory() . '/' . $fileName);
-            $this->dataMap['file']->store();
-            $this->flushObject();
-        }
-    }
-
-    private function generatePdf(eZTemplate $tpl, $debug = false)
-    {
-        $wkhtmltopdf = false;
-        if (isset($_ENV['WKHTMLTOPDF_URI'])) {
-            $wkhtmltopdf = $_ENV['WKHTMLTOPDF_URI'];
-        } elseif (isset($_SERVER['WKHTMLTOPDF_URI'])) {
-            $wkhtmltopdf = $_SERVER['WKHTMLTOPDF_URI'];
-        }
+        $wkhtmltopdf = self::useWkhtmltopdf();
 
         if ($wkhtmltopdf) {
             return $this->generatePdfWithWkhtmltopdf($wkhtmltopdf, $tpl, $debug);
@@ -237,7 +257,7 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         $content = $tpl->fetch('design:pdf/programma_eventi/leaflet_wkhtml.tpl');
         if ($debug) {
             echo $content;
-            eZDisplayDebug();
+//            eZDisplayDebug();
             eZExecution::cleanExit();
         }
 
@@ -248,26 +268,27 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         $body = json_encode([
             'contents' => base64_encode(trim($content)),
             'options' => array(
-                'orientation' => 'Landscape',
-                'page-size' => 'A4',
-                'margin-top' => '2mm',
-                'margin-left' => '2mm',
-                'margin-right' => '2mm',
-                'margin-bottom' => '2mm',
+                'page-width' => '210mm',
+                'page-height' => '296mm',
+                'margin-top' => '1mm',
+                'margin-left' => '1mm',
+                'margin-right' => '1mm',
+                'margin-bottom' => '1mm',
                 'encoding' => 'UTF-8',
             ),
-            'header' => base64_encode('<!DOCTYPE html><html></html>'),
-            'footer' => base64_encode('<!DOCTYPE html><html></html>')
+            'header' => base64_encode('<!DOCTYPE html></html>'),
+            'footer' => base64_encode('<!DOCTYPE html></html>')
         ]);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
         $pdfContent = curl_exec($ch);
-        if (curl_errno($ch)) {
-            echo curl_error($ch);
-            eZExecution::cleanExit();
-        }
+        $error = curl_errno($ch);
         $info = curl_getinfo($ch);
         if ($info['http_code'] != 200) {
-            echo $pdfContent;
+            $error = $pdfContent;
+        }
+
+        if ($error) {
+            echo $error;
             eZExecution::cleanExit();
         }
 
@@ -279,11 +300,13 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
         $content = $tpl->fetch('design:pdf/programma_eventi/leaflet.tpl');
         if ($debug) {
             echo $content;
-            eZDisplayDebug();
+//            eZDisplayDebug();
             eZExecution::cleanExit();
         }
         $paradoxPdf = new ParadoxPDF();
-        return $paradoxPdf->generatePDF($content);
+        $pdfContent = $paradoxPdf->generatePDF($content);
+
+        return $pdfContent;
     }
 
     public function executeAction($actionIdentifier, $actionParameters, eZModule $module = null)
@@ -488,7 +511,8 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
             'key' => $key,
             'qrcode_file_url' => $qrCodeFile->name(),
             'qrcode_base64_src' => 'data:image/png;base64,' . base64_encode($qrCodeFile->fetchContents()),
-            'qrcode_url' => '/agenda/qrcode/' . $objectEvent->mainNodeID()
+            'qrcode_url' => '/agenda/qrcode/' . $objectEvent->mainNodeID(),
+            'object' => $objectEvent
         );
 
         if (isset($customEventsAttributes[$objectEvent->attribute('id')]) && !empty($customEventsAttributes[$objectEvent->attribute('id')]['abstract'])) {

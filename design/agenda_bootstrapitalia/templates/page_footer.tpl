@@ -39,6 +39,12 @@
                     </div>
                     {/if}
 
+                    {if and(ezmodule('newsletter','subscribe'), has_newsletter())}
+                        <div class="col pb-2">
+                            <h4><span>Newsletter</span></h4>
+                            {include uri='design:footer/newsletter_subscribe.tpl'}
+                        </div>
+                    {/if}
                 </div>
             </section>
 

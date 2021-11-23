@@ -32,6 +32,8 @@ class OpenPAAgendaOperators
             'social_matrix_fields',
             'social_links',
             'visibility_states',
+            'base64_image_data',
+            'openagenda_use_wkhtmltopdf',
         );
     }
 
@@ -261,6 +263,21 @@ class OpenPAAgendaOperators
 
             case 'is_auto_registration_enabled':
                 $operatorValue = $agenda->isAutoRegistrationEnabled();
+                break;
+
+            case 'base64_image_data':
+                $image = eZClusterFileHandler::instance($operatorValue);
+                if ($image->exists()){
+                    $data = $image->fetchContents();
+                    $mime = $image->dataType();
+                    $operatorValue = 'data:'.$mime.';base64,' . base64_encode($data);
+                }else{
+                    $operatorValue = false;
+                }
+                break;
+
+            case 'openagenda_use_wkhtmltopdf':
+                $operatorValue = ProgrammaEventiItem::useWkhtmltopdf();
                 break;
         }
     }

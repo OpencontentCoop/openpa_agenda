@@ -4,10 +4,12 @@
         <div class="row">
             <div class="col">
                 <h1>{$post.object.name|wash()} <span class="badge badge-light">{count($post.events)} {'selected events'|i18n('agenda/leaflet')}</span></h1>
+                {if openagenda_use_wkhtmltopdf()|eq(false())}
                 <p>{'Choose the layout for the flyer'|i18n('agenda/leaflet')}</p>
+                {/if}
             </div>
         </div>
-        <div class="row">
+        <div class="row"{if openagenda_use_wkhtmltopdf()|ne(false())} style="display:none"{/if}>
             {def $count = 0}
             {foreach $post.layouts as $layout}
             <div class="col-md-4">
@@ -35,16 +37,23 @@
                 <button type="submit" class="btn btn-info rounded-0 text-white" name="ActionProgram" value="BrowseEvent"><i class="fa fa-plus mr-1" aria-hidden="true"></i> {'Add existing event'|i18n('agenda/leaflet')}</button>
                 <button type="submit" class="btn btn-info rounded-0 pull-right text-white ml-1" name="ActionProgram" value="SaveAndGetProgram"><i class="fa fa-download mr-1" aria-hidden="true"></i> {'Save and download flyer'|i18n('agenda/leaflet')}</button>
                 <button type="submit" class="btn btn-info rounded-0 pull-right text-white ml-1" name="ActionProgram" value="SaveProgram"><i class="fa fa-save mr-1" aria-hidden="true"></i> {'Save flyer'|i18n('agenda/leaflet')}</button>
+                {if openagenda_use_wkhtmltopdf()}
+                    <button id="PreviewRefresh" class="btn btn-info rounded-0 pull-right text-white"><i class="fa fa-refresh mr-1" aria-hidden="true"></i> Aggiorna anteprima</button>
+                {/if}
             </div>
         </div>
-        <div class="row my-2 event-abstract">
+        <div class="row my-2 event-abstract"{if openagenda_use_wkhtmltopdf()|ne(false())} style="display:none"{/if}>
             <div class="col">
                 <p>{"Event abstracts greater than %number characters will be automatically cut."|i18n('agenda/leaflet', '', hash( '%number', concat('<strong>', $post.abstract_length, '</strong>') ) )}
                     {'You can use the form below to customize the event abstract on the flyer.'|i18n('agenda/leaflet')}</p>
             </div>
         </div>
 
-        {include uri=concat("design:",$post.template_directory,'/parts/leaflet/preview.tpl')}
+        {if openagenda_use_wkhtmltopdf()}
+            {include uri=concat("design:",$post.template_directory,'/parts/leaflet/preview_wkhtml.tpl')}
+        {else}
+            {include uri=concat("design:",$post.template_directory,'/parts/leaflet/preview.tpl')}
+        {/if}
 
         <input type="hidden" name="ActionIdentifier" value="ActionProgram" />
     </form>

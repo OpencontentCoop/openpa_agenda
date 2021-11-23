@@ -3,8 +3,8 @@
     {include uri=concat('design:', $template_directory, '/parts/workflow.tpl') post=$post}
 </div>
 <section class="container pt-0">
-    <div class="row">
-        <div class="col-md-{if is_set( $post.object.data_map.internal_comments )}9{else}12{/if}">
+    <div class="row w-100">
+        <div class="col-{if is_set( $post.object.data_map.internal_comments )}9{else}12{/if}">
 
             <ul class="nav nav-tabs nav-fill overflow-hidden">
                 {foreach $post.tabs as $index=> $tab}
@@ -31,7 +31,7 @@
         </div>
 
         {if is_set( $post.object.data_map.internal_comments )}
-            <div class="col-md-3">
+            <div class="col-3">
                 {include uri=concat('design:', $template_directory, '/parts/comments.tpl') post=$post}
             </div>
         {/if}

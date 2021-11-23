@@ -23,6 +23,8 @@ $eZTemplateOperatorArray[] = array(
         'is_registration_enabled',
         'associazioni_root_node_id',
         'fill_social_matrix', 'social_matrix_fields', 'social_links',
-        'visibility_states'
+        'visibility_states',
+        'base64_image_data',
+        'openagenda_use_wkhtmltopdf',
     )
 );

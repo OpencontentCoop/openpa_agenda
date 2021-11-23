@@ -2,6 +2,7 @@
 
 [OpenpaAgenda]
 EnableOverlapGui=disabled
+#WkHtmlToPdfUri=
 
 [OpenpaAgendaPushSettings]
 AvailableEndpoint[]
