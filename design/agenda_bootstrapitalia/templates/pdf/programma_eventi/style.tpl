@@ -85,6 +85,7 @@
         .calendar .date{
             font-size: 23pt;
             line-height: 1.5;
+            display: block;
         }
 
         .calendar .date small{
