@@ -80,7 +80,7 @@
                                 </div>
                             {else}
                                 <div class="g-recaptcha" data-sitekey="{$recaptcha_public_key}"></div>
-                                <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl={fetch( 'content', 'locale' ).country_code|downcase}"></script>
+                                <script type="text/javascript" src="https://www.recaptcha.net/recaptcha/api.js?hl={fetch( 'content', 'locale' ).country_code|downcase}"></script>
                             {/if}
                         </div>
                     </div>
