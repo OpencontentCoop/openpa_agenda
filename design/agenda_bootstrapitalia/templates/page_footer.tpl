@@ -77,6 +77,16 @@
                         {'Statistics'|i18n('agenda/stat')}
                     </a>
                 </li>
+                {def $needCookieConsent = cond(or(
+                    and( openpaini('Seo', 'GoogleAnalyticsAccountID'), openpaini('Seo', 'GoogleCookieless')|eq('disabled') ),
+                    and( openpaini('Seo', 'webAnalyticsItaliaID'), openpaini('Seo', 'WebAnalyticsItaliaCookieless')|eq('disabled') ),
+                    openpaini('Seo', 'CookieConsentMultimedia')|eq('enabled')
+                    ), true(), false())}
+                {if and(openpaini('CookiesSettings', 'Consent', 'advanced')|eq('advanced'), $needCookieConsent)}
+                    <li class="list-inline-item">
+                        <a href="{'openpa/cookie'|ezurl(no)}" title="{'Cookie settings'|i18n('bootstrapitalia/cookieconsent')}">{'Cookie settings'|i18n('bootstrapitalia/cookieconsent')}</a>
+                    </li>
+                {undef $needCookieConsent}              
             </ul>
         </div>
     </div>
