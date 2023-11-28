@@ -8,14 +8,14 @@ class OpenPAAgendaWidget
 
 	public $query;
 
-	public $show_header;	
-	
-	public $show_footer;	
-	
-	public $show_title;	
-	
-	public $title;	
-	
+	public $show_header;
+
+	public $show_footer;
+
+	public $show_title;
+
+	public $title;
+
 	public $data;
 
 	public $templates;
@@ -25,7 +25,7 @@ class OpenPAAgendaWidget
         if ($this->attributes === null) {
             $this->attributes = array();
             try {
-                $reflect = new ReflectionClass($this->package);
+                $reflect = new ReflectionClass($this);
                 $properties = $reflect->getProperties(ReflectionProperty::IS_PUBLIC);
                 foreach ($properties as $property) {
                     $this->attributes[] = $property->getName();

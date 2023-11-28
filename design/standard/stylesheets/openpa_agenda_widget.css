@@ -1,5 +1,5 @@
 [data-agenda-widget]{
-    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    font-family: "Titillium Web",Geneva,Tahoma,sans-serif !important;
     background: #fff;
     margin-bottom: 10px;
 }
@@ -8,15 +8,15 @@
     margin: 0 !important;
     padding: 0 !important;
     overflow: hidden !important;
-    width: 315px !important;
     height: 90px !important;
     color: #777 !important;
-    display: block !important;
     text-decoration: none !important;
+    display: flex !important;
+    align-items: normal;
+    justify-content: flex-start;
 }
 
 [data-agenda-widget] .agenda-widget-header a.agenda-widget-brand img {
-    float: left !important;
     margin: 0 6px 0 0 !important;
     width: 90px !important;
     height: 90px !important;
@@ -39,7 +39,7 @@
 }
 
 [data-agenda-widget] .agenda-widget-header .title{
-    text-align: center;
+    text-align: left;
     text-decoration: none;
     padding: 10px 3px;
     color: #777;
@@ -54,14 +54,76 @@
     font-size: 14px !important;
     text-decoration: none;
     line-height: 1.5 !important;
-    display: block;
+    display: flex;
+    align-items: normal;
+    justify-content: flex-start;
+    color: #000;
 }
 [data-agenda-widget] a.agenda-widget-event:hover{
-    background: #eee;
+    background: #fff;
+}
+[data-agenda-widget] a.agenda-widget-event h2, [data-agenda-widget] a.agenda-widget-event h3{
+    color: #000;
+    font-size: 16px;
+    margin: 0 0 5px;
+}
+[data-agenda-widget] a.agenda-widget-event p{
+    margin: 0 0 5px;
+}
+[data-agenda-widget] a.agenda-widget-event .agenda-widget-calendar{
+    max-height: 80px;
+    min-width: 80px;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1),0 4px 8px 0 rgba(0,0,0,0.1);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+    text-transform: capitalize;
+    color: #000;
+    margin-right: 20px;
+    margin-left: 5px
 }
 
-[data-agenda-widget] a.agenda-widget-event b{
+[data-agenda-widget] a.agenda-widget-event .agenda-widget-image-wrapper .agenda-widget-calendar{
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: -5px;
+    height: 80px;
+    width: 80px;
+    margin-left: 0;
+    transform: scale(70%);
+}
+
+[data-agenda-widget] a.agenda-widget-event .agenda-widget-content {
+    flex-grow: 1;
+}
+
+[data-agenda-widget] a.agenda-widget-event .agenda-widget-calendar-day{
+    font-size: 28px;
+    font-weight: 700;
+    display: block;
+    color: #000;
+    margin-top: 7px;
+    position:relative;
+}
+[data-agenda-widget] a.agenda-widget-event .agenda-widget-calendar-day small {
+    font-size: .9375rem;
+    font-weight: 400;
+    text-transform: lowercase;
+    display: inline !important;
+    padding-right: 3px;
+}
+
+[data-agenda-widget] a.agenda-widget-event .agenda-widget-calendar-month{
+    color: #000;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
     line-height: 1.3;
+    text-transform: capitalize;
 }
 
 [data-agenda-widget] a.agenda-widget-event small{
@@ -76,4 +138,14 @@
     text-align: right;
     text-decoration: none;
     padding: 10px 3px;
+}
+[data-agenda-widget] .agenda-widget-image-wrapper{
+    margin: 0 10px 0 0;
+    position: relative;
+}
+[data-agenda-widget] .agenda-widget-image-wrapper img{
+    height: 100%;
+    width: 90px;
+    object-fit: cover;
+    border-radius: 5px;
 }

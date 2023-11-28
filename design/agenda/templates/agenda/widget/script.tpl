@@ -128,7 +128,7 @@
                             var header = templateHeader.render(widget);
                             $container.html(header);
                         }
-                        $wrapper = $('<div style="height:{/literal}{$height}{literal};overflow-y: auto"></div>');
+                        $wrapper = $('<div{/literal}{if $height} style="height:{$height}{literal};overflow-y: auto"{/if}></div>');
                         if(!widget.data.error_message && widget.data.totalCount > 0){
                             var templateEvents = ($.isFunction($.templates)) ? $.templates(widget.templates.events) : jsrender.templates(widget.templates.events);
                             var events = templateEvents.render(widget.data.searchHits);

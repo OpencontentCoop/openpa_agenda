@@ -77,7 +77,7 @@
             settings['accessPath'] = "{''|ezurl(no,full)}";
             settings['language'] = "{$current_language}";
             settings['locale'] = "{$moment_language}";
-            spinner = jQuery('<div style="text-align:center"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i></div>');
+            spinner = jQuery('<div style="text-align:center; margin-top:30px"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i></div>');
             {literal}
             $('[data-agenda-widget]').each(function() {
                 var widgetId = $(this).data('agenda-widget');
@@ -93,6 +93,9 @@
                             return settings['accessPath'] + '/agenda/image/' + images[0].id;
                         }
                         var image = i18n(data, 'image');
+                        if ($.isArray(image)) {
+                            return settings['accessPath'] + '/agenda/image/' + image[0].id;
+                        }
                         if (image) {
                             return image.url;
                         }
@@ -128,7 +131,7 @@
                             var header = templateHeader.render(widget);
                             $container.html(header);
                         }
-                        $wrapper = $('<div style="height:{/literal}{$height}{literal};overflow-y: auto"></div>');
+                        $wrapper = $('<div{/literal}{if $height} style="height:{$height};overflow-y: auto"{/if}{literal}></div>');
                         if(!widget.data.error_message && widget.data.totalCount > 0){
                             var templateEvents = ($.isFunction($.templates)) ? $.templates(widget.templates.events) : jsrender.templates(widget.templates.events);
                             var events = templateEvents.render(widget.data.searchHits);

@@ -204,6 +204,7 @@
         <table class="table table-striped table-sm">
             <thead>
                   <tr>
+                      <th>#</th>
                       <th>{/literal}{'Title'|i18n('agenda/dashboard')}{literal}</th>
                       {{if showType}}
                         <th>{/literal}{'Content type'|i18n('agenda')}{literal}</th>
@@ -220,6 +221,7 @@
             <tbody>
             {{for searchHits}}
                 <tr>
+                    <td>{{:metadata.id}}</td>
                     <td><a href="{{:baseUrl}}/openpa/object/{{:metadata.id}}">{{:~i18n(metadata.name)}}</a>{{if placeOsmDetailUrl}}<br /><a target="_blank" href="{{:placeOsmDetailUrl}}"><small style="font-size:.7em">Nominatim detail</small></a>{{/if}}</td>
                     {{if showType}}
                         <td>{{:~i18n(metadata.classDefinition.name)}}</td>

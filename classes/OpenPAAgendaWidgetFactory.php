@@ -8,7 +8,7 @@ class OpenPAAgendaWidgetFactory
 {
 	public static function instanceWidget($widgetId)
 	{
-		
+
     	$widget = new OpenPAAgendaWidget();
     	$widget->id = (int)$widgetId;
     	self::fillWidgetParams($widget);
@@ -25,7 +25,7 @@ class OpenPAAgendaWidgetFactory
 	            'query' => $widget->query
 	        );
 	    }
-		
+
 		$tpl = eZTemplate::factory();
 	    $tpl->setVariable('widget', $widget);
     	$tpl->fetch('design:agenda/widget/template.tpl');
@@ -40,10 +40,10 @@ class OpenPAAgendaWidgetFactory
 	}
 
 	private static function fillWidgetParams($widget)
-	{		
+	{
 		$baseQuery = 'classes [' . OpenPAAgenda::instance()->getEventClassIdentifier() . '] and subtree [' . OpenPAAgenda::instance()->calendarNodeId() . '] and state in [moderation.skipped,moderation.accepted]';
 		$fromToQuery = array("'now'","'*'");
-    	$sortQuery = 'sort [from_time=>asc]';    	
+    	$sortQuery = 'sort [time_interval=>asc]';
     	$filters = '';
     	$limit = "'5'";
 
@@ -56,15 +56,34 @@ class OpenPAAgendaWidgetFactory
     	$widgetObject = eZContentObject::fetch($widget->id);
     	if ($widgetObject instanceof eZContentObject && $widgetObject->attribute('class_identifier') == 'agenda_widget'){
     		$dataMap = $widgetObject->dataMap();
-    		if (isset($dataMap['from_time']) && $dataMap['from_time']->hasContent()){
-    			$fromToQuery[0] = "'" . date('Y-m-d H:i', $dataMap['from_time']->toString()) . "'";
+    		if (isset($dataMap['from_time_filter']) && $dataMap['from_time_filter']->hasContent()){
+    			$fromToQuery[0] = "'" . date('Y-m-d H:i', $dataMap['from_time_filter']->toString()) . "'";
     		}
-    		if (isset($dataMap['to_time']) && $dataMap['to_time']->hasContent()){
-    			$fromToQuery[1] = "'" . date('Y-m-d H:i', $dataMap['to_time']->toString()) . "'";
+    		if (isset($dataMap['to_time_filter']) && $dataMap['to_time_filter']->hasContent()){
+    			$fromToQuery[1] = "'" . date('Y-m-d H:i', $dataMap['to_time_filter']->toString()) . "'";
     		}
-    		if (isset($dataMap['query_filters']) && $dataMap['query_filters']->hasContent()){
-    			$filters = 'and ' . $dataMap['query_filters']->toString();
+            $filtersParts = [];
+            if (isset($dataMap['type_filter']) && $dataMap['type_filter']->hasContent()){
+                $typeContent = $dataMap['type_filter']->content();
+                if ($typeContent instanceof eZTags) {
+                    $filtersParts[] = 'and raw[ezf_df_tag_ids] in [' . implode(',', $typeContent->attribute('tag_ids')) . ']';
+                }
     		}
+            if (isset($dataMap['topic_filter']) && $dataMap['topic_filter']->hasContent()){
+                $topicContent = explode('-', $dataMap['topic_filter']->toString());
+                if (!empty($topicContent)) {
+                    $filtersParts[] = 'and topics.id in [' . implode(',', $topicContent) . ']';
+                }
+            }
+            if (isset($dataMap['organizer_filter']) && $dataMap['organizer_filter']->hasContent()){
+                $organizerContent = explode('-', $dataMap['organizer_filter']->toString());
+                if (!empty($organizerContent)) {
+                    $filtersParts[] = 'and organizer.id in [' . implode(',', $organizerContent) . ']';
+                }
+            }
+            if (count($filtersParts) > 0){
+                $filters = 'and ' . implode(' and ', $filtersParts);
+            }
     		if (isset($dataMap['query_limit']) && $dataMap['query_limit']->hasContent()){
     			$limit = (int)$dataMap['query_limit']->toString();
     		}
@@ -82,7 +101,7 @@ class OpenPAAgendaWidgetFactory
     		}
     	}
 
-    	$widget->query = $baseQuery . ' and calendar[] = [' . implode(',', $fromToQuery) . '] ' . $filters . ' ' . $sortQuery . ' limit ' . $limit;
+    	$widget->query = $baseQuery . ' and calendar[time_interval] = [' . implode(',', $fromToQuery) . '] ' . $filters . ' ' . $sortQuery . ' limit ' . $limit;
     	$widget->show_header = $showHeader;
     	$widget->show_footer = $showFooter;
     	$widget->show_title = $showTitle;
