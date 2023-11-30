@@ -61,24 +61,6 @@ class OpenAgendaEndpointFactoryProvider extends EndpointFactoryProvider
         $instanceIdentifier = OpenPABase::getCurrentSiteaccessIdentifier();
         $paths = [
             [
-                'node' => $this->getMainNodeIdFromObjectRemoteId(
-                    $instanceIdentifier . '_openpa_agenda_agenda_container'
-                ),
-                'classes' => ['event'],
-                'path' => '/eventi',
-                'tag' => 'eventi',
-                'collection' => new OperationFactoryCollection([
-                    (new OperationFactory\ContentObject\CreateOperationFactory()),
-                    (new EventSearchOperationFactory()),
-                ])
-            ],
-            [
-                'node' => $this->getMainNodeIdFromObjectRemoteId($instanceIdentifier . '_openpa_agenda_locations'),
-                'classes' => ['place'],
-                'path' => '/luoghi',
-                'tag' => 'luoghi',
-            ],
-            [
                 'node' => $this->getMainNodeIdFromObjectRemoteId($instanceIdentifier . '_openpa_agenda_calendars'),
                 'classes' => ['agenda_calendar'],
                 'path' => '/calendari',
@@ -91,10 +73,40 @@ class OpenAgendaEndpointFactoryProvider extends EndpointFactoryProvider
                 'tag' => 'immagini',
             ],
             [
-                'node' => 51,
+                'node' => $this->getMainNodeIdFromObjectRemoteId($instanceIdentifier . '_openpa_agenda_contacts'),
+                'classes' => ['online_contact_point'],
+                'path' => '/contatti',
+                'tag' => 'contatti',
+            ],
+            [
+                'node' => $this->getMainNodeIdFromObjectRemoteId($instanceIdentifier . '_openpa_agenda_stuff'),
                 'classes' => ['opening_hours_specification', 'offer'],
-                'path' => '/miscellanea',
-                'tag' => 'miscellanea',
+                'path' => '/classificazioni',
+                'tag' => 'classificazioni',
+            ],
+            [
+                'node' => $this->getMainNodeIdFromObjectRemoteId($instanceIdentifier . '_openpa_agenda_locations'),
+                'classes' => ['place'],
+                'path' => '/luoghi',
+                'tag' => 'luoghi',
+            ],
+            [
+                'node' => $this->getMainNodeIdFromObjectRemoteId($instanceIdentifier . '_openpa_agenda_associations'),
+                'classes' => ['private_organization'],
+                'path' => '/associazioni',
+                'tag' => 'associazioni',
+            ],
+            [
+                'node' => $this->getMainNodeIdFromObjectRemoteId(
+                    $instanceIdentifier . '_openpa_agenda_agenda_container'
+                ),
+                'classes' => ['event'],
+                'path' => '/eventi',
+                'tag' => 'eventi',
+                'collection' => new OperationFactoryCollection([
+                    (new OperationFactory\ContentObject\CreateOperationFactory()),
+                    (new EventSearchOperationFactory()),
+                ])
             ],
         ];
 
@@ -120,6 +132,8 @@ class OpenAgendaEndpointFactoryProvider extends EndpointFactoryProvider
                 $this->createSubEndpoints($endpoint, $operation);
             }
         }
+
+//        echo '<pre>';print_r([$paths,$this->endpoints]);die();
     }
 
     private function build(
@@ -130,14 +144,14 @@ class OpenAgendaEndpointFactoryProvider extends EndpointFactoryProvider
         $collectionOperationFactories = null,
         $itemOperationFactories = null
     ) {
-        if (!$collectionOperationFactories){
+        if (empty($collectionOperationFactories)){
             $collectionOperationFactories = new OperationFactoryCollection([
                 (new OperationFactory\ContentObject\CreateOperationFactory()),
                 (new OperationFactory\ContentObject\SearchOperationFactory()),
             ]);
         }
 
-        if (!$itemOperationFactories){
+        if (empty($itemOperationFactories)){
             $itemOperationFactories = new OperationFactoryCollection([
                 (new OperationFactory\ContentObject\ReadOperationFactory()),
                 (new OperationFactory\ContentObject\UpdateOperationFactory()),

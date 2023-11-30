@@ -10,5 +10,5 @@
 </section>
 
 <div class="section section-muted section-inset-shadow p-4">
-    {node_view_gui content_node=$node view=children view_parameters=$view_parameters current_view_tag=$current_view_tag}
+    {node_view_gui content_node=$node view=children view_parameters=$view_parameters}
 </div>
