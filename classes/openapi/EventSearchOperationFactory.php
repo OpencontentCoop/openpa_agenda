@@ -84,7 +84,7 @@ class EventSearchOperationFactory extends SearchOperationFactory
         $parameters[] = new OA\Parameter(
             'fields',
             OA\Parameter::IN_QUERY,
-            'Comma separated fields to show. The blank value means show all filters',
+            'Comma separated fields to show. The blank value means show all fields',
             [
                 'schema' => $this->generateSchemaProperty(['type' => 'string']),
             ]
@@ -148,7 +148,7 @@ class EventSearchOperationFactory extends SearchOperationFactory
                 $from ?? '*',
                 $to ?? '*',
             ];
-            $query[] = "calendar[time_interval] = ['. $interval[0] . ',' . $interval[1] .']";
+            $query[] = "calendar[time_interval] = ['$interval[0]','$interval[1]']";
         }
         if (!empty($typology) && !empty($typology[0])) {
             $typology = array_map(function ($value) {

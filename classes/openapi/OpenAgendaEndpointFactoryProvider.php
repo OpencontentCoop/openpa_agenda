@@ -105,7 +105,7 @@ class OpenAgendaEndpointFactoryProvider extends EndpointFactoryProvider
                 'tag' => 'eventi',
                 'collection' => new OperationFactoryCollection([
                     (new OperationFactory\ContentObject\CreateOperationFactory()),
-                    (new EventSearchOperationFactory()),
+                    (new OperationFactory\ContentObject\FilteredSearchOperationFactory()),
                 ])
             ],
         ];
