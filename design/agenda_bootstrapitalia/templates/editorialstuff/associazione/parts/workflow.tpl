@@ -3,7 +3,7 @@
         <form method="post" action="{"content/action"|ezurl(no)}" style="display: inline;">
             <input type="hidden" name="ContentObjectLanguageCode"
                    value="{ezini( 'RegionalSettings', 'ContentObjectLocale', 'site.ini')}"/>
-            <button class="btn btn-info rounded-0 text-white" type="submit" name="EditButton">
+            <button class="btn btn-sm btn-info rounded-0 text-white" type="submit" name="EditButton">
                 <i class="fa fa-pencil mr-2"></i> {'Edit'|i18n('agenda/dashboard')}
             </button>
             <input type="hidden" name="HasMainAssignment" value="1"/>
@@ -31,7 +31,7 @@
     {if $post.object.can_remove}
         <form method="post" action="{"content/action"|ezurl(no)}" style="display: inline;">
 
-            <button class="btn btn-info rounded-0  text-white" type="submit" name="ActionRemove">
+            <button class="btn btn-sm btn-info rounded-0  text-white" type="submit" name="ActionRemove">
                 <i class="fa fa-trash mr-2"></i> {'Delete'|i18n('design/standard/gui')}
             </button>
 
@@ -44,7 +44,7 @@
 
         </form>
     {/if}
-    <a class="btn btn-info rounded-0 text-white" href="{$post.node.url_alias|ezurl(no)}">
+    <a class="btn btn-sm btn-info rounded-0 text-white" href="{$post.node.url_alias|ezurl(no)}">
         <i class="fa fa-eye mr-2"></i> {'View on website'|i18n('editorialstuff/dashboard')}
     </a>
 
@@ -55,15 +55,17 @@
         {/if}
     {/foreach}
     <div class="btn-group pull-right">
-        <button type="button" class="py-2 btn btn-link rounded-0 text-black dropdown-toggle text-decoration-none" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="btn px-0">
             {'Current state is'|i18n('editorialstuff/dashboard')} <div class="d-inline-block rounded py-1 px-2 mx-1 label-{$post.current_state.identifier|wash()}">{$post.current_state.current_translation.name|wash}</div>
+        </div>
+        <button type="button" class="py-2 btn btn-link rounded-0 text-black dropdown-toggle text-decoration-none" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {if count($assignable_states)|gt(0)}
                 {'Change state to'|i18n('editorialstuff/dashboard')}...
                 {display_icon('it-expand', 'svg', 'icon-expand icon icon-sm')}
             {/if}
         </button>
         {if count($assignable_states)|gt(0)}
-            <div class="dropdown-menu" style="right: 0; left: auto">
+            <div class="dropdown-menu">
                 <div class="link-list-wrapper">
                     <ul class="link-list">
                         {foreach $assignable_states as $key => $state}

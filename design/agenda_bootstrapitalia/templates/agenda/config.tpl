@@ -9,6 +9,8 @@
     <h1>{'Settings'|i18n('agenda/menu')}</h1>
 </section>
 
+{set $data = $data|append(fetch(content, node, hash(node_id, 51)))}
+
 <div class="row">
     <div class="col-md-12">
         <ul class="list-unstyled">
@@ -43,20 +45,24 @@
         </ul>
 
         <div class="row mt-5">
-
             <div class="col-md-3">
                 <ul class="nav nav-pills">
                     <li role="presentation" class="nav-item w-100"><a
-                            class="text-decoration-none nav-link{if $current_part|eq('users')} active{/if}"
-                            href="{'agenda/config/users'|ezurl(no)}">{'Users'|i18n('agenda/config')}</a></li>
-                    <li role="presentation" class="nav-item w-100"><a
                             class="text-decoration-none nav-link{if $current_part|eq('moderators')} active{/if}"
                             href="{'agenda/config/moderators'|ezurl(no)}">{'Moderators'|i18n('agenda/config')}</a></li>
+                    {if is_registration_enabled()}
+                        <li role="presentation" class="nav-item w-100"><a
+                                class="text-decoration-none nav-link{if $current_part|eq('users')} active{/if}"
+                                href="{'agenda/config/users'|ezurl(no)}">{'Users'|i18n('agenda/config')}</a></li>
+                    {/if}
+                    {if openpaini('OpenpaAgenda', 'UseExternalUsers', 'enabled')|eq('enabled')}
                     <li role="presentation" class="nav-item w-100"><a
                             class="text-decoration-none nav-link{if $current_part|eq('external_users')} active{/if}"
                             href="{'agenda/config/external_users'|ezurl(no)}">{'External Users'|i18n('agenda/config')}</a></li>
+                    {/if}
                     {if $data|count()|gt(0)}
                         {foreach $data as $item}
+                            {if $item.object.remote_id|eq(concat(openpa_instance_identifier(),'_openpa_agenda_stuff'))}{skip}{/if}
                             <li role="presentation" class="nav-item w-100"><a
                                     class="text-decoration-none nav-link{if $current_part|eq(concat('data-',$item.contentobject_id))} active{/if}"
                                     href="{concat('agenda/config/data-',$item.contentobject_id)|ezurl(no)}">{$item.name|wash()}</a></li>
@@ -98,7 +104,9 @@
                         {foreach $data as $item}
                             {if $current_part|eq(concat('data-',$item.contentobject_id))}
                                 {set $parent_node_id = $item.node_id}
-                                {if $item|has_attribute('tags')}
+                                {if $item.object.remote_id|eq('topics')}
+                                    {set $class_identifiers = array('topic')}
+                                {elseif $item|has_attribute('tags')}
                                     {foreach $item|attribute('tags').content.keyword_string|explode(', ') as $class_identifier}
                                         {set $extra_buttons = $extra_buttons|append(hash('href', concat('exportas/csv/',$class_identifier,'/',$parent_node_id), 'value', 'Export to CSV'|i18n('agenda/config')))}
                                         {set $class_identifiers = $class_identifiers|append($class_identifier)}
@@ -213,7 +221,7 @@
                       <th>{/literal}{'Published'|i18n('agenda/dashboard')}{literal}</th>
                       <th>{/literal}{'Translations'|i18n('agenda/dashboard')}{literal}</th>
                       {{if stateToggle}}
-                        <th>{/literal}{'Visibility'|i18n('design/admin/contentstructuremenu')}{literal}</th>
+                        <th>{/literal}{'Editor choice'|i18n('agenda/place')}{literal}</th>
                       {{/if}}
                       <th></th>
                   </tr>

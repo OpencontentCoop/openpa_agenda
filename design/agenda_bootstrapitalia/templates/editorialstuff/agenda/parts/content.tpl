@@ -25,7 +25,7 @@
     {include uri='design:openpa/full/parts/main_image.tpl'}
 
     <section class="container">
-        {include uri='design:openpa/full/parts/attributes.tpl' object=$node.object}
+        {include uri='design:openpa/full/parts/attributes.tpl' object=$node.object show_all_attributes=true()}
     </section>
 
 
