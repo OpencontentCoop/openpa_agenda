@@ -14,6 +14,9 @@
                             {if $tab.identifier|eq('comments')}
                                 <span class="ml-1 badge badge-light">{api_search(concat('classes [comment] subtree [',$post.node.node_id,'] limit 1')).totalCount}</span>
                             {/if}
+                            {if $tab.identifier|eq('discussion')}
+                                <span class="ml-1 badge badge-light">{count($post.discussion)}</span>
+                            {/if}
                         </a>
                     </li>
                 {/foreach}
