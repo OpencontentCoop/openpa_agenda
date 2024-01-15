@@ -4,16 +4,17 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
 {
     public function onCreate()
     {
+        $this->updateOwner();
         if ($this->getObject()->attribute('current_version') == 1 && OpenPAAgenda::instance()->isModerationEnabled()) {
             $states = $this->states();
             $default = 'moderation.draft';
-            if (isset( $states[$default] )) {
+            if (isset($states[$default])) {
                 $this->getObject()->assignState($states[$default]);
             }
         }
         eZSearch::addObject($this->object, true);
-        if (!OpenPAAgenda::instance()->isModerationEnabled()){
-            OpenPAAgenda::notifyModerationGroup($this);
+        if (!OpenPAAgenda::instance()->isModerationEnabled()) {
+            OpenPAAgenda::notifyModerationGroup($this, 'design:agenda/mail/agendaitem/to_moderators_on_create.tpl');
         }
 
         if ($this->is('accepted') || $this->is('skipped')) {
@@ -23,13 +24,42 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
 
     public function onChangeState(eZContentObjectState $beforeState, eZContentObjectState $afterState)
     {
-        if ($afterState->attribute('identifier') == 'waiting' && !OpenPAAgenda::instance()->isModerationEnabled()){
+        if ($afterState->attribute('identifier') == 'waiting' && !OpenPAAgenda::instance()->isModerationEnabled()) {
             $states = $this->states();
             $accepted = 'moderation.accepted';
-            if (isset( $states[$accepted] )) {
+            if (isset($states[$accepted])) {
                 $this->getObject()->assignState($states[$accepted]);
                 $this->flushObject();
                 eZSearch::addObject($this->getObject(), true);
+            }
+        }else {
+            $currentUserIsOwner = $this->attribute('organizer_id') == eZUser::currentUserID();
+
+            $this->flushObject();
+            switch ($afterState->attribute('identifier')) {
+                case 'draft':
+                    if (!$currentUserIsOwner) {
+                        OpenPAAgenda::notifyEventOwner($this, 'design:agenda/mail/agendaitem/to_owner_on_draft.tpl');
+                    }
+                    break;
+                case 'waiting':
+                    if ($currentUserIsOwner) {
+                        OpenPAAgenda::notifyModerationGroup(
+                            $this,
+                            'design:agenda/mail/agendaitem/to_moderators_on_waiting.tpl'
+                        );
+                    }
+                    break;
+                case 'accepted':
+                    if (!$currentUserIsOwner) {
+                        OpenPAAgenda::notifyEventOwner($this, 'design:agenda/mail/agendaitem/to_owner_on_accepted.tpl');
+                    }
+                    break;
+                case 'refused':
+                    if (!$currentUserIsOwner) {
+                        OpenPAAgenda::notifyEventOwner($this, 'design:agenda/mail/agendaitem/to_owner_on_refused.tpl');
+                    }
+                    break;
             }
         }
 
@@ -47,7 +77,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
 
     public function attributes()
     {
-        return array_merge(parent::attributes(), array('is_published', 'associazione'));
+        return array_merge(parent::attributes(), ['is_published', 'associazione', 'organizer_id', 'discussion']);
     }
 
     public function attribute($property)
@@ -60,8 +90,20 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
             return $this->getSocialHistory();
         }
 
+        if ($property == 'discussion') {
+            return $this->getDiscussion();
+        }
+
+        if ($property == 'organizer_id') {
+            if (isset($this->dataMap['organizer']) && $this->dataMap['organizer']->hasContent()) {
+                $organizerIdList = explode('-', $this->dataMap['organizer']->toString());
+                return (int)array_shift($organizerIdList);
+            }
+            return 0;
+        }
+
         if ($property == 'associazione') {
-            if (isset( $this->dataMap[$property] ) && $this->dataMap[$property]->hasContent()) {
+            if (isset($this->dataMap[$property]) && $this->dataMap[$property]->hasContent()) {
                 return $this->dataMap[$property];
             } else {
                 eZDebug::writeError("Object attribute '{$property}' is empty");
@@ -77,7 +119,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         OpenPAAgenda::notifyModerationGroup($this);
         if ($this->is('accepted') || $this->is('skipped')) {
             $this->emit('publish');
-        }else{
+        } else {
             $this->emit('delete');
         }
     }
@@ -86,27 +128,27 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
     {
         $currentUser = eZUser::currentUser();
         $templatePath = $this->getFactory()->getTemplateDirectory();
-        $tabs = array(
-            array(
+        $tabs = [
+            [
                 'identifier' => 'content',
                 'name' => ezpI18n::tr('openpa_agenda', 'Content'),
-                'template_uri' => "design:{$templatePath}/parts/content.tpl"
-            ),
-        );
+                'template_uri' => "design:{$templatePath}/parts/content.tpl",
+            ],
+        ];
         if (eZINI::instance('openpa.ini')->variable('OpenpaAgenda', 'EnableOverlapGui') == 'enabled') {
-            $tabs[] = array(
+            $tabs[] = [
                 'identifier' => 'overlap',
                 'name' => ezpI18n::tr('openpa_agenda', 'Overlap'),
-                'template_uri' => "design:{$templatePath}/parts/overlap.tpl"
-            );
+                'template_uri' => "design:{$templatePath}/parts/overlap.tpl",
+            ];
         }
         $access = $currentUser->hasAccessTo('editorialstuff', 'media');
         if ($access['accessWord'] == 'yes' && in_array('image', $this->factory->attributeIdentifiers())) {
-            $tabs[] = array(
+            $tabs[] = [
                 'identifier' => 'media',
                 'name' => ezpI18n::tr('openpa_agenda', 'Image Gallery'),
-                'template_uri' => "design:{$templatePath}/parts/media.tpl"
-            );
+                'template_uri' => "design:{$templatePath}/parts/media.tpl",
+            ];
         }
         //        if ( $currentUser->hasAccessTo( 'editorialstuff', 'mail' ) )
         //        {
@@ -122,33 +164,41 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         ) {
             $blocks = (array)eZINI::instance('ngpush.ini')->variable('PushNodeSettings', 'Blocks');
             if (count($blocks) > 0) {
-                $tabs[] = array(
+                $tabs[] = [
                     'identifier' => 'social',
                     'name' => ezpI18n::tr('openpa_agenda', 'Share'),
-                    'template_uri' => "design:{$templatePath}/parts/social.tpl"
-                );
+                    'template_uri' => "design:{$templatePath}/parts/social.tpl",
+                ];
             }
         }
 
         if (OpenPAAgenda::instance()->isCommentEnabled()) {
-            $tabs[] = array(
+            $tabs[] = [
                 'identifier' => 'comments',
                 'name' => ezpI18n::tr('openpa_agenda', 'Comments'),
-                'template_uri' => "design:{$templatePath}/parts/public_comments.tpl"
-            );
+                'template_uri' => "design:{$templatePath}/parts/public_comments.tpl",
+            ];
         }
 
-        $tabs[] = array(
+        $tabs[] = [
             'identifier' => 'tools',
             'name' => ezpI18n::tr('openpa_agenda', 'Press kit'),
-            'template_uri' => "design:{$templatePath}/parts/tools.tpl"
-        );
+            'template_uri' => "design:{$templatePath}/parts/tools.tpl",
+        ];
 
-        $tabs[] = array(
+        if (eZINI::instance('openpa.ini')->variable('OpenpaAgenda', 'EnableDiscussion') == 'enabled') {
+            $tabs[] = [
+                'identifier' => 'discussion',
+                'name' => ezpI18n::tr('agenda', 'Discussione'),
+                'template_uri' => "design:{$templatePath}/parts/discussion.tpl",
+            ];
+        }
+
+        $tabs[] = [
             'identifier' => 'history',
             'name' => ezpI18n::tr('openpa_agenda', 'History'),
-            'template_uri' => "design:{$templatePath}/parts/history.tpl"
-        );
+            'template_uri' => "design:{$templatePath}/parts/history.tpl",
+        ];
 
         return $tabs;
     }
@@ -173,7 +223,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
 
     private function getSocialHistory()
     {
-        $data = array();
+        $data = [];
         $list = OCEditorialStuffHistory::fetchByHandler($this->id(), 'social_push');
         foreach ($list as $item) {
             $params = $item->attribute('params');
@@ -189,27 +239,84 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
                     $link = "https://www.facebook.com/{$params['response']['response']['id']}";
                 }
                 $type = 'Facebook';
-            }else{
+            } else {
                 $client = OpenPAAgendaPushClientLoader::instance($type);
-                if ($client){
+                if ($client) {
                     $type = $client->name();
                     $link = $client->getRemoteUrl($params['response']);
                 }
             }
-            $itemNormalized = array(
+            $itemNormalized = [
                 'created_time' => $item->attribute('created_time'),
                 'user' => $item->attribute('user'),
                 'type' => $type,
                 'params' => $params,
-                'link' => $link
-            );
+                'link' => $link,
+            ];
             $data[] = $itemNormalized;
         }
         return $data;
     }
 
+    private function getDiscussion()
+    {
+        return OCEditorialStuffHistory::fetchByHandler($this->id(), 'discussion');
+    }
+
     public function executeAction($actionIdentifier, $actionParameters, eZModule $module = null)
     {
+        if ($actionIdentifier == 'ActionDiscussion') {
+            $text = $actionParameters[0];
+            if (!empty($text)) {
+                $item = new OCEditorialStuffHistory([]);
+                $item->setAttribute('params', ['text' => $text]);
+                $item->setAttribute('user_id', eZUser::currentUserID());
+                $item->setAttribute('object_id', $this->id());
+                $item->setAttribute('type', 'discussion');
+                $item->setAttribute('handler', 'discussion');
+                $item->setAttribute('created_time', time());
+                $item->store();
+
+//                if (eZUser::currentUserID() == $this->id()) {
+//                    OpenPAAgenda::notifyModerationGroup(
+//                        $this,
+//                        'design:agenda/mail/agendaitem/to_moderators_on_create_discussion.tpl',
+//                        ['discussion' => $item]
+//                    );
+//                } else {
+//                    OpenPAAgenda::notifyEventOwner(
+//                        $this,
+//                        'design:agenda/mail/agendaitem/to_owner_on_create_discussion.tpl',
+//                        ['discussion' => $item]
+//                    );
+//                }
+            }
+
+            if ($module) {
+                $module->redirectTo(
+                    "editorialstuff/edit/{$this->getFactory()->identifier()}/{$this->id()}#tab_discussion"
+                );
+            }
+        }
+        if ($actionIdentifier == 'ActionRemoveDiscussion') {
+            $id = (int)$actionParameters[0];
+            $discussion = OCEditorialStuffHistory::fetchObject(OCEditorialStuffHistory::definition(), null, [
+                'id' => $id,
+                'object_id' => $this->id(),
+                'handler' => 'discussion',
+                'type' => 'discussion',
+                'user_id' => eZUser::currentUserID(),
+            ]);
+            if ($discussion instanceof OCEditorialStuffHistory) {
+                eZPersistentObject::removeObject(OCEditorialStuffHistory::definition(), ['id' => $id]);
+            }
+            if ($module) {
+                $module->redirectTo(
+                    "editorialstuff/edit/{$this->getFactory()->identifier()}/{$this->id()}#tab_discussion"
+                );
+            }
+        }
+
         if ($actionIdentifier == 'ActionPush') {
             $client = OpenPAAgendaPushClientLoader::instance($actionParameters[0]);
             $response = $client->push($this);
@@ -223,14 +330,17 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         }
 
         if ($actionIdentifier == 'ActionCopy') {
-
-            $newObject = OpenPAObjectTools::copyObject($this->getObject(), false, OpenPAAgenda::instance()->calendarNodeId());
+            $newObject = OpenPAObjectTools::copyObject(
+                $this->getObject(),
+                false,
+                OpenPAAgenda::instance()->calendarNodeId()
+            );
             if (OpenPAAgenda::instance()->isModerationEnabled()) {
-              $states = $this->states();
-              $default = 'moderation.draft';
-              if (isset($states[$default])) {
-                $newObject->assignState($states[$default]);
-              }
+                $states = $this->states();
+                $default = 'moderation.draft';
+                if (isset($states[$default])) {
+                    $newObject->assignState($states[$default]);
+                }
             }
 
             $name = $newObject->attribute('name');
@@ -238,15 +348,17 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
 
             $language = eZLocale::currentLocaleCode();
             if ($module) {
-                $module->redirectTo("content/edit/{$newObject->attribute('id')}/{$newObject->attribute('current_version')}/$language");
+                $module->redirectTo(
+                    "content/edit/{$newObject->attribute('id')}/{$newObject->attribute('current_version')}/$language"
+                );
             }
         }
     }
 
     protected function emit($type)
     {
-        if (class_exists('OCWebHookEmitter')) {
-            if ($type == 'publish'){
+        if (class_exists('OCWebHookEmitter') && eZModule::exists('webhook')) {
+            if ($type == 'publish') {
                 OpenPAAgendaEventEmitter::triggerPublishEvent($this);
             }
             if ($type == 'delete') {
@@ -255,4 +367,16 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         }
     }
 
+    private function updateOwner()
+    {
+        if (OpenPAAgendaOperators::currentUserIsAgendaModerator()
+            && OpenPAINI::variable('OpenpaAgenda', 'ForceOrganizerAsOwner', 'disabled') == 'enabled') {
+            $organizerId = $this->attribute('organizer_id');
+            if (eZUser::fetch($organizerId) instanceof eZUser
+                && $this->getObject()->attribute('owner_id') != $organizerId) {
+                $this->getObject()->setAttribute('owner_id', $organizerId);
+                $this->getObject()->store();
+            }
+        }
+    }
 }

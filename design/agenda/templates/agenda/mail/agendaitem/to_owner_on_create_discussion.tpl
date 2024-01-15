@@ -1,0 +1,1 @@
+{$discussion.params.text|wash()}

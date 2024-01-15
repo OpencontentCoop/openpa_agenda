@@ -48,9 +48,8 @@ States[waiting]=In attesa di moderazione
 States[accepted]=Accettato
 States[refused]=Rifiutato
 Actions[]
-Actions[draft-waiting]=NotifyModerationGroup
-Actions[waiting-accepted]=NotifyEventOwner|TriggerPublishEvent
-Actions[waiting-refused]=NotifyEventOwner|TriggerDeleteEvent
+Actions[waiting-accepted]=TriggerPublishEvent
+Actions[waiting-refused]=TriggerDeleteEvent
 Actions[draft-accepted]=TriggerPublishEvent
 Actions[refused-accepted]=TriggerPublishEvent
 Actions[accepted-refused]=TriggerDeleteEvent

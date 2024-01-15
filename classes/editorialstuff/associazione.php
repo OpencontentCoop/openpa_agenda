@@ -6,13 +6,13 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
     {
         $currentUser = eZUser::currentUser();
         $templatePath = $this->getFactory()->getTemplateDirectory();
-        $tabs = array(
-            array(
+        $tabs = [
+            [
                 'identifier' => 'content',
                 'name' => ezpI18n::tr('openpa_agenda', 'Content'),
-                'template_uri' => "design:{$templatePath}/parts/content.tpl"
-            )
-        );
+                'template_uri' => "design:{$templatePath}/parts/content.tpl",
+            ],
+        ];
 //        if ( $currentUser->hasAccessTo( 'editorialstuff', 'media' ) && in_array( 'image', $this->factory->attributeIdentifiers() ) )
 //        {
 //            $tabs[] = array(
@@ -36,19 +36,19 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
         ) {
             $blocks = (array)eZINI::instance('ngpush.ini')->variable('PushNodeSettings', 'Blocks');
             if (count($blocks) > 0) {
-                $tabs[] = array(
+                $tabs[] = [
                     'identifier' => 'social',
                     'name' => ezpI18n::tr('openpa_agenda', 'Share'),
-                    'template_uri' => "design:{$templatePath}/parts/social.tpl"
-                );
+                    'template_uri' => "design:{$templatePath}/parts/social.tpl",
+                ];
             }
         }
 
-        $tabs[] = array(
+        $tabs[] = [
             'identifier' => 'history',
             'name' => ezpI18n::tr('openpa_agenda', 'History'),
-            'template_uri' => "design:{$templatePath}/parts/history.tpl"
-        );
+            'template_uri' => "design:{$templatePath}/parts/history.tpl",
+        ];
         return $tabs;
     }
 
@@ -58,25 +58,25 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
         if ($this->getObject()->attribute('current_version') == 1 && eZUser::currentUser()->isAnonymous()) {
             $states = $this->states();
             $default = 'privacy.private';
-            if (isset( $states[$default] )) {
+            if (isset($states[$default])) {
                 $this->getObject()->assignState($states[$default]);
             }
             $this->disableUser();
             $this->flushObject();
             eZSearch::addObject($this->getObject(), true);
         }
-        OpenPAAgenda::notifyModerationGroup($this);
+        OpenPAAgenda::notifyModerationGroup($this, 'design:agenda/mail/associazione/to_moderators_on_create.tpl');
     }
 
-    public function onChangeState( eZContentObjectState $beforeState, eZContentObjectState $afterState )
+    public function onChangeState(eZContentObjectState $beforeState, eZContentObjectState $afterState)
     {
-        if ($afterState->attribute('identifier') == 'private'){
+        if ($afterState->attribute('identifier') == 'private') {
             $this->disableUser();
             $this->flushObject();
-        }elseif ($afterState->attribute('identifier') == 'public'){
+        } elseif ($afterState->attribute('identifier') == 'public') {
             $this->enableUser();
             $this->flushObject();
-            $this->notify();
+            OpenPAAgenda::notifyEventOwner($this, 'design:agenda/mail/associazione/to_owner_on_public.tpl');
         }
 
         if ($beforeState->attribute('identifier') != $afterState->attribute('identifier')) {
@@ -86,44 +86,28 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
         return parent::onChangeState($beforeState, $afterState);
     }
 
-    private function notify()
-    {
-        $templatePath = 'design:agenda/mail/notify_associazione.tpl';
-        if ( !OCEditorialStuffActionHandler::sendMail(
-            $this,
-            array( eZUser::fetch($this->id()) ),
-            $templatePath,
-            array(
-                'post' => $this
-            )
-        ) )
-        {
-            eZDebug::writeError( "Fail sending mail", __METHOD__ );
-        }
-    }
-
     private function disableUser()
     {
-        $userSetting = eZUserSetting::fetch( $this->id() );
-        if ($userSetting instanceof eZUserSetting){
-            if ($userSetting->attribute("is_enabled") != 0){
-                eZContentCacheManager::clearContentCacheIfNeeded( $this->id() );
-                eZContentCacheManager::generateObjectViewCache( $this->id() );
+        $userSetting = eZUserSetting::fetch($this->id());
+        if ($userSetting instanceof eZUserSetting) {
+            if ($userSetting->attribute("is_enabled") != 0) {
+                eZContentCacheManager::clearContentCacheIfNeeded($this->id());
+                eZContentCacheManager::generateObjectViewCache($this->id());
             }
-            $userSetting->setAttribute( "is_enabled", 0 );
+            $userSetting->setAttribute("is_enabled", 0);
             $userSetting->store();
         }
     }
 
     private function enableUser()
     {
-        $userSetting = eZUserSetting::fetch( $this->id() );
-        if ($userSetting instanceof eZUserSetting){
-            if ($userSetting->attribute("is_enabled") != 1){
-                eZContentCacheManager::clearContentCacheIfNeeded( $this->id() );
-                eZContentCacheManager::generateObjectViewCache( $this->id() );
+        $userSetting = eZUserSetting::fetch($this->id());
+        if ($userSetting instanceof eZUserSetting) {
+            if ($userSetting->attribute("is_enabled") != 1) {
+                eZContentCacheManager::clearContentCacheIfNeeded($this->id());
+                eZContentCacheManager::generateObjectViewCache($this->id());
             }
-            $userSetting->setAttribute( "is_enabled", 1 );
+            $userSetting->setAttribute("is_enabled", 1);
             $userSetting->store();
         }
     }
@@ -131,12 +115,12 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
     public function onUpdate()
     {
         $this->updateOwner();
-        OpenPAAgenda::notifyModerationGroup($this);
+        OpenPAAgenda::notifyModerationGroup($this, 'design:agenda/mail/associazione/to_moderators_on_update.tpl');
     }
 
     public function attributes()
     {
-        return array_merge(parent::attributes(), array('is_published'));
+        return array_merge(parent::attributes(), ['is_published', 'user']);
     }
 
     public function attribute($property)
@@ -149,12 +133,16 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
             return $this->getSocialHistory();
         }
 
+        if ($property == 'user') {
+            return eZUser::fetch($this->id());
+        }
+
         return parent::attribute($property);
     }
 
     private function getSocialHistory()
     {
-        $data = array();
+        $data = [];
         $list = OCEditorialStuffHistory::fetchByHandler($this->id(), 'social_push');
         foreach ($list as $item) {
             $params = $item->attribute('params');
@@ -170,20 +158,20 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
                     $link = "https://www.facebook.com/{$params['response']['response']['id']}";
                 }
                 $type = 'Facebook';
-            }else{
+            } else {
                 $client = OpenPAAgendaPushClientLoader::instance($type);
-                if ($client){
+                if ($client) {
                     $type = $client->name();
                     $link = $client->getRemoteUrl($params['response']);
                 }
             }
-            $itemNormalized = array(
+            $itemNormalized = [
                 'created_time' => $item->attribute('created_time'),
                 'user' => $item->attribute('user'),
                 'type' => $type,
                 'params' => $params,
-                'link' => $link
-            );
+                'link' => $link,
+            ];
             $data[] = $itemNormalized;
         }
         return $data;

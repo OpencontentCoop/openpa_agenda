@@ -340,7 +340,7 @@ class OpenPAAgenda
         return $string;
     }
 
-    public static function notifyEventOwner( OCEditorialStuffPost $post )
+    public static function notifyEventOwner( OCEditorialStuffPost $post, $templatePath = 'design:agenda/mail/notify_owner.tpl', $templateVariables = array() )
     {
         $object = $post->getObject();
         if ( $object instanceof eZContentObject )
@@ -352,16 +352,15 @@ class OpenPAAgenda
                 $user = eZUser::fetch( $owner->attribute( 'id' ) );
                 if ( $user instanceof eZUser )
                 {
-                    $templatePath = 'design:agenda/mail/notify_owner.tpl';
                     if ( !OCEditorialStuffActionHandler::sendMail(
                         $post,
                         array( $user ),
                         $templatePath,
-                        array(
+                        array_merge(array(
                             'post' => $post,
                             'is_comment' => $post->getObject()->attribute('class_identifier') == 'comment',
                             'event' => $post->getObject()->attribute('class_identifier') == 'comment' ? eZContentObjectTreeNode::fetch( $post->getObject()->attribute('main_parent_node_id') ) : null
-                        )
+                        ), $templateVariables)
                     ) )
                     {
                         eZDebug::writeError( "Fail sending mail", __METHOD__ );
@@ -383,7 +382,7 @@ class OpenPAAgenda
         }
     }
 
-    public static function notifyModerationGroup( OCEditorialStuffPost $post )
+    public static function notifyModerationGroup( OCEditorialStuffPost $post, $templatePath = 'design:agenda/mail/notify_moderators.tpl', $templateVariables = array() )
     {
         $object = $post->getObject();
         if ( $object instanceof eZContentObject ) {
@@ -426,14 +425,13 @@ class OpenPAAgenda
 
             if ( !empty( $users ) )
             {
-                $templatePath = 'design:agenda/mail/notify_moderators.tpl';
                 if ( !OCEditorialStuffActionHandler::sendMail(
                     $post,
                     $users,
                     $templatePath,
-                    array(
+                    array_merge(array(
                         'post' => $post
-                    )
+                    ), $templateVariables)
                 ) )
                 {
                     eZDebug::writeError( "Fail sending mail", __METHOD__ );
