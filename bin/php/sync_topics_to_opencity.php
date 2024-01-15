@@ -15,6 +15,10 @@ $options = $script->getOptions();
 $script->initialize();
 $script->setUseDebugAccumulators(true);
 
+/** @var eZUser $user */
+$user = eZUser::fetchByName('admin');
+eZUser::setCurrentlyLoggedInUser($user, $user->attribute('contentobject_id'));
+
 OpenAgendaTopicMapper::migrateAgendaTopicNames($options['verbose']);
 
 $script->shutdown();
