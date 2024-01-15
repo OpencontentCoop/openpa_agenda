@@ -10,14 +10,15 @@
     {include uri='design:parts/js-include.tpl'}
 
     <script>
-        {literal}
-        $(document).ready(function () {
-            $('#searchModal').agendaSearchGui({
-                'spritePath': '{/literal}{'images/svg/sprite.svg'|ezdesign(no)}{literal}',
-                'allText': '{/literal}{'Even past events'|i18n('agenda')}{literal}'
-            });
-        });
-        {/literal}
+        $(document).ready(function () {ldelim}
+            $('#searchModal').agendaSearchGui({ldelim}
+                'spritePath': '{'images/svg/sprite.svg'|ezdesign(no)}',
+                'allText': '{'Even past events'|i18n('agenda')}'
+            {if is_set($cal_view)},'defaultCalendarView': '{$cal_view}'{/if}
+            {if is_set($cal_responsive)},'responsiveCalendar': {cond($cal_responsive, 'true', 'false')}{/if}
+            {if is_set($also_past)},'onInit': function (plugin) {ldelim}plugin.alsoPastCheck.attr('checked', 'checked').trigger('change');{rdelim}{/if}
+            {rdelim});
+        {rdelim});
     </script>
 
 </div>

@@ -55,11 +55,11 @@
 <div class="section section-muted section-inset-shadow p-0">
     <div class="section-content">
         {include
-        uri='design:parts/agenda.tpl'
-        exclude=array('what')
-        views=array('grid','geo','agenda')
-        base_query=concat("classes [",agenda_event_class_identifier(),"] and ", $tag_filter, " and subtree [", calendar_node_id(), "] and state in [moderation.skipped,moderation.accepted] sort [time_interval=>asc]")
-        style='section'}
+            uri='design:parts/agenda.tpl'
+            exclude=array('what')
+            views=array('grid','geo','agenda')
+            base_query=concat("classes [",agenda_event_class_identifier(),"] and ", $tag_filter, " and subtree [", calendar_node_id(), "] and state in [moderation.skipped,moderation.accepted] sort [time_interval=>asc]")
+            style='section'}
         {include uri='design:parts/views.tpl' views=array('grid','geo','agenda')}
     </div>
 </div>

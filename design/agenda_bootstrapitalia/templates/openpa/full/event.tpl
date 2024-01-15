@@ -23,14 +23,31 @@
             </div>
             {/if}
             {include uri='design:openpa/full/parts/actions.tpl'}
+{* @todo
+            {def $location = fetch('content','node',hash('node_id', $node.data_map.takes_place_in.content.relation_list[0].node_id))}
+            <add-to-calendar-button
+                name="{$node.name|wash()}"
+                startDate="2024-01-11"
+                startTime="10:15"
+                endTime="23:30"
+                timeZone="Europe/Rome"
+                location="{if $node|has_attribute('takes_place_in')}{fetch('content','object',hash('node_id', $node|attribute('takes_place_in').content.relation_list[0].contentobject_id).name|wash()}{/if}"
+                options="'Apple','Google','iCal','Outlook.com','Microsoft 365','Microsoft Teams'"
+                hideBackground="true"
+                hideIconButton="true"
+                pastDateHandling="hide"
+                language="it"
+            ></add-to-calendar-button>
+*}
             {include uri='design:openpa/full/parts/taxonomy.tpl'}
-
+{*
             <div class="mt-5">
                 <a href="{$node.parent.url_alias|ezurl(no)}" class="btn btn-outline-primary btn-icon">
-                    {display_icon('it-calendar', 'svg', 'icon icon-primary')}                
+                    {display_icon('it-calendar', 'svg', 'icon icon-primary')}
                     <span>{'Go to event calendar'|i18n('bootstrapitalia')}</span>
                 </a>
             </div>
+*}
 
         </div>
     </div>

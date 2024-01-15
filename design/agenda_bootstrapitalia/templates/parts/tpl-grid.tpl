@@ -1,3 +1,4 @@
+{set_defaults(hash('grid_view', false()))}
 {literal}
 <script id="tpl-grid" type="text/x-jsrender">
 	<div class="row mx-lg-n3">
@@ -45,7 +46,7 @@
 
 <script id="tpl-event" type="text/x-jsrender">
 <div class="card-wrapper card-space">
-    <div class="card {{if ~agendaMainImageUrl(data)}}card-img{{else}}card-big{{/if}} card-bg rounded shadow no-after">
+    <div class="card {{if ~agendaMainImageUrl(data)}}card-img{/literal}{if $grid_view|ne('mini')}{literal}{{else}}card-big{/literal}{/if}{literal}{{/if}} card-bg rounded shadow no-after">
         {{if ~agendaMainImageUrl(data)}}
         <div class="img-responsive-wrapper">
             <div class="img-responsive img-responsive-panoramic">
@@ -60,6 +61,7 @@
         </div>
         {{/if}}
         <div class="card-body">
+            {/literal}{if $grid_view|ne('mini')}{literal}
             <div class="category-top">
                 {{if ~i18n(data,'time_interval').default_value && (~formatDate(~i18n(data,'time_interval').default_value.from_time,'yyyy.MM.D') !== ~formatDate(~i18n(data,'time_interval').default_value.to_time,'yyyy.MM.D')) && ~i18n(data,'time_interval').default_value.count == 1}}
                     <i class="fa fa-calendar"></i> {{:~formatDate(~i18n(data,'time_interval').default_value.from_time,'D/MM/YY · H:mm')}} - {{:~formatDate(~i18n(data,'time_interval').default_value.to_time,'D/MM/YY · H:mm')}}
@@ -69,12 +71,15 @@
                     <i class="fa fa-calendar"></i> {{:~formatDate(~i18n(data,'time_interval').default_value.from_time,'D/MM/YY · H:mm')}} - {{:~formatDate(~i18n(data,'time_interval').default_value.to_time,'H:mm')}}<br />{{:~i18n(data,'time_interval').text}}
                 {{/if}}
             </div>
+            {/literal}{/if}{literal}
             <h5 class="card-title{{if !~agendaMainImageUrl(data)}} big-heading{{/if}}">
                 <a class="stretched-link text-primary text-decoration-none" href="{{:~objectUrl(metadata.id)}}">{{:~i18n(metadata.name)}}</a>
             </h5>
+            {/literal}{if $grid_view|ne('mini')}{literal}
             {{if ~i18n(data,'event_abstract')}}
               {{:~i18n(data,'event_abstract')}}
             {{/if}}
+            {/literal}{/if}{literal}
 
             <ul class="list-inline m-0" style="font-size:.8em">
                 {{if ~i18n(data,'has_public_event_typology')}}
@@ -95,3 +100,4 @@
 </div>
 </script>
 {/literal}
+{unset_defaults(array('show_abstract'))}

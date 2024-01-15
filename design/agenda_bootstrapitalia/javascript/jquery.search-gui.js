@@ -5,6 +5,8 @@
     var pluginName = 'agendaSearchGui',
         defaults = {
             'spritePath': '/',
+            'defaultCalendarView': 'dayGridMonth',
+            'responsiveCalendar': true,
             'allText': 'Also past events',
             'limitPagination': 21,
             'onInit': function () {}
@@ -129,7 +131,7 @@
             var self = this;
             return !self.isChildrenChecked() && !self.isChildrenUnchecked();
         },
-        
+
         getCheckedIdList: function () {
             var self = this;
 
@@ -273,7 +275,7 @@
                 day: 'numeric',
                 omitCommas: true
             },
-            defaultView: 'dayGridMonth',
+            defaultView: plugin.settings.defaultCalendarView,
             views: {
                 dayGridMonth: {
                     eventLimit: 6
@@ -286,11 +288,13 @@
                     .css('cursor', 'pointer');
             },
             windowResize: function (view) {
-                var windowWidth = $(window).width();
-                if (windowWidth < 800) {
-                    this.changeView('listWeek');
-                } else {
-                    this.changeView('dayGridMonth');
+                if (plugin.settings.responsiveCalendar) {
+                    var windowWidth = $(window).width();
+                    if (windowWidth < 800) {
+                        this.changeView('listWeek');
+                    } else {
+                        this.changeView('dayGridMonth');
+                    }
                 }
             },
             eventClick: function (calEvent, jsEvent, view) {
