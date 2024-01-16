@@ -5,4 +5,4 @@
 {def $link = concat('<a href="', $post.editorial_url|ezurl(no,full), '">', $post.object.name|wash(), '</a>')}
 
 <p>{"L'associazione %name si è registrata sulla piattaforma."|i18n('agenda/mail', '', hash('%name', $post.object.name|wash()))}</p>
-<p>{'Verifica le informazioni inserite a questo link: %link e approva la richista utilizzando il pulsante "Cambia lo stato in..."'|i18n('agenda/mail', '', hash('%link', $link))}</p>
+<p>{'Verifica le informazioni inserite a questo link: %link e approva la richiesta utilizzando il pulsante "Cambia lo stato in..."'|i18n('agenda/mail', '', hash('%link', $link))}</p>

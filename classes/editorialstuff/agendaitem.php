@@ -116,7 +116,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
     public function onUpdate()
     {
         eZSearch::addObject($this->object, true);
-        OpenPAAgenda::notifyModerationGroup($this);
+//        OpenPAAgenda::notifyModerationGroup($this);
         if ($this->is('accepted') || $this->is('skipped')) {
             $this->emit('publish');
         } else {

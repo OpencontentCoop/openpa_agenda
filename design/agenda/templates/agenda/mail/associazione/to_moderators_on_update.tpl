@@ -4,5 +4,5 @@
 {set-block scope=root variable=content_type}text/html{/set-block}
 {def $link = concat('<a href="', $post.editorial_url|ezurl(no,full), '">', $post.object.name|wash(), '</a>')}
 
-<p>{"L'associazione %name si ha modificato i propri dati."|i18n('agenda/mail', '', hash('%name', $post.object.name|wash()))}</p>
+<p>{"L'associazione %name ha modificato i propri dati."|i18n('agenda/mail', '', hash('%name', $post.object.name|wash()))}</p>
 <p>{'Verifica le informazioni inserite a questo link: %link'|i18n('agenda/mail', '', hash('%link', $link))}</p>
