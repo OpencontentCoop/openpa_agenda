@@ -5,487 +5,487 @@
     <name>agenda</name>
     <message>
       <source>Sponsored by</source>
-      <translation>Unter der Schirmherrschaft von</translation>
+      <translation>Sponzoriral</translation>
     </message>
     <message>
       <source>Comments</source>
-      <translation>Kommentare</translation>
+      <translation>Komentarji</translation>
     </message>
     <message>
       <source>In order to leave comments, you need to be logged in</source>
-      <translation>Für ein Kommentar, musst du dich vorher anmelden!</translation>
+      <translation>Če želite pustiti komentarje, se morate prijaviti</translation>
     </message>
     <message>
       <source>Programme</source>
-      <translation>Veranstaltungsprogramm</translation>
+      <translation>Program</translation>
     </message>
     <message>
       <source>Download the pdf programme</source>
-      <translation>PDF-Datei downloaden</translation>
+      <translation>Prenesite program PDF</translation>
     </message>
     <message>
       <source>Address Book</source>
-      <translation>Liste</translation>
+      <translation>Imenik</translation>
     </message>
     <message>
       <source>Organizations</source>
-      <translation>Vereine</translation>
+      <translation>Organizacije</translation>
     </message>
     <message>
       <source>Official Register of the town</source>
-      <translation>Offizielles Register der Gemeinde</translation>
+      <translation>Uradni register mesta</translation>
     </message>
     <message>
       <source>Are you an organization?</source>
-      <translation>Bis du ein Verein?</translation>
+      <translation>Ste organizacija?</translation>
     </message>
     <message>
       <source>Find out how to participate!</source>
-      <translation>Nimm einfach teil!</translation>
+      <translation>Ugotovite, kako sodelovati!</translation>
     </message>
     <message>
       <source>List</source>
-      <translation>Liste</translation>
+      <translation>Seznam</translation>
     </message>
     <message>
       <source>Calendar</source>
-      <translation>Kalender</translation>
+      <translation>Koledar</translation>
     </message>
     <message>
       <source>On the map</source>
-      <translation>Auf dem Lageplan</translation>
+      <translation>Na zemljevidu</translation>
     </message>
     <message>
       <source>When?</source>
-      <translation>Wann?</translation>
+      <translation>Kdaj?</translation>
     </message>
     <message>
       <source>Today</source>
-      <translation>Heute</translation>
+      <translation>Danes</translation>
     </message>
     <message>
       <source>This weekend</source>
-      <translation>Am Wochenende</translation>
+      <translation>Ta vikend</translation>
     </message>
     <message>
       <source>Next 7 days</source>
-      <translation>Die nächsten 7 Tage</translation>
+      <translation>Naslednjih 7 dni</translation>
     </message>
     <message>
       <source>Next 30 days</source>
-      <translation>Die nächsten 30 Tage</translation>
+      <translation>Naslednjih 30 dni</translation>
     </message>
     <message>
       <source>All</source>
-      <translation>Alles</translation>
+      <translation>Vse</translation>
     </message>
     <message>
       <source>Topics</source>
-      <translation>Themen</translation>
+      <translation>Teme</translation>
     </message>
     <message>
       <source>What?</source>
-      <translation>Was ist los?</translation>
+      <translation>Kaj?</translation>
     </message>
     <message>
       <source>Who are you?</source>
-      <translation>Für wen?</translation>
+      <translation>Kdo si?</translation>
     </message>
     <message>
       <source>Where?</source>
-      <translation>Wo?</translation>
+      <translation>Kje?</translation>
     </message>
     <message>
       <source>Event collection</source>
-      <translation>Veranstaltung</translation>
+      <translation>Zbirka dogodkov</translation>
     </message>
     <message>
       <source>All event collections</source>
-      <translation>Alle Veranstaltungen</translation>
+      <translation>Vse zbirke dogodkov</translation>
     </message>
     <message>
       <source>Loading...</source>
-      <translation>Bitte warten...</translation>
+      <translation>Nalaganje...</translation>
     </message>
     <message>
       <source>No events found</source>
-      <translation>Kein Event gefunden</translation>
+      <translation>Ni mogoče najti nobenih dogodkov</translation>
     </message>
     <message>
       <source>Close</source>
-      <translation>Schließen</translation>
+      <translation>Blizu</translation>
     </message>
     <message>
       <source>Load More Results</source>
-      <translation>Weitere Events laden</translation>
+      <translation>Naložite več rezultatov</translation>
     </message>
     <message>
       <source>Search by name ...</source>
-      <translation>Suche nach Name...</translation>
+      <translation>Iskanje po imenu ...</translation>
     </message>
     <message>
       <source>Search</source>
-      <translation>Suchen</translation>
+      <translation>Iskanje</translation>
     </message>
     <message>
       <source>No result found</source>
-      <translation>Kein Event gefunden</translation>
+      <translation>Ni mogoče najti</translation>
     </message>
     <message>
       <source>Show less recent</source>
-      <translation>Weniger aktuelle anzeigen</translation>
+      <translation>Kažejo manj nedavne</translation>
     </message>
     <message>
       <source>Load more events</source>
-      <translation>Weitere Events laden</translation>
+      <translation>Naložite več dogodkov</translation>
     </message>
     <message>
       <source>Show more items</source>
-      <translation>Weitere Events abzeigen</translation>
+      <translation>Pokažite več predmetov</translation>
     </message>
     <message>
       <source>Add to your calendar</source>
-      <translation>Zum Kalender hinzufügen</translation>
+      <translation>Dodajte v svoj koledar</translation>
     </message>
     <message>
       <source>More information</source>
-      <translation>Weitere Informationen</translation>
+      <translation>Več informacij</translation>
     </message>
     <message>
       <source>Add filter</source>
-      <translation>Filter hinzufügen</translation>
+      <translation>Dodaj filter</translation>
     </message>
     <message>
       <source>Confirm</source>
-      <translation>Bestätigen</translation>
+      <translation>Potrdite</translation>
     </message>
     <message>
       <source>Sections</source>
-      <translation>Sektionen</translation>
+      <translation>Oddelki</translation>
     </message>
     <message>
       <source>Content type</source>
-      <translation>Inhaltstyp</translation>
+      <translation>Vrsta vsebine</translation>
     </message>
     <message>
       <source>Options</source>
-      <translation>Optionen</translation>
+      <translation>Opcije</translation>
     </message>
     <message>
       <source>Apply filters</source>
-      <translation>Filter anwenden</translation>
+      <translation>Uporabi filtre</translation>
     </message>
     <message>
       <source>Found a result</source>
-      <translation>Ein Ergebnis gefunden</translation>
+      <translation>Našel rezultat</translation>
     </message>
     <message>
       <source>Found %number results</source>
-      <translation>Gefundene %zahl Ergebnisse</translation>
+      <translation>Ugotovili %število rezultatov</translation>
     </message>
     <message>
       <source>No results found</source>
-      <translation>Keine Ergebnisse gefunden</translation>
+      <translation>Ni zadetkov</translation>
     </message>
     <message>
       <source>Search in</source>
-      <translation>Suche in</translation>
+      <translation>Iskanje</translation>
     </message>
     <message>
       <source>Even past events</source>
-      <translation>Auch frühere Veranstaltungen</translation>
+      <translation>Tudi pretekli dogodki</translation>
     </message>
     <message>
       <source>Also shows past events</source>
-      <translation>Auch vergangene Veranstaltungen anzeigen</translation>
+      <translation>Prikazuje tudi pretekle dogodke</translation>
     </message>
     <message>
       <source>Appointments</source>
-      <translation>Termine</translation>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
     <name>agenda/config</name>
     <message>
       <source>Lock</source>
-      <translation>Sperren</translation>
+      <translation>Ključavnica</translation>
     </message>
     <message>
       <source>Unlock</source>
-      <translation>Freischalten</translation>
+      <translation>Odklepanje</translation>
     </message>
     <message>
       <source>Change general settings</source>
-      <translation>Ändern Sie die allgemeinen Einstellungen</translation>
+      <translation>Spremenite splošne nastavitve</translation>
     </message>
     <message>
       <source>Moderation is active</source>
-      <translation>Moderation ist aktiv</translation>
+      <translation>Zmernost je aktivna</translation>
     </message>
     <message>
       <source>User registration is active</source>
-      <translation>Benutzerregistrierung ist aktiv</translation>
+      <translation>Registracija uporabnika je aktivna</translation>
     </message>
     <message>
       <source>Organizations registration is active</source>
-      <translation>Registrierung einer aktiven Organisation</translation>
+      <translation>Registracija organizacij je aktivna</translation>
     </message>
     <message>
       <source>Comments enabled</source>
-      <translation>Kommentare sind aktiviert</translation>
+      <translation>Omogočeni komentarji</translation>
     </message>
     <message>
       <source>Login is active</source>
-      <translation>Login ist aktiv</translation>
+      <translation>Prijava je aktivna</translation>
     </message>
     <message>
       <source>Topics to hide in the main agenda</source>
-      <translation>Themen, die in der Hauptagenda zu verbergen sind</translation>
+      <translation>Teme, ki jih je treba skrivati ​​v glavnem dnevnem redu</translation>
     </message>
     <message>
       <source>Event collections to hide in the main agenda</source>
-      <translation>Veranstaltungssammlungen, die in der Hauptagenda versteckt sind</translation>
+      <translation>Zbirke dogodkov, ki se skrivajo v glavnem dnevnem redu</translation>
     </message>
     <message>
       <source>Users</source>
-      <translation>Benutzer</translation>
+      <translation>Uporabniki</translation>
     </message>
     <message>
       <source>Moderators</source>
-      <translation>Moderatoren</translation>
+      <translation>Moderatorji</translation>
     </message>
     <message>
       <source>External Users</source>
-      <translation>Externe Benutzer</translation>
+      <translation>Zunanji uporabniki</translation>
     </message>
     <message>
       <source>Search</source>
-      <translation>Suche</translation>
+      <translation>Iskanje</translation>
     </message>
     <message>
       <source>Add a moderator</source>
-      <translation>Fügen Sie einen Moderator hinzu</translation>
+      <translation>Dodajte moderatorja</translation>
     </message>
     <message>
       <source>Add Existing User</source>
-      <translation>Fügen Sie einen vorhandenen Benutzer hinzu</translation>
+      <translation>Dodaj obstoječega uporabnika</translation>
     </message>
     <message>
       <source>Add user</source>
-      <translation>Nutzer hinzufügen</translation>
+      <translation>Dodaj uporabnika</translation>
     </message>
     <message>
       <source>Export to CSV</source>
-      <translation>In CSV exportieren</translation>
+      <translation>Izvoz v CSV</translation>
     </message>
     <message>
       <source>Add %classname</source>
-      <translation>%classname hinzufügen</translation>
+      <translation>Dodajte %ClassName</translation>
     </message>
   </context>
   <context>
     <name>agenda/dashboard</name>
     <message>
       <source>Title</source>
-      <translation>Titel</translation>
+      <translation>Naslov</translation>
     </message>
     <message>
       <source>Published</source>
-      <translation>Veröffentlicht</translation>
+      <translation>Objavljeno</translation>
     </message>
     <message>
       <source>Start date</source>
-      <translation>Startdatum</translation>
+      <translation>Začetni datum</translation>
     </message>
     <message>
       <source>End date</source>
-      <translation>Enddatum</translation>
+      <translation>Končni datum</translation>
     </message>
     <message>
       <source>Status</source>
-      <translation>Status</translation>
+      <translation>Stanje</translation>
     </message>
     <message>
       <source>Manage events</source>
-      <translation>Veranstaltugen bearbeiten</translation>
+      <translation>Upravljanje dogodkov</translation>
     </message>
     <message>
       <source>Manage initiatives</source>
-      <translation>Initiativen verwalten</translation>
+      <translation>Upravljati pobude</translation>
     </message>
     <message>
       <source>Manage organizations</source>
-      <translation>Vereine verwalten</translation>
+      <translation>Upravljanje organizacij</translation>
     </message>
     <message>
       <source>Author</source>
-      <translation>Autor</translation>
+      <translation>Avtor</translation>
     </message>
     <message>
       <source>Changed</source>
-      <translation>Geändert</translation>
+      <translation>Spremenjen</translation>
     </message>
     <message>
       <source>Translations</source>
-      <translation>Übersetzungen</translation>
+      <translation>Prevodi</translation>
     </message>
     <message>
       <source>Detail</source>
-      <translation>Detail</translation>
+      <translation>Detajl</translation>
     </message>
     <message>
       <source>Loading...</source>
-      <translation>Warten bitte...</translation>
+      <translation>Nalaganje...</translation>
     </message>
     <message>
       <source>List</source>
-      <translation>Liste</translation>
+      <translation>Seznam</translation>
     </message>
     <message>
       <source>Calendar</source>
-      <translation>Kalender</translation>
+      <translation>Koledar</translation>
     </message>
     <message>
       <source>Select</source>
-      <translation>Wählen</translation>
+      <translation>Izberite</translation>
     </message>
     <message>
       <source>Edit</source>
-      <translation>Abändern</translation>
+      <translation>Uredi</translation>
     </message>
     <message>
       <source>Preview</source>
-      <translation>Vorschau</translation>
+      <translation>Predogled</translation>
     </message>
     <message>
       <source>Publication date</source>
-      <translation>Veröffentlicht</translation>
+      <translation>Datum objave</translation>
     </message>
     <message>
       <source>Images</source>
-      <translation>Fotos</translation>
+      <translation>Slike</translation>
     </message>
     <message>
       <source>New</source>
-      <translation>Neu</translation>
+      <translation>Novo</translation>
     </message>
     <message>
       <source>Image library</source>
-      <translation>Bildarchiv</translation>
+      <translation>Knjižnica slik</translation>
     </message>
     <message>
       <source>Create new event</source>
-      <translation>Neue Veranstaltung erstellen</translation>
+      <translation>Ustvari nov dogodek</translation>
     </message>
     <message>
       <source>Create new organization</source>
-      <translation>Neuer Verein erstellen</translation>
+      <translation>Ustvari novo organizacijo</translation>
     </message>
     <message>
       <source>Create new event program</source>
-      <translation>Neues Veranstaltungsprogramm erstellen</translation>
+      <translation>Ustvari nov program dogodkov</translation>
     </message>
     <message>
       <source>Manage event</source>
-      <translation>Veranstaltung verwalten</translation>
+      <translation>Upravljanje dogodka</translation>
     </message>
   </context>
   <context>
     <name>agenda/event</name>
     <message>
       <source>Where</source>
-      <translation>Wo</translation>
+      <translation>Kje</translation>
     </message>
     <message>
       <source>How to get there</source>
-      <translation>So erreichen Sie den Veranstaltungsort</translation>
+      <translation>Kako priti do tja</translation>
     </message>
     <message>
       <source>Attachments</source>
-      <translation>Zubehör</translation>
+      <translation>Priloga</translation>
     </message>
   </context>
   <context>
     <name>agenda/event/comments</name>
     <message>
       <source>Enter answer</source>
-      <translation>Antwort hinzufügen</translation>
+      <translation>Vnesite odgovor</translation>
     </message>
     <message>
       <source>Insert your comment</source>
-      <translation>Kommentar hinzufügen</translation>
+      <translation>Vstavite svoj komentar</translation>
     </message>
     <message>
       <source>Publish your comment</source>
-      <translation>Kommentar veröffentlichen</translation>
+      <translation>Objavite svoj komentar</translation>
     </message>
     <message>
       <source>Cancel</source>
-      <translation>Löschen</translation>
+      <translation>Odpovedati</translation>
     </message>
   </context>
   <context>
     <name>agenda/event/days</name>
     <message>
       <source>from</source>
-      <translation>vom</translation>
+      <translation>od</translation>
     </message>
     <message>
       <source>to</source>
-      <translation>bis zum</translation>
+      <translation>do</translation>
     </message>
   </context>
   <context>
     <name>agenda/event/hours</name>
     <message>
       <source>from</source>
-      <translation>vom</translation>
+      <translation>od</translation>
     </message>
     <message>
       <source>to</source>
-      <translation>bis</translation>
+      <translation>do</translation>
     </message>
   </context>
   <context>
     <name>agenda/mail/registration</name>
     <message>
       <source>%privacy_link_start%Privacy info%privacy_link_end%</source>
-      <translation>%privacy_link_start%Datenschutz und privacy%privacy_link_end%</translation>
+      <translation>%Privacy_Link_start%Informacije o zasebnosti%Privacy_link_end%</translation>
     </message>
     <message>
       <source>%terms_link_start%Terms of use%terms_link_end%</source>
-      <translation>%terms_link_start%Nutzungsbedingungen%terms_link_end%</translation>
+      <translation>%izrazov_link_start%Pogoji uporabe%izrazov_link_end%</translation>
     </message>
   </context>
   <context>
     <name>agenda/menu</name>
     <message>
       <source>FAQ</source>
-      <translation>Faq</translation>
+      <translation>Pogosta vprašanja</translation>
     </message>
     <message>
       <source>Privacy</source>
-      <translation>Datenschutz</translation>
+      <translation>Zasebnost</translation>
     </message>
     <message>
       <source>Terms of use</source>
-      <translation>Nutzungsbedingungen</translation>
+      <translation>Pogoji uporabe</translation>
     </message>
     <message>
       <source>Agenda</source>
-      <translation>Kalender</translation>
+      <translation>Dnevni red</translation>
     </message>
     <message>
       <source>Organizations</source>
-      <translation>Vereine</translation>
+      <translation>Organizacije</translation>
     </message>
     <message>
       <source>Manage events</source>
-      <translation>Veranstaltugen bearbeiten</translation>
+      <translation>Upravljanje dogodkov</translation>
     </message>
     <message>
       <source>Information</source>
-      <translation>Informationen</translation>
+      <translation>Informacije</translation>
     </message>
     <message>
       <source>Profile</source>
@@ -493,331 +493,331 @@
     </message>
     <message>
       <source>Settings</source>
-      <translation>Einstellungen</translation>
+      <translation>Nastavitve</translation>
     </message>
     <message>
       <source>Manage organizations</source>
-      <translation>Vereine verwalten</translation>
+      <translation>Upravljanje organizacij</translation>
     </message>
     <message>
       <source>Manage PDF Programme</source>
-      <translation>Pdf-Programm bearbeiten</translation>
+      <translation>Upravljanje programa PDF</translation>
     </message>
     <message>
       <source>Logout</source>
-      <translation>Abmelden</translation>
+      <translation>Odjava</translation>
     </message>
   </context>
   <context>
     <name>agenda/signup</name>
     <message>
       <source>Subscribe</source>
-      <translation>Registrierung</translation>
+      <translation>Naročite se</translation>
     </message>
   </context>
   <context>
     <name>agenda/signupassociazione</name>
     <message>
       <source>Do you want to register your organization?</source>
-      <translation>Möchten Sie Ihren Verein registrieren?</translation>
+      <translation>Ali želite registrirati svojo organizacijo?</translation>
     </message>
     <message>
       <source>To register an organization, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events.</source>
-      <translation type="unfinished"/>
+      <translation>Če želite registrirati organizacijo, morate klikniti gumb in izpolniti zahtevane informacije. Ko naši operaterji preverjajo vaše podatke, lahko uporabite poverilnice, ki ste jih izbrali za prijavo in objavo novih dogodkov.</translation>
     </message>
     <message>
       <source>Register an organization</source>
-      <translation>Verein registrieren</translation>
+      <translation>Registrirajte organizacijo</translation>
     </message>
     <message>
       <source>Info were saved and sent for validation</source>
-      <translation>Die Daten wurden gespeichert und zur Validierung gesendet</translation>
+      <translation>Informacije so bile shranjene in poslane za preverjanje</translation>
     </message>
     <message>
       <source>Register a new organization</source>
-      <translation>Neuer Verein registrieren</translation>
+      <translation>Registrirajte novo organizacijo</translation>
     </message>
     <message>
       <source>Register</source>
-      <translation>Registrieren</translation>
+      <translation>Register</translation>
     </message>
     <message>
       <source>Cancel</source>
-      <translation>Abbrechen</translation>
+      <translation>Odpovedati</translation>
     </message>
     <message>
       <source>Confirm us that you are not a robot</source>
-      <translation>Bestätigen Sie, dass Sie kein Roboter sind</translation>
+      <translation>Potrdite nam, da niste robot</translation>
     </message>
     <message>
       <source>When they are validated you will receive an email notification to the email address you entered</source>
-      <translation>Wenn sie bestätigt sind, erhalten Sie eine E-Mail-Benachrichtigung an die von Ihnen angegebene E-Mail-Adresse</translation>
+      <translation>Ko so potrjeni, boste prejeli e -poštno obvestilo na e -poštni naslov, ki ste ga vnesli</translation>
     </message>
   </context>
   <context>
     <name>agenda/states</name>
     <message>
       <source>Waiting for moderation</source>
-      <translation>Warten auf Moderation</translation>
+      <translation>Čakanje na zmernost</translation>
     </message>
   </context>
   <context>
     <name>openpa_agenda</name>
     <message>
       <source>Content</source>
-      <translation>Hauptinhalte</translation>
+      <translation>Zadovoljstvo</translation>
     </message>
     <message>
       <source>Image Gallery</source>
-      <translation>Bilder-Galerie</translation>
+      <translation>Galerija slik</translation>
     </message>
     <message>
       <source>Share</source>
-      <translation>Teilen</translation>
+      <translation>Deliti</translation>
     </message>
     <message>
       <source>Comments</source>
-      <translation>Kommentare</translation>
+      <translation>Komentarji</translation>
     </message>
     <message>
       <source>Press kit</source>
-      <translation>Pressemappe</translation>
+      <translation>Press Kit</translation>
     </message>
     <message>
       <source>History</source>
-      <translation>Chronologie</translation>
+      <translation>Zgodovina</translation>
     </message>
     <message>
       <source>Flyer</source>
-      <translation>Faltblatt</translation>
+      <translation>Letak</translation>
     </message>
     <message>
       <source>Save</source>
-      <translation>Speichern</translation>
+      <translation>Shrani</translation>
     </message>
     <message>
       <source>Overlap</source>
-      <translation>Überlappung</translation>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
     <name>agenda/leaflet</name>
     <message>
       <source>Two columns (18 events)</source>
-      <translation>Zwei Spalten (18 Veranstaltungen)</translation>
+      <translation>Dva stolpca (18 dogodkov)</translation>
     </message>
     <message>
       <source>Three columns (20 events)</source>
-      <translation>Drei Spalten (20 Ereignisse)</translation>
+      <translation>Trije stolpci (20 dogodkov)</translation>
     </message>
     <message>
       <source>Three columns (40 events)</source>
-      <translation>Drei Spalten (40 Veranstaltungen)</translation>
+      <translation>Trije stolpci (40 dogodkov)</translation>
     </message>
     <message>
       <source>Title</source>
-      <translation>Titel</translation>
+      <translation>Naslov</translation>
     </message>
     <message>
       <source>Abstract</source>
-      <translation>Zusammenfassung</translation>
+      <translation>Izvleček</translation>
     </message>
     <message>
       <source>Period</source>
-      <translation>Zeitraum</translation>
+      <translation>Obdobje</translation>
     </message>
     <message>
       <source>Hours</source>
-      <translation>Zeit</translation>
+      <translation>Ure</translation>
     </message>
     <message>
       <source>Duration</source>
-      <translation>Dauer</translation>
+      <translation>Trajanje</translation>
     </message>
     <message>
       <source>Location</source>
-      <translation>Ort</translation>
+      <translation>Lokacija</translation>
     </message>
     <message>
       <source>Delete selected events</source>
-      <translation>Markierte entfernen</translation>
+      <translation>Izbrišite izbrane dogodke</translation>
     </message>
     <message>
       <source>Add existing event</source>
-      <translation>Aggiungi Veranstaltung hinzufügen</translation>
+      <translation>Dodaj obstoječi dogodek</translation>
     </message>
     <message>
       <source>Choose the layout for the flyer</source>
-      <translation>Wählen Sie das Layout für den Faltblatt aus</translation>
+      <translation>Izberite postavitev za letak</translation>
     </message>
     <message>
       <source>Save flyer</source>
-      <translation>Speichern Sie den Faltblatt</translation>
+      <translation>Shrani letak</translation>
     </message>
     <message>
       <source>Save and download flyer</source>
-      <translation>Den Flyer speichern und herunterladen</translation>
+      <translation>Shrani in prenesi letak</translation>
     </message>
     <message>
       <source>selected events</source>
-      <translation>Ausgewählte Veranstaltungen</translation>
+      <translation>Izbrani dogodki</translation>
     </message>
     <message>
       <source>Event abstracts greater than %number characters will be automatically cut.</source>
-      <translation>Abstracts von Ereignissen, die größer als die %-Zahl der Zeichen sind, werden automatisch gekürzt.</translation>
+      <translation>Izvlečki dogodkov, večji od %številnih znakov, se samodejno zmanjšajo.</translation>
     </message>
     <message>
       <source>You can use the form below to customize the event abstract on the flyer.</source>
-      <translation>Sie können das Formular unten verwenden, um den Veranstaltungsauszug auf dem Flyer anzupassen.</translation>
+      <translation>Spodnji obrazec lahko uporabite za prilagoditev povzetka dogodka na letaku.</translation>
     </message>
     <message>
       <source>missing characters</source>
-      <translation>Fehlende Buchstaben</translation>
+      <translation>manjkajoči znaki</translation>
     </message>
     <message>
       <source>characters in excess</source>
-      <translation>Berzählige Buchstaben</translation>
+      <translation>znaki v presežku</translation>
     </message>
     <message>
       <source>Automatically generated abstract</source>
-      <translation>Automatisch erzeugte Zusammenfassung</translation>
+      <translation>Samodejno ustvarjen povzetek</translation>
     </message>
   </context>
   <context>
     <name>agenda/mail</name>
     <message>
       <source>Organization registration</source>
-      <translation>Registrierung des Vereins</translation>
+      <translation>Registracija organizacije</translation>
     </message>
     <message>
       <source>We inform you that the data concerning the %name organization have been validated.</source>
-      <translation>Wir informieren Sie, dass die Daten bezüglich des Vereins %name validiert wurden.</translation>
+      <translation>Obveščamo vas, da so bili podatki v zvezi z organizacijo imena %potrjeni.</translation>
     </message>
     <message>
       <source>It is therefore possible to log in to the system and insert content.</source>
-      <translation>Es ist daher möglich, sich am System anzumelden und Inhalte einzufügen.</translation>
+      <translation>Zato se je mogoče prijaviti v sistem in vstaviti vsebino.</translation>
     </message>
     <message>
       <source>Comment to</source>
-      <translation>Kommentar zu</translation>
+      <translation>Komentar</translation>
     </message>
     <message>
       <source>We inform you that your comment %message to the %name event is now in status %state.</source>
-      <translation>Wir teilen Ihnen mit, dass sich Ihr Kommentar %message zur Veranstaltung %name jetzt im Status %state befindet.</translation>
+      <translation>Obveščamo vas, da je vaše komentar %sporočilo na dogodek %imena v statusu %stanja.</translation>
     </message>
     <message>
       <source>We inform you that that the content %name has been published/updated.</source>
-      <translation>Wir informieren Sie, dass der Inhalt %name veröffentlicht/aktualisiert wurde.</translation>
+      <translation>Obveščamo vas, da je bilo ime vsebine %objavljeno/posodobljeno.</translation>
     </message>
     <message>
       <source>The current status is %name.</source>
-      <translation>Der aktuelle Status ist %name.</translation>
+      <translation>Trenutno stanje je %ime.</translation>
     </message>
     <message>
       <source>We inform you that the comment %message has been published to the event %name.</source>
-      <translation>Wir informieren Sie, dass der Kommentar %message zu der Veranstaltung %name veröffentlicht wurde.</translation>
+      <translation>Obveščamo vas, da je sporočilo o komentarju, ki je bilo objavljeno v imenu dogodka, objavljeno.</translation>
     </message>
     <message>
       <source>The comment is now in state %state.</source>
-      <translation>Der Kommentar befindet sich jetzt im Zustand %state.</translation>
+      <translation>Komentar je zdaj v državi %.</translation>
     </message>
     <message>
       <source>Notify on</source>
-      <translation>Benachrichtigen über</translation>
+      <translation>Obvestiti naprej</translation>
     </message>
     <message>
       <source>We inform you that the status of the content "%name" has been changed.</source>
-      <translation>Wir informieren Sie, dass der Status des Inhalts "%name" geändert wurde.</translation>
+      <translation>Obveščamo vas, da je bil status vsebine "ime%" spremenjen.</translation>
     </message>
   </context>
   <context>
     <name>agenda/place</name>
     <message>
       <source>Nowhere</source>
-      <translation>Nirgendwo</translation>
+      <translation>Nikjer</translation>
     </message>
     <message>
       <source>Select place</source>
-      <translation>Ort auswählen</translation>
+      <translation>Izberite mesto</translation>
     </message>
     <message>
       <source>Editor choice</source>
-      <translation>Wahl der Redaktion</translation>
+      <translation>Izbira urednika</translation>
     </message>
     <message>
       <source>Shared</source>
-      <translation>Geteilt</translation>
+      <translation>Skupno</translation>
     </message>
     <message>
       <source>Your own</source>
-      <translation>Von Ihnen erstellt</translation>
+      <translation>Lastne</translation>
     </message>
     <message>
       <source>Add your own place</source>
-      <translation>Eigenen Platz hinzufügen</translation>
+      <translation>Dodajte svoje mesto</translation>
     </message>
     <message>
       <source>A place already exists with similar geolocation</source>
-      <translation>Ein Ort mit ähnlicher Geolokalisierung existiert bereits</translation>
+      <translation>Kraj že obstaja s podobno geolokacijo</translation>
     </message>
     <message>
       <source>Detect position</source>
-      <translation>Position ermitteln</translation>
+      <translation>Zaznati položaj</translation>
     </message>
     <message>
       <source>Name</source>
-      <translation>Name</translation>
+      <translation>Ime</translation>
     </message>
     <message>
       <source>Address</source>
-      <translation>Adresse</translation>
+      <translation>Nagovor</translation>
     </message>
     <message>
       <source>Latitude</source>
-      <translation>Breitengrad</translation>
+      <translation>Zemljepisna širina</translation>
     </message>
     <message>
       <source>Longitude</source>
-      <translation>Längengrad</translation>
+      <translation>Dolžina</translation>
     </message>
     <message>
       <source>Store place</source>
-      <translation>Ort speichern</translation>
+      <translation>Trgovinsko mesto</translation>
     </message>
     <message>
       <source>Store mine and ignore existent</source>
-      <translation>Meine Daten speichern und Vorhandenes ignorieren</translation>
+      <translation>Shranjujte moje in ignorirajte obstoječe</translation>
     </message>
     <message>
       <source>Select existent place</source>
-      <translation>Vorhandenen Ort auswählen</translation>
+      <translation>Izberite obstoječe mesto</translation>
     </message>
   </context>
   <context>
     <name>agenda/stat</name>
     <message>
       <source>Statistics</source>
-      <translation>Statistiken</translation>
+      <translation>Statistika</translation>
     </message>
     <message>
       <source>Monthly</source>
-      <translation>Monatlich</translation>
+      <translation>Mesečno</translation>
     </message>
     <message>
       <source>Quarterly</source>
-      <translation>Vierteljährlich</translation>
+      <translation>Četrtletno</translation>
     </message>
     <message>
       <source>Half-yearly</source>
-      <translation>Halbjährlich</translation>
+      <translation>Polletno</translation>
     </message>
     <message>
       <source>Yearly</source>
-      <translation>Jährlich</translation>
+      <translation>Letno</translation>
     </message>
     <message>
       <source>There is no data to produce the chart</source>
-      <translation>Es gibt keine Daten zur Erstellung des Diagramms</translation>
+      <translation>Ni podatkov za izdelavo grafikona</translation>
     </message>
   </context>
 </TS>

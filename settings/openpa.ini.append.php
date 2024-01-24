@@ -19,4 +19,7 @@ NodiCustomMenu[]
 [AttributeHandlers]
 Handlers[ezmatrix/agenda_root/social]=OpenPAAttributeSocialHandler
 
+[SideMenu]
+IdentificatoriMenu[]=topic
+
 */ ?>

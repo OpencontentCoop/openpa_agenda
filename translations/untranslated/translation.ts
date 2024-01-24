@@ -199,6 +199,10 @@
       <source>Also shows past events</source>
       <translation type="unfinished"/>
     </message>
+    <message>
+      <source>Appointments</source>
+      <translation type="unfinished"/>
+    </message>
   </context>
   <context>
     <name>agenda/config</name>

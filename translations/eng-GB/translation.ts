@@ -5,301 +5,301 @@
     <name>agenda</name>
     <message>
       <source>Sponsored by</source>
-      <translation>Unter der Schirmherrschaft von</translation>
+      <translation>Sponsored by</translation>
     </message>
     <message>
       <source>Comments</source>
-      <translation>Kommentare</translation>
+      <translation>Comments</translation>
     </message>
     <message>
       <source>In order to leave comments, you need to be logged in</source>
-      <translation>Für ein Kommentar, musst du dich vorher anmelden!</translation>
+      <translation>In order to leave comments, you need to be logged in</translation>
     </message>
     <message>
       <source>Programme</source>
-      <translation>Veranstaltungsprogramm</translation>
+      <translation>Programme</translation>
     </message>
     <message>
       <source>Download the pdf programme</source>
-      <translation>PDF-Datei downloaden</translation>
+      <translation>Download the pdf programme</translation>
     </message>
     <message>
       <source>Address Book</source>
-      <translation>Liste</translation>
+      <translation>Address Book</translation>
     </message>
     <message>
       <source>Organizations</source>
-      <translation>Vereine</translation>
+      <translation>Organizations</translation>
     </message>
     <message>
       <source>Official Register of the town</source>
-      <translation>Offizielles Register der Gemeinde</translation>
+      <translation>Official Register of the town</translation>
     </message>
     <message>
       <source>Are you an organization?</source>
-      <translation>Bis du ein Verein?</translation>
+      <translation>Are you an organization?</translation>
     </message>
     <message>
       <source>Find out how to participate!</source>
-      <translation>Nimm einfach teil!</translation>
+      <translation>Find out how to participate!</translation>
     </message>
     <message>
       <source>List</source>
-      <translation>Liste</translation>
+      <translation>List</translation>
     </message>
     <message>
       <source>Calendar</source>
-      <translation>Kalender</translation>
+      <translation>Calendar</translation>
     </message>
     <message>
       <source>On the map</source>
-      <translation>Auf dem Lageplan</translation>
+      <translation>On the map</translation>
     </message>
     <message>
       <source>When?</source>
-      <translation>Wann?</translation>
+      <translation>When?</translation>
     </message>
     <message>
       <source>Today</source>
-      <translation>Heute</translation>
+      <translation>Today</translation>
     </message>
     <message>
       <source>This weekend</source>
-      <translation>Am Wochenende</translation>
+      <translation>This weekend</translation>
     </message>
     <message>
       <source>Next 7 days</source>
-      <translation>Die nächsten 7 Tage</translation>
+      <translation>Next 7 days</translation>
     </message>
     <message>
       <source>Next 30 days</source>
-      <translation>Die nächsten 30 Tage</translation>
+      <translation>Next 30 days</translation>
     </message>
     <message>
       <source>All</source>
-      <translation>Alles</translation>
+      <translation>All</translation>
     </message>
     <message>
       <source>Topics</source>
-      <translation>Themen</translation>
+      <translation>Topics</translation>
     </message>
     <message>
       <source>What?</source>
-      <translation>Was ist los?</translation>
+      <translation>What?</translation>
     </message>
     <message>
       <source>Who are you?</source>
-      <translation>Für wen?</translation>
+      <translation>Who are you?</translation>
     </message>
     <message>
       <source>Where?</source>
-      <translation>Wo?</translation>
+      <translation>Where?</translation>
     </message>
     <message>
       <source>Event collection</source>
-      <translation>Veranstaltung</translation>
+      <translation>Event collection</translation>
     </message>
     <message>
       <source>All event collections</source>
-      <translation>Alle Veranstaltungen</translation>
+      <translation>All event collections</translation>
     </message>
     <message>
       <source>Loading...</source>
-      <translation>Bitte warten...</translation>
+      <translation>Loading...</translation>
     </message>
     <message>
       <source>No events found</source>
-      <translation>Kein Event gefunden</translation>
+      <translation>No events found</translation>
     </message>
     <message>
       <source>Close</source>
-      <translation>Schließen</translation>
+      <translation>Close</translation>
     </message>
     <message>
       <source>Load More Results</source>
-      <translation>Weitere Events laden</translation>
+      <translation>Load More Results</translation>
     </message>
     <message>
       <source>Search by name ...</source>
-      <translation>Suche nach Name...</translation>
+      <translation>Search by name ...</translation>
     </message>
     <message>
       <source>Search</source>
-      <translation>Suchen</translation>
+      <translation>Search</translation>
     </message>
     <message>
       <source>No result found</source>
-      <translation>Kein Event gefunden</translation>
+      <translation>No result found</translation>
     </message>
     <message>
       <source>Show less recent</source>
-      <translation>Weniger aktuelle anzeigen</translation>
+      <translation>Show less recent</translation>
     </message>
     <message>
       <source>Load more events</source>
-      <translation>Weitere Events laden</translation>
+      <translation>Load more events</translation>
     </message>
     <message>
       <source>Show more items</source>
-      <translation>Weitere Events abzeigen</translation>
+      <translation>Show more items</translation>
     </message>
     <message>
       <source>Add to your calendar</source>
-      <translation>Zum Kalender hinzufügen</translation>
+      <translation>Add to your calendar</translation>
     </message>
     <message>
       <source>More information</source>
-      <translation>Weitere Informationen</translation>
+      <translation>More information</translation>
     </message>
     <message>
       <source>Add filter</source>
-      <translation>Filter hinzufügen</translation>
+      <translation>Add filter</translation>
     </message>
     <message>
       <source>Confirm</source>
-      <translation>Bestätigen</translation>
+      <translation>Confirm</translation>
     </message>
     <message>
       <source>Sections</source>
-      <translation>Sektionen</translation>
+      <translation>Sections</translation>
     </message>
     <message>
       <source>Content type</source>
-      <translation>Inhaltstyp</translation>
+      <translation>Content type</translation>
     </message>
     <message>
       <source>Options</source>
-      <translation>Optionen</translation>
+      <translation>Options</translation>
     </message>
     <message>
       <source>Apply filters</source>
-      <translation>Filter anwenden</translation>
+      <translation>Apply filters</translation>
     </message>
     <message>
       <source>Found a result</source>
-      <translation>Ein Ergebnis gefunden</translation>
+      <translation>Found a result</translation>
     </message>
     <message>
       <source>Found %number results</source>
-      <translation>Gefundene %zahl Ergebnisse</translation>
+      <translation>Found %number results</translation>
     </message>
     <message>
       <source>No results found</source>
-      <translation>Keine Ergebnisse gefunden</translation>
+      <translation>No results found</translation>
     </message>
     <message>
       <source>Search in</source>
-      <translation>Suche in</translation>
+      <translation>Search in</translation>
     </message>
     <message>
       <source>Even past events</source>
-      <translation>Auch frühere Veranstaltungen</translation>
+      <translation>Even past events</translation>
     </message>
     <message>
       <source>Also shows past events</source>
-      <translation>Auch vergangene Veranstaltungen anzeigen</translation>
+      <translation>Also shows past events</translation>
     </message>
     <message>
       <source>Appointments</source>
-      <translation>Termine</translation>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
     <name>agenda/config</name>
     <message>
       <source>Lock</source>
-      <translation>Sperren</translation>
+      <translation>Lock</translation>
     </message>
     <message>
       <source>Unlock</source>
-      <translation>Freischalten</translation>
+      <translation>Unlock</translation>
     </message>
     <message>
       <source>Change general settings</source>
-      <translation>Ändern Sie die allgemeinen Einstellungen</translation>
+      <translation>Change general settings</translation>
     </message>
     <message>
       <source>Moderation is active</source>
-      <translation>Moderation ist aktiv</translation>
+      <translation>Moderation is active</translation>
     </message>
     <message>
       <source>User registration is active</source>
-      <translation>Benutzerregistrierung ist aktiv</translation>
+      <translation>User registration is active</translation>
     </message>
     <message>
       <source>Organizations registration is active</source>
-      <translation>Registrierung einer aktiven Organisation</translation>
+      <translation>Organizations registration is active</translation>
     </message>
     <message>
       <source>Comments enabled</source>
-      <translation>Kommentare sind aktiviert</translation>
+      <translation>Comments enabled</translation>
     </message>
     <message>
       <source>Login is active</source>
-      <translation>Login ist aktiv</translation>
+      <translation>Login is active</translation>
     </message>
     <message>
       <source>Topics to hide in the main agenda</source>
-      <translation>Themen, die in der Hauptagenda zu verbergen sind</translation>
+      <translation>Topics to hide in the main agenda</translation>
     </message>
     <message>
       <source>Event collections to hide in the main agenda</source>
-      <translation>Veranstaltungssammlungen, die in der Hauptagenda versteckt sind</translation>
+      <translation>Event collections to hide in the main agenda</translation>
     </message>
     <message>
       <source>Users</source>
-      <translation>Benutzer</translation>
+      <translation>Users</translation>
     </message>
     <message>
       <source>Moderators</source>
-      <translation>Moderatoren</translation>
+      <translation>Moderators</translation>
     </message>
     <message>
       <source>External Users</source>
-      <translation>Externe Benutzer</translation>
+      <translation>External Users</translation>
     </message>
     <message>
       <source>Search</source>
-      <translation>Suche</translation>
+      <translation>Search</translation>
     </message>
     <message>
       <source>Add a moderator</source>
-      <translation>Fügen Sie einen Moderator hinzu</translation>
+      <translation>Add a moderator</translation>
     </message>
     <message>
       <source>Add Existing User</source>
-      <translation>Fügen Sie einen vorhandenen Benutzer hinzu</translation>
+      <translation>Add Existing User</translation>
     </message>
     <message>
       <source>Add user</source>
-      <translation>Nutzer hinzufügen</translation>
+      <translation>Add user</translation>
     </message>
     <message>
       <source>Export to CSV</source>
-      <translation>In CSV exportieren</translation>
+      <translation>Export to CSV</translation>
     </message>
     <message>
       <source>Add %classname</source>
-      <translation>%classname hinzufügen</translation>
+      <translation>Add %classname</translation>
     </message>
   </context>
   <context>
     <name>agenda/dashboard</name>
     <message>
       <source>Title</source>
-      <translation>Titel</translation>
+      <translation>Title</translation>
     </message>
     <message>
       <source>Published</source>
-      <translation>Veröffentlicht</translation>
+      <translation>Published</translation>
     </message>
     <message>
       <source>Start date</source>
-      <translation>Startdatum</translation>
+      <translation>Start date</translation>
     </message>
     <message>
       <source>End date</source>
-      <translation>Enddatum</translation>
+      <translation>End date</translation>
     </message>
     <message>
       <source>Status</source>
@@ -307,27 +307,27 @@
     </message>
     <message>
       <source>Manage events</source>
-      <translation>Veranstaltugen bearbeiten</translation>
+      <translation>Manage events</translation>
     </message>
     <message>
       <source>Manage initiatives</source>
-      <translation>Initiativen verwalten</translation>
+      <translation>Manage initiatives</translation>
     </message>
     <message>
       <source>Manage organizations</source>
-      <translation>Vereine verwalten</translation>
+      <translation>Manage organizations</translation>
     </message>
     <message>
       <source>Author</source>
-      <translation>Autor</translation>
+      <translation>Author</translation>
     </message>
     <message>
       <source>Changed</source>
-      <translation>Geändert</translation>
+      <translation>Changed</translation>
     </message>
     <message>
       <source>Translations</source>
-      <translation>Übersetzungen</translation>
+      <translation>Translations</translation>
     </message>
     <message>
       <source>Detail</source>
@@ -335,434 +335,434 @@
     </message>
     <message>
       <source>Loading...</source>
-      <translation>Warten bitte...</translation>
+      <translation>Loading...</translation>
     </message>
     <message>
       <source>List</source>
-      <translation>Liste</translation>
+      <translation>List</translation>
     </message>
     <message>
       <source>Calendar</source>
-      <translation>Kalender</translation>
+      <translation>Calendar</translation>
     </message>
     <message>
       <source>Select</source>
-      <translation>Wählen</translation>
+      <translation>Select</translation>
     </message>
     <message>
       <source>Edit</source>
-      <translation>Abändern</translation>
+      <translation>Edit</translation>
     </message>
     <message>
       <source>Preview</source>
-      <translation>Vorschau</translation>
+      <translation>Preview</translation>
     </message>
     <message>
       <source>Publication date</source>
-      <translation>Veröffentlicht</translation>
+      <translation>Publication date</translation>
     </message>
     <message>
       <source>Images</source>
-      <translation>Fotos</translation>
+      <translation>Images</translation>
     </message>
     <message>
       <source>New</source>
-      <translation>Neu</translation>
+      <translation>New</translation>
     </message>
     <message>
       <source>Image library</source>
-      <translation>Bildarchiv</translation>
+      <translation>Image library</translation>
     </message>
     <message>
       <source>Create new event</source>
-      <translation>Neue Veranstaltung erstellen</translation>
+      <translation>Create new event</translation>
     </message>
     <message>
       <source>Create new organization</source>
-      <translation>Neuer Verein erstellen</translation>
+      <translation>Create new organization</translation>
     </message>
     <message>
       <source>Create new event program</source>
-      <translation>Neues Veranstaltungsprogramm erstellen</translation>
+      <translation>Create new event program</translation>
     </message>
     <message>
       <source>Manage event</source>
-      <translation>Veranstaltung verwalten</translation>
+      <translation>Manage event</translation>
     </message>
   </context>
   <context>
     <name>agenda/event</name>
     <message>
       <source>Where</source>
-      <translation>Wo</translation>
+      <translation>Where</translation>
     </message>
     <message>
       <source>How to get there</source>
-      <translation>So erreichen Sie den Veranstaltungsort</translation>
+      <translation>How to get there</translation>
     </message>
     <message>
       <source>Attachments</source>
-      <translation>Zubehör</translation>
+      <translation>Attachments</translation>
     </message>
   </context>
   <context>
     <name>agenda/event/comments</name>
     <message>
       <source>Enter answer</source>
-      <translation>Antwort hinzufügen</translation>
+      <translation>Enter answer</translation>
     </message>
     <message>
       <source>Insert your comment</source>
-      <translation>Kommentar hinzufügen</translation>
+      <translation>Insert your comment</translation>
     </message>
     <message>
       <source>Publish your comment</source>
-      <translation>Kommentar veröffentlichen</translation>
+      <translation>Publish your comment</translation>
     </message>
     <message>
       <source>Cancel</source>
-      <translation>Löschen</translation>
+      <translation>Cancel</translation>
     </message>
   </context>
   <context>
     <name>agenda/event/days</name>
     <message>
       <source>from</source>
-      <translation>vom</translation>
+      <translation>from</translation>
     </message>
     <message>
       <source>to</source>
-      <translation>bis zum</translation>
+      <translation>to</translation>
     </message>
   </context>
   <context>
     <name>agenda/event/hours</name>
     <message>
       <source>from</source>
-      <translation>vom</translation>
+      <translation>from</translation>
     </message>
     <message>
       <source>to</source>
-      <translation>bis</translation>
+      <translation>to</translation>
     </message>
   </context>
   <context>
     <name>agenda/mail/registration</name>
     <message>
       <source>%privacy_link_start%Privacy info%privacy_link_end%</source>
-      <translation>%privacy_link_start%Datenschutz und privacy%privacy_link_end%</translation>
+      <translation>%privacy_link_start%Privacy info%privacy_link_end%</translation>
     </message>
     <message>
       <source>%terms_link_start%Terms of use%terms_link_end%</source>
-      <translation>%terms_link_start%Nutzungsbedingungen%terms_link_end%</translation>
+      <translation>%terms_link_start%Terms of use%terms_link_end%</translation>
     </message>
   </context>
   <context>
     <name>agenda/menu</name>
     <message>
       <source>FAQ</source>
-      <translation>Faq</translation>
+      <translation>FAQ</translation>
     </message>
     <message>
       <source>Privacy</source>
-      <translation>Datenschutz</translation>
+      <translation>Privacy</translation>
     </message>
     <message>
       <source>Terms of use</source>
-      <translation>Nutzungsbedingungen</translation>
+      <translation>Terms of use</translation>
     </message>
     <message>
       <source>Agenda</source>
-      <translation>Kalender</translation>
+      <translation>Agenda</translation>
     </message>
     <message>
       <source>Organizations</source>
-      <translation>Vereine</translation>
+      <translation>Organizations</translation>
     </message>
     <message>
       <source>Manage events</source>
-      <translation>Veranstaltugen bearbeiten</translation>
+      <translation>Manage events</translation>
     </message>
     <message>
       <source>Information</source>
-      <translation>Informationen</translation>
+      <translation>Information</translation>
     </message>
     <message>
       <source>Profile</source>
-      <translation>Profil</translation>
+      <translation>Profile</translation>
     </message>
     <message>
       <source>Settings</source>
-      <translation>Einstellungen</translation>
+      <translation>Settings</translation>
     </message>
     <message>
       <source>Manage organizations</source>
-      <translation>Vereine verwalten</translation>
+      <translation>Manage organizations</translation>
     </message>
     <message>
       <source>Manage PDF Programme</source>
-      <translation>Pdf-Programm bearbeiten</translation>
+      <translation>Manage PDF Programme</translation>
     </message>
     <message>
       <source>Logout</source>
-      <translation>Abmelden</translation>
+      <translation>Logout</translation>
     </message>
   </context>
   <context>
     <name>agenda/signup</name>
     <message>
       <source>Subscribe</source>
-      <translation>Registrierung</translation>
+      <translation>Subscribe</translation>
     </message>
   </context>
   <context>
     <name>agenda/signupassociazione</name>
     <message>
       <source>Do you want to register your organization?</source>
-      <translation>Möchten Sie Ihren Verein registrieren?</translation>
+      <translation>Do you want to register your organization?</translation>
     </message>
     <message>
       <source>To register an organization, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events.</source>
-      <translation type="unfinished"/>
+      <translation>To register an organization, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events.</translation>
     </message>
     <message>
       <source>Register an organization</source>
-      <translation>Verein registrieren</translation>
+      <translation>Register an organization</translation>
     </message>
     <message>
       <source>Info were saved and sent for validation</source>
-      <translation>Die Daten wurden gespeichert und zur Validierung gesendet</translation>
+      <translation>Info were saved and sent for validation</translation>
     </message>
     <message>
       <source>Register a new organization</source>
-      <translation>Neuer Verein registrieren</translation>
+      <translation>Register a new organization</translation>
     </message>
     <message>
       <source>Register</source>
-      <translation>Registrieren</translation>
+      <translation>Register</translation>
     </message>
     <message>
       <source>Cancel</source>
-      <translation>Abbrechen</translation>
+      <translation>Cancel</translation>
     </message>
     <message>
       <source>Confirm us that you are not a robot</source>
-      <translation>Bestätigen Sie, dass Sie kein Roboter sind</translation>
+      <translation>Confirm us that you are not a robot</translation>
     </message>
     <message>
       <source>When they are validated you will receive an email notification to the email address you entered</source>
-      <translation>Wenn sie bestätigt sind, erhalten Sie eine E-Mail-Benachrichtigung an die von Ihnen angegebene E-Mail-Adresse</translation>
+      <translation>When they are validated you will receive an email notification to the email address you entered</translation>
     </message>
   </context>
   <context>
     <name>agenda/states</name>
     <message>
       <source>Waiting for moderation</source>
-      <translation>Warten auf Moderation</translation>
+      <translation>Waiting for moderation</translation>
     </message>
   </context>
   <context>
     <name>openpa_agenda</name>
     <message>
       <source>Content</source>
-      <translation>Hauptinhalte</translation>
+      <translation>Content</translation>
     </message>
     <message>
       <source>Image Gallery</source>
-      <translation>Bilder-Galerie</translation>
+      <translation>Image Gallery</translation>
     </message>
     <message>
       <source>Share</source>
-      <translation>Teilen</translation>
+      <translation>Share</translation>
     </message>
     <message>
       <source>Comments</source>
-      <translation>Kommentare</translation>
+      <translation>Comments</translation>
     </message>
     <message>
       <source>Press kit</source>
-      <translation>Pressemappe</translation>
+      <translation>Press kit</translation>
     </message>
     <message>
       <source>History</source>
-      <translation>Chronologie</translation>
+      <translation>History</translation>
     </message>
     <message>
       <source>Flyer</source>
-      <translation>Faltblatt</translation>
+      <translation>Flyer</translation>
     </message>
     <message>
       <source>Save</source>
-      <translation>Speichern</translation>
+      <translation>Save</translation>
     </message>
     <message>
       <source>Overlap</source>
-      <translation>Überlappung</translation>
+      <translation>Overlap</translation>
     </message>
   </context>
   <context>
     <name>agenda/leaflet</name>
     <message>
       <source>Two columns (18 events)</source>
-      <translation>Zwei Spalten (18 Veranstaltungen)</translation>
+      <translation>Two columns (18 events)</translation>
     </message>
     <message>
       <source>Three columns (20 events)</source>
-      <translation>Drei Spalten (20 Ereignisse)</translation>
+      <translation>Three columns (20 events)</translation>
     </message>
     <message>
       <source>Three columns (40 events)</source>
-      <translation>Drei Spalten (40 Veranstaltungen)</translation>
+      <translation>Three columns (40 events)</translation>
     </message>
     <message>
       <source>Title</source>
-      <translation>Titel</translation>
+      <translation>Title</translation>
     </message>
     <message>
       <source>Abstract</source>
-      <translation>Zusammenfassung</translation>
+      <translation>Abstract</translation>
     </message>
     <message>
       <source>Period</source>
-      <translation>Zeitraum</translation>
+      <translation>Period</translation>
     </message>
     <message>
       <source>Hours</source>
-      <translation>Zeit</translation>
+      <translation>Hours</translation>
     </message>
     <message>
       <source>Duration</source>
-      <translation>Dauer</translation>
+      <translation>Duration</translation>
     </message>
     <message>
       <source>Location</source>
-      <translation>Ort</translation>
+      <translation>Location</translation>
     </message>
     <message>
       <source>Delete selected events</source>
-      <translation>Markierte entfernen</translation>
+      <translation>Delete selected events</translation>
     </message>
     <message>
       <source>Add existing event</source>
-      <translation>Aggiungi Veranstaltung hinzufügen</translation>
+      <translation>Add existing event</translation>
     </message>
     <message>
       <source>Choose the layout for the flyer</source>
-      <translation>Wählen Sie das Layout für den Faltblatt aus</translation>
+      <translation>Choose the layout for the flyer</translation>
     </message>
     <message>
       <source>Save flyer</source>
-      <translation>Speichern Sie den Faltblatt</translation>
+      <translation>Save flyer</translation>
     </message>
     <message>
       <source>Save and download flyer</source>
-      <translation>Den Flyer speichern und herunterladen</translation>
+      <translation>Save and download flyer</translation>
     </message>
     <message>
       <source>selected events</source>
-      <translation>Ausgewählte Veranstaltungen</translation>
+      <translation>selected events</translation>
     </message>
     <message>
       <source>Event abstracts greater than %number characters will be automatically cut.</source>
-      <translation>Abstracts von Ereignissen, die größer als die %-Zahl der Zeichen sind, werden automatisch gekürzt.</translation>
+      <translation>Event abstracts greater than %number characters will be automatically cut.</translation>
     </message>
     <message>
       <source>You can use the form below to customize the event abstract on the flyer.</source>
-      <translation>Sie können das Formular unten verwenden, um den Veranstaltungsauszug auf dem Flyer anzupassen.</translation>
+      <translation>You can use the form below to customize the event abstract on the flyer.</translation>
     </message>
     <message>
       <source>missing characters</source>
-      <translation>Fehlende Buchstaben</translation>
+      <translation>missing characters</translation>
     </message>
     <message>
       <source>characters in excess</source>
-      <translation>Berzählige Buchstaben</translation>
+      <translation>characters in excess</translation>
     </message>
     <message>
       <source>Automatically generated abstract</source>
-      <translation>Automatisch erzeugte Zusammenfassung</translation>
+      <translation>Automatically generated abstract</translation>
     </message>
   </context>
   <context>
     <name>agenda/mail</name>
     <message>
       <source>Organization registration</source>
-      <translation>Registrierung des Vereins</translation>
+      <translation>Organization registration</translation>
     </message>
     <message>
       <source>We inform you that the data concerning the %name organization have been validated.</source>
-      <translation>Wir informieren Sie, dass die Daten bezüglich des Vereins %name validiert wurden.</translation>
+      <translation>We inform you that the data concerning the %name organization have been validated.</translation>
     </message>
     <message>
       <source>It is therefore possible to log in to the system and insert content.</source>
-      <translation>Es ist daher möglich, sich am System anzumelden und Inhalte einzufügen.</translation>
+      <translation>It is therefore possible to log in to the system and insert content.</translation>
     </message>
     <message>
       <source>Comment to</source>
-      <translation>Kommentar zu</translation>
+      <translation>Comment to</translation>
     </message>
     <message>
       <source>We inform you that your comment %message to the %name event is now in status %state.</source>
-      <translation>Wir teilen Ihnen mit, dass sich Ihr Kommentar %message zur Veranstaltung %name jetzt im Status %state befindet.</translation>
+      <translation>We inform you that your comment %message to the %name event is now in status %state.</translation>
     </message>
     <message>
       <source>We inform you that that the content %name has been published/updated.</source>
-      <translation>Wir informieren Sie, dass der Inhalt %name veröffentlicht/aktualisiert wurde.</translation>
+      <translation>We inform you that that the content %name has been published/updated.</translation>
     </message>
     <message>
       <source>The current status is %name.</source>
-      <translation>Der aktuelle Status ist %name.</translation>
+      <translation>The current status is %name.</translation>
     </message>
     <message>
       <source>We inform you that the comment %message has been published to the event %name.</source>
-      <translation>Wir informieren Sie, dass der Kommentar %message zu der Veranstaltung %name veröffentlicht wurde.</translation>
+      <translation>We inform you that the comment %message has been published to the event %name.</translation>
     </message>
     <message>
       <source>The comment is now in state %state.</source>
-      <translation>Der Kommentar befindet sich jetzt im Zustand %state.</translation>
+      <translation>The comment is now in state %state.</translation>
     </message>
     <message>
       <source>Notify on</source>
-      <translation>Benachrichtigen über</translation>
+      <translation>Notify on</translation>
     </message>
     <message>
       <source>We inform you that the status of the content "%name" has been changed.</source>
-      <translation>Wir informieren Sie, dass der Status des Inhalts "%name" geändert wurde.</translation>
+      <translation>We inform you that the status of the content "%name" has been changed.</translation>
     </message>
   </context>
   <context>
     <name>agenda/place</name>
     <message>
       <source>Nowhere</source>
-      <translation>Nirgendwo</translation>
+      <translation>Nowhere</translation>
     </message>
     <message>
       <source>Select place</source>
-      <translation>Ort auswählen</translation>
+      <translation>Select place</translation>
     </message>
     <message>
       <source>Editor choice</source>
-      <translation>Wahl der Redaktion</translation>
+      <translation>Editor choice</translation>
     </message>
     <message>
       <source>Shared</source>
-      <translation>Geteilt</translation>
+      <translation>Shared</translation>
     </message>
     <message>
       <source>Your own</source>
-      <translation>Von Ihnen erstellt</translation>
+      <translation>Your own</translation>
     </message>
     <message>
       <source>Add your own place</source>
-      <translation>Eigenen Platz hinzufügen</translation>
+      <translation>Add your own place</translation>
     </message>
     <message>
       <source>A place already exists with similar geolocation</source>
-      <translation>Ein Ort mit ähnlicher Geolokalisierung existiert bereits</translation>
+      <translation>A place already exists with similar geolocation</translation>
     </message>
     <message>
       <source>Detect position</source>
-      <translation>Position ermitteln</translation>
+      <translation>Detect position</translation>
     </message>
     <message>
       <source>Name</source>
@@ -770,54 +770,54 @@
     </message>
     <message>
       <source>Address</source>
-      <translation>Adresse</translation>
+      <translation>Address</translation>
     </message>
     <message>
       <source>Latitude</source>
-      <translation>Breitengrad</translation>
+      <translation>Latitude</translation>
     </message>
     <message>
       <source>Longitude</source>
-      <translation>Längengrad</translation>
+      <translation>Longitude</translation>
     </message>
     <message>
       <source>Store place</source>
-      <translation>Ort speichern</translation>
+      <translation>Store place</translation>
     </message>
     <message>
       <source>Store mine and ignore existent</source>
-      <translation>Meine Daten speichern und Vorhandenes ignorieren</translation>
+      <translation>Store mine and ignore existent</translation>
     </message>
     <message>
       <source>Select existent place</source>
-      <translation>Vorhandenen Ort auswählen</translation>
+      <translation>Select existent place</translation>
     </message>
   </context>
   <context>
     <name>agenda/stat</name>
     <message>
       <source>Statistics</source>
-      <translation>Statistiken</translation>
+      <translation>Statistics</translation>
     </message>
     <message>
       <source>Monthly</source>
-      <translation>Monatlich</translation>
+      <translation>Monthly</translation>
     </message>
     <message>
       <source>Quarterly</source>
-      <translation>Vierteljährlich</translation>
+      <translation>Quarterly</translation>
     </message>
     <message>
       <source>Half-yearly</source>
-      <translation>Halbjährlich</translation>
+      <translation>Half-yearly</translation>
     </message>
     <message>
       <source>Yearly</source>
-      <translation>Jährlich</translation>
+      <translation>Yearly</translation>
     </message>
     <message>
       <source>There is no data to produce the chart</source>
-      <translation>Es gibt keine Daten zur Erstellung des Diagramms</translation>
+      <translation>There is no data to produce the chart</translation>
     </message>
   </context>
 </TS>

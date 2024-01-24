@@ -81,7 +81,7 @@
     </message>
     <message>
       <source>Topics</source>
-      <translation>Tematica</translation>
+      <translation>Argomenti</translation>
     </message>
     <message>
       <source>What?</source>
@@ -198,6 +198,10 @@
     <message>
       <source>Also shows past events</source>
       <translation>Mostra anche gli eventi passati</translation>
+    </message>
+    <message>
+      <source>Appointments</source>
+      <translation>Appuntamenti</translation>
     </message>
   </context>
   <context>

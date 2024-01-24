@@ -21,7 +21,7 @@
     </message>
     <message>
       <source>Download the pdf programme</source>
-      <translation>Téléchargez le programme PDF</translation>
+      <translation>Télécharger le programme PDF</translation>
     </message>
     <message>
       <source>Address Book</source>
@@ -45,7 +45,7 @@
     </message>
     <message>
       <source>List</source>
-      <translation>Lister</translation>
+      <translation>Liste</translation>
     </message>
     <message>
       <source>Calendar</source>
@@ -57,7 +57,7 @@
     </message>
     <message>
       <source>When?</source>
-      <translation>Lorsque?</translation>
+      <translation>Quand?</translation>
     </message>
     <message>
       <source>Today</source>
@@ -69,11 +69,11 @@
     </message>
     <message>
       <source>Next 7 days</source>
-      <translation>7 prochains jours</translation>
+      <translation>7 jours suivants</translation>
     </message>
     <message>
       <source>Next 30 days</source>
-      <translation>30 prochains jours</translation>
+      <translation>30 jours suivants</translation>
     </message>
     <message>
       <source>All</source>
@@ -113,11 +113,11 @@
     </message>
     <message>
       <source>Close</source>
-      <translation>proche</translation>
+      <translation>Fermer</translation>
     </message>
     <message>
       <source>Load More Results</source>
-      <translation>Charger plus de résultats</translation>
+      <translation>Chargez plus de résultats</translation>
     </message>
     <message>
       <source>Search by name ...</source>
@@ -125,7 +125,7 @@
     </message>
     <message>
       <source>Search</source>
-      <translation>Chercher</translation>
+      <translation>Recherche</translation>
     </message>
     <message>
       <source>No result found</source>
@@ -137,7 +137,7 @@
     </message>
     <message>
       <source>Load more events</source>
-      <translation>Charger plus d'événements</translation>
+      <translation>Chargez plus d'événements</translation>
     </message>
     <message>
       <source>Show more items</source>
@@ -145,7 +145,7 @@
     </message>
     <message>
       <source>Add to your calendar</source>
-      <translation>Ajouter à votre calendrier</translation>
+      <translation>Ajoutez à votre calendrier</translation>
     </message>
     <message>
       <source>More information</source>
@@ -153,7 +153,7 @@
     </message>
     <message>
       <source>Add filter</source>
-      <translation>Filtre</translation>
+      <translation>Ajouter le filtre</translation>
     </message>
     <message>
       <source>Confirm</source>
@@ -169,7 +169,7 @@
     </message>
     <message>
       <source>Options</source>
-      <translation>Option</translation>
+      <translation>Options</translation>
     </message>
     <message>
       <source>Apply filters</source>
@@ -177,11 +177,11 @@
     </message>
     <message>
       <source>Found a result</source>
-      <translation>Trouvé un résultat</translation>
+      <translation>J'ai trouvé un résultat</translation>
     </message>
     <message>
       <source>Found %number results</source>
-      <translation>Résultats% nombre résultats</translation>
+      <translation>Résultats de nombres de% trouvés</translation>
     </message>
     <message>
       <source>No results found</source>
@@ -193,18 +193,22 @@
     </message>
     <message>
       <source>Even past events</source>
-      <translation>Même des événements passés</translation>
+      <translation>Même les événements passés</translation>
     </message>
     <message>
       <source>Also shows past events</source>
-      <translation>Montre aussi des événements passés</translation>
+      <translation>Montre également les événements passés</translation>
+    </message>
+    <message>
+      <source>Appointments</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
     <name>agenda/config</name>
     <message>
       <source>Lock</source>
-      <translation>Fermer à clé</translation>
+      <translation>Verrouillage</translation>
     </message>
     <message>
       <source>Unlock</source>
@@ -220,11 +224,11 @@
     </message>
     <message>
       <source>User registration is active</source>
-      <translation>L'enregistrement de l'utilisateur est actif</translation>
+      <translation>L'enregistrement des utilisateurs est actif</translation>
     </message>
     <message>
       <source>Organizations registration is active</source>
-      <translation>L'enregistrement des organisations est actif</translation>
+      <translation>L'inscription des organisations est active</translation>
     </message>
     <message>
       <source>Comments enabled</source>
@@ -236,11 +240,11 @@
     </message>
     <message>
       <source>Topics to hide in the main agenda</source>
-      <translation>Sujets à cacher dans l'agenda principal</translation>
+      <translation>Sujets à cacher dans le programme principal</translation>
     </message>
     <message>
       <source>Event collections to hide in the main agenda</source>
-      <translation>Collections d'événements à se cacher dans l'agenda principal</translation>
+      <translation>Collections d'événements à cacher dans l'agenda principal</translation>
     </message>
     <message>
       <source>Users</source>
@@ -256,7 +260,7 @@
     </message>
     <message>
       <source>Search</source>
-      <translation>Chercher</translation>
+      <translation>Recherche</translation>
     </message>
     <message>
       <source>Add a moderator</source>
@@ -268,15 +272,15 @@
     </message>
     <message>
       <source>Add user</source>
-      <translation>Ajouter un utilisateur</translation>
+      <translation>Ajouter l'utilisateur</translation>
     </message>
     <message>
       <source>Export to CSV</source>
-      <translation>Exporter vers la CSV</translation>
+      <translation>Exporter vers CSV</translation>
     </message>
     <message>
       <source>Add %classname</source>
-      <translation>Ajouter% de classeName</translation>
+      <translation>Ajouter% className</translation>
     </message>
   </context>
   <context>
@@ -335,7 +339,7 @@
     </message>
     <message>
       <source>List</source>
-      <translation>Lister</translation>
+      <translation>Liste</translation>
     </message>
     <message>
       <source>Calendar</source>
@@ -347,7 +351,7 @@
     </message>
     <message>
       <source>Edit</source>
-      <translation>Éditer</translation>
+      <translation>Modifier</translation>
     </message>
     <message>
       <source>Preview</source>
@@ -398,14 +402,14 @@
     </message>
     <message>
       <source>Attachments</source>
-      <translation>Accessoires</translation>
+      <translation>Attachements</translation>
     </message>
   </context>
   <context>
     <name>agenda/event/comments</name>
     <message>
       <source>Enter answer</source>
-      <translation>Entrer dans la réponse</translation>
+      <translation>Entrer la réponse</translation>
     </message>
     <message>
       <source>Insert your comment</source>
@@ -413,7 +417,7 @@
     </message>
     <message>
       <source>Publish your comment</source>
-      <translation>Publier votre commentaire</translation>
+      <translation>Publiez votre commentaire</translation>
     </message>
     <message>
       <source>Cancel</source>
@@ -424,7 +428,7 @@
     <name>agenda/event/days</name>
     <message>
       <source>from</source>
-      <translation>de</translation>
+      <translation>depuis</translation>
     </message>
     <message>
       <source>to</source>
@@ -435,7 +439,7 @@
     <name>agenda/event/hours</name>
     <message>
       <source>from</source>
-      <translation>de</translation>
+      <translation>depuis</translation>
     </message>
     <message>
       <source>to</source>
@@ -446,11 +450,11 @@
     <name>agenda/mail/registration</name>
     <message>
       <source>%privacy_link_start%Privacy info%privacy_link_end%</source>
-      <translation>% Privacy_Link_Start% Info de confidentialité% Privacy_Link_end%</translation>
+      <translation>% Privacy_link_start% Info en matière de confidentialité% Privacy_link_end%</translation>
     </message>
     <message>
       <source>%terms_link_start%Terms of use%terms_link_end%</source>
-      <translation>% tergimes_link_start% Conditions d'utilisation% Terms_Link_end%</translation>
+      <translation>% Termes_link_start% Conditions d'utilisation% Termes_link_end%</translation>
     </message>
   </context>
   <context>
@@ -461,7 +465,7 @@
     </message>
     <message>
       <source>Privacy</source>
-      <translation>Intimité</translation>
+      <translation>Confidentialité</translation>
     </message>
     <message>
       <source>Terms of use</source>
@@ -481,7 +485,7 @@
     </message>
     <message>
       <source>Information</source>
-      <translation>Informations</translation>
+      <translation>Information</translation>
     </message>
     <message>
       <source>Profile</source>
@@ -519,7 +523,7 @@
     </message>
     <message>
       <source>To register an organization, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events.</source>
-      <translation>Pour enregistrer une organisation, vous devez cliquer sur le bouton et remplir les informations requises. Une fois que nos opérateurs ont vérifié vos informations, vous pouvez utiliser les informations d'identification que vous avez choisies pour vous connecter et poster de nouveaux événements.</translation>
+      <translation>Pour enregistrer une organisation, vous devez cliquer sur le bouton et remplir les informations requises. Une fois que nos opérateurs ont vérifié vos informations, vous pouvez utiliser les informations d'identification que vous avez choisies pour vous connecter et publier de nouveaux événements.</translation>
     </message>
     <message>
       <source>Register an organization</source>
@@ -531,11 +535,11 @@
     </message>
     <message>
       <source>Register a new organization</source>
-      <translation>Enregistrer une nouvelle organisation</translation>
+      <translation>Enregistrez une nouvelle organisation</translation>
     </message>
     <message>
       <source>Register</source>
-      <translation>S'inscrire</translation>
+      <translation>Registre</translation>
     </message>
     <message>
       <source>Cancel</source>
@@ -547,7 +551,7 @@
     </message>
     <message>
       <source>When they are validated you will receive an email notification to the email address you entered</source>
-      <translation>Lorsqu'ils sont validés, vous recevrez une notification par courrier électronique à l'adresse e-mail que vous avez entrée.</translation>
+      <translation>Lorsqu'ils seront validés, vous recevrez une notification par e-mail à l'adresse e-mail que vous avez saisie</translation>
     </message>
   </context>
   <context>
@@ -561,7 +565,7 @@
     <name>openpa_agenda</name>
     <message>
       <source>Content</source>
-      <translation>Teneur</translation>
+      <translation>Contenu</translation>
     </message>
     <message>
       <source>Image Gallery</source>
@@ -589,7 +593,7 @@
     </message>
     <message>
       <source>Save</source>
-      <translation>sauvegarder</translation>
+      <translation>Sauvegarder</translation>
     </message>
     <message>
       <source>Overlap</source>
@@ -616,7 +620,7 @@
     </message>
     <message>
       <source>Abstract</source>
-      <translation>Résumé</translation>
+      <translation>Abstrait</translation>
     </message>
     <message>
       <source>Period</source>
@@ -624,7 +628,7 @@
     </message>
     <message>
       <source>Hours</source>
-      <translation>Les heures</translation>
+      <translation>Heures</translation>
     </message>
     <message>
       <source>Duration</source>
@@ -640,39 +644,39 @@
     </message>
     <message>
       <source>Add existing event</source>
-      <translation>Ajouter un événement existant</translation>
+      <translation>Ajouter l'événement existant</translation>
     </message>
     <message>
       <source>Choose the layout for the flyer</source>
-      <translation>Choisissez la mise en page pour le dépliant</translation>
+      <translation>Choisissez la disposition du dépliant</translation>
     </message>
     <message>
       <source>Save flyer</source>
-      <translation>Sauver le flyer</translation>
+      <translation>Sauver Flyer</translation>
     </message>
     <message>
       <source>Save and download flyer</source>
-      <translation>Sauvegarder et télécharger Flyer</translation>
+      <translation>Enregistrer et télécharger un dépliant</translation>
     </message>
     <message>
       <source>selected events</source>
-      <translation>Événements sélectionnés</translation>
+      <translation>événements sélectionnés</translation>
     </message>
     <message>
       <source>Event abstracts greater than %number characters will be automatically cut.</source>
-      <translation>Les résumés d'événement supérieur à% de caractères numériques seront automatiquement coupés.</translation>
+      <translation>Les résumés d'événements supérieurs à% de caractères de nombre seront automatiquement coupés.</translation>
     </message>
     <message>
       <source>You can use the form below to customize the event abstract on the flyer.</source>
-      <translation>Vous pouvez utiliser le formulaire ci-dessous pour personnaliser l'évacuation de l'événement sur le dépliant.</translation>
+      <translation>Vous pouvez utiliser le formulaire ci-dessous pour personnaliser le résumé d'événements sur le dépliant.</translation>
     </message>
     <message>
       <source>missing characters</source>
-      <translation>caractères manquants</translation>
+      <translation>personnages manquants</translation>
     </message>
     <message>
       <source>characters in excess</source>
-      <translation>caractères en excès</translation>
+      <translation>Personnages en excès</translation>
     </message>
     <message>
       <source>Automatically generated abstract</source>
@@ -687,43 +691,43 @@
     </message>
     <message>
       <source>We inform you that the data concerning the %name organization have been validated.</source>
-      <translation>Nous vous informons que les données concernant l'organisation% du nom ont été validées.</translation>
+      <translation>Nous vous informions que les données concernant l'organisation% nom ont été validées.</translation>
     </message>
     <message>
       <source>It is therefore possible to log in to the system and insert content.</source>
-      <translation>Il est donc possible de vous connecter au système et d'insérer du contenu.</translation>
+      <translation>Il est donc possible de se connecter au système et d'insérer du contenu.</translation>
     </message>
     <message>
       <source>Comment to</source>
-      <translation>Commenter à</translation>
+      <translation>Commenter</translation>
     </message>
     <message>
       <source>We inform you that your comment %message to the %name event is now in status %state.</source>
-      <translation>Nous vous informons que votre commentaire% Message à l'événement% Nom est maintenant dans l'état Statut% State.</translation>
+      <translation>Nous vous informions que votre message de commentaire% de commentaire à l'événement de nom% est désormais dans l'état de statut%.</translation>
     </message>
     <message>
       <source>We inform you that that the content %name has been published/updated.</source>
-      <translation>Nous vous informons que le nom du contenu du contenu a été publié / mis à jour.</translation>
+      <translation>Nous vous informez que le nom de contenu% a été publié / mis à jour.</translation>
     </message>
     <message>
       <source>The current status is %name.</source>
-      <translation>L'état actuel est le nom de%.</translation>
+      <translation>L'état actuel est un nom de nom.</translation>
     </message>
     <message>
       <source>We inform you that the comment %message has been published to the event %name.</source>
-      <translation>Nous vous informons que le commentaire% Message a été publié sur le nom de% de l'événement.</translation>
+      <translation>Nous vous informions que le message de commentaire% a été publié sur le nom de l'événement%.</translation>
     </message>
     <message>
       <source>The comment is now in state %state.</source>
-      <translation>Le commentaire est maintenant dans l'état de l'état de l'état.</translation>
+      <translation>Le commentaire est désormais dans l'état de l'État.</translation>
     </message>
     <message>
       <source>Notify on</source>
-      <translation>Notifier</translation>
+      <translation>Avertir</translation>
     </message>
     <message>
       <source>We inform you that the status of the content "%name" has been changed.</source>
-      <translation>Nous vous informons que l'état du contenu "% nom" a été modifié.</translation>
+      <translation>Nous vous informez que l'état du contenu "% nom" a été modifié.</translation>
     </message>
   </context>
   <context>
@@ -734,7 +738,7 @@
     </message>
     <message>
       <source>Select place</source>
-      <translation>Sélectionner</translation>
+      <translation>Sélectionner un endroit</translation>
     </message>
     <message>
       <source>Editor choice</source>
@@ -750,7 +754,7 @@
     </message>
     <message>
       <source>Add your own place</source>
-      <translation>Ajoutez votre propre lieu</translation>
+      <translation>Ajoutez votre propre place</translation>
     </message>
     <message>
       <source>A place already exists with similar geolocation</source>
@@ -778,15 +782,15 @@
     </message>
     <message>
       <source>Store place</source>
-      <translation>Lieu de magasin</translation>
+      <translation>Magasin</translation>
     </message>
     <message>
       <source>Store mine and ignore existent</source>
-      <translation>Stocker le mien et ignorer existant</translation>
+      <translation>Stockez le mien et ignorez l'existence</translation>
     </message>
     <message>
       <source>Select existent place</source>
-      <translation>Sélectionner un lieu existant</translation>
+      <translation>Sélectionnez un endroit existant</translation>
     </message>
   </context>
   <context>

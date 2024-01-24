@@ -9,7 +9,7 @@
     </message>
     <message>
       <source>Comments</source>
-      <translation>Comentarios</translation>
+      <translation>Comentario</translation>
     </message>
     <message>
       <source>In order to leave comments, you need to be logged in</source>
@@ -21,7 +21,7 @@
     </message>
     <message>
       <source>Download the pdf programme</source>
-      <translation>Descargar el programa PDF</translation>
+      <translation>Descargue el programa PDF</translation>
     </message>
     <message>
       <source>Address Book</source>
@@ -33,7 +33,7 @@
     </message>
     <message>
       <source>Official Register of the town</source>
-      <translation>Registro Oficial de la ciudad.</translation>
+      <translation>Registro oficial de la ciudad</translation>
     </message>
     <message>
       <source>Are you an organization?</source>
@@ -41,7 +41,7 @@
     </message>
     <message>
       <source>Find out how to participate!</source>
-      <translation>¡Averigüe cómo participar!</translation>
+      <translation>¡Descubre cómo participar!</translation>
     </message>
     <message>
       <source>List</source>
@@ -57,11 +57,11 @@
     </message>
     <message>
       <source>When?</source>
-      <translation>¿Cuándo?</translation>
+      <translation>¿Cuando?</translation>
     </message>
     <message>
       <source>Today</source>
-      <translation>Hoy dia</translation>
+      <translation>Hoy</translation>
     </message>
     <message>
       <source>This weekend</source>
@@ -69,15 +69,15 @@
     </message>
     <message>
       <source>Next 7 days</source>
-      <translation>Siguiente 7 días</translation>
+      <translation>Los próximos 7 días</translation>
     </message>
     <message>
       <source>Next 30 days</source>
-      <translation>Siguientes 30 días</translation>
+      <translation>Los próximos 30 días</translation>
     </message>
     <message>
       <source>All</source>
-      <translation>Todos</translation>
+      <translation>Todo</translation>
     </message>
     <message>
       <source>Topics</source>
@@ -89,7 +89,7 @@
     </message>
     <message>
       <source>Who are you?</source>
-      <translation>¿Quién eres tú?</translation>
+      <translation>¿Quién eres?</translation>
     </message>
     <message>
       <source>Where?</source>
@@ -109,11 +109,11 @@
     </message>
     <message>
       <source>No events found</source>
-      <translation>No se han encontrado eventos</translation>
+      <translation>No se encuentran eventos</translation>
     </message>
     <message>
       <source>Close</source>
-      <translation>Cerrar</translation>
+      <translation>Cerca</translation>
     </message>
     <message>
       <source>Load More Results</source>
@@ -141,11 +141,11 @@
     </message>
     <message>
       <source>Show more items</source>
-      <translation>Mostrar mas artículos</translation>
+      <translation>Mostrar más elementos</translation>
     </message>
     <message>
       <source>Add to your calendar</source>
-      <translation>Añadir a tu calendario</translation>
+      <translation>Agregar a su calendario</translation>
     </message>
     <message>
       <source>More information</source>
@@ -169,7 +169,7 @@
     </message>
     <message>
       <source>Options</source>
-      <translation>Opciones</translation>
+      <translation>Opción</translation>
     </message>
     <message>
       <source>Apply filters</source>
@@ -177,11 +177,11 @@
     </message>
     <message>
       <source>Found a result</source>
-      <translation>Encontrado un resultado</translation>
+      <translation>Encontró un resultado</translation>
     </message>
     <message>
       <source>Found %number results</source>
-      <translation>Resultados de% número de%</translation>
+      <translation>Resultados del número de %encontrado</translation>
     </message>
     <message>
       <source>No results found</source>
@@ -197,14 +197,18 @@
     </message>
     <message>
       <source>Also shows past events</source>
-      <translation>También muestra eventos pasados.</translation>
+      <translation>También muestra eventos pasados</translation>
+    </message>
+    <message>
+      <source>Appointments</source>
+      <translation type="unfinished"/>
     </message>
   </context>
   <context>
     <name>agenda/config</name>
     <message>
       <source>Lock</source>
-      <translation>Cerrar con llave</translation>
+      <translation>Cerrar</translation>
     </message>
     <message>
       <source>Unlock</source>
@@ -220,7 +224,7 @@
     </message>
     <message>
       <source>User registration is active</source>
-      <translation>El registro de usuario está activo</translation>
+      <translation>El registro del usuario está activo</translation>
     </message>
     <message>
       <source>Organizations registration is active</source>
@@ -236,11 +240,11 @@
     </message>
     <message>
       <source>Topics to hide in the main agenda</source>
-      <translation>Temas para esconderse en la agenda principal.</translation>
+      <translation>Temas para esconderse en la agenda principal</translation>
     </message>
     <message>
       <source>Event collections to hide in the main agenda</source>
-      <translation>Colecciones de eventos para esconderse en la agenda principal.</translation>
+      <translation>Colecciones de eventos para esconderse en la agenda principal</translation>
     </message>
     <message>
       <source>Users</source>
@@ -260,11 +264,11 @@
     </message>
     <message>
       <source>Add a moderator</source>
-      <translation>Añadir un moderador</translation>
+      <translation>Agregar un moderador</translation>
     </message>
     <message>
       <source>Add Existing User</source>
-      <translation>Añadir usuario existente</translation>
+      <translation>Agregar usuario existente</translation>
     </message>
     <message>
       <source>Add user</source>
@@ -276,7 +280,7 @@
     </message>
     <message>
       <source>Add %classname</source>
-      <translation>Añadir% ClassName</translation>
+      <translation>Agregar %classname</translation>
     </message>
   </context>
   <context>
@@ -343,7 +347,7 @@
     </message>
     <message>
       <source>Select</source>
-      <translation>Seleccione</translation>
+      <translation>Seleccionar</translation>
     </message>
     <message>
       <source>Edit</source>
@@ -371,11 +375,11 @@
     </message>
     <message>
       <source>Create new event</source>
-      <translation>Crear nuevo evento</translation>
+      <translation>Crea un nuevo evento</translation>
     </message>
     <message>
       <source>Create new organization</source>
-      <translation>Crear nueva organización</translation>
+      <translation>Crear una nueva organización</translation>
     </message>
     <message>
       <source>Create new event program</source>
@@ -383,7 +387,7 @@
     </message>
     <message>
       <source>Manage event</source>
-      <translation>Manejar el evento</translation>
+      <translation>Administrar evento</translation>
     </message>
   </context>
   <context>
@@ -405,11 +409,11 @@
     <name>agenda/event/comments</name>
     <message>
       <source>Enter answer</source>
-      <translation>Entrar en respuesta</translation>
+      <translation>Ingrese la respuesta</translation>
     </message>
     <message>
       <source>Insert your comment</source>
-      <translation>Inserta tu comentario</translation>
+      <translation>Inserte su comentario</translation>
     </message>
     <message>
       <source>Publish your comment</source>
@@ -428,7 +432,7 @@
     </message>
     <message>
       <source>to</source>
-      <translation>para</translation>
+      <translation>a</translation>
     </message>
   </context>
   <context>
@@ -439,18 +443,18 @@
     </message>
     <message>
       <source>to</source>
-      <translation>para</translation>
+      <translation>a</translation>
     </message>
   </context>
   <context>
     <name>agenda/mail/registration</name>
     <message>
       <source>%privacy_link_start%Privacy info%privacy_link_end%</source>
-      <translation>% privacy_link_start% info de privacidad% privacidad_link_end%</translation>
+      <translation>%privacy_link_start%privacy info%privacy_link_end%</translation>
     </message>
     <message>
       <source>%terms_link_start%Terms of use%terms_link_end%</source>
-      <translation>% Términos_link_start% Términos de uso% Términos_link_end%</translation>
+      <translation>%Términos_link_Start%Términos de uso%Términos_link_end%</translation>
     </message>
   </context>
   <context>
@@ -461,7 +465,7 @@
     </message>
     <message>
       <source>Privacy</source>
-      <translation>Intimidad</translation>
+      <translation>Privacidad</translation>
     </message>
     <message>
       <source>Terms of use</source>
@@ -497,7 +501,7 @@
     </message>
     <message>
       <source>Manage PDF Programme</source>
-      <translation>Administrar programa PDF</translation>
+      <translation>Administrar el programa PDF</translation>
     </message>
     <message>
       <source>Logout</source>
@@ -519,23 +523,23 @@
     </message>
     <message>
       <source>To register an organization, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events.</source>
-      <translation>Para registrar una organización, debe hacer clic en el botón y completar la información requerida. Después de que nuestros operadores hayan revisado su información, puede usar las credenciales que ha elegido iniciar sesión y publicar nuevos eventos.</translation>
+      <translation>Para registrar una organización, debe hacer clic en el botón y completar la información requerida. Después de que nuestros operadores hayan revisado su información, puede usar las credenciales que ha elegido para iniciar sesión y publicar nuevos eventos.</translation>
     </message>
     <message>
       <source>Register an organization</source>
-      <translation>Registrar una organización</translation>
+      <translation>Registre una organización</translation>
     </message>
     <message>
       <source>Info were saved and sent for validation</source>
-      <translation>La información se guardó y envió para validación.</translation>
+      <translation>La información se guardó y se enviaron para la validación</translation>
     </message>
     <message>
       <source>Register a new organization</source>
-      <translation>Registrar una nueva organización</translation>
+      <translation>Registre una nueva organización</translation>
     </message>
     <message>
       <source>Register</source>
-      <translation>Registrarse</translation>
+      <translation>Registro</translation>
     </message>
     <message>
       <source>Cancel</source>
@@ -543,11 +547,11 @@
     </message>
     <message>
       <source>Confirm us that you are not a robot</source>
-      <translation>Confirma que no eres un robot.</translation>
+      <translation>Confirme que no eres un robot</translation>
     </message>
     <message>
       <source>When they are validated you will receive an email notification to the email address you entered</source>
-      <translation>Cuando se validen, recibirá una notificación por correo electrónico a la dirección de correo electrónico que ingresó</translation>
+      <translation>Cuando estén validados, recibirá una notificación por correo electrónico a la dirección de correo electrónico que ingresó</translation>
     </message>
   </context>
   <context>
@@ -569,11 +573,11 @@
     </message>
     <message>
       <source>Share</source>
-      <translation>Cuota</translation>
+      <translation>Compartir</translation>
     </message>
     <message>
       <source>Comments</source>
-      <translation>Comentarios</translation>
+      <translation>Comentario</translation>
     </message>
     <message>
       <source>Press kit</source>
@@ -632,7 +636,7 @@
     </message>
     <message>
       <source>Location</source>
-      <translation>Localización</translation>
+      <translation>Ubicación</translation>
     </message>
     <message>
       <source>Delete selected events</source>
@@ -640,19 +644,19 @@
     </message>
     <message>
       <source>Add existing event</source>
-      <translation>Añadir evento existente</translation>
+      <translation>Agregar evento existente</translation>
     </message>
     <message>
       <source>Choose the layout for the flyer</source>
-      <translation>Elige el diseño para el folleto.</translation>
+      <translation>Elija el diseño del volante</translation>
     </message>
     <message>
       <source>Save flyer</source>
-      <translation>Folleto</translation>
+      <translation>Guardar volante</translation>
     </message>
     <message>
       <source>Save and download flyer</source>
-      <translation>Guardar y descargar Flyer</translation>
+      <translation>Guardar y descargar volante</translation>
     </message>
     <message>
       <source>selected events</source>
@@ -660,11 +664,11 @@
     </message>
     <message>
       <source>Event abstracts greater than %number characters will be automatically cut.</source>
-      <translation>Los resúmenes de eventos superiores a%, los caracteres numéricos se cortarán automáticamente.</translation>
+      <translation>Los resúmenes de eventos mayores del %de los caracteres se cortarán automáticamente.</translation>
     </message>
     <message>
       <source>You can use the form below to customize the event abstract on the flyer.</source>
-      <translation>Puede usar el siguiente formulario para personalizar el resumen del evento en el folleto.</translation>
+      <translation>Puede usar el siguiente formulario para personalizar el resumen del evento en el volante.</translation>
     </message>
     <message>
       <source>missing characters</source>
@@ -676,18 +680,18 @@
     </message>
     <message>
       <source>Automatically generated abstract</source>
-      <translation>Abstracto generado automáticamente</translation>
+      <translation>Resumen generado automáticamente</translation>
     </message>
   </context>
   <context>
     <name>agenda/mail</name>
     <message>
       <source>Organization registration</source>
-      <translation>Registro de organizaciones</translation>
+      <translation>Registro de la organización</translation>
     </message>
     <message>
       <source>We inform you that the data concerning the %name organization have been validated.</source>
-      <translation>Le informamos que los datos relativos a la organización de% NOMBRE han sido validados.</translation>
+      <translation>Le informamos que los datos relacionados con la organización %de nombre han sido validados.</translation>
     </message>
     <message>
       <source>It is therefore possible to log in to the system and insert content.</source>
@@ -695,35 +699,35 @@
     </message>
     <message>
       <source>Comment to</source>
-      <translation>Comentar a</translation>
+      <translation>Comentar</translation>
     </message>
     <message>
       <source>We inform you that your comment %message to the %name event is now in status %state.</source>
-      <translation>Le informamos que su mensaje% en el evento de% Nombre ahora está en estado% en estado.</translation>
+      <translation>Le informamos que su mensaje de comentario %en el evento de nombre %está ahora en estado %de estado.</translation>
     </message>
     <message>
       <source>We inform you that that the content %name has been published/updated.</source>
-      <translation>Le informamos que el número de contenido se ha publicado / actualizado.</translation>
+      <translation>Le informamos que el nombre de contenido %ha sido publicado/actualizado.</translation>
     </message>
     <message>
       <source>The current status is %name.</source>
-      <translation>El estado actual es el nombre del%.</translation>
+      <translation>El estado actual es %nombre.</translation>
     </message>
     <message>
       <source>We inform you that the comment %message has been published to the event %name.</source>
-      <translation>Le informamos que el mensaje de comentarios se ha publicado en el evento% nombre.</translation>
+      <translation>Le informamos que el mensaje de comentario %se ha publicado al nombre de %de eventos.</translation>
     </message>
     <message>
       <source>The comment is now in state %state.</source>
-      <translation>El comentario está ahora en estado estatal.</translation>
+      <translation>El comentario ahora está en el estado del estado del estado.</translation>
     </message>
     <message>
       <source>Notify on</source>
-      <translation>Notificar a</translation>
+      <translation>Notificar</translation>
     </message>
     <message>
       <source>We inform you that the status of the content "%name" has been changed.</source>
-      <translation>Le informamos que se ha cambiado el estado del contenido "% nombre".</translation>
+      <translation>Le informamos que se ha cambiado el estado del contenido "%de nombre".</translation>
     </message>
   </context>
   <context>
@@ -734,7 +738,7 @@
     </message>
     <message>
       <source>Select place</source>
-      <translation>Seleccione lugar</translation>
+      <translation>Seleccionar lugar</translation>
     </message>
     <message>
       <source>Editor choice</source>
@@ -750,15 +754,15 @@
     </message>
     <message>
       <source>Add your own place</source>
-      <translation>Añade tu propio lugar</translation>
+      <translation>Agrega tu propio lugar</translation>
     </message>
     <message>
       <source>A place already exists with similar geolocation</source>
-      <translation>Ya existe un lugar con geolocalización similar.</translation>
+      <translation>Ya existe un lugar con una geolocalización similar</translation>
     </message>
     <message>
       <source>Detect position</source>
-      <translation>Posición de detección</translation>
+      <translation>Detectar posición</translation>
     </message>
     <message>
       <source>Name</source>
@@ -766,7 +770,7 @@
     </message>
     <message>
       <source>Address</source>
-      <translation>Dirección</translation>
+      <translation>DIRECCIÓN</translation>
     </message>
     <message>
       <source>Latitude</source>
@@ -778,11 +782,11 @@
     </message>
     <message>
       <source>Store place</source>
-      <translation>Lugar de tienda</translation>
+      <translation>Lugar de almacenamiento</translation>
     </message>
     <message>
       <source>Store mine and ignore existent</source>
-      <translation>Almacenar la mía e ignorar existentes</translation>
+      <translation>Almacenar el mío e ignorar existente</translation>
     </message>
     <message>
       <source>Select existent place</source>
@@ -813,7 +817,7 @@
     </message>
     <message>
       <source>There is no data to produce the chart</source>
-      <translation>No hay datos para producir la tabla.</translation>
+      <translation>No hay datos para producir el gráfico</translation>
     </message>
   </context>
 </TS>

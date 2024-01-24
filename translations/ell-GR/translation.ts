@@ -199,6 +199,10 @@
       <source>Also shows past events</source>
       <translation>Εμφάνιση και των παλαιότερων εκδηλώσεων</translation>
     </message>
+    <message>
+      <source>Appointments</source>
+      <translation type="unfinished"/>
+    </message>
   </context>
   <context>
     <name>agenda/config</name>
@@ -379,7 +383,7 @@
     </message>
     <message>
       <source>Create new event program</source>
-      <translation>Δημιουργία νέου προγράμματος συμβάντων</translation>
+      <translation>Δημιουργήστε νέο πρόγραμμα εκδηλώσεων</translation>
     </message>
     <message>
       <source>Manage event</source>
