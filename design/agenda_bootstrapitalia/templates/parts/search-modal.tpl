@@ -67,7 +67,7 @@
                                         </a>
                                     </li>
                                     {/if}
-                                    {if $exclude|contains('who')|not()}
+                                    {*{if $exclude|contains('who')|not()}
                                     <li class="nav-item">
                                         <a role="tab" data-toggle="tab" class="nav-link{if $active|not()} active{set $active = true()}{/if}"
                                            href="#filter-by-who">
@@ -82,7 +82,7 @@
                                                 {'Author'|i18n('agenda/dashboard')}
                                             </a>
                                         </li>
-                                    {/if}
+                                    {/if}*}
                                 </ul>
                             </div>
                         </div>
@@ -247,7 +247,7 @@
                                 </div>
                             </div>
                             {/if}
-                            {if $exclude|contains('who')|not()}
+                            {*{if $exclude|contains('who')|not()}
                             <div class="tab-pane{if $active|not()} active{set $active = true()}{/if}" id="filter-by-who">
                                 <div class="row">
                                     <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 col-sm-12">
@@ -311,7 +311,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            {/if}
+                            {/if}*}
                         </div>
                     </div>
                 </form>
