@@ -8,11 +8,14 @@
 {def $attributes = class_extra_parameters($node.object.class_identifier, 'card_small_view')}
 
 <div data-object_id="{$node.contentobject_id}" class="card card-teaser shadow rounded" style="display: inline-flex;flex-direction: row !important;align-items: flex-start;flex-wrap: nowrap;">
-
-    {def $events = $node|attribute('time_interval').content.events}
+    {def $attribute_content = $node|attribute('time_interval').content}
+    {def $events = $attribute_content.events}
     {def $is_recurrence = cond(count($events)|gt(1), true(), false())}
+    {if recurrences_strtotime($attribute_content.input.startDateTime)|datetime( 'custom', '%j%m%Y' )|ne(recurrences_strtotime($attribute_content.input.endDateTime)|datetime( 'custom', '%j%m%Y' ))}
+        {set $is_recurrence = true()}
+    {/if}
     {if count($events)|gt(0)}
-    <div class="card-calendar d-flex flex-column justify-content-center" style="position: static;height: 80px;margin-right: 20px;">
+    <div class="card-calendar d-flex flex-column justify-content-center" style="position: static;height: 80px;margin-right: 20px;min-width: 80px;">
         <span class="card-date">{if $is_recurrence}<small>{'from'|i18n('openpa/search')}</small> {/if}{recurrences_strtotime($events[0].start)|datetime( 'custom', '%j' )}</span>
         <span class="card-day">{recurrences_strtotime($events[0].start)|datetime( 'custom', '%F' )}</span>
     </div>
@@ -45,6 +48,6 @@
     {/if}
 </div>
 
-{undef $attributes}
+{undef $attributes $attribute_content}
 {unset_defaults(array('show_icon', 'image_class', 'view_variation', 'hide_title'))}
 

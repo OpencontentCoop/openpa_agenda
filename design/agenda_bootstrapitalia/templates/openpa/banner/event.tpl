@@ -21,10 +21,14 @@
     <div class="card-body">
         <h5 class="card-title{if and($has_media|not(), $view_variation|eq('big')|not())} big-heading{/if}">
             {if and($show_icon, $has_media|not(), $node|has_attribute('time_interval'), $node.class_identifier|contains('event'))}
-                {def $events = $node|attribute('time_interval').content.events}
+                {def $attribute_content = $node|attribute('time_interval').content}
+                {def $events = $attribute_content.events}
                 {def $is_recurrence = cond(count($events)|gt(1), true(), false())}
+                {if recurrences_strtotime($attribute_content.input.startDateTime)|datetime( 'custom', '%j%m%Y' )|ne(recurrences_strtotime($attribute_content.input.endDateTime)|datetime( 'custom', '%j%m%Y' ))}
+                    {set $is_recurrence = true()}
+                {/if}
                 {if count($events)|gt(0)}
-                    <div class="card-calendar d-flex flex-column justify-content-center" style="font-size: 0.67em;height: 80px;position: relative;float: right;right: -20px;top: -35px;">
+                    <div class="card-calendar d-flex flex-column justify-content-center" style="font-size: 0.67em;height: 80px;position: relative;float: right;right: -20px;top: -35px;min-width: 80px;">
                         <span class="card-date">{if $is_recurrence}<small>{'from'|i18n('openpa/search')}</small> {/if}{recurrences_strtotime($events[0].start)|datetime( 'custom', '%j' )}</span>
                         <span class="card-day">{recurrences_strtotime($events[0].start)|datetime( 'custom', '%F' )}</span>
                     </div>
