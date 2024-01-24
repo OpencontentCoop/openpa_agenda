@@ -6,7 +6,7 @@
 	    {{include tmpl="#tpl-empty"/}}
 	{{else}}
 	{{for searchHits}}
-		<div class="col-md-6 col-lg-4 px-lg-3 pb-lg-3">
+		<div class="col-md-6 col-lg-{/literal}{if $grid_view|eq('mini')}6{else}4{/if}{literal} px-lg-3 pb-lg-3">
 		    {{include tmpl="#tpl-event"/}}
 		</div>
 	{{/for}}
@@ -54,16 +54,21 @@
                     <img src="{{:~agendaMainImageUrl(data)}}" class="img-fluid" />
                 </div>
                 <div class="card-calendar d-flex flex-column justify-content-center">
-                    <span class="card-date">{{:~formatDate(~i18n(data,'time_interval').default_value.from_time,'DD')}}</span>
+                    <span class="card-date">
+                        {{if ~formatDate(~i18n(data,'time_interval').default_value.from_time,'YYYY.MM.D') != ~formatDate(~i18n(data,'time_interval').default_value.to_time,'YYYY.MM.D') || ~i18n(data,'time_interval').default_value.count > 1}}
+                            <small>{/literal}{'from'|i18n('openpa/search')}{literal}</small>
+                        {{/if}}
+                        {{:~formatDate(~i18n(data,'time_interval').default_value.from_time,'DD')}}
+                    </span>
                     <span class="card-day">{{:~formatDate(~i18n(data,'time_interval').default_value.from_time,'MMMM')}}</span>
                 </div>
             </div>
         </div>
         {{/if}}
         <div class="card-body">
-            {/literal}{if $grid_view|ne('mini')}{literal}
+
             <div class="category-top">
-                {{if ~i18n(data,'time_interval').default_value && (~formatDate(~i18n(data,'time_interval').default_value.from_time,'yyyy.MM.D') !== ~formatDate(~i18n(data,'time_interval').default_value.to_time,'yyyy.MM.D')) && ~i18n(data,'time_interval').default_value.count == 1}}
+                {{if ~i18n(data,'time_interval').default_value && (~formatDate(~i18n(data,'time_interval').default_value.from_time,'YYYY.MM.D') != ~formatDate(~i18n(data,'time_interval').default_value.to_time,'YYYY.MM.D')) && ~i18n(data,'time_interval').default_value.count == 1}}
                     <i class="fa fa-calendar"></i> {{:~formatDate(~i18n(data,'time_interval').default_value.from_time,'D/MM/YY · H:mm')}} - {{:~formatDate(~i18n(data,'time_interval').default_value.to_time,'D/MM/YY · H:mm')}}
                 {{else ~i18n(data,'time_interval').default_value.count == 1}}
                     <i class="fa fa-calendar"></i> {{:~formatDate(~i18n(data,'time_interval').default_value.from_time,'D/MM/YY · H:mm')}} - {{:~formatDate(~i18n(data,'time_interval').default_value.to_time,'H:mm')}}
@@ -71,7 +76,7 @@
                     <i class="fa fa-calendar"></i> {{:~formatDate(~i18n(data,'time_interval').default_value.from_time,'D/MM/YY · H:mm')}} - {{:~formatDate(~i18n(data,'time_interval').default_value.to_time,'H:mm')}}<br />{{:~i18n(data,'time_interval').text}}
                 {{/if}}
             </div>
-            {/literal}{/if}{literal}
+
             <h5 class="card-title{{if !~agendaMainImageUrl(data)}} big-heading{{/if}}">
                 <a class="stretched-link text-primary text-decoration-none" href="{{:~objectUrl(metadata.id)}}">{{:~i18n(metadata.name)}}</a>
             </h5>

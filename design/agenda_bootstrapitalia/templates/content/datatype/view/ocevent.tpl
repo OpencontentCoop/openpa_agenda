@@ -76,14 +76,16 @@
     {include
         uri='design:parts/agenda.tpl'
         exclude=array('what')
-        views=array('grid','geo','agenda')
+        views=array('grid')
         base_query=concat("classes [",agenda_event_class_identifier(),"] and sub_event_of.id = ", $attribute.contentobject_id, " and subtree [", calendar_node_id(), "] and state in [moderation.skipped,moderation.accepted] sort [time_interval=>asc]")
         grid_view='mini'
         also_past=true()
         cal_view='listWeek'
         cal_responsive=false()
+        hide_filters=true()
         icon_style=''
-        style='pb-4'}
+        title='Appointments'|i18n('agenda')
+        style='pt-5 pb-4'}
     {include uri='design:parts/views.tpl' views=array('grid','geo','agenda') view_style='pb-4'}
     {/if}
 </div>

@@ -1,4 +1,4 @@
-<div class="row align-items-end">
+<div class="row align-items-end{if and(is_set($hide_filters), $hide_filters|eq(true))} d-none{/if}">
     <div class="col-lg-8 mt-4">
         {include uri='design:parts/filters.tpl'}
     </div>

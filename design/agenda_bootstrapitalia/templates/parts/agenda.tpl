@@ -1,6 +1,10 @@
 <div class="agenda-calendar {if is_set($style)}{$style}{/if}">
 
-    {include uri='design:parts/filters_and_pills.tpl' views=$views}
+    {if is_set($title)}
+        <h4>{$title|wash()}</h4>
+    {/if}
+
+    {include uri='design:parts/filters_and_pills.tpl' views=$views hide_filters=cond(is_set($hide_filters), $hide_filters, false())}
     {include uri='design:parts/tpl-spinner.tpl'}
     {include uri='design:parts/tpl-empty.tpl'}
     {include uri='design:parts/tpl-grid.tpl'}
