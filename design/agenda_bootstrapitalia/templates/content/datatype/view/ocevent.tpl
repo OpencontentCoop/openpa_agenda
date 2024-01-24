@@ -72,12 +72,13 @@
     {/foreach}
     {undef $events}
 
-    {if fetch( 'content', 'reverse_related_objects_count', hash( 'object_id', $attribute.contentobject_id, 'attribute_identifier', 'event/sub_event_of' ) )|gt(0)}
+    {def $q = concat("classes [",agenda_event_class_identifier(),"] and sub_event_of.id = ", $attribute.contentobject_id, " and subtree [", calendar_node_id(), "] and state in [moderation.skipped,moderation.accepted] sort [time_interval=>asc]")}
+    {if api_search(concat($q, ' limit 1')).totalCount|gt(0)}
     {include
         uri='design:parts/agenda.tpl'
         exclude=array('what')
         views=array('grid')
-        base_query=concat("classes [",agenda_event_class_identifier(),"] and sub_event_of.id = ", $attribute.contentobject_id, " and subtree [", calendar_node_id(), "] and state in [moderation.skipped,moderation.accepted] sort [time_interval=>asc]")
+        base_query=$q
         grid_view='mini'
         also_past=true()
         cal_view='listWeek'
@@ -88,4 +89,5 @@
         style='pt-5 pb-4'}
     {include uri='design:parts/views.tpl' views=array('grid','geo','agenda') view_style='pb-4'}
     {/if}
+    {undef $q}
 </div>
