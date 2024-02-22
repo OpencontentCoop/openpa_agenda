@@ -73,7 +73,7 @@
                     <div class="anchor-offset row p-3 mb-4">
                         <div class="col">
                             <h5>{'Security code'|i18n( 'social_user/signup' )}</h5>
-                            <small class="form-text text-muted mb-1">{'Confirm us that you are not a robot'|i18n( 'social_user/signup' )}</small>
+                            <small class="form-text text-muted mb-1">{'Confirm us that you are not a robot'|i18n( 'agenda/signupassociazione' )}</small>
                             {if $recaptcha_public_key|not()}
                                 <div class="message-warning">
                                     {'reCAPTCHA API key not found'|i18n( 'social_user/signup' )}

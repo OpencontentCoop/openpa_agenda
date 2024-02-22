@@ -182,14 +182,16 @@
 
         this.spritePath = this.settings.spritePath;
 
-        this.fromDateInput = $('#datepicker_start').datepicker({
+        this.fromDateInput = $('#datepicker_start').attr('value', moment().format('DD/MM/YYYY')).datepicker({
             inputFormat: ['dd/MM/yyyy'],
-            outputFormat: 'dd/MM/yyyy',
-        });
+            outputFormat: 'dd/MM/yyyy'
+        })
         this.toDateInput = $('#datepicker_end').datepicker({
             inputFormat: ['dd/MM/yyyy'],
-            outputFormat: 'dd/MM/yyyy',
+            outputFormat: 'dd/MM/yyyy'
         });
+
+        //.val(moment().format('DD/MM/YYYY'))
         this.alsoPastCheck = $('#AlsoPast');
 
         this.allChipToggle = $('.search-form-filters a[data-all="all"]');

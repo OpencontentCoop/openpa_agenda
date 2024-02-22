@@ -121,4 +121,10 @@ Subdir=templates
 Match[class_identifier]=event
 Match[attribute_identifier]=translator
 
+[datatype_geo_private_organization]
+Source=content/datatype/edit/ezgmaplocation.tpl
+MatchFile=datatype/edit/ezgmaplocation_main_address.tpl
+Subdir=templates
+Match[class_identifier]=private_organization
+Match[attribute_identifier]=main_address
 */ ?>

@@ -41,7 +41,7 @@ function eZGmapLocation_MapControl( attributeId, latLongAttributeBase )
             });
         }
     };
-    
+
     var updateLatLngFields = function( point )
     {
         document.getElementById(latid).value = point.lat();
@@ -95,7 +95,7 @@ function eZGmapLocation_MapControl( attributeId, latLongAttributeBase )
 		var zoom = 0;
 		var map = null;
 		var marker = null;
-        
+
     if ( document.getElementById( latid ).value && document.getElementById( latid ).value != 0 )
     {
         startPoint = new google.maps.LatLng( document.getElementById( latid ).value, document.getElementById( longid ).value );
@@ -105,14 +105,14 @@ function eZGmapLocation_MapControl( attributeId, latLongAttributeBase )
     {
         startPoint = new google.maps.LatLng( 0, 0 );
     }
-    
+
     map = new google.maps.Map( document.getElementById( mapid ), { center: startPoint, zoom : zoom, mapTypeId: google.maps.MapTypeId.ROADMAP } );
     marker = new google.maps.Marker({ map: map, position: startPoint, draggable: true });
     google.maps.event.addListener( marker, 'dragend', function( event ){
     	updateLatLngFields( event.latLng );
 			document.getElementById( addressid ).value = '';
     })
-    
+
     geocoder = new google.maps.Geocoder();
     google.maps.event.addListener( map, 'click', function( event )
     {
@@ -132,7 +132,7 @@ function eZGmapLocation_MapControl( attributeId, latLongAttributeBase )
         document.getElementById( 'ezgml-mylocation-button-' + attributeId ).className = 'button';
         document.getElementById( 'ezgml-mylocation-button-' + attributeId ).disabled = false;
     }
- 
+
 }
 {/literal}
 </script>
@@ -160,7 +160,7 @@ else if ( window.attachEvent )
     <label>{'Latitude'|i18n('extension/ezgmaplocation/datatype')}:</label>
     <input id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}_latitude" class="box ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="text" name="{$attribute_base}_data_gmaplocation_latitude_{$attribute.id}" value="{$latitude}" />
   </div>
-  
+
   <div class="block">
     <label>{'Longitude'|i18n('extension/ezgmaplocation/datatype')}:</label>
     <input id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}_longitude" class="box ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="text" name="{$attribute_base}_data_gmaplocation_longitude_{$attribute.id}" value="{$longitude}" />

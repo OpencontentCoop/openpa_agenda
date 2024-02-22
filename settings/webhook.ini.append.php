@@ -4,4 +4,6 @@
 TriggerList[]=OpenAgendaPublishEventWebHookTrigger
 TriggerList[]=OpenAgendaDeleteEventWebHookTrigger
 TriggerList[]=OpenAgendaPublishUpdateEventWebHookTrigger
+TriggerList[]=OpenAgendaPublishEventLinkWebHookTrigger
+TriggerList[]=OpenAgendaDeleteEventLinkWebHookTrigger
 */ ?>

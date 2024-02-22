@@ -117,8 +117,8 @@
                             <div class="tab-pane{if $active|not()} active{set $active = true()}{/if}" id="filter-by-when">
                                 <div class="row">
                                     <div class="offset-lg-1 col-lg-10 offset-md-1 col-md-10 col-sm-12">
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12 mb-4">
+                                        <div class="row input-daterange">
+                                            <div class="col-md-12 col-sm-12 mb-4" style="display: none">
                                                 <div class="form-check form-check-group">
                                                     <div class="toggles">
                                                         <label for="AlsoPast">

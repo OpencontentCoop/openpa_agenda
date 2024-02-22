@@ -546,4 +546,12 @@ class OpenPAAgenda
     {
         return $this->rootNode()->attribute('node_id') == eZINI::instance('content.ini')->variable('NodeSettings', 'RootNode');
     }
+
+    public static function deduplicateTopicNames($logToCli = true)
+    {
+        $installerPath = 'vendor/opencity-labs/openagenda-installer';
+        if (file_exists($installerPath . '/installer.yml')){
+
+        }
+    }
 }

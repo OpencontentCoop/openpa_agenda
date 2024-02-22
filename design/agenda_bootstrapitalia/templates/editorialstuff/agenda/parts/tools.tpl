@@ -4,6 +4,18 @@
             <h4>QRCode</h4>
             <img src="{concat('agenda/qrcode/',$post.node.node_id)|ezurl(no)}"/>
         </div>
+        {if and(fetch( 'user', 'has_access_to', hash( 'module', 'agenda', 'function', 'push' ) ), is_set($post.object.data_map.target_site))}
+        <div class="col">
+            <h4>Siti target</h4>
+            <form action="{concat('editorialstuff/action/agenda/', $post.object_id)|ezurl(no)}" method="post" class="border p-2">
+                <input type="hidden" name="ActionIdentifier" value="ActionSetTargetSites"/>
+                {attribute_edit_gui attribute=$post.object.data_map.target_site}
+                <p class="text-right mt-2">
+                    <button class="btn btn-primary" type="submit" name="ActionSetTargetSites">{'Store'|i18n('ocbootstrap')}</button>
+                </p>
+            </form>
+        </div>
+        {/if}
         {if ezmodule('newsletter','subscribe')}
             {def $newsletter_edition_hash = newsletter_edition_hash()}
             {if and( $post.node|can_add_to_newsletter(true()), $newsletter_edition_hash|count()|gt(0) )}

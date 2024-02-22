@@ -265,7 +265,25 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
 
     public function executeAction($actionIdentifier, $actionParameters, eZModule $module = null)
     {
-        if ($actionIdentifier == 'ActionDiscussion') {
+        if ($actionIdentifier == 'ActionSetTargetSites') {
+            $dataMap = $this->object->dataMap();
+            if (isset($dataMap['target_site'])){
+                $contentObjectAttribute = $dataMap['target_site'];
+                $http = eZHTTPTool::instance();
+                $base = 'ContentObjectAttribute';
+                $dataType = $dataMap['target_site']->dataType();
+                if ($dataType->fetchObjectAttributeHTTPInput($http, $base, $contentObjectAttribute)){
+                    $contentObjectAttribute->store();
+                    eZSearch::addObject($this->getObject(), true);
+                    if ($module) {
+                        $module->redirectTo("editorialstuff/edit/{$this->getFactory()->identifier()}/{$this->id()}#tab_tools");
+                    }
+                }
+            }
+
+        }
+
+            if ($actionIdentifier == 'ActionDiscussion') {
             $text = $actionParameters[0];
             if (!empty($text)) {
                 $item = new OCEditorialStuffHistory([]);

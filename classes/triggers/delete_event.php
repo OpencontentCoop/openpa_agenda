@@ -1,6 +1,8 @@
 <?php
 
-class OpenAgendaDeleteEventWebHookTrigger implements OCWebHookTriggerInterface, OCWebHookCustomEndpointSerializerInterface
+class OpenAgendaDeleteEventWebHookTrigger implements OCWebHookTriggerInterface,
+                                                     OCWebHookCustomEndpointSerializerInterface,
+                                                     OCWebHookCustomPayloadSerializerInterface
 {
     const IDENTIFIER = 'openagenda_delete_event';
 
@@ -37,10 +39,36 @@ class OpenAgendaDeleteEventWebHookTrigger implements OCWebHookTriggerInterface, 
 
     public function serializeCustomEndpoint($originalEndpoint, $originalPayload, OCWebHook $webHook)
     {
-        eZDebug::writeError(var_export([$originalEndpoint, $originalPayload, str_replace('{{id}}', $originalPayload['guid'], $originalEndpoint)], 1), __METHOD__);
+        eZDebug::writeError(
+            var_export(
+                [
+                    $originalEndpoint,
+                    $originalPayload,
+                    str_replace('{{id}}', $originalPayload['guid'], $originalEndpoint),
+                ],
+                1
+            ),
+            __METHOD__
+        );
         $originalEndpoint = str_replace('{{id}}', '{{guid}}', $originalEndpoint);
 
         return str_replace('{{guid}}', $originalPayload['guid'], $originalEndpoint);
     }
+
+    public function serializeCustomPayload($originalPayload, OCWebHook $webHook)
+    {
+        return null;
+    }
+
+    public function getPlaceholders()
+    {
+        return [];
+    }
+
+    public function getHelpText()
+    {
+        return '';
+    }
+
 
 }

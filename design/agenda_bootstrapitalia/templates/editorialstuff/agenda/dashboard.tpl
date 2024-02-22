@@ -112,7 +112,7 @@
             'spritePath': '{/literal}{'images/svg/sprite.svg'|ezdesign(no)}{literal}',
             'allText': '{/literal}{'Even past events'|i18n('agenda')}{literal}',
             'onInit': function (plugin) {
-                plugin.alsoPastCheck.attr('checked', 'checked').trigger('change');
+                plugin.alsoPastCheck.attr('checked', 'checked').trigger('change').parents('.col-md-12').show();
             }
         });
     });
