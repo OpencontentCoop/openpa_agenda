@@ -283,7 +283,14 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
 
         }
 
-            if ($actionIdentifier == 'ActionDiscussion') {
+        if ($actionIdentifier == 'ActionTriggerWebhook') {
+            $this->launchWebhooks();
+            if ($module) {
+                $module->redirectTo("editorialstuff/edit/{$this->getFactory()->identifier()}/{$this->id()}#tab_tools");
+            }
+        }
+
+        if ($actionIdentifier == 'ActionDiscussion') {
             $text = $actionParameters[0];
             if (!empty($text)) {
                 $item = new OCEditorialStuffHistory([]);
@@ -370,6 +377,15 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
                     "content/edit/{$newObject->attribute('id')}/{$newObject->attribute('current_version')}/$language"
                 );
             }
+        }
+    }
+
+    public function launchWebhooks()
+    {
+        if ($this->is('accepted') || $this->is('skipped')) {
+            $this->emit('publish');
+        } else{
+            $this->emit('delete');
         }
     }
 
