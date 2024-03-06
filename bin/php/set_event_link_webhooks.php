@@ -144,7 +144,10 @@ if ($currentAgendaUrl !== $agendaUrl) {
 
 
 setAccess($currentIdentifier);
-$currentHostsByTrigger = [];
+$currentHostsByTrigger = [
+    OpenAgendaPublishEventLinkWebHookTrigger::IDENTIFIER => [],
+    OpenAgendaDeleteEventLinkWebHookTrigger::IDENTIFIER => [],
+];
 $publishList = fetchWebhooksByTrigger(OpenAgendaPublishEventLinkWebHookTrigger::IDENTIFIER);
 $deleteList = fetchWebhooksByTrigger(OpenAgendaDeleteEventLinkWebHookTrigger::IDENTIFIER);
 $cli->output('Current webhooks:');
@@ -163,7 +166,6 @@ foreach (array_merge($publishList, $deleteList) as $webhook) {
     $triggers = implode(', ', $triggers);
     $cli->output(' - ' . $webhook->attribute('name') . ' ' . $triggers . ' -> ' . $targetHost);
 }
-
 
 foreach ($currentHostsByTrigger as $trigger => $hostAndId) {
     $headers = json_encode([
