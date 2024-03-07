@@ -216,7 +216,6 @@
                 plugin.selectorWrapper.find('option').removeAttr('selected');
             }
             let exists = plugin.selectorWrapper.find('option[value="' + id + '"]');
-            console.log(exists);
             if (exists.length > 0) {
                 exists.prop('selected', true);
             } else {
@@ -307,8 +306,7 @@
                                     "title": plugin.settings.i18n.store,
                                     'styles': 'btn btn-primary btn-xs',
                                     "click": function(e,p) {
-                                        $(this).attr('disabled', 'disabled');
-                                        console.log(e,p)
+                                        $(e.currentTarget).attr('disabled', 'disabled');
                                         let form = this.form
                                         form.refreshValidationState(true);
                                         if (form.isValid(true)) {
