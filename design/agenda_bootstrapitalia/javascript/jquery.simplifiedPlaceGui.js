@@ -144,10 +144,12 @@
                 }
             });
             if (plugin.markers.getLayers().length > 0) {
+                plugin.editWindow.hide();
                 plugin.map.fitBounds(plugin.markers.getBounds());
                 plugin.disableAddMarkerOnClick();
                 plugin.showMapContainer();
             } else if (selectionValue === 'no_relation') {
+                plugin.editWindow.hide();
                 plugin.disableAddMarkerOnClick();
                 plugin.hideMapContainer();
             } else {
