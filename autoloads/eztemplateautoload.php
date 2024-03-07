@@ -26,5 +26,6 @@ $eZTemplateOperatorArray[] = array(
         'visibility_states',
         'base64_image_data',
         'openagenda_use_wkhtmltopdf',
+        'openagenda_default_geolocation',
     )
 );

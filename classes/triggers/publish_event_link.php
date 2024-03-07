@@ -197,6 +197,8 @@ class OpenAgendaPublishEventLinkWebHookTrigger implements OCWebHookTriggerInterf
                         'name' => $object->attribute('name'),
                         'license' => $objectDataMap['license']->content()->keywordString(' '),
                         'author' => $objectDataMap['author']->content(),
+                        'width' => $imageContent['width'],
+                        'height' => $imageContent['height'],
                     ];
                 }
             }

@@ -173,15 +173,28 @@ foreach ($currentHostsByTrigger as $trigger => $hostAndId) {
         'X-Target-Node' => $targetNode,
         'Authorization' => "Bearer $token",
     ]);
+
     if (!isset($hostAndId[$siteUrl])) {
-        $cli->warning("Add $trigger webhook to $siteUrl");
+        $message = "Add $trigger webhook to $siteUrl";
         $webHook = new OCWebHook([]);
+    } else {
+        $message= "Update $trigger webhook to $siteUrl #" . $hostAndId[$siteUrl];
+        $webHook = OCWebHook::fetch((int)$hostAndId[$siteUrl]);
+    }
+    if ($webHook instanceof OCWebHook) {
+        $cli->warning($message);
         $webHook->setAttribute(
             'name',
             $trigger === OpenAgendaPublishEventLinkWebHookTrigger::IDENTIFIER ? 'Publish event link' : 'Delete event link'
         );
-        $webHook->setAttribute('url', 'http://localhost/api/opendata/v2/content/upsert');
-        $webHook->setAttribute('method', 'POST');
+        $webHook->setAttribute(
+            'url',
+            $trigger === OpenAgendaPublishEventLinkWebHookTrigger::IDENTIFIER ? 'http://localhost/api/opendata/v2/content/upsert' : 'http://localhost/api/opendata/v2/content/delete/{{id}}'
+        );
+        $webHook->setAttribute(
+            'method',
+            $trigger === OpenAgendaPublishEventLinkWebHookTrigger::IDENTIFIER ? 'POST' : 'DELETE'
+        );
         $webHook->setAttribute('enabled', 1);
         $webHook->setAttribute('retry_enabled', 1);
         $webHook->setAttribute('headers', $headers);
@@ -189,12 +202,9 @@ foreach ($currentHostsByTrigger as $trigger => $hostAndId) {
         $webHook->setTriggers([
             'identifier' => $trigger,
         ]);
-    } else {
-        $cli->warning("Refresh $trigger webhook to $siteUrl #" . $hostAndId[$siteUrl]);
-        $webHook = OCWebHook::fetch((int)$hostAndId[$siteUrl]);
-        $webHook->setAttribute('headers', $headers);
         $webHook->store();
     }
+
 }
 
 $script->shutdown();

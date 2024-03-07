@@ -34,6 +34,7 @@ class OpenPAAgendaOperators
             'visibility_states',
             'base64_image_data',
             'openagenda_use_wkhtmltopdf',
+            'openagenda_default_geolocation',
         );
     }
 
@@ -107,6 +108,15 @@ class OpenPAAgendaOperators
         $agenda = OpenPAAgenda::instance();
         switch( $operatorName )
         {
+            case 'openagenda_default_geolocation':
+                $map = $agenda->getAttribute('geo');
+                if ($map instanceof eZContentObjectAttribute
+                    && $map->attribute('data_type_string') == eZGmapLocationType::DATA_TYPE_STRING
+                    && $map->hasContent()){
+                    $operatorValue = $map->content();
+                }
+                break;
+
             case 'visibility_states':
                 $operatorValue = OpenPAAgenda::instance()->getVisibilityStates();
                 break;

@@ -66,6 +66,7 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
         if ($beforeState->attribute('identifier') != $afterState->attribute('identifier')) {
             $this->setObjectLastModified();
         }
+        $this->launchWebhooks();
 
         return parent::onChangeState($beforeState, $afterState);
     }
@@ -207,18 +208,21 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
     {
         parent::addImage($object);
         $this->setObjectLastModified();
+        $this->launchWebhooks();
     }
 
     public function makeDefaultImage($objectId)
     {
         parent::makeDefaultImage($objectId);
         $this->setObjectLastModified();
+        $this->launchWebhooks();
     }
 
     public function removeImage($objectId)
     {
         parent::removeImage($objectId);
         $this->setObjectLastModified();
+        $this->launchWebhooks();
     }
 
     private function getSocialHistory()
@@ -413,4 +417,6 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
             }
         }
     }
+
+
 }
