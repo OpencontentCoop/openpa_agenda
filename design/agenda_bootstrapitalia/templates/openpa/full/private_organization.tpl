@@ -12,7 +12,7 @@
                 <div class="lead">{attribute_view_gui attribute=$node|attribute('business_objective')}</div>
             {/if}
 
-            <div class="row">
+            {*<div class="row">
                 {foreach array('tax_code', 'vat_code', 'rea_number') as $attribute}
                     {if $node|has_attribute($attribute)}
                     <div class="col">
@@ -23,11 +23,12 @@
                     </div>
                     {/if}
                 {/foreach}
-            </div>
+            </div>*}
         </div>
         <div class="col-lg-3 offset-lg-1">
             {include uri='design:openpa/full/parts/actions.tpl'}
             {def $current_topics = array()}
+            {if $node|has_attribute('topics')}
             {foreach $node|attribute('topics').content.relation_list as $item}
                 {def $object = fetch(content, object, hash(object_id, $item.contentobject_id))}
                 {if and($object.can_read, $object.class_identifier|eq('topic'))}
@@ -35,7 +36,7 @@
                 {/if}
                 {undef $object}
             {/foreach}
-
+            {/if}
             {if or(
                 $current_topics|count(),
                 $node|has_attribute('has_private_org_activity_type'),
@@ -177,7 +178,8 @@
                                         </div>
                                     {/if}
                                 {elseif $attribute|eq('has_logo-image')}
-                                    {def $images = array($node.object)}
+                                    {def $images = array()}
+                                    {if $node|has_attribute('image')}
                                     {foreach $node.data_map['image'].content.relation_list as $index => $item}
                                         {def $image_object = fetch( content, object, hash( object_id, $item.contentobject_id ) )}
                                         {if $image_object.can_read}
@@ -185,6 +187,7 @@
                                         {/if}
                                         {undef $image_object}
                                     {/foreach}
+                                    {/if}
                                     {include uri='design:atoms/gallery.tpl' items=$images}
                                     {undef $images}
                                 {elseif $attribute|eq('has_spatial_coverage-main_address')}
