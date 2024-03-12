@@ -41,6 +41,7 @@ class OpenAgendaPublishEventLinkWebHookTrigger implements OCWebHookTriggerInterf
     {
         $payload = false;
         if (is_numeric($originalPayload)) {
+            eZContentObject::clearCache();
             $contentObject = eZContentObject::fetch((int)$originalPayload);
             if ($contentObject instanceof eZContentObject) {
                 $payload = self::generatePayload($contentObject, $webHook);

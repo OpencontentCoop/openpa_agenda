@@ -39,6 +39,7 @@ class OpenAgendaDeleteEventLinkWebHookTrigger implements OCWebHookTriggerInterfa
     public function serializeCustomEndpoint($originalEndpoint, $originalPayload, OCWebHook $webHook)
     {
         if (is_numeric($originalPayload)) {
+            eZContentObject::clearCache();
             $contentObject = eZContentObject::fetch((int)$originalPayload);
             if ($contentObject instanceof eZContentObject) {
                 $originalPayload = $contentObject->attribute('remote_id');
