@@ -5,7 +5,7 @@
 <section class="container pt-0">
     <div class="row w-100">
         <div class="col-md-{if is_set( $post.object.data_map.internal_comments )}9{else}12{/if}">
-
+            {def $count_discussion = count($post.discussion)}
             <ul class="nav nav-tabs nav-fill overflow-hidden">
                 {foreach $post.tabs as $index=> $tab}
                     <li role="presentation" class="nav-item">
@@ -14,13 +14,14 @@
                             {if $tab.identifier|eq('comments')}
                                 <span class="ml-1 badge badge-light">{api_search(concat('classes [comment] subtree [',$post.node.node_id,'] limit 1')).totalCount}</span>
                             {/if}
-                            {if $tab.identifier|eq('discussion')}
-                                <span class="ml-1 badge badge-light">{count($post.discussion)}</span>
+                            {if and($tab.identifier|eq('discussion'), $count_discussion|gt(0))}
+                                <span class="ml-1 badge badge-light">{$count_discussion}</span>
                             {/if}
                         </a>
                     </li>
                 {/foreach}
             </ul>
+            {undef $count_discussion}
 
             <div class="tab-content mt-3">
                 {foreach $post.tabs as $index=> $tab}

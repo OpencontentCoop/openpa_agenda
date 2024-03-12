@@ -8,9 +8,8 @@
 
     <div id="map-{$attribute.id}" style="width: 100%; height: 300px; margin-top: 2px;"></div>
     <div class="row mt-1">
-        <div class="address col-md-6">
+        <div class="address col-md-8">
             <input class="ezgml_new_address"
-                   style="border:none;padding: 0;background: none;cursor: none"
                    type="text"
                    name="{$attribute_base}_data_gmaplocation_address_{$attribute.id}"
                    value="{$attribute.content.address}"/>
@@ -20,7 +19,7 @@
                    value="{$attribute.content.address}"
                    disabled="disabled"/>
         </div>
-        <div class="col-md-6 text-right">
+        <div class="col-md-4 text-right">
             <button class="btn btn-xs btn-danger ml-3 ms-3" name="Reset" style="display: none">Annulla modifiche</button>
             <button class="btn btn-xs btn-outline-secondary" name="MyLocation">Rileva posizione</button>
         </div>
@@ -95,6 +94,35 @@
                 map = new L.Map('map-' + attributeId, {loadingControl: true})
                     .setView(new L.latLng($container.data('lat') || 0, $container.data('lng') || 0), $container.data('zoom') || 0),
 
+                simplifyAddressName = function(properties){
+                    var name = [];
+                    if (properties.hasOwnProperty('road')){
+                        name.push(properties['road']);
+                    }else if (properties.hasOwnProperty('pedestrian')){
+                        name.push(properties['pedestrian']);
+                    }else if (properties.hasOwnProperty('suburb')){
+                        name.push(properties['suburb']);
+                    }
+                    if (properties.hasOwnProperty('house_number')){
+                        name.push(properties['house_number']);
+                    }
+                    if (properties.hasOwnProperty('postcode')){
+                        name.push(properties['postcode']);
+                    }
+                    if (properties.hasOwnProperty('town')){
+                        name.push(properties['town']);
+                    }else if (properties.hasOwnProperty('city')){
+                        name.push(properties['city']);
+                    }else if (properties.hasOwnProperty('village')){
+                        name.push(properties['village']);
+                    }
+                    //if (properties.hasOwnProperty('country')){
+                    //    name.push(properties['country']);
+                    //}
+
+                    return name.join(' ').substr(0, 150);
+                },
+
                 //geocoder = L.Control.Geocoder.mapzen('search-DopSHJw'),
                 geocoder = L.Control.Geocoder.nominatim(),
                 control = L.Control.geocoder({
@@ -105,7 +133,8 @@
                     suggestMinLength: 5,
                     defaultMarkGeocode: false
                 }).on('markgeocode', function (e) {
-                    setMarker(e.geocode.center, e.geocode.name);
+                    console.log(e)
+                    setMarker(e.geocode.center, simplifyAddressName(e.geocode.properties.address));
                     map.fitBounds(e.geocode.bbox);
                     if (originalLat.length) {
                         resetButton.show();
