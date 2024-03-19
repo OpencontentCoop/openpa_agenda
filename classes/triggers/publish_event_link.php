@@ -162,7 +162,7 @@ class OpenAgendaPublishEventLinkWebHookTrigger implements OCWebHookTriggerInterf
                             'id' => $item['remoteId'],
                             'language' => $language,
                             'name' => $item['name'][$language],
-                            'address' => $geo->attribute('address'),
+                            'address' => html_entity_decode($geo->attribute('address')),
                             'latitude' => $geo->attribute('latitude'),
                             'longitude' => $geo->attribute('longitude'),
                         ];
@@ -177,7 +177,7 @@ class OpenAgendaPublishEventLinkWebHookTrigger implements OCWebHookTriggerInterf
                         'id' => '',
                         'language' => $language,
                         'name' => $organizer->attribute('name'),
-                        'address' => $geo->attribute('address'),
+                        'address' => html_entity_decode($geo->attribute('address')),
                         'latitude' => $geo->attribute('latitude'),
                         'longitude' => $geo->attribute('longitude'),
                     ];
