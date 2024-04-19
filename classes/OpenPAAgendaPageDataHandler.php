@@ -224,6 +224,16 @@ class OpenPAAgendaPageDataHandler extends ezjscServerFunctions implements OCPage
             );
         }
 
+        $hasAccess = eZUser::currentUser()->hasAccessTo('newsletter', 'index');
+        if ($hasAccess['accessWord'] == 'yes') {
+            $userMenu[] = array(
+                'name' => 'Newsletter dashboard',
+                'url' => 'newsletter/index',
+                'highlight' => false,
+                'has_children' => false
+            );
+        }
+
         $userMenu[] = array(
             'name' => ezpI18n::tr( 'agenda/menu', 'Logout' ),
             'url' => 'user/logout',
