@@ -69,25 +69,22 @@
       }
     });
   });
-
-  $(document).ready(function($) {
-
-    var $wrap = $(window),
-      $header = $("#header"),
-      headerHeight = $header.outerHeight(),
-      headerTopHeight = $("#header-top").outerHeight(),
-      headerInsideHeight = $("#header-inside").outerHeight();
-
-    $wrap.on('scroll', function(e) {
-      if ($wrap.scrollTop() > headerTopHeight + headerInsideHeight
-        && $wrap.width() > 200
-      ) {
-        $header.addClass("header-fixed");
-      } else {
-        $header.removeClass("header-fixed");
-      }
-    });
-  });
+  // $(document).ready(function($) {
+  //   var $wrap = $(window),
+  //     $header = $("#header"),
+  //     headerHeight = $header.outerHeight(),
+  //     headerTopHeight = $("#header-top").outerHeight(),
+  //     headerInsideHeight = $("#header-inside").outerHeight();
+  //   $wrap.on('scroll', function(e) {
+  //     if ($wrap.scrollTop() > headerTopHeight + headerInsideHeight
+  //       && $wrap.width() > 200
+  //     ) {
+  //       $header.addClass("header-fixed");
+  //     } else {
+  //       $header.removeClass("header-fixed");
+  //     }
+  //   });
+  // });
   {/literal}
 </script>
 

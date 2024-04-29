@@ -3,6 +3,12 @@
 [OpenpaAgenda]
 EnableOverlapGui=disabled
 #WkHtmlToPdfUri=
+StyleVariation_designitalia=
+UseAlternativeLogo=disabled
+#ForceLogoUrl=
+#ForceAlternativeLogoUrl=
+#ForceFooterLogoUrl=
+#ForceBannerUrl=
 
 [OpenpaAgendaPushSettings]
 AvailableEndpoint[]

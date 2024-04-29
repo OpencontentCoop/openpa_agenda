@@ -16,7 +16,7 @@
     <div class="col-xs-2">
       <div id="logo-footer">
         <a href="{'/'|ezurl(no)}" title="{$social_pagedata.site_title}" rel="{$social_pagedata.site_title}">
-          <img class="img-responsive" src="{$social_pagedata.logo_path|ezroot(no)}" alt="{$social_pagedata.site_title}" style="max-height: 75px">
+          <img class="img-responsive" src="{openpaini('OpenpaAgenda', 'ForceFooterLogoUrl', $social_pagedata.logo_path|ezroot(no))}" alt="{$social_pagedata.site_title}" style="max-height: 75px">
         </a>
       </div>
     </div>

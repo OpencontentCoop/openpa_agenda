@@ -56,10 +56,10 @@
   <div id="header-top">
     <div class="container-fluid">
       <div class="row">
-          <div id="header-top-left" class="col-md-7 col-md-offset-2 col-xs-7 col-xs-offset-2">
+          <div id="header-top-left" class="col-md-7 col-md-offset-2 col-xs-4">
             <span>&nbsp;</span>
           </div>
-          <div id="header-top-right" class="col-md-3 col-xs-3">
+          <div id="header-top-right" class="col-md-3 col-xs-8">
             {def $avail_translation = language_switcher( $site.uri.original_uri)}
             {if $avail_translation|count()|gt(1)}
               <ul class="nav navbar-nav pull-right">
@@ -82,39 +82,38 @@
   <div id="header-inside" class="clearfix">
     <div class="container-fluid" style="padding: 10px 24px">
       <div class="row">
-        <div class="col-xs-2">
-          <div class="hidden-sm hidden-md hidden-lg">
+        <div class="col-xs-1 hidden-sm hidden-md hidden-lg" style="height: 60px;">
             <h2 class="sr-only">Menu principale</h2>
             <div class="burger-wrapper">
-              <div class="burger-container" style="margin-top: 20px;margin-left: -15px;position: relative;">
+              <div class="burger-container" style="margin-top: 20px;margin-left: -15px;position: relative;height: 40px;">
                 <!--<button id="showLeftPush">Show/Hide Left Push Menu</button>-->
-                <a class="toggle-menu" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
+                <a class="toggle-menu" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body" style="height: 40px;display: block;">
                   <span class="bar"></span>
                   <span class="bar"></span>
                   <span class="bar"></span>
                 </a>
               </div>
             </div>
-          </div>
         </div>
-        <div class="col-xs-10">
-          {if is_header_only_logo_enabled()}
-            <div id="logo" class="clearfix">
-              <a href="{'/'|ezurl(no)}" title="{$social_pagedata.site_title}" rel="{$social_pagedata.site_title}">
-                <img class="img-responsive" src="{$social_pagedata.logo_path|ezroot(no)}" alt="{$social_pagedata.site_title}" style="max-height: 75px" height="75">
-              </a>
+        <div class="col-xs-11 col-sm-12">
+            <div class="logo-container">
+                <div id="logo" class="clearfix">
+                  <a href="{'/'|ezurl(no)}" title="{$social_pagedata.site_title}" rel="{$social_pagedata.site_title}">
+                    <img class="img-responsive" src="{openpaini('OpenpaAgenda', 'ForceLogoUrl', $social_pagedata.logo_path|ezroot(no))}" alt="{$social_pagedata.site_title}" style="max-height: 75px" height="75">
+                  </a>
+                </div>
+                {if is_header_only_logo_enabled()|not()}
+                    <div id="site-name" class="clearfix">
+                        <a href="{'/'|ezurl(no)}" title="{$social_pagedata.logo_title}"><h1>{$social_pagedata.logo_title}</h1></a>
+                        <span class="logo_subtitle">{$social_pagedata.logo_subtitle}</span>
+                    </div>
+                {/if}
+                {if and(openpaini('OpenpaAgenda', 'UseAlternativeLogo', 'disabled')|eq('enabled'), openpaini('OpenpaAgenda', 'ForceAlternativeLogoUrl', '')|ne(''))}
+                    <div id="logo_alt"{if is_header_only_logo_enabled()|not()} class="hidden-xs"{/if}>
+                        <img class="img-responsive" src="{openpaini('OpenpaAgenda', 'ForceAlternativeLogoUrl', '')}" alt="{$social_pagedata.site_title}" style="max-height: 75px" height="75">
+                    </div>
+                {/if}
             </div>
-          {else}
-            <div id="logo" class="clearfix">
-              <a href="{'/'|ezurl(no)}" title="{$social_pagedata.site_title}" rel="{$social_pagedata.site_title}">
-                <img class="img-responsive" src="{$social_pagedata.logo_path|ezroot(no)}" alt="{$social_pagedata.site_title}" style="max-height: 75px" height="75">
-              </a>
-            </div>
-            <div id="site-name" class="clearfix">
-              <a href="{'/'|ezurl(no)}" title="{$social_pagedata.logo_title}"><h1>{$social_pagedata.logo_title}</h1></a>
-              <span class="logo_subtitle">{$social_pagedata.logo_subtitle}</span>
-            </div>
-          {/if}
         </div>
 
         {*<div id="mobile-search" class="col-xs-12 hidden-md hidden-lg hidden">

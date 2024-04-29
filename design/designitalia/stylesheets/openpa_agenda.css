@@ -752,3 +752,4 @@ div#zone-map-container .zone-map-item label
 span.classattribute-description{
     color: #333;
 }
+.navbar-nav > li { float: left !important; }

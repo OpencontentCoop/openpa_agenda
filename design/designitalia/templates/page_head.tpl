@@ -10,9 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    {def $base_css = concat('app', openpaini('OpenpaAgenda', 'StyleVariation_designitalia', ''), '.css')}
 
-    {ezcss_load( array(  
-        'app.css',
+    {ezcss_load( array(
+        $base_css,
         'animate.css',
         'jasny-bootstrap.min.css',
         'custom.css',

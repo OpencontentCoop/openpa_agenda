@@ -1,0 +1,6 @@
+$brand-primary: #ED5738;
+@import "app";
+
+.agenda-filters .nav-pills li.active>a, .nav-pills li.active>a:hover, .nav-pills li.active>a:focus {
+    background-color: #ED5738 !important;
+}
