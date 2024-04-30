@@ -420,6 +420,9 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
             foreach ($relationList as $index => $event) {
                 /** @var eZContentObject $objectEvent */
                 $objectEvent = eZContentObject::fetch($event['contentobject_id']);
+                if (!$objectEvent instanceof eZContentObject) {
+                    continue;
+                }
                 $eventMapped = $this->mapEventData($objectEvent, $customEventsAttributes);
                 $eventMapped['index'] = $index;
                 $events[$eventMapped['key']] = $eventMapped;
@@ -481,6 +484,7 @@ class ProgrammaEventiItem extends OCEditorialStuffPostDefault implements OCEdito
     private function mapCPEVEventData(eZContentObject $objectEvent, $customEventsAttributes)
     {
         $eventDataMap = $objectEvent->dataMap();
+        if (!isset($eventDataMap['time_interval'])){print_r($objectEvent);die();}
         $timeInterval = $eventDataMap['time_interval']->content();
         $eventsCount = count($timeInterval['events']);
         $key = $timeInterval['events'][0]['id'];

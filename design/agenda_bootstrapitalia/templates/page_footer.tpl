@@ -71,12 +71,12 @@
                         {'Terms of use'|i18n('agenda/menu')}
                     </a>
                 </li>
-                <li class="list-inline-item">
+                {*<li class="list-inline-item">
                     <a href="{'agenda/stat'|ezurl(no)}"
                        title="{'Statistics'|i18n('agenda/stat')}">
                         {'Statistics'|i18n('agenda/stat')}
                     </a>
-                </li>
+                </li>*}
                 {def $needCookieConsent = cond(or(
                     and( openpaini('Seo', 'GoogleAnalyticsAccountID'), openpaini('Seo', 'GoogleCookieless')|eq('disabled') ),
                     and( openpaini('Seo', 'webAnalyticsItaliaID'), openpaini('Seo', 'WebAnalyticsItaliaCookieless')|eq('disabled') ),
@@ -86,7 +86,7 @@
                     <li class="list-inline-item">
                         <a href="{'openpa/cookie'|ezurl(no)}" title="{'Cookie settings'|i18n('bootstrapitalia/cookieconsent')}">{'Cookie settings'|i18n('bootstrapitalia/cookieconsent')}</a>
                     </li>
-                {undef $needCookieConsent}              
+                {undef $needCookieConsent}
             </ul>
         </div>
     </div>

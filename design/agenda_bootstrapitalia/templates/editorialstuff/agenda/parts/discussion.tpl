@@ -23,6 +23,7 @@
         {/foreach}
     {/if}
 
+    {if $post.object.can_edit}
     <form action="{concat('editorialstuff/action/agenda/', $post.object_id)|ezurl(no)}" method="post" class="form my-3">
         <input type="hidden" name="ActionIdentifier" value="ActionDiscussion"/>
         <div class="row">
@@ -39,5 +40,5 @@
             </div>
         </div>
     </form>
-
+    {/if}
 </div>

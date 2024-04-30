@@ -10,5 +10,6 @@ Attribute[agenda_event/titolo]=1.5
 
 [IndexPlugins]
 General[]=OpenPAAgendaStatIndexPlugin
-
+General[]=OpenPAAgendaEventCollectionIndexPlugin
+General[]=OpenPAAgendaRenameContactPointIndexPlugin
 */

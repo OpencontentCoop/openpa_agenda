@@ -44,7 +44,7 @@
                                 <ul class="nav nav-tabs nav-justified flex-wrap" role="tablist">
                                     {def $active = false()}
                                     {if $exclude|contains('what')|not()}
-                                    <li class="nav-item">
+                                    <li class="nav-item" id="what">
                                         <a role="tab" data-toggle="tab" class="nav-link{if $active|not()} active{set $active = true()}{/if}"
                                            href="#filter-by-what">
                                             {'What?'|i18n('agenda')}
@@ -52,7 +52,7 @@
                                     </li>
                                     {/if}
                                     {if $exclude|contains('when')|not()}
-                                    <li class="nav-item">
+                                    <li class="nav-item" id="when">
                                         <a role="tab" data-toggle="tab" class="nav-link{if $active|not()} active{set $active = true()}{/if}"
                                            href="#filter-by-when">
                                             {'When?'|i18n('agenda')}
@@ -60,7 +60,7 @@
                                     </li>
                                     {/if}
                                     {if and($exclude|contains('where')|not(),$has_place)}
-                                    <li class="nav-item">
+                                    <li class="nav-item" id="where">
                                         <a role="tab" data-toggle="tab" class="nav-link{if $active|not()} active{set $active = true()}{/if}"
                                            href="#filter-by-where">
                                             {'Where?'|i18n('agenda')}
@@ -88,6 +88,9 @@
                         </div>
                         <div style="position: fixed;top: 15px;z-index: 100;left:0;width: 100%">
                             <div class="container text-right">
+                                <button class="close float-left mt-1" type="button" data-dismiss="modal" data-bs-dismiss="modal" aria-label="{'Close'|i18n('bootstrapitalia')}" title="{'Close'|i18n('bootstrapitalia')}">
+                                    {display_icon('it-arrow-left-circle', 'svg', 'icon icon-primary')}
+                                </button>
                                 <button class="do-search btn btn-outline-primary btn-icon btn-sm mt-3 bg-white" type="submit">{'Confirm'|i18n('agenda')}</button>
                             </div>
                         </div>

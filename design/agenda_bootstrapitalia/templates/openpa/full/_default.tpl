@@ -66,6 +66,6 @@
         </div>
     </div>
 
-{elseif $openpa['content_tree_related'].full.exclude|not()}
-    {include uri='design:openpa/full/parts/related.tpl' object=$node.object}
+{*{elseif $openpa['content_tree_related'].full.exclude|not()}*}
+{*    {include uri='design:openpa/full/parts/related.tpl' object=$node.object}*}
 {/if}

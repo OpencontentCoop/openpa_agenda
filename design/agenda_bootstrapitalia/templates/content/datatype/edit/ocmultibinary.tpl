@@ -13,7 +13,7 @@
             <div class="clearfix upload-button-container">
                 <span class="btn btn-success btn-sm fileinput-button">
                     <i class="fa fa-plus"></i>
-                    <span>{'Add file'|i18n( 'ocmultibinary' )}</span>
+                    <span>{'Add file'|i18n( 'extension/ocmultibinary' )}</span>
                     <input class="input-upload" type="file" name="OcMultibinaryFiles[]" data-url="{concat('ocmultibinary/upload/', $attribute.id, '/', $attribute.version, '/', $attribute.language_code  )|ezurl(no)}" />
                 </span>
             </div>

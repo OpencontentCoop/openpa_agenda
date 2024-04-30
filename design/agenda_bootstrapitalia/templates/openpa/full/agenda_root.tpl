@@ -5,21 +5,27 @@
 <div class="it-hero-wrapper it-overlay it-bottom-overlapping-content it-hero-small-size">
     <div class="img-responsive-wrapper">
         <div class="img-responsive">
-            <div class="img-wrapper"><img src="{$social_pagedata.banner_path|ezroot(no)}" title="{$social_pagedata.banner_title}" alt=""></div>
+            <div class="img-wrapper"><img src="{$social_pagedata.banner_path|ezroot(no)}" {if $social_pagedata.banner_title|ne('')}title="{$social_pagedata.banner_title}"{/if} alt=""></div>
         </div>
     </div>
+    {if or($social_pagedata.banner_title|ne(''), $social_pagedata.banner_subtitle|ne(''))}
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="it-hero-text-wrapper bg-dark pr-4">
                     <h1 class="no_toc">
+                        {if $social_pagedata.banner_title|ne('')}
                         <span style="font-size: 1.3em;" class="d-inline-block py-2 px-3 bg-dark font-weight-normal m-0">{$social_pagedata.banner_title|wash()}</span>
+                        {/if}
+                        {if $social_pagedata.banner_subtitle|ne('')}
                         <span style="font-size: .8em;" class="d-inline-block py-2 px-3 bg-secondary font-weight-normal">{$social_pagedata.banner_subtitle|wash()}</span>
+                        {/if}
                     </h1>
                 </div>
             </div>
         </div>
     </div>
+    {/if}
 </div>
 {/if}
 
@@ -52,9 +58,34 @@
                 {/foreach}
             {/if}
 
+            {def $hide_collections = cond($node|has_attribute('main_calendar_hide_collections'), $node|attribute('main_calendar_hide_collections').data_int, false())}
+            {if $hide_collections}
+                {set $agenda_query_custom = $agenda_query_custom|append('raw[extra_event_collection_i] = 0')}
+            {/if}
+            {def $view = 'dayGridWeek'
+                 $views = array()}
+            {if $node|has_attribute('main_calendar_agenda_view')}
+                {foreach $node|attribute('main_calendar_agenda_view').class_content.options as $option}
+                    {if $node|attribute('main_calendar_agenda_view').content|contains($option.id)}
+                        {set $view = $option.name}
+                    {/if}
+                {/foreach}
+            {/if}
+            {if $node|has_attribute('main_calendar_views')}
+                {foreach $node|attribute('main_calendar_views').class_content.options as $option}
+                    {if $node|attribute('main_calendar_views').content|contains($option.id)}
+                        {set $views = $views|append($option.name)}
+                    {/if}
+                {/foreach}
+            {/if}
+            {if or(count($views)|eq(0), $views[0]|eq('default'))}
+                {set $views = array('grid','geo','agenda')}
+            {/if}
             {include
                 uri='design:parts/agenda.tpl'
-                views=array('grid','geo','agenda')
+                add_time_buttons=true()
+                views=$views
+                cal_view=$view
                 base_query=concat('classes [',agenda_event_class_identifier(),'] and subtree [', calendar_node_id(), '] and state in [moderation.skipped,moderation.accepted] sort [time_interval=>asc] ', cond($agenda_query_custom|count()|gt(0), ' and ', false()), $agenda_query_custom|implode(' and '))
                 style='bg-white rounded-top py-3 px-5'
             }
@@ -64,5 +95,5 @@
 </section>
 
 
-{include uri='design:parts/views.tpl' views=array('grid','geo','agenda')}
+{include uri='design:parts/views.tpl' views=$views}
 

@@ -1,14 +1,43 @@
 {if agenda_root()|has_attribute('layout')}
     {attribute_view_gui attribute=agenda_root()|attribute('layout')}
+{elseif agenda_root()|has_attribute('main_events')}
+    {def $main_events = array()}
+    {foreach agenda_root()|attribute('main_events').content.relation_list as $item}
+        {set $main_events = $main_events|append($item.contentobject_id)}
+    {/foreach}
+    {include uri='design:zone/default.tpl' zones=array(hash('blocks', array(
+    page_block(
+        "",
+        "OpendataRemoteContents",
+        "default",
+        hash(
+            "remote_url", "",
+            "query", concat("id in [", $main_events|implode(','), "]"),
+            "show_grid", "1",
+            "show_map", "0",
+            "show_search", "0",
+            "limit", count($main_events),
+            "items_per_row", "3",
+            "facets", "",
+            "view_api", "banner",
+            "color_style", "",
+            "fields", "",
+            "template", "",
+            "simple_geo_api", "0",
+            "input_search_placeholder", ""
+        )
+    )
+
+    )))}
 {/if}
 
 {def $has_latest_program = latest_program()}
 
-<div class="row home-teaser hidden-xs">
+<div class="row home-teaser hidden-xs" style="justify-content: space-around;">
 {if is_collaboration_enabled()}
     {if $has_latest_program}
         {def $download_url = concat( '/content/download/', $has_latest_program.contentobject_id, '/', $has_latest_program.data_map['file'].id,'/version/', $has_latest_program.data_map['file'].version , '/file/', $has_latest_program.data_map['file'].content.original_filename|urlencode )}
-        <div class="col">
+        <div class="col-xs-12 col-md-4">
             <div class="card-wrapper card-space pb-2">
                 <div class="card card-bg card-big rounded shadow no-after bg-success m-0">
                     <div class="card-body p-3">
@@ -27,7 +56,7 @@
             </div>
         </div>
     {/if}
-    <div class="col">
+    <div class="col-xs-12 col-md-4">
         <div class="card-wrapper card-space pb-2">
             <div class="card card-bg card-big rounded shadow no-after bg-secondary m-0">
                 <div class="card-body p-3">
@@ -45,13 +74,13 @@
             </div>
         </div>
     </div>
-    {if is_registration_enabled()}
-    <div class="col">
+    {if is_auto_registration_enabled()}
+    <div class="col-xs-12 col-md-4">
         <div class="card-wrapper card-space pb-2">
             <div class="card card-bg card-big rounded shadow no-after bg-danger m-0">
                 <div class="card-body p-3">
                     <h5 class="card-title mb-0">
-                        <a class="stretched-link text-white text-decoration-none" href="{'agenda/info/faq/'|ezurl(no)}">{"Are you an organization?"|i18n('agenda')}</a>
+                        <a class="stretched-link text-white text-decoration-none" href="{'agenda/register_associazione'|ezurl(no)}">{"Are you an organization?"|i18n('agenda')}</a>
                     </h5>
                     <p class="card-text text-white  text-sans-serif pt-0">
                         {if agenda_root()|has_attribute('testo_partecipa_associazioni')}
@@ -69,7 +98,7 @@
 
 {elseif $has_latest_program}
 
-    <div class="col-md-6 col-lg-4 offset-md-6 offset-lg-8">
+    <div class="col-md-6 col-lg-4">
         <div class="card-wrapper card-space">
             <div class="card card-bg card-big rounded shadow no-after bg-success">
                 <div class="card-body p-3">

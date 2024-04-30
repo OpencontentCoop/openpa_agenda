@@ -3,13 +3,24 @@
 <section class="container">
     <div class="row">
         <div class="col-lg-8 px-lg-4 py-lg-2">
-            <h1>{$node.name|wash()}</h1>
-            {if $node|has_attribute('short_title')}
-                <h4 class="py-2">{$node|attribute('short_title').content|wash()}</h4>
-            {/if}
-
-            {if $node|has_attribute('business_objective')}
-                <div class="lead">{attribute_view_gui attribute=$node|attribute('business_objective')}</div>
+            <div class="d-flex justify-content-start align-items-center">
+                {if $node|has_attribute('has_logo')}
+                    <div class="mr-3">
+                        {attribute_view_gui attribute=$node|attribute('has_logo') image_class=medium}
+                    </div>
+                {/if}
+                <div>
+                    <h1>{$node.name|wash()}</h1>
+                    {if or($node|has_attribute('alt_name'),$node|has_attribute('acronym'))}
+                        <h4 class="py-2">
+                            {if $node|has_attribute('alt_name')}{$node|attribute('alt_name').content|wash()} {/if}
+                            {if $node|has_attribute('acronym')}{$node|attribute('acronym').content|wash()}{/if}
+                        </h4>
+                    {/if}
+                </div>
+        </div>
+            {if $node|has_attribute('description')}
+                <div class="lead mt-2">{attribute_view_gui attribute=$node|attribute('description')}</div>
             {/if}
 
             {*<div class="row">
@@ -26,6 +37,28 @@
             </div>*}
         </div>
         <div class="col-lg-3 offset-lg-1">
+            {if or($node.object.can_edit, $node.contentobject_id|eq(fetch(user, current_user).contentobject_id))}
+                <div class="mb-3">
+                    {if $node.contentobject_id|eq(fetch(user, current_user).contentobject_id)}
+                        <form action="{concat('/user/edit/',$node.contentobject_id)|ezurl(no)}" method="post" name="Edit">
+                            <input class="btn btn-warning btn-xs" type="submit" name="EditButton"
+                                   value="{'Edit profile'|i18n('design/ocbootstrap/user/edit')}"/>
+                            {if ezmodule( 'userpaex' )}
+                                <a class="btn btn-info btn-xs"
+                                   href="{concat("userpaex/password/",$node.contentobject_id)|ezurl(no)}">{'Change password'|i18n('design/ocbootstrap/user/edit')}</a>
+                            {else}
+                                <input class="btn btn-info btn-xs" type="submit" name="ChangePasswordButton"
+                                       value="{'Change password'|i18n('design/ocbootstrap/user/edit')}"/>
+                            {/if}
+                        </form>
+                    {else}
+                        <a class="btn btn-warning btn-icon" href="{concat('content/edit/',$node.contentobject_id, '/f')|ezurl('no')}">
+                            {display_icon('it-pencil', 'svg', 'icon icon-white')}   <span>{'Edit'|i18n('agenda/dashboard')}</span>
+                        </a>
+                    {/if}
+                </div>
+            {/if}
+
             {include uri='design:openpa/full/parts/actions.tpl'}
             {def $current_topics = array()}
             {if $node|has_attribute('topics')}
@@ -75,9 +108,9 @@
      $close_text = 'Close'|i18n('bootstrapitalia')}
 
 {def $static_structure = hash(
-    'description', array('description', 'has_logo-image'),
+    'description', array('business_objective', 'image'),
     'has_spatial_coverage', array('has_spatial_coverage-main_address'),
-    'has_online_contact_point', array('has_online_contact_point-main_phone-main_person'),
+    'has_online_contact_point', array('has_online_contact_point'),
     'more_information', array('more_information', 'foundation_date', 'attachments', 'has_private_org_activity_type', 'private_organization_category', 'legal_status_code')
 )}
 
@@ -173,11 +206,12 @@
                                                         relation_view='banner'
                                                         relation_has_wrapper=false()
                                                         show_link=true()
+                                                        hide_title=true()
                                                         tag_view="chip-lg mr-2 me-2"}
                                     {if $identifier|eq('description')}
                                         </div>
                                     {/if}
-                                {elseif $attribute|eq('has_logo-image')}
+                                {elseif $attribute|eq('image')}
                                     {def $images = array()}
                                     {if $node|has_attribute('image')}
                                     {foreach $node.data_map['image'].content.relation_list as $index => $item}
@@ -212,7 +246,7 @@
                                         {/foreach}
                                     {/if}
 
-                                    {if count($node_list)|gt(0)}
+                                    {if count($markers)|gt(0)}
                                     <div class="card-wrapper card-teaser-wrapper">
                                         {if $node|has_attribute('main_address')}
                                             <div class="card card-teaser shadow  p-4 rounded">
@@ -362,6 +396,7 @@
     <div class="section section-muted section-inset-shadow p-0">
         <div class="section-content">
         {include
+            add_time_buttons=true()
             uri='design:parts/agenda.tpl'
             views=array('grid','geo','agenda')
             base_query=concat('classes [',agenda_event_class_identifier(),'] and subtree [', calendar_node_id(), '] and state in [moderation.skipped,moderation.accepted] sort [time_interval=>asc] and ', $agenda_query_custom)
@@ -371,6 +406,6 @@
         </div>
     </div>
 
-{elseif $openpa['content_tree_related'].full.exclude|not()}
-    {include uri='design:openpa/full/parts/related.tpl' object=$node.object}
+{*{elseif $openpa['content_tree_related'].full.exclude|not()}*}
+{*    {include uri='design:openpa/full/parts/related.tpl' object=$node.object}*}
 {/if}

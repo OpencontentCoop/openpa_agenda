@@ -5,3 +5,8 @@
 #edit-takes_place_in .leaflet-container {
     height: 1000px !important;
 }
+
+.alpaca-container .dataTable th:not([data-header-id]),
+th[aria-label="Actions"] {
+    display:none
+}

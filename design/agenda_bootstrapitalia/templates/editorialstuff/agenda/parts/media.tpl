@@ -1,5 +1,6 @@
 <div class="panel-body" style="background: #fff">
 
+    {if $post.object.can_edit}
     <ul class="nav nav-tabs border-0">
         <li role="presentation" class="nav-item mr-2">
             <form action="" enctype="multipart/form-data" method="post" id="upload-form">
@@ -20,6 +21,7 @@
             </a>
         </li>
     </ul>
+    {/if}
 
     <div id="data">
         {include uri=concat('design:', $template_directory, '/parts/media/data.tpl') post=$post}

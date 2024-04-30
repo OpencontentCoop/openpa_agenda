@@ -206,9 +206,11 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
 
     public function addImage(eZContentObject $object)
     {
-        parent::addImage($object);
-        $this->setObjectLastModified();
-        $this->launchWebhooks();
+        if ($object->canEdit()) {
+            parent::addImage($object);
+            $this->setObjectLastModified();
+            $this->launchWebhooks();
+        }
     }
 
     public function makeDefaultImage($objectId)

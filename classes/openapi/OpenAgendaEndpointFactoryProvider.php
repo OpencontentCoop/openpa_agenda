@@ -106,7 +106,13 @@ class OpenAgendaEndpointFactoryProvider extends EndpointFactoryProvider
                 'collection' => new OperationFactoryCollection([
                     (new OperationFactory\ContentObject\CreateOperationFactory()),
                     (new OperationFactory\ContentObject\FilteredSearchOperationFactory()),
-                ])
+                ]),
+                'item' => new OperationFactoryCollection([
+                    (new OperationFactory\ContentObject\EmbedReadOperationFactory()),
+                    (new OperationFactory\ContentObject\UpdateOperationFactory()),
+                    (new OperationFactory\ContentObject\MergePatchOperationFactory()),
+                    (new OperationFactory\ContentObject\DeleteOperationFactory()),
+                ]),
             ],
         ];
 
@@ -133,7 +139,14 @@ class OpenAgendaEndpointFactoryProvider extends EndpointFactoryProvider
             }
         }
 
-//        echo '<pre>';print_r([$paths,$this->endpoints]);die();
+        $this->endpoints['/calendar/{year-month}'] = (new OpenAgendaCalendarEndpointFactory())
+            ->setOperationFactoryCollection(new OperationFactoryCollection([
+                (new OpenAgendaCalendarOperationFactory())
+            ]))
+            ->setTags(['eventi'])
+            ->setPath('/calendar/{year-month}');
+
+//echo '<pre>';print_r($this->endpoints);die();
     }
 
     private function build(
@@ -144,14 +157,14 @@ class OpenAgendaEndpointFactoryProvider extends EndpointFactoryProvider
         $collectionOperationFactories = null,
         $itemOperationFactories = null
     ) {
-        if (empty($collectionOperationFactories)){
+        if (empty($collectionOperationFactories)) {
             $collectionOperationFactories = new OperationFactoryCollection([
                 (new OperationFactory\ContentObject\CreateOperationFactory()),
                 (new OperationFactory\ContentObject\SearchOperationFactory()),
             ]);
         }
 
-        if (empty($itemOperationFactories)){
+        if (empty($itemOperationFactories)) {
             $itemOperationFactories = new OperationFactoryCollection([
                 (new OperationFactory\ContentObject\ReadOperationFactory()),
                 (new OperationFactory\ContentObject\UpdateOperationFactory()),

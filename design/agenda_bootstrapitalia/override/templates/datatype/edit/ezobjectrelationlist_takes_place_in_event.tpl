@@ -18,15 +18,15 @@
 
     {def $public_places_query = concat("classes [place] subtree [",$parent_node_id,"] and state in [", $privacy_states['privacy.public'].id, "] sort [name=>asc] limit 300")}
     {debug-log msg='public_places_query' var=$public_places_query}
-    {def $public_places = api_search($public_places_query)}
+    {def $public_places = api_search($public_places_query, 'content', true())}
     {debug-log msg='public_places_count' var=$public_places.totalCount}
 
     {def $private_places_query = concat("classes [place] subtree [",$parent_node_id,"] and state in [", $privacy_states['privacy.private'].id, "] and owner_id in [", $owner_list|implode(','), "] sort [name=>asc] limit 300")}
     {debug-log msg='private_places_query' var=$private_places_query}
-    {def $private_places = api_search($private_places_query)}
+    {def $private_places = api_search($private_places_query, 'content', true())}
     {debug-log msg='private_places_count' var=$private_places.totalCount}
 
-    {def $all_used_places_id_list_query = concat("owner_id in [", $owner_list|implode(','), "] and facets [takes_place_in.id|count|300] limit 1")}
+    {def $all_used_places_id_list_query = concat("owner_id in [", $owner_list|implode(','), "] and facets [takes_place_in.id|count|1000] limit 1")}
     {debug-log msg='all_used_places_id_list_query' var=$all_used_places_id_list_query}
     {def $all_used_places_id_list = api_search($all_used_places_id_list_query).facets[0].data|array_keys}
 
@@ -34,7 +34,7 @@
     {if count($all_used_places_id_list)}
         {def $shared_places_query = concat("classes [place] subtree [",$parent_node_id,"] and state in [", $privacy_states['privacy.private'].id, "] and owner_id !in [", $owner_list|implode(','), "] and id in [", $all_used_places_id_list|implode(','), "] sort [name=>asc] limit 300")}
         {debug-log msg='shared_places_query' var=$shared_places_query}
-        {set $shared_places = api_search($shared_places_query)}
+        {set $shared_places = api_search($shared_places_query, 'content', true())}
         {debug-log msg='shared_places_count' var=$shared_places.totalCount}
     {/if}
 

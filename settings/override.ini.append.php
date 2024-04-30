@@ -127,4 +127,26 @@ MatchFile=datatype/edit/ezgmaplocation_main_address.tpl
 Subdir=templates
 Match[class_identifier]=private_organization
 Match[attribute_identifier]=main_address
+
+[datatype_has_online_contact_point]
+Source=content/datatype/edit/ezobjectrelationlist.tpl
+MatchFile=datatype/edit/ezobjectrelationlist_has_online_contact_point.tpl
+Subdir=templates
+Match[class_identifier]=private_organization
+Match[attribute_identifier]=has_online_contact_point
+
+[datatype_has_online_contact_point_event]
+Source=content/datatype/edit/ezobjectrelationlist.tpl
+MatchFile=datatype/edit/ezobjectrelationlist_has_online_contact_point_event.tpl
+Subdir=templates
+Match[class_identifier]=event
+Match[attribute_identifier]=has_online_contact_point
+
+[datatype_about_target_audience]
+Source=content/datatype/view/eztext.tpl
+MatchFile=datatype/view/eztext_about_target_audience.tpl
+Subdir=templates
+Match[class_identifier]=event
+Match[attribute_identifier]=about_target_audience
+
 */ ?>
