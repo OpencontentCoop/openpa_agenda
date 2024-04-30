@@ -1,7 +1,8 @@
 {set_defaults(hash(
     'relation_view', 'list',
     'relation_has_wrapper', false(),
-    'context_class', false()
+    'context_class', false(),
+    'hide_title', false()
 ))}
 
 {def $node_list = array()}
@@ -24,12 +25,9 @@
         {if or($attribute.contentclass_attribute_identifier|eq('sub_event_of'), $relation_has_wrapper)|not()}
             <div class="card-wrapper card-teaser-wrapper" style="min-width:49%">
         {/if}
-{*        {def $hide_title = cond(and(count($node_list)|eq(1), openpaini('HideRelationsTitle', 'AttributeIdentifiers', array())|contains($attribute.contentclass_attribute_identifier)), true(), false())}*}
-        {def $hide_title = false()}
         {foreach $node_list as $child}
             {node_view_gui content_node=$child view=card_teaser show_icon=true() hide_title=$hide_title image_class=widemedium}
         {/foreach}
-        {undef $hide_title}
         {if or($attribute.contentclass_attribute_identifier|eq('sub_event_of'), $relation_has_wrapper)|not()}
             </div>
         {/if}

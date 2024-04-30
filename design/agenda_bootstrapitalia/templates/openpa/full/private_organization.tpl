@@ -77,7 +77,7 @@
 {def $static_structure = hash(
     'description', array('description', 'has_logo-image'),
     'has_spatial_coverage', array('has_spatial_coverage-main_address'),
-    'has_online_contact_point', array('has_online_contact_point-main_phone-main_person'),
+    'has_online_contact_point', array('has_online_contact_point'),
     'more_information', array('more_information', 'foundation_date', 'attachments', 'has_private_org_activity_type', 'private_organization_category', 'legal_status_code')
 )}
 
@@ -173,6 +173,7 @@
                                                         relation_view='banner'
                                                         relation_has_wrapper=false()
                                                         show_link=true()
+                                                        hide_title=true()
                                                         tag_view="chip-lg mr-2 me-2"}
                                     {if $identifier|eq('description')}
                                         </div>
