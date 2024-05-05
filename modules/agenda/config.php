@@ -83,6 +83,7 @@ $tpl->setVariable( 'current_user', $currentUser );
 $tpl->setVariable( 'persistent_variable', array() );
 $tpl->setVariable( 'view_parameters', $viewParameters );
 $tpl->setVariable( 'current_part', $Part );
+$tpl->setVariable( 'index', $Params['Part'] );
 $tpl->setVariable( 'data', $data );
 
 $Result = array();

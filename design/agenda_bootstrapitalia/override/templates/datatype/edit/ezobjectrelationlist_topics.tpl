@@ -134,7 +134,7 @@
             {/if}
             <ul class="list-unstyled incremental-select row">
             {section var=node loop=$nodesList}
-            <li class="col-6">
+            <li class="col-4">
                 {def $node_has_children = $node.children_count}
                 <div class="form-check">
                   <input id="check-{$attribute.id}-{$node.contentobject_id}"

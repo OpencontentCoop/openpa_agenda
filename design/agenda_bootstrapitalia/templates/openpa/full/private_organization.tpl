@@ -3,11 +3,19 @@
 <section class="container">
     <div class="row">
         <div class="col-lg-8 px-lg-4 py-lg-2">
-            <h1>{$node.name|wash()}</h1>
-            {if $node|has_attribute('short_title')}
-                <h4 class="py-2">{$node|attribute('short_title').content|wash()}</h4>
-            {/if}
-
+            <div class="d-flex justify-content-start align-items-center">
+                {if $node|has_attribute('has_logo')}
+                    <div class="mr-3">
+                        {attribute_view_gui attribute=$node|attribute('has_logo') image_class=medium}
+                    </div>
+                {/if}
+                <div>
+                    <h1>{$node.name|wash()}</h1>
+                    {if $node|has_attribute('short_title')}
+                        <h4 class="py-2">{$node|attribute('short_title').content|wash()}</h4>
+                    {/if}
+                </div>
+        </div>
             {if $node|has_attribute('business_objective')}
                 <div class="lead">{attribute_view_gui attribute=$node|attribute('business_objective')}</div>
             {/if}
@@ -26,6 +34,13 @@
             </div>*}
         </div>
         <div class="col-lg-3 offset-lg-1">
+            {if $node.object.can_edit}
+                <div class="mb-3">
+                    <a class="btn btn-warning btn-icon" href="{concat('content/edit/',$node.contentobject_id, '/f')|ezurl('no')}">
+                        {display_icon('it-pencil', 'svg', 'icon icon-white')}   <span>{'Edit'|i18n('agenda/dashboard')}</span>
+                    </a>
+                </div>
+            {/if}
             {include uri='design:openpa/full/parts/actions.tpl'}
             {def $current_topics = array()}
             {if $node|has_attribute('topics')}
@@ -75,7 +90,7 @@
      $close_text = 'Close'|i18n('bootstrapitalia')}
 
 {def $static_structure = hash(
-    'description', array('description', 'has_logo-image'),
+    'description', array('description', 'image'),
     'has_spatial_coverage', array('has_spatial_coverage-main_address'),
     'has_online_contact_point', array('has_online_contact_point'),
     'more_information', array('more_information', 'foundation_date', 'attachments', 'has_private_org_activity_type', 'private_organization_category', 'legal_status_code')
@@ -178,7 +193,7 @@
                                     {if $identifier|eq('description')}
                                         </div>
                                     {/if}
-                                {elseif $attribute|eq('has_logo-image')}
+                                {elseif $attribute|eq('image')}
                                     {def $images = array()}
                                     {if $node|has_attribute('image')}
                                     {foreach $node.data_map['image'].content.relation_list as $index => $item}
@@ -213,7 +228,7 @@
                                         {/foreach}
                                     {/if}
 
-                                    {if count($node_list)|gt(0)}
+                                    {if count($markers)|gt(0)}
                                     <div class="card-wrapper card-teaser-wrapper">
                                         {if $node|has_attribute('main_address')}
                                             <div class="card card-teaser shadow  p-4 rounded">

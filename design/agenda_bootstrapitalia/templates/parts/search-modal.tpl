@@ -44,7 +44,7 @@
                                 <ul class="nav nav-tabs nav-justified flex-wrap" role="tablist">
                                     {def $active = false()}
                                     {if $exclude|contains('what')|not()}
-                                    <li class="nav-item">
+                                    <li class="nav-item" id="what">
                                         <a role="tab" data-toggle="tab" class="nav-link{if $active|not()} active{set $active = true()}{/if}"
                                            href="#filter-by-what">
                                             {'What?'|i18n('agenda')}
@@ -52,7 +52,7 @@
                                     </li>
                                     {/if}
                                     {if $exclude|contains('when')|not()}
-                                    <li class="nav-item">
+                                    <li class="nav-item" id="when">
                                         <a role="tab" data-toggle="tab" class="nav-link{if $active|not()} active{set $active = true()}{/if}"
                                            href="#filter-by-when">
                                             {'When?'|i18n('agenda')}
@@ -60,7 +60,7 @@
                                     </li>
                                     {/if}
                                     {if and($exclude|contains('where')|not(),$has_place)}
-                                    <li class="nav-item">
+                                    <li class="nav-item" id="where">
                                         <a role="tab" data-toggle="tab" class="nav-link{if $active|not()} active{set $active = true()}{/if}"
                                            href="#filter-by-where">
                                             {'Where?'|i18n('agenda')}

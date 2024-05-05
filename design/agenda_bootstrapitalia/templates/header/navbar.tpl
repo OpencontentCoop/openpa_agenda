@@ -4,7 +4,7 @@
      $topic_list = array()
      $selected_topic_list = array()}
 
-<div class="it-header-navbar-wrapper{* theme-light*}">
+<div class="it-header-navbar-wrapper{if current_theme_has_variation('light_center')} theme-light{/if}">
     <div class="container">
         <div class="row">
             <div class="col-12">

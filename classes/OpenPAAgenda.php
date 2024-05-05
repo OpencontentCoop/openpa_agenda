@@ -394,15 +394,26 @@ class OpenPAAgenda
         $object = $post->getObject();
         if ($object instanceof eZContentObject) {
             $users = [];
-            $moderatorGroup = eZContentObjectTreeNode::fetch(self::moderatorGroupNodeId());
-            if ($moderatorGroup instanceof eZContentObjectTreeNode) {
-                /** @var eZContentObjectAttribute[] $dataMap */
-                $dataMap = $moderatorGroup->attribute('data_map');
-                if (isset($dataMap['email']) && $dataMap['email']->hasContent()) {
-                    $users[] = new eZUser([
-                        'email' => $dataMap['email']->toString(),
-                        'login' => $moderatorGroup->attribute('name'),
-                    ]);
+
+            $mainAddress = self::instance()->getAttributeString('main_recipient');
+            if (eZMail::validate($mainAddress)){
+                $users[] = new eZUser([
+                    'email' => $mainAddress,
+                    'login' => '',
+                ]);
+            }
+
+            if (empty($users)) {
+                $moderatorGroup = eZContentObjectTreeNode::fetch(self::moderatorGroupNodeId());
+                if ($moderatorGroup instanceof eZContentObjectTreeNode) {
+                    /** @var eZContentObjectAttribute[] $dataMap */
+                    $dataMap = $moderatorGroup->attribute('data_map');
+                    if (isset($dataMap['email']) && $dataMap['email']->hasContent()) {
+                        $users[] = new eZUser([
+                            'email' => $dataMap['email']->toString(),
+                            'login' => $moderatorGroup->attribute('name'),
+                        ]);
+                    }
                 }
             }
 
@@ -506,21 +517,17 @@ class OpenPAAgenda
 
     public function isModerationEnabled()
     {
-        return $this->getAttributeString('enable_moderation') == 1 || $this->getAttributeString(
-                'enable_moderation'
-            ) == '';
+        return $this->getAttributeString('enable_moderation') == 1;
     }
 
     public function isLoginEnabled()
     {
-        return $this->getAttributeString('enable_login') == 1 || $this->getAttributeString('enable_login') == '';
+        return $this->getAttributeString('enable_login') == 1;
     }
 
     public function isRegistrationEnabled()
     {
-        return $this->getAttributeString('enable_registration') == 1 || $this->getAttributeString(
-                'enable_registration'
-            ) == '';
+        return $this->getAttributeString('enable_registration') == 1;
     }
 
     public function getVisibilityStates()

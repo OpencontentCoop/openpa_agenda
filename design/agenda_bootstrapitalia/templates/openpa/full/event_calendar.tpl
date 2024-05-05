@@ -4,8 +4,6 @@
     <div class="row">
         <div class="col px-lg-4 py-lg-2" style="min-height: 200px">
 
-            {include uri='design:openpa/full/parts/home-blocks.tpl'}
-
             {def $hide_tags = cond($root_node|has_attribute('hide_tags'), $root_node|attribute('hide_tags').content.tag_ids, array())
                  $hide_iniziative = array()}
             {if $root_node|has_attribute('hide_tags')}

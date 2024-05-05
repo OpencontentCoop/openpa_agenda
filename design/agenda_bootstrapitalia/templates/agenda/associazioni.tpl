@@ -42,28 +42,30 @@
 <div id="map" style="width: 100%; height: 500px" class="hide"></div>
 
 <div class="section section-muted section-inset-shadow p-4">
-    {*def $blocks = array(
+    {def $blocks = array(
         page_block(
             "",
-            "ListaPaginata",
-            "lista_paginata",
+            "OpendataRemoteContents",
+            "default",
             hash(
-                "limite", "6",
-                "elementi_per_riga", "auto",
-                "includi_classi", "private_organization",
-                "escludi_classi", "",
-                "ordinamento", "modificato",
-                "state_id", "",
-                "topic_node_id", '',
+                "remote_url", "",
+                "query", "classes [private_organization]",
+                "show_grid", "1",
+                "show_map", "",
+                "show_search", "1",
+                "limit", "9",
+                "items_per_row", "3",
+                "facets", "",
+                "view_api", "banner",
                 "color_style", "",
-                "container_style", "",
-                "node_id", $node.node_id
+                "fields", "",
+                "template", "",
+                "simple_geo_api", "0",
+                "input_search_placeholder", ""
             )
         )
     )}
-    {include uri='design:zone/default.tpl' zones=array(hash('blocks', $blocks))*}
-
-    {node_view_gui content_node=$node view=children view_parameters=$view_parameters}
+    {include uri='design:zone/default.tpl' zones=array(hash('blocks', $blocks))}
 
 </div>
 

@@ -118,7 +118,8 @@ class HasOnlineContactPointConnector extends AbstractBaseConnector
             $payload->setData('ita-IT', 'contact', $data);
             $repository = new \Opencontent\Opendata\Api\ContentRepository();
             $repository->setEnvironment(new DefaultEnvironmentSettings());
-            $onlineContactPoint = $repository->createUpdate($payload->getArrayCopy(), eZHTTPTool::instance()->hasSessionVariable("RegisterAgendaAssociazioneID"));
+            $allowAccess = eZHTTPTool::instance()->hasSessionVariable("RegisterAgendaAssociazioneID") || eZUser::currentUserID() == $privateOrganization->attribute('id');
+            $onlineContactPoint = $repository->createUpdate($payload->getArrayCopy(), $allowAccess);
             return $onlineContactPoint['content']['metadata']['id'] ?? null;
         }
 

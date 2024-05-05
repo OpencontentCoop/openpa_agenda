@@ -227,42 +227,45 @@
 
         moment.locale($.opendataTools.settings('locale'));
 
-        this.map = $.opendataTools.initMap(
-            'map',
-            function (response) {
-                return L.geoJson(response, {
-                    pointToLayer: function (feature, latlng) {
-                        var customIcon = L.MakiMarkers.icon({icon: 'circle', size: 'l'});
-                        return L.marker(latlng, {icon: customIcon});
-                    },
-                    onEachFeature: function (feature, layer) {
-                        var popupDefault = '<p class="text-center"><i class="fa fa-circle-o-notch fa-spin"></i></p><p><a href="' + $.opendataTools.settings('accessPath') + '/agenda/event/' + feature.properties.mainNodeId + '" target="_blank">';
-                        popupDefault += feature.properties.name;
-                        popupDefault += '</a></p>';
-                        var popup = new L.Popup({maxHeight: 360});
-                        popup.setContent(popupDefault);
-                        layer.on('click', function (e) {
+        this.hasMap = $('#map').length > 0;
+        if (this.hasMap) {
+            this.map = $.opendataTools.initMap(
+                'map',
+                function (response) {
+                    return L.geoJson(response, {
+                        pointToLayer: function (feature, latlng) {
+                            var customIcon = L.MakiMarkers.icon({icon: 'circle', size: 'l'});
+                            return L.marker(latlng, {icon: customIcon});
+                        },
+                        onEachFeature: function (feature, layer) {
+                            var popupDefault = '<p class="text-center"><i class="fa fa-circle-o-notch fa-spin"></i></p><p><a href="' + $.opendataTools.settings('accessPath') + '/agenda/event/' + feature.properties.mainNodeId + '" target="_blank">';
+                            popupDefault += feature.properties.name;
+                            popupDefault += '</a></p>';
+                            var popup = new L.Popup({maxHeight: 360});
+                            popup.setContent(popupDefault);
+                            layer.on('click', function (e) {
 
-                            $.opendataTools.findOne('id = ' + e.target.feature.properties.id, function (data) {
-                                var template = $.templates('#tpl-event');
-                                var htmlOutput = template.render([data]);
-                                popup.setContent(htmlOutput);
-                                popup.update();
-                            })
-                        });
-                        layer.bindPopup(popup);
-                    }
-                });
-            }
-        );
-        this.map.setView([0, 0], 10).scrollWheelZoom.disable();
+                                $.opendataTools.findOne('id = ' + e.target.feature.properties.id, function (data) {
+                                    var template = $.templates('#tpl-event');
+                                    var htmlOutput = template.render([data]);
+                                    popup.setContent(htmlOutput);
+                                    popup.update();
+                                })
+                            });
+                            layer.bindPopup(popup);
+                        }
+                    });
+                }
+            );
+            this.map.setView([0, 0], 10).scrollWheelZoom.disable();
+        }
 
         this.preview = $('#preview');
         this.stateToggles = $('a.state-filter');
 
         var plugin = this;
         this.calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
-            plugins: ['dayGrid', 'list'],
+            plugins: ['dayGrid', 'list', 'listWeek'],
             header: {
                 left: 'prev,next',
                 center: 'title',
@@ -295,7 +298,7 @@
                     if (windowWidth < 800) {
                         this.changeView('listWeek');
                     } else {
-                        this.changeView('dayGridMonth');
+                        this.changeView(plugin.settings.defaultCalendarView);
                     }
                 }
             },
@@ -320,8 +323,9 @@
         this.listTpl = $.templates('#tpl-list');
         this.currentPage = 0;
         this.queryPerPage = [];
+        this.timeButtons = $('.time-button');
+        this.addFilterLabel = $('.add-filter-label');
         this.currentView = $('a.agenda-view-selector.active').attr('href');
-
         this.resetForm();
         this.addListeners();
         if ($.isFunction(this.settings.onInit)) {
@@ -345,6 +349,7 @@
                 var current = $(e.currentTarget);
                 plugin.onCheckBoxTreeChange(current);
             });
+
             plugin.allChipToggle.on('click', function (e) {
                 plugin.onAllChipToggleClick();
                 e.preventDefault();
@@ -385,20 +390,80 @@
                 e.preventDefault();
             });
 
+            plugin.timeButtons.on('click', function (e){
+                plugin.timeButtons.removeClass('selected')
+                let currentDate = $(this).data('value')
+                let start;
+                let end;
+                switch (currentDate) {
+                    case 'today':
+                        start = moment();
+                        end = moment();
+                        $(this).addClass('selected')
+                        break;
+                    case 'weekend':
+                        start = moment().day(6);
+                        end = moment().day(7);
+                        $(this).addClass('selected')
+                        break;
+                    case 'next 7 days':
+                        start = moment();
+                        end = moment().add(7, 'days');
+                        $(this).addClass('selected')
+                        break;
+                    case 'next 30 days':
+                        start = moment();
+                        end = moment().add(30, 'days');
+                        $(this).addClass('selected')
+                        break;
+                }
+
+                if (start){
+                    plugin.fromDateInput.val(start.format('DD/MM/YYYY'))
+                    if (end) {
+                        plugin.toDateInput.val(end.format('DD/MM/YYYY'))
+                    }
+                    plugin.onChangeDatePicker();
+                    plugin.searchGuiForm.trigger('submit');
+                }
+                e.preventDefault();
+            })
+
+            if (plugin.currentView === '#agenda') {
+                plugin.timeButtons.hide();
+                plugin.addFilterLabel.removeClass('d-none');
+                $('#when').hide();
+            }else{
+                plugin.timeButtons.show();
+                if (plugin.timeButtons.length > 0) {
+                    plugin.addFilterLabel.addClass('d-none');
+                }
+                $('#when').show();
+            }
             $('body').on('shown.bs.tab', function (e) {
                 if ($(e.target).hasClass('agenda-view-selector')) {
                     plugin.currentView = $(e.target).attr('href');
                     if (plugin.currentView === '#agenda') {
+                        plugin.timeButtons.hide();
+                        plugin.addFilterLabel.removeClass('d-none');
+                        $('#when').hide();
                         plugin.getFilterChip('daterange').hide();
                         plugin.getFilterChip('alsopast').hide();
                         plugin.refreshAllChipToggle();
                     } else {
+                        plugin.timeButtons.show();
+                        if (plugin.timeButtons.length > 0) {
+                            plugin.addFilterLabel.addClass('d-none');
+                        }
+                        $('#when').show();
                         plugin.getFilterChip('daterange').show();
                         plugin.getFilterChip('alsopast').show();
                         plugin.refreshAllChipToggle();
                     }
                     if (plugin.currentView === '#geo') {
-                        $.opendataTools.refreshMap();
+                        if (plugin.hasMap) {
+                            $.opendataTools.refreshMap();
+                        }
                     }
                     plugin.runSearch();
                 }
@@ -484,16 +549,21 @@
         appendFilterChip: function (inputId, name) {
             var plugin = this;
             if ($('a[data-input_id="' + inputId + '"]').length === 0) {
-                var chip = $('<a href="#" data-input_id="' + inputId + '" class="chip chip-lg selected"><span class="chip-label">' + name + '</span><svg class="icon filter-remove"><use xlink:href="' + plugin.spritePath + '#it-close"></use></svg><span class="sr-only">Remove</span></a>').on('click', function (e) {
-                    var input = plugin.removeFilterChip($(e.currentTarget).data('input_id'));
-                    if (input.attr('type') === 'checkbox'){
-                        input.prop('checked', false).trigger('change');
-                    }else{
-                        input.val('');
-                    }
-                    plugin.searchGuiForm.trigger('submit');
-                    e.preventDefault();
-                });
+                var chip = $('<a href="#" data-input_id="' + inputId + '" class="chip chip-lg selected"><span class="chip-label">' + name + '</span><svg class="icon filter-remove"><use xlink:href="' + plugin.spritePath + '#it-close"></use></svg><span class="sr-only">Remove</span></a>')
+                    .on('click', function (e) {
+                        var inputId = $(e.currentTarget).data('input_id');
+                        var input = plugin.removeFilterChip(inputId);
+                        if (inputId === 'daterange'){
+                            plugin.timeButtons.removeClass('selected')
+                        }
+                        if (input.attr('type') === 'checkbox'){
+                            input.prop('checked', false).trigger('change');
+                        }else{
+                            input.val('');
+                        }
+                        plugin.searchGuiForm.trigger('submit');
+                        e.preventDefault();
+                    });
                 this.toggleSearch.before(chip);
             }
             plugin.refreshAllChipToggle();
@@ -620,6 +690,7 @@
         onAllChipToggleClick: function () {
             var plugin = this;
             plugin.resetForm();
+            plugin.timeButtons.removeClass('selected')
             $('a[data-input_id]').each(function () {
                 plugin.removeFilterChip($(this).data('input_id'));
             });
@@ -639,6 +710,7 @@
             var places = [];
             var authors = [];
             var calendar = {'start': moment(), 'end': '*'};
+            var withPast = this.alsoPastCheck.is(':checked');
             $.each(plugin.searchGuiForm.serializeArray(), function () {
                 if (this.name === 'Type') {
                     types.push(this.value);
@@ -655,14 +727,14 @@
                 if (this.name === 'Author') {
                     authors.push(this.value);
                 }
-                if (this.name === 'AlsoPast' && this.value.length === 1) {
-                    calendar = {'start': '*', 'end': '*'};
-                }
-                if (this.name === 'From' && this.value.length > 0) {
+                if (this.name === 'From' && this.value.length > 0 && !withPast) {
                     calendar.start = moment(this.value, 'DD/MM/YYYY');
                 }
-                if (this.name === 'To' && this.value.length > 0) {
+                if (this.name === 'To' && this.value.length > 0 && !withPast) {
                     calendar.end = moment(this.value, 'DD/MM/YYYY');
+                }
+                if (this.name === 'AlsoPast' && this.value.length === 1) {
+                    calendar = {'start': '*', 'end': '*'};
                 }
             });
 
@@ -696,7 +768,7 @@
             }
             if (plugin.currentView !== '#agenda') {
                 var startQuery = calendar.start === '*' ? '*' : calendar.start.set('hour', 0).set('minute', 0).format('YYYY-MM-DD HH:mm')
-                var endQuery = calendar.end === '*' ? '*' : calendar.end.set('hour', 0).set('minute', 0).format('YYYY-MM-DD HH:mm')
+                var endQuery = calendar.end === '*' ? '*' : calendar.end.set('hour', 23).set('minute', 59).format('YYYY-MM-DD HH:mm')
                 query += ' and calendar[time_interval] = [' + startQuery + ',' + endQuery + ']';
             }
 
@@ -711,7 +783,7 @@
                     query += ' and state in [' + states.join(',') + ']';
                 }
             }
-
+console.log(query)
             return query;
         },
 
