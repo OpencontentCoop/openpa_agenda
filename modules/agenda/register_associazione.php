@@ -166,11 +166,11 @@ if (OpenPAAgenda::instance()->isAutoRegistrationEnabled()) {
 
                 if ($Module->isCurrentAction('Publish')) {
 
-//                    if (!SocialUserRegister::captchaIsValid()) {
-//                        $Module->redirectTo('/agenda/register_associazione/(error)/invalid_recaptcha');
-//
-//                        return eZModule::HOOK_STATUS_CANCEL_RUN;
-//                    }
+                    if (!SocialUserRegister::captchaIsValid()) {
+                        $Module->redirectTo('/agenda/register_associazione/(error)/invalid_recaptcha');
+
+                        return eZModule::HOOK_STATUS_CANCEL_RUN;
+                    }
 
                     $operationResult = eZOperationHandler::execute('content', 'publish', array(
                         'object_id' => $object->attribute('id'),
