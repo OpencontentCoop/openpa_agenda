@@ -11,7 +11,6 @@
 {/if}
 
 <script>
-
 $(document).ready(function () {ldelim}
 {literal}
     var form = $('form');
