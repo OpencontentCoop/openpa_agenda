@@ -82,10 +82,16 @@ class HasOnlineContactPointConnector extends AbstractBaseConnector
             ],
             'fields' => [
                 'contacts' => [
-                    'type' => 'table',
+//                    'type' => 'table',
                     'fields' => [
                         'type' => [
-                            'type' => 'text',
+                            'helper' => 'Inserisci qui la tipologia di contatto (Telefono, Email, Sito web, Fax e PEC)'
+                        ],
+                        'value' => [
+                            'helper' => "Inserisci qui il valore del contatto (es.: il numero compreso di prefisso internazionale (se telefono), l'URL (se sito o pagina web), l'indirizzo email (se email)"
+                        ],
+                        'contact' => [
+                            'helper' => "Specifica qui il tipo di contatto: Amministrazione, Segreteria, Supporto specialistico. Questo valore è facoltativo."
                         ],
                     ],
                 ],
