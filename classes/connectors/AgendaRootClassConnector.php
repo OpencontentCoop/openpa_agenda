@@ -3,8 +3,20 @@
 use Opencontent\Ocopendata\Forms\Connectors\OpendataConnector\ClassConnector;
 use Opencontent\Ocopendata\Forms\Connectors\OpendataConnector\ConnectorHelper;
 
-class SplittedClassConnector extends ClassConnector
+class AgendaRootClassConnector extends ClassConnector
 {
+    private $agendaViews = [
+        'dayGridWeek' => 'Settimanale',
+        'dayGridMonth' => 'Mensile',
+        'list' => 'Lista',
+    ];
+
+    private $calendarViews = [
+        'agenda' => 'Calendario',
+        'grid' => 'Griglia',
+        'geo' => 'Mappa',
+    ];
+
     public function __construct(eZContentClass $class, $helper)
     {
         parent::__construct($class, $helper);
@@ -19,7 +31,8 @@ class SplittedClassConnector extends ClassConnector
         $schema = parent::getSchema();
         $schema['title'] = '';
         $schema['description'] = '';
-
+        $schema['properties']['main_calendar_agenda_view']['enum'] = array_keys($this->agendaViews);
+        $schema['properties']['main_calendar_views']['enum'] = array_keys($this->calendarViews);
         return $schema;
     }
 
@@ -27,6 +40,8 @@ class SplittedClassConnector extends ClassConnector
     {
         $options = parent::getOptions();
         $options['fields']['social']['showActionsColumn'] = false;
+        $options['fields']['main_calendar_agenda_view']['optionLabels'] = array_values($this->agendaViews);
+        $options['fields']['main_calendar_views']['optionLabels'] = array_values($this->calendarViews);
         return $options;
     }
     protected function getSplitAttributeCategoriesLayout()
