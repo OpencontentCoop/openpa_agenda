@@ -226,8 +226,8 @@
         }));
 
         moment.locale($.opendataTools.settings('locale'));
-
-        this.hasMap = $('#map').length > 0;
+        let map = $('#map');
+        this.hasMap = map.length > 0;
         if (this.hasMap) {
             this.map = $.opendataTools.initMap(
                 'map',
@@ -257,7 +257,10 @@
                     });
                 }
             );
-            this.map.setView([0, 0], 10).scrollWheelZoom.disable();
+            let defaultLat = map.data('lat') || 0;
+            let defaultLng = map.data('lng') || 0;
+            let defaultZoom = map.data('zoom') || 10;
+            this.map.setView([defaultLat, defaultLng], defaultZoom).scrollWheelZoom.disable();
         }
 
         this.preview = $('#preview');
@@ -265,7 +268,7 @@
 
         var plugin = this;
         this.calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
-            plugins: ['dayGrid', 'list', 'listWeek'],
+            plugins: ['dayGrid', 'list'],
             header: {
                 left: 'prev,next',
                 center: 'title',
@@ -450,6 +453,7 @@
                         plugin.getFilterChip('daterange').hide();
                         plugin.getFilterChip('alsopast').hide();
                         plugin.refreshAllChipToggle();
+                        window.dispatchEvent(new Event('resize'));
                     } else {
                         plugin.timeButtons.show();
                         if (plugin.timeButtons.length > 0) {
@@ -783,7 +787,6 @@
                     query += ' and state in [' + states.join(',') + ']';
                 }
             }
-console.log(query)
             return query;
         },
 

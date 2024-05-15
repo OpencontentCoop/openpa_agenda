@@ -9,7 +9,7 @@
     <input type="hidden" name="ContentObjectAttribute_data_object_relation_list_{$attribute.id}[]" value="{$item.contentobject_id}" />
     {/foreach}
 {/if}
-
+{ezscript_require( array( 'bloodhound.min.js', 'typeahead.bundle.min.js' ) )}
 <script>
 $(document).ready(function () {ldelim}
 {literal}
@@ -72,3 +72,6 @@ $(document).ready(function () {ldelim}
 {/literal}
 {rdelim});
 </script>
+<style>
+    #online-contact-point table{ldelim}padding-bottom: 50px;{rdelim}
+</style>

@@ -1,7 +1,7 @@
 {default $view_parameters = array()}
 
 
-{def $edit_attribute_groups = edit_attribute_groups($class, $content_attributes)}
+{def $edit_attribute_groups = edit_attribute_groups($class, $content_attributes, array())}
 
 <div class="row mt-4 mb-5">
     {if $edit_attribute_groups.count|gt(1)}

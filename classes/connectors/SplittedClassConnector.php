@@ -29,8 +29,6 @@ class SplittedClassConnector extends ClassConnector
         $options['fields']['social']['showActionsColumn'] = false;
         return $options;
     }
-
-
     protected function getSplitAttributeCategoriesLayout()
     {
         $categories = $this->getFieldCategories();
@@ -65,5 +63,42 @@ class SplittedClassConnector extends ClassConnector
             'template' => '<div><legend class="alpaca-container-label">{{options.label}}</legend>' . $tabs . $panels . '</div>',
             'bindings' => $bindings
         );
+    }
+
+    protected function getFieldCategories()
+    {
+        $override = [
+            'content'=> 'Generale',
+            'view'=> 'Homepage',
+            'details'=> 'Testi',
+            'config'=> 'Configurazioni',
+            'date'=> 'Calendario',
+        ];
+
+        if ($this->fieldCategories === null) {
+
+            $this->fieldCategories = array();
+
+            if ($this->getHelper()->hasSetting('SplitAttributeCategories')) {
+                $defaultCategory = \eZINI::instance('content.ini')->variable('ClassAttributeSettings', 'DefaultCategory');
+                $categoryNames = \eZINI::instance('content.ini')->variable('ClassAttributeSettings', 'CategoryList');
+
+                foreach ($this->getFieldConnectors() as $identifier => $fieldConnector) {
+                    $category = $fieldConnector->getAttribute()->attribute('category');
+                    if (empty( $category )) {
+                        $category = $defaultCategory;
+                    }
+                    if (!isset( $this->fieldCategories[$category] )) {
+                        $this->fieldCategories[$category] = array(
+                            'name' => $override[$category] ?? $categoryNames[$category],
+                            'identifiers' => array()
+                        );
+                    }
+                    $this->fieldCategories[$category]['identifiers'][] = $identifier;
+                }
+            }
+        }
+
+        return $this->fieldCategories;
     }
 }

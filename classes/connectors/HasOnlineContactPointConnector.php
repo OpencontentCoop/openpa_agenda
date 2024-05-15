@@ -4,11 +4,13 @@ use Opencontent\Ocopendata\Forms\Connectors\AbstractBaseConnector;
 
 class HasOnlineContactPointConnector extends AbstractBaseConnector
 {
+    const REMOTE_ID_PREFIX = 'contact_';
+
     private $context;
 
     public static function generateRemoteId(int $objectId): string
     {
-        return 'contact_' . $objectId;
+        return self::REMOTE_ID_PREFIX . $objectId;
     }
 
     public function runService($serviceIdentifier)
@@ -50,12 +52,12 @@ class HasOnlineContactPointConnector extends AbstractBaseConnector
                         'type' => 'object',
                         'properties' => [
                             'type' => [
-                                'title' => 'Tipo',
+                                'title' => 'Tipologia di contatto',
                                 'type' => 'string',
                                 'required' => true,
                             ],
                             'value' => [
-                                'title' => 'Valore',
+                                'title' => 'Valore del contatto',
                                 'type' => 'string',
                                 'required' => true,
                             ],
@@ -82,18 +84,47 @@ class HasOnlineContactPointConnector extends AbstractBaseConnector
             ],
             'fields' => [
                 'contacts' => [
-//                    'type' => 'table',
-                    'fields' => [
-                        'type' => [
-                            'helper' => 'Inserisci qui la tipologia di contatto (Telefono, Email, Sito web, Fax e PEC)'
+                    'type' => 'table',
+                    'items' => [
+                        'fields' => [
+                            'type' => [
+                                'helper' => 'Inserisci qui la tipologia di contatto (es. Telefono, Email, Sito web, Fax, PEC)',
+                                'type' => 'text',
+                                'typeahead' => [
+                                    'config' => [
+                                        'autoselect' => true,
+                                        'highlight' => true,
+                                        'hint' =>  true,
+                                        'minLength' => 1,
+                                    ],
+                                    'datasets' => [
+                                        'type' => 'local',
+                                        'source' => ['Telefono', 'Email', 'Sito web', 'Fax', 'PEC']
+                                    ],
+                                ],
+                            ],
+                            'value' => [
+                                'helper' => "Inserisci qui il valore del contatto (es. il numero di telefono, l'url, l'indirizzo email, ...)",
+                                'type' => 'text',
+                            ],
+                            'contact' => [
+                                'helper' => "Specifica qui il tipo di contatto (es. Amministrazione, Segreteria, Supporto specialistico). Questo valore è facoltativo.",
+                                'type' => 'text',
+                                'typeahead' => [
+                                    'config' => [
+                                        'autoselect' => true,
+                                        'highlight' => true,
+                                        'hint' =>  true,
+                                        'minLength' => 1,
+                                    ],
+                                    'datasets' => [
+                                        'type' => 'local',
+                                        'source' => ['Amministrazione', 'Segreteria', 'Supporto specialistico']
+                                    ],
+                                ],
+                            ],
                         ],
-                        'value' => [
-                            'helper' => "Inserisci qui il valore del contatto (es.: il numero compreso di prefisso internazionale (se telefono), l'URL (se sito o pagina web), l'indirizzo email (se email)"
-                        ],
-                        'contact' => [
-                            'helper' => "Specifica qui il tipo di contatto: Amministrazione, Segreteria, Supporto specialistico. Questo valore è facoltativo."
-                        ],
-                    ],
+                    ]
                 ],
             ],
         ];

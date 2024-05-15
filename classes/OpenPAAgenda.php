@@ -396,7 +396,7 @@ class OpenPAAgenda
             $users = [];
 
             $mainAddress = self::instance()->getAttributeString('main_recipient');
-            if (eZMail::validate($mainAddress)){
+            if (eZMail::validate($mainAddress)) {
                 $users[] = new eZUser([
                     'email' => $mainAddress,
                     'login' => '',
@@ -562,75 +562,101 @@ class OpenPAAgenda
             'ClassFilterArray' => ['private_organization'],
         ], 1);
 
-        foreach ($privateOrganizations as $privateOrganization) {
+        $count = count($privateOrganizations);
+        foreach ($privateOrganizations as $index => $privateOrganization) {
+            $index++;
             if ($cli) {
-                $cli->warning("Restore contact points to " . $privateOrganization->attribute('name'));
+                $cli->warning("$index/$count Restore contact points to " . $privateOrganization->attribute('name'));
             }
-            $relatedContactPointRemoteId = HasOnlineContactPointConnector::generateRemoteId(
-                (int)$privateOrganization->attribute('contentobject_id')
-            );
-            $relatedContactPoint = eZContentObject::fetchByRemoteID($relatedContactPointRemoteId);
-            if ($relatedContactPoint instanceof eZContentObject && $skipExisting) {
-                continue;
-            }
-            $dataMap = $privateOrganization->dataMap();
-            if (isset($dataMap['has_online_contact_point'])) {
-                $current = false;
-                $currentContacts = [];
-                $currentIdList = array_filter(explode('-', $dataMap['has_online_contact_point']->toString()));
-                if (!empty($currentIdList)) {
-                    foreach ($currentIdList as $currentId){
-                        $current = eZContentObject::fetch((int)$currentId);
-                        if ($current instanceof eZContentObject){
-                            if ($current->attribute('remote_id') !== $relatedContactPointRemoteId) {
-                                $current->setAttribute('remote_id', $relatedContactPointRemoteId);
-                                $current->store();
-                            }
-                            $content = \Opencontent\Opendata\Api\Values\Content::createFromEzContentObject($current);
-                            $currentContacts = $content->data['ita-IT']['contact']['content'] ?? [];
-                            break;
+            self::restoreOrganizationContactPoints($privateOrganization, $cli, $skipExisting);
+        }
+    }
+
+    private static function restoreOrganizationContactPoints(
+        eZContentObjectTreeNode $privateOrganization,
+        $skipExisting = false
+    ) {
+        $relatedContactPointRemoteId = HasOnlineContactPointConnector::generateRemoteId(
+            (int)$privateOrganization->attribute('contentobject_id')
+        );
+        $relatedContactPoint = eZContentObject::fetchByRemoteID($relatedContactPointRemoteId);
+        if ($relatedContactPoint instanceof eZContentObject && $skipExisting) {
+            return;
+        }
+        $dataMap = $privateOrganization->dataMap();
+        if (isset($dataMap['has_online_contact_point'])) {
+            $current = false;
+            $currentContacts = [];
+            $currentIdList = array_filter(explode('-', $dataMap['has_online_contact_point']->toString()));
+            if (!empty($currentIdList)) {
+                foreach ($currentIdList as $currentId) {
+                    $current = eZContentObject::fetch((int)$currentId);
+                    if ($current instanceof eZContentObject) {
+                        if ($current->attribute('remote_id') !== $relatedContactPointRemoteId
+                            && strpos(
+                                $current->attribute('remote_id'),
+                                HasOnlineContactPointConnector::REMOTE_ID_PREFIX
+                            ) === false) {
+                            $current->setAttribute('remote_id', $relatedContactPointRemoteId);
+                            $current->store();
                         }
+                        $content = \Opencontent\Opendata\Api\Values\Content::createFromEzContentObject($current);
+                        $currentContacts = array_merge(
+                            $currentContacts,
+                            $content->data['ita-IT']['contact']['content'] ?? []
+                        );
                     }
                 }
-                if (isset($dataMap['main_phone']) && $dataMap['main_phone']->hasContent()) {
-                    $phone = $dataMap['main_phone']->toString();
-                    $currentContacts[] = [
-                        'type' => 'Recapito telefonico',
-                        'value' => $phone,
-                        'contact' => ''
-                    ];
-                }
-                if (isset($dataMap['main_person']) && $dataMap['main_person']->hasContent()) {
-                    $person = $dataMap['main_person']->toString();
-                    $currentContacts[] = [
-                        'type' => 'Responsabile',
-                        'value' => $person,
-                        'contact' => ''
-                    ];
-                }
-                if ($user = eZUser::fetch((int)$privateOrganization->attribute('contentobject_id'))){
-                    $currentContacts[] = [
-                        'type' => 'Email',
-                        'value' => $user->attribute('email'),
-                        'contact' => ''
-                    ];
-                }
+            }
+            if (isset($dataMap['main_phone']) && $dataMap['main_phone']->hasContent()) {
+                $phone = $dataMap['main_phone']->toString();
+                $currentContacts[] = [
+                    'type' => 'Recapito telefonico',
+                    'value' => $phone,
+                    'contact' => '',
+                ];
+            }
+            if (isset($dataMap['main_person']) && $dataMap['main_person']->hasContent()) {
+                $person = $dataMap['main_person']->toString();
+                $currentContacts[] = [
+                    'type' => 'Responsabile',
+                    'value' => $person,
+                    'contact' => '',
+                ];
+            }
+            if ($user = eZUser::fetch((int)$privateOrganization->attribute('contentobject_id'))) {
+                $currentContacts[] = [
+                    'type' => 'Email',
+                    'value' => $user->attribute('email'),
+                    'contact' => '',
+                ];
+            }
 
-                $payload = new \Opencontent\Opendata\Rest\Client\PayloadBuilder();
-                $payload->setRemoteId($relatedContactPointRemoteId);
-                $payload->setParentNode(self::contactsNodeId());
-                $payload->setClassIdentifier('online_contact_point');
-                $payload->setLanguages(['ita-IT']);
-                $payload->setData('ita-IT', 'name', 'Contatti ' . $privateOrganization->attribute('name'));
-                $payload->setData('ita-IT', 'contact', $currentContacts);
-                $repository = new \Opencontent\Opendata\Api\ContentRepository();
-                $repository->setEnvironment(new DefaultEnvironmentSettings());
-                $onlineContactPoint = $repository->createUpdate($payload->getArrayCopy());
-                $onlineContactPointId = $onlineContactPoint['content']['metadata']['id'] ?? null;
-                if ($onlineContactPointId){
-                    $dataMap['has_online_contact_point']->fromString($onlineContactPointId);
-                    $dataMap['has_online_contact_point']->store();
-                }
+            $hashArray = [];
+            foreach ($currentContacts as $index => $currentContact){
+                $hash = md5(implode('', [
+                    trim(strtolower($currentContact['type'])),
+                    trim(strtolower($currentContact['email'])),
+                    trim(strtolower($currentContact['email']))
+                ]));
+                $hashArray[$hash] = $currentContact;
+            }
+            $currentContacts = array_values($hashArray);
+
+            $payload = new \Opencontent\Opendata\Rest\Client\PayloadBuilder();
+            $payload->setRemoteId($relatedContactPointRemoteId);
+            $payload->setParentNode(self::contactsNodeId());
+            $payload->setClassIdentifier('online_contact_point');
+            $payload->setLanguages(['ita-IT']);
+            $payload->setData('ita-IT', 'name', 'Contatti ' . $privateOrganization->attribute('name'));
+            $payload->setData('ita-IT', 'contact', $currentContacts);
+            $repository = new \Opencontent\Opendata\Api\ContentRepository();
+            $repository->setEnvironment(new DefaultEnvironmentSettings());
+            $onlineContactPoint = $repository->createUpdate($payload->getArrayCopy());
+            $onlineContactPointId = $onlineContactPoint['content']['metadata']['id'] ?? null;
+            if ($onlineContactPointId) {
+                $dataMap['has_online_contact_point']->fromString($onlineContactPointId);
+                $dataMap['has_online_contact_point']->store();
             }
         }
     }
