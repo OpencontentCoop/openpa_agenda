@@ -52,12 +52,12 @@ class HasOnlineContactPointConnector extends AbstractBaseConnector
                         'type' => 'object',
                         'properties' => [
                             'type' => [
-                                'title' => 'Tipologia di contatto',
+                                'title' => 'Tipologia di contatto *',
                                 'type' => 'string',
                                 'required' => true,
                             ],
                             'value' => [
-                                'title' => 'Valore del contatto',
+                                'title' => 'Valore del contatto *',
                                 'type' => 'string',
                                 'required' => true,
                             ],
@@ -90,6 +90,7 @@ class HasOnlineContactPointConnector extends AbstractBaseConnector
                             'type' => [
                                 'helper' => 'Inserisci qui la tipologia di contatto (es. Telefono, Email, Sito web, Fax, PEC)',
                                 'type' => 'text',
+                                'showMessages' => false,
                                 'typeahead' => [
                                     'config' => [
                                         'autoselect' => true,
@@ -106,6 +107,7 @@ class HasOnlineContactPointConnector extends AbstractBaseConnector
                             'value' => [
                                 'helper' => "Inserisci qui il valore del contatto (es. il numero di telefono, l'url, l'indirizzo email, ...)",
                                 'type' => 'text',
+                                'showMessages' => false,
                             ],
                             'contact' => [
                                 'helper' => "Specifica qui il tipo di contatto (es. Amministrazione, Segreteria, Supporto specialistico). Questo valore è facoltativo.",

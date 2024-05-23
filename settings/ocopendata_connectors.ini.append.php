@@ -2,3 +2,4 @@
 
 [ClassSettings]
 ClassConnectors[agenda_root]=AgendaRootClassConnector
+ClassConnectors[offer]=OfferClassConnector

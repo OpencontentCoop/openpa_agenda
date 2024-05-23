@@ -74,4 +74,6 @@ $(document).ready(function () {ldelim}
 </script>
 <style>
     #online-contact-point table{ldelim}padding-bottom: 50px;{rdelim}
+    .twitter-typeahead .tt-dropdown-menu{ldelim}color: #000 !important;{rdelim}
+    .alpaca-container .dataTable th:not([data-header-id]){ldelim}visibility: hidden{rdelim}
 </style>

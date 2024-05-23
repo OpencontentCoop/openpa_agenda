@@ -6,7 +6,7 @@
 {def $viewport = openagenda_default_geolocation()}
 <div class="clearfix" data-osmap-attribute="{$attribute.id}" {if $viewport}data-lat="{$viewport.latitude}" data-lng="{$viewport.longitude}" data-zoom="15"{/if}>
 
-    <div id="map-{$attribute.id}" style="width: 100%; height: 300px; margin-top: 2px;"></div>
+    <div id="map-{$attribute.id}" style="width: 100%; height: 400px; margin-top: 2px;"></div>
     <div class="row mt-1">
         <div class="address col-md-8">
             <input class="ezgml_new_address"
