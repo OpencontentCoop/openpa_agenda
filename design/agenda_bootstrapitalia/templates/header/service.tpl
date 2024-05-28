@@ -158,7 +158,7 @@
             }
         };
         if(CurrentUserIsLoggedIn){
-            $.ez('openpaagendaajax::userInfo', null, function(data){
+            $.ez('openpaagendaajax::userInfo::redirect', null, function(data){
                 injectUserInfo(data);
             });
         }else{

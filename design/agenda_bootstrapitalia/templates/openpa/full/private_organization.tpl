@@ -34,13 +34,28 @@
             </div>*}
         </div>
         <div class="col-lg-3 offset-lg-1">
-            {if $node.object.can_edit}
+            {if or($node.object.can_edit, $node.contentobject_id|eq(fetch(user, current_user).contentobject_id))}
                 <div class="mb-3">
-                    <a class="btn btn-warning btn-icon" href="{concat('content/edit/',$node.contentobject_id, '/f')|ezurl('no')}">
-                        {display_icon('it-pencil', 'svg', 'icon icon-white')}   <span>{'Edit'|i18n('agenda/dashboard')}</span>
-                    </a>
+                    {if $node.contentobject_id|eq(fetch(user, current_user).contentobject_id)}
+                        <form action="{concat('/user/edit/',$node.contentobject_id)|ezurl(no)}" method="post" name="Edit">
+                            <input class="btn btn-warning btn-xs" type="submit" name="EditButton"
+                                   value="{'Edit profile'|i18n('design/ocbootstrap/user/edit')}"/>
+                            {if ezmodule( 'userpaex' )}
+                                <a class="btn btn-info btn-xs"
+                                   href="{concat("userpaex/password/",$userID)|ezurl(no)}">{'Change password'|i18n('design/ocbootstrap/user/edit')}</a>
+                            {else}
+                                <input class="btn btn-info btn-xs" type="submit" name="ChangePasswordButton"
+                                       value="{'Change password'|i18n('design/ocbootstrap/user/edit')}"/>
+                            {/if}
+                        </form>
+                    {else}
+                        <a class="btn btn-warning btn-icon" href="{concat('content/edit/',$node.contentobject_id, '/f')|ezurl('no')}">
+                            {display_icon('it-pencil', 'svg', 'icon icon-white')}   <span>{'Edit'|i18n('agenda/dashboard')}</span>
+                        </a>
+                    {/if}
                 </div>
             {/if}
+
             {include uri='design:openpa/full/parts/actions.tpl'}
             {def $current_topics = array()}
             {if $node|has_attribute('topics')}

@@ -177,16 +177,25 @@ class OpenPAAgendaPageDataHandler extends ezjscServerFunctions implements OCPage
         return $menu;
     }
 
-    public function userMenu()
+    public function userMenu($args = [])
     {
-        $userMenu = array(
-            array(
+        $profile = array(
+            'name' => ezpI18n::tr( 'agenda/menu', 'Profile' ),
+            'url' => 'user/edit',
+            'highlight' => false,
+            'has_children' => false
+        );
+        if (in_array('redirect', $args)
+            && eZUser::currentUser()->attribute('contentobject')->attribute('class_identifier') == 'private_organization'){
+            $profile = array(
                 'name' => ezpI18n::tr( 'agenda/menu', 'Profile' ),
-                'url' => 'user/edit',
+                'url' => 'openpa/object/' . eZUser::currentUser()->attribute('contentobject_id'),
                 'highlight' => false,
                 'has_children' => false
-            )
-        );
+            );
+        }
+
+        $userMenu = array($profile);
 
         $hasAccessConfig = eZUser::currentUser()->hasAccessTo('agenda', 'config');
         if ($hasAccessConfig['accessWord'] == 'yes') {
@@ -259,7 +268,7 @@ class OpenPAAgendaPageDataHandler extends ezjscServerFunctions implements OCPage
         return $this->agenda()->getAttributeString('banner_subtitle');
     }
 
-    public static function userInfo()
+    public static function userInfo($args)
     {
         $user = eZUser::currentUser();
         if ($user->isRegistered()){
@@ -267,7 +276,7 @@ class OpenPAAgendaPageDataHandler extends ezjscServerFunctions implements OCPage
             $refresh = true;
             if (!eZHTTPTool::instance()->hasSessionVariable($sessionKey) || $refresh) {
                 $userMenu = [];
-                $userMenu['menu'] = (new static())->userMenu();
+                $userMenu['menu'] = (new static())->userMenu($args);
                 $userMenu['name'] = $user->contentObject()->attribute('name');
                 eZHTTPTool::instance()->setSessionVariable( $sessionKey, $userMenu);
             }

@@ -44,58 +44,39 @@
                                 {/foreach}
                             </ul>
 
-                            {if or(is_registration_enabled(), is_auto_registration_enabled())}
+                            {if fetch(user, current_user).is_logged_in}
                                 <ul class="navbar-nav navbar-secondary">
-                                    {if is_registration_enabled()}
                                     <li class="nav-item">
-                                        <a class="nav-link text-truncate btn btn-dark rounded-0 text-white"
-                                           title="{'Are you not registered yet?'|i18n('social_user/signup')}"
-                                           href="{'user/register'|ezurl(no)}">
-                                            <span>{'Subscribe'|i18n('agenda/signup')}</span>
+                                        <a class="nav-link text-truncate btn btn-success rounded-0 text-white"
+                                           href="{'editorialstuff/add/agenda'|ezurl(no)}">
+                                            <span><i class="fa fa-plus mr-2"></i> {ezini( 'agenda', 'CreationButtonText', 'editorialstuff.ini' )|i18n('agenda/dashboard')}</span>
                                         </a>
                                     </li>
-                                    {/if}
-                                    {if is_auto_registration_enabled()}
+                                </ul>
+                            {else}
+                                {if or(is_registration_enabled(), is_auto_registration_enabled())}
+                                    <ul class="navbar-nav navbar-secondary">
+                                        {if is_registration_enabled()}
                                         <li class="nav-item">
-                                            <a class="nav-link text-truncate btn btn-danger rounded-0 text-white"
-                                               title="{'Do you want to register your organization?'|i18n('agenda/signupassociazione')}"
-                                               href="{'agenda/register_associazione'|ezurl(no)}">
-                                                <span>{'Register an organization'|i18n('agenda/signupassociazione')}</span>
+                                            <a class="nav-link text-truncate btn btn-dark rounded-0 text-white"
+                                               title="{'Are you not registered yet?'|i18n('social_user/signup')}"
+                                               href="{'user/register'|ezurl(no)}">
+                                                <span>{'Subscribe'|i18n('agenda/signup')}</span>
                                             </a>
                                         </li>
-                                    {/if}
-                                </ul>
+                                        {/if}
+                                        {if is_auto_registration_enabled()}
+                                            <li class="nav-item">
+                                                <a class="nav-link text-truncate btn btn-danger rounded-0 text-white"
+                                                   title="{'Do you want to register your organization?'|i18n('agenda/signupassociazione')}"
+                                                   href="{'agenda/register_associazione'|ezurl(no)}">
+                                                    <span>{'Register an organization'|i18n('agenda/signupassociazione')}</span>
+                                                </a>
+                                            </li>
+                                        {/if}
+                                    </ul>
+                                {/if}
                             {/if}
-
-                            {*if or(count($topic_list)|gt(0), count($selected_topic_list)|gt(0))}
-                                <ul class="navbar-nav navbar-secondary">
-                                    {if count($selected_topic_list)|gt(0)}
-                                        {foreach $selected_topic_list as $selected_topic max 3}
-                                            <li class="nav-item">
-                                                <a class="nav-link text-truncate"
-                                                   href="{$selected_topic.url_alias|ezurl(no)}">
-                                                    <span>{$selected_topic.name|wash()}</span>
-                                                </a>
-                                            </li>
-                                        {/foreach}
-                                    {else}
-                                        {foreach $topic_list.children as $child max 3}
-                                            <li class="nav-item">
-                                                <a class="nav-link text-truncate" href="{$child.item.url|ezurl(no)}">
-                                                    <span>{$child.item.name|wash()}</span>
-                                                </a>
-                                            </li>
-                                        {/foreach}
-                                    {/if}
-                                    <li class="nav-item">
-                                        <a class="nav-link text-truncate"
-                                           href="{$topics.main_node.url_alias|ezurl(no)}">
-                                            <span
-                                                class="font-weight-bold">{'Tutti gli argomenti...'|i18n('openpa_bootstrapitalia')}</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            {/if*}
 
                         </div>
                     </div>

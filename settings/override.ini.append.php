@@ -142,4 +142,11 @@ Subdir=templates
 Match[class_identifier]=event
 Match[attribute_identifier]=has_online_contact_point
 
+[datatype_about_target_audience]
+Source=content/datatype/view/eztext.tpl
+MatchFile=datatype/view/eztext_about_target_audience.tpl
+Subdir=templates
+Match[class_identifier]=event
+Match[attribute_identifier]=about_target_audience
+
 */ ?>
