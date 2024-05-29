@@ -11,8 +11,11 @@
                 {/if}
                 <div>
                     <h1>{$node.name|wash()}</h1>
-                    {if $node|has_attribute('short_title')}
-                        <h4 class="py-2">{$node|attribute('short_title').content|wash()}</h4>
+                    {if or($node|has_attribute('alt_name'),$node|has_attribute('acronym'))}
+                        <h4 class="py-2">
+                            {if $node|has_attribute('alt_name')}{$node|attribute('alt_name').content|wash()} {/if}
+                            {if $node|has_attribute('acronym')}{$node|attribute('acronym').content|wash()}{/if}
+                        </h4>
                     {/if}
                 </div>
         </div>

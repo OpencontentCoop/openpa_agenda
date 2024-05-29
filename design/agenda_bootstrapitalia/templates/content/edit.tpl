@@ -1,6 +1,6 @@
 {def $_redirect = false()}
 {if $object.id|eq(fetch(user, current_user).contentobject_id)}
-    {set $_redirect = 'user/edit'}
+    {set $_redirect = concat('openpa/object/', $object.id)}
 {elseif ezhttp_hasvariable( 'RedirectURIAfterPublish', 'session' )}
     {set $_redirect = ezhttp( 'RedirectURIAfterPublish', 'session' )}
 {elseif ezhttp( 'url', 'get', true() )}
@@ -20,7 +20,7 @@
 
     {include uri='design:parts/website_toolbar_edit.tpl'}
     <div class="clearfix">
-        <h4 class="float-left">{if $edit_version|eq(1)}{"Create"|i18n( 'design/ocbootstrap/content/edit' )}{else}{"Edit"|i18n( 'design/ocbootstrap/content/edit' )}{/if} <span class="text-lowercase">{$class.name|wash}</span></h4>
+        <h4 class="float-left{if $object.id|eq(fetch(user, current_user).contentobject_id)} d-none{/if}">{if $edit_version|eq(1)}{"Create"|i18n( 'design/ocbootstrap/content/edit' )}{else}{"Edit"|i18n( 'design/ocbootstrap/content/edit' )}{/if} <span class="text-lowercase">{$class.name|wash}</span></h4>
         <div class="chip chip-lg float-right mt-2">
             {def $language_index = 0
                  $from_language_index = 0
@@ -58,11 +58,11 @@
 
           <div class="clearfix">
               <input class="btn btn-lg btn-success float-right" type="submit" name="PublishButton" value="{'Send for publishing'|i18n( 'design/ocbootstrap/content/edit' )}" />
-              {if $class.identifier|ne('private_organization')}
+              {*
               <input class="btn btn-lg btn-warning float-right mr-3 me-3" type="submit" name="StoreButton" value="{'Store draft'|i18n( 'design/ocbootstrap/content/edit' )}" />
               <input class="btn btn-lg btn-warning float-right mr-3 me-3" type="submit" name="StoreExitButton" value="{'Store draft and exit'|i18n( 'design/ocbootstrap/content/edit' )}" />
-              {/if}
-              <input class="btn btn-lg btn-dark" type="submit" name="DiscardButton" value="{'Discard draft'|i18n( 'design/ocbootstrap/content/edit' )}" />
+              *}
+              <input class="btn btn-lg btn-dark" type="submit" name="DiscardButton" value="{'Cancel'|i18n( 'design/standard/node' )}" />
               <input type="hidden" name="DiscardConfirm" value="0" />
               {if ezhttp_hasvariable( 'RedirectIfDiscarded', 'session' )}<input type="hidden" name="RedirectIfDiscarded" value="{ezhttp( 'RedirectIfDiscarded', 'session' )}" />{/if}
               {if $_redirect}<input type="hidden" name="RedirectURIAfterPublish" value="{$_redirect}" />{/if}

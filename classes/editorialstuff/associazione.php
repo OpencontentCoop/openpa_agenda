@@ -66,6 +66,7 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
             eZSearch::addObject($this->getObject(), true);
         }
         OpenPAAgenda::notifyModerationGroup($this, 'design:agenda/mail/associazione/to_moderators_on_create.tpl');
+        OpenPAAgenda::notifyEventOwner($this, 'design:agenda/mail/associazione/to_owner_on_create.tpl');
     }
 
     public function onChangeState(eZContentObjectState $beforeState, eZContentObjectState $afterState)

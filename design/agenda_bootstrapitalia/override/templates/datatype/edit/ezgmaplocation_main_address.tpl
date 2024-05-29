@@ -9,8 +9,9 @@
     <div id="map-{$attribute.id}" style="width: 100%; height: 400px; margin-top: 2px;"></div>
     <div class="row mt-1">
         <div class="address col-md-8">
-            <input class="ezgml_new_address"
+            <input class="ezgml_new_address form-control form-control-sm"
                    type="text"
+                   placeholder="{'Address'|i18n('extension/ezgmaplocation/datatype')}"
                    name="{$attribute_base}_data_gmaplocation_address_{$attribute.id}"
                    value="{$attribute.content.address}"/>
             <input class="ezgml_hidden_address"
@@ -18,37 +19,42 @@
                    name="ezgml_hidden_address"
                    value="{$attribute.content.address}"
                    disabled="disabled"/>
-        </div>
-        <div class="col-md-4 text-right">
-            <button class="btn btn-xs btn-danger ml-3 ms-3" name="Reset" style="display: none">Annulla modifiche</button>
-            <button class="btn btn-xs btn-outline-secondary" name="MyLocation">Rileva posizione</button>
-        </div>
-    </div>
-    <div class="row d-none">
-        <div class="latitude col-md-6">
-            <label><small>Latitudine</small></label>
-            <input class="ezgml_new_latitude box form-control form-control-sm"
-                   type="text"
-                   name="{$attribute_base}_data_gmaplocation_latitude_{$attribute.id}"
-                   value="{$latitude}"/>
-            <input class="ezgml_hidden_latitude"
-                   type="hidden"
-                   name="ezgml_hidden_latitude"
-                   value="{$latitude}"
-                   disabled="disabled"/>
-        </div>
 
-        <div class="longitude col-md-6">
-            <label><small>Longitudine</small></label>
-            <input class="ezgml_new_longitude box form-control form-control-sm"
-                   type="text"
-                   name="{$attribute_base}_data_gmaplocation_longitude_{$attribute.id}"
-                   value="{$longitude}"/>
-            <input class="ezgml_hidden_longitude"
-                   type="hidden"
-                   name="ezgml_hidden_longitude"
-                   value="{$longitude}"
-                   disabled="disabled"/>
+            <div class="row">
+                <div class="latitude col-md-6">
+                    <label class="d-none" for="{$attribute_base}_data_gmaplocation_latitude_{$attribute.id}">{'Latitude'|i18n('extension/ezgmaplocation/datatype')}</label>
+                    <input class="ezgml_new_latitude form-control form-control-sm"
+                           type="text"
+                           placeholder="{'Latitude'|i18n('extension/ezgmaplocation/datatype')}"
+                           id="{$attribute_base}_data_gmaplocation_latitude_{$attribute.id}"
+                           name="{$attribute_base}_data_gmaplocation_latitude_{$attribute.id}"
+                           value="{$latitude}"/>
+                    <input class="ezgml_hidden_latitude"
+                           type="hidden"
+                           name="ezgml_hidden_latitude"
+                           value="{$latitude}"
+                           disabled="disabled"/>
+                </div>
+                <div class="longitude col-md-6">
+                    <label class="d-none" for="{$attribute_base}_data_gmaplocation_longitude_{$attribute.id}">{'Longitude'|i18n('extension/ezgmaplocation/datatype')}</label>
+                    <input class="ezgml_new_longitude form-control form-control-sm"
+                           type="text"
+                           placeholder="{'Longitude'|i18n('extension/ezgmaplocation/datatype')}"
+                           id="{$attribute_base}_data_gmaplocation_longitude_{$attribute.id}"
+                           name="{$attribute_base}_data_gmaplocation_longitude_{$attribute.id}"
+                           value="{$longitude}"/>
+                    <input class="ezgml_hidden_longitude"
+                           type="hidden"
+                           name="ezgml_hidden_longitude"
+                           value="{$longitude}"
+                           disabled="disabled"/>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4 text-right mt-5">
+            <button class="btn btn-danger ml-2 ms-2" name="Reset" style="display: none">Annulla modifiche</button>
+            <button class="btn btn-outline-secondary" name="MyLocation">Rileva posizione</button>
         </div>
     </div>
 
@@ -201,6 +207,13 @@
                         alert(e.message);
                     });
                 e.preventDefault();
+            });
+
+            $('[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                map.invalidateSize(false);
+            });
+            $('[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+                map.invalidateSize(false);
             });
 
             L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

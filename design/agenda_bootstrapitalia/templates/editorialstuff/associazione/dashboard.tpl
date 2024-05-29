@@ -4,7 +4,7 @@
 
 {def $base_query = concat('classes [',agenda_association_class_identifier(),'] and subtree [', associazioni_root_node_id(), '] sort [published=>desc]')}
 {if current_user_is_agenda_moderator()|not()}
-    {set $base_query = concat($query, " and owner_id = ", fetch(user, current_user).contentobject_id)}
+    {set $base_query = concat($base_query, " and owner_id = ", fetch(user, current_user).contentobject_id)}
 {/if}
 
 <section class="container py-4">

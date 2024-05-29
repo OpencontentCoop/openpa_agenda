@@ -111,19 +111,19 @@ class HasOnlineContactPointConnector extends AbstractBaseConnector
                             ],
                             'contact' => [
                                 'helper' => "Specifica qui il tipo di contatto (es. Amministrazione, Segreteria, Supporto specialistico). Questo valore è facoltativo.",
-                                'type' => 'text',
-                                'typeahead' => [
-                                    'config' => [
-                                        'autoselect' => true,
-                                        'highlight' => true,
-                                        'hint' =>  true,
-                                        'minLength' => 1,
-                                    ],
-                                    'datasets' => [
-                                        'type' => 'local',
-                                        'source' => ['Amministrazione', 'Segreteria', 'Supporto specialistico']
-                                    ],
-                                ],
+                                'type' => 'hidden',
+//                                'typeahead' => [
+//                                    'config' => [
+//                                        'autoselect' => true,
+//                                        'highlight' => true,
+//                                        'hint' =>  true,
+//                                        'minLength' => 1,
+//                                    ],
+//                                    'datasets' => [
+//                                        'type' => 'local',
+//                                        'source' => ['Amministrazione', 'Segreteria', 'Supporto specialistico']
+//                                    ],
+//                                ],
                             ],
                         ],
                     ]
