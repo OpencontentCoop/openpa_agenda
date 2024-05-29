@@ -432,16 +432,29 @@
                 e.preventDefault();
             })
 
+            let hideWhenSearch = function (){
+                $('#when').hide();
+                $('#filter-by-when').removeClass('active')
+                $('#filter-by-what').addClass('active')
+            }
+            let showWhenSearch = function (){
+                $('#when').show();
+                $('#filter-by-when').removeClass('active')
+                $('#when a').removeClass('active')
+                $('#filter-by-what').addClass('active')
+                $('#what a').addClass('active')
+            }
+
             if (plugin.currentView === '#agenda') {
                 plugin.timeButtons.hide();
                 plugin.addFilterLabel.removeClass('d-none');
-                $('#when').hide();
+                hideWhenSearch()
             }else{
                 plugin.timeButtons.show();
                 if (plugin.timeButtons.length > 0) {
                     plugin.addFilterLabel.addClass('d-none');
                 }
-                $('#when').show();
+                showWhenSearch()
             }
             $('body').on('shown.bs.tab', function (e) {
                 if ($(e.target).hasClass('agenda-view-selector')) {
@@ -449,7 +462,7 @@
                     if (plugin.currentView === '#agenda') {
                         plugin.timeButtons.hide();
                         plugin.addFilterLabel.removeClass('d-none');
-                        $('#when').hide();
+                        hideWhenSearch()
                         plugin.getFilterChip('daterange').hide();
                         plugin.getFilterChip('alsopast').hide();
                         plugin.refreshAllChipToggle();
@@ -459,7 +472,7 @@
                         if (plugin.timeButtons.length > 0) {
                             plugin.addFilterLabel.addClass('d-none');
                         }
-                        $('#when').show();
+                        showWhenSearch()
                         plugin.getFilterChip('daterange').show();
                         plugin.getFilterChip('alsopast').show();
                         plugin.refreshAllChipToggle();

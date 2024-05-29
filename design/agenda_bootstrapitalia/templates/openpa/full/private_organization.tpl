@@ -19,8 +19,8 @@
                     {/if}
                 </div>
         </div>
-            {if $node|has_attribute('business_objective')}
-                <div class="lead">{attribute_view_gui attribute=$node|attribute('business_objective')}</div>
+            {if $node|has_attribute('description')}
+                <div class="lead mt-2">{attribute_view_gui attribute=$node|attribute('description')}</div>
             {/if}
 
             {*<div class="row">
@@ -45,7 +45,7 @@
                                    value="{'Edit profile'|i18n('design/ocbootstrap/user/edit')}"/>
                             {if ezmodule( 'userpaex' )}
                                 <a class="btn btn-info btn-xs"
-                                   href="{concat("userpaex/password/",$userID)|ezurl(no)}">{'Change password'|i18n('design/ocbootstrap/user/edit')}</a>
+                                   href="{concat("userpaex/password/",$node.contentobject_id)|ezurl(no)}">{'Change password'|i18n('design/ocbootstrap/user/edit')}</a>
                             {else}
                                 <input class="btn btn-info btn-xs" type="submit" name="ChangePasswordButton"
                                        value="{'Change password'|i18n('design/ocbootstrap/user/edit')}"/>
@@ -108,7 +108,7 @@
      $close_text = 'Close'|i18n('bootstrapitalia')}
 
 {def $static_structure = hash(
-    'description', array('description', 'image'),
+    'description', array('business_objective', 'image'),
     'has_spatial_coverage', array('has_spatial_coverage-main_address'),
     'has_online_contact_point', array('has_online_contact_point'),
     'more_information', array('more_information', 'foundation_date', 'attachments', 'has_private_org_activity_type', 'private_organization_category', 'legal_status_code')
@@ -396,6 +396,7 @@
     <div class="section section-muted section-inset-shadow p-0">
         <div class="section-content">
         {include
+            add_time_buttons=true()
             uri='design:parts/agenda.tpl'
             views=array('grid','geo','agenda')
             base_query=concat('classes [',agenda_event_class_identifier(),'] and subtree [', calendar_node_id(), '] and state in [moderation.skipped,moderation.accepted] sort [time_interval=>asc] and ', $agenda_query_custom)
@@ -405,6 +406,6 @@
         </div>
     </div>
 
-{elseif $openpa['content_tree_related'].full.exclude|not()}
-    {include uri='design:openpa/full/parts/related.tpl' object=$node.object}
+{*{elseif $openpa['content_tree_related'].full.exclude|not()}*}
+{*    {include uri='design:openpa/full/parts/related.tpl' object=$node.object}*}
 {/if}

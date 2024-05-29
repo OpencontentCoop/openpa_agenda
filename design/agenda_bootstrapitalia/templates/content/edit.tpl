@@ -1,8 +1,6 @@
 {def $_redirect = false()}
 {if $object.id|eq(fetch(user, current_user).contentobject_id)}
     {set $_redirect = concat('openpa/object/', $object.id)}
-{elseif ezhttp_hasvariable( 'RedirectURIAfterPublish', 'session' )}
-    {set $_redirect = ezhttp( 'RedirectURIAfterPublish', 'session' )}
 {elseif ezhttp( 'url', 'get', true() )}
     {set $_redirect = ezhttp( 'url', 'get' )|wash()}
 {/if}

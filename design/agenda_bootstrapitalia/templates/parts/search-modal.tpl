@@ -88,6 +88,9 @@
                         </div>
                         <div style="position: fixed;top: 15px;z-index: 100;left:0;width: 100%">
                             <div class="container text-right">
+                                <button class="close float-left mt-1" type="button" data-dismiss="modal" data-bs-dismiss="modal" aria-label="{'Close'|i18n('bootstrapitalia')}" title="{'Close'|i18n('bootstrapitalia')}">
+                                    {display_icon('it-arrow-left-circle', 'svg', 'icon icon-primary')}
+                                </button>
                                 <button class="do-search btn btn-outline-primary btn-icon btn-sm mt-3 bg-white" type="submit">{'Confirm'|i18n('agenda')}</button>
                             </div>
                         </div>

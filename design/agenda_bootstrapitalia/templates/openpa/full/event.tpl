@@ -62,6 +62,6 @@
 
 {if is_comment_enabled()}}
     {include uri='design:openpa/full/parts/comments.tpl' node=$node}
-{elseif $openpa['content_tree_related'].full.exclude|not()}
-    {include uri='design:openpa/full/parts/related.tpl' object=$node.object}
+{*{elseif $openpa['content_tree_related'].full.exclude|not()}*}
+{*    {include uri='design:openpa/full/parts/related.tpl' object=$node.object}*}
 {/if}

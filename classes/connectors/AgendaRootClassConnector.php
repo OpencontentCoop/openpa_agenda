@@ -8,7 +8,7 @@ class AgendaRootClassConnector extends ClassConnector
     private $agendaViews = [
         'dayGridWeek' => 'Settimanale',
         'dayGridMonth' => 'Mensile',
-        'list' => 'Lista',
+        'list' => 'Giornaliero',
     ];
 
     private $calendarViews = [
@@ -41,6 +41,7 @@ class AgendaRootClassConnector extends ClassConnector
         $options = parent::getOptions();
         $options['fields']['social']['showActionsColumn'] = false;
         $options['fields']['main_calendar_agenda_view']['optionLabels'] = array_values($this->agendaViews);
+        $options['fields']['main_calendar_agenda_view']['hideNone'] = true;
         $options['fields']['main_calendar_views']['optionLabels'] = array_values($this->calendarViews);
         return $options;
     }
@@ -85,9 +86,8 @@ class AgendaRootClassConnector extends ClassConnector
         $override = [
             'content'=> 'Generale',
             'view'=> 'Homepage',
-            'details'=> 'Testi',
             'config'=> 'Configurazioni',
-            'date'=> 'Calendario',
+            'date'=> 'Eventi',
         ];
 
         if ($this->fieldCategories === null) {
