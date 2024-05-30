@@ -130,6 +130,19 @@ $(document).ready(function(){
     var toggleOnlyRequired = $('#OnlyRequired').on('change', function (e) {
         showOnlyRequired();
     });
+    $('[data-jumpto_group]').on('click', function (e){
+        $('a[href="#attribute-group-'+$(this).data('jumpto_group')+'"]').trigger('click');
+        var x = $('#edit-'+$(this).data('jumpto_attribute')).offset().top - 100;
+        $('html,body').animate({scrollTop: x}, 400);
+        e.preventDefault()
+    })
+    $('[data-invalid_identifier]').on('click', function (e){
+        var elForm = $('[data-attribute_identifier="'+$(this).data('invalid_identifier')+'"]');
+        $('a[href="#attribute-group-'+elForm.data('attribute_group')+'"]').trigger('click');
+        var x = $('#edit-'+elForm.data('attribute_identifier')).offset().top - 100;
+        $('html,body').animate({scrollTop: x}, 400);
+        e.preventDefault();
+    })
     showOnlyRequired();
 });
 {/literal}</script>

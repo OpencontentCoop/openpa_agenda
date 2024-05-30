@@ -143,6 +143,30 @@
                     {undef $contentclass_attribute $contentclass_attribute_category}
                 {/foreach}
 
+                {if and($attribute_group.show, $edit_attribute_groups.count|gt(1))}
+                    <div class="d-flex justify-content-between">
+                        {if $index|gt(0)}
+                            <a href="#"
+                               data-jumpto_group="{$edit_attribute_groups.groups[sub($index,1)].identifier}"
+                               data-jumpto_attribute="{foreach $edit_attribute_groups.groups[sub($index,1)].attributes as $attribute_identifier => $attribute}{$attribute_identifier}{break}{/foreach}"
+                               class="btn btn-lg btn-info">
+                                {"Previous"|i18n("design/admin/navigator")}
+                            </a>
+                        {else}
+                            <span></span>
+                        {/if}
+
+                        {if and(is_set($edit_attribute_groups.groups[sum($index,1)]), $edit_attribute_groups.groups[sum($index,1)].show)}
+                            <a href="#"
+                               data-jumpto_group="{$edit_attribute_groups.groups[sum($index,1)].identifier}"
+                               data-jumpto_attribute="{foreach $edit_attribute_groups.groups[sum($index,1)].attributes as $attribute_identifier => $attribute}{$attribute_identifier}{break}{/foreach}"
+                               class="btn btn-lg btn-info">
+                                {"Next"|i18n("design/admin/navigator")}
+                            </a>
+                        {/if}
+                    </div>
+                {/if}
+
             </div>
         {/foreach}
     </div>
