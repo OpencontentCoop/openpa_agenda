@@ -36,6 +36,7 @@ class OpenPAAgendaOperators
             'openagenda_use_wkhtmltopdf',
             'openagenda_default_geolocation',
             'openagenda_contacts_node',
+            'agenda_identifier',
         );
     }
 
@@ -109,6 +110,9 @@ class OpenPAAgendaOperators
         $agenda = OpenPAAgenda::instance();
         switch( $operatorName )
         {
+            case 'agenda_identifier':
+                $operatorValue = OpenPABase::getCurrentSiteaccessIdentifier();
+                break;
             case 'openagenda_contacts_node':
                 $operatorValue = OpenPAAgenda::contactsNodeId();
                 break;

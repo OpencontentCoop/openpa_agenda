@@ -435,12 +435,15 @@
             let hideWhenSearch = function (){
                 $('#when').hide();
                 $('#filter-by-when').removeClass('active')
+                $('#filter-by-where').removeClass('active')
                 $('#filter-by-what').addClass('active')
             }
             let showWhenSearch = function (){
                 $('#when').show();
                 $('#filter-by-when').removeClass('active')
                 $('#when a').removeClass('active')
+                $('#filter-by-where').removeClass('active')
+                $('#where a').removeClass('active')
                 $('#filter-by-what').addClass('active')
                 $('#what a').addClass('active')
             }

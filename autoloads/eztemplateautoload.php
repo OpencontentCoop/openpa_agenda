@@ -28,5 +28,6 @@ $eZTemplateOperatorArray[] = array(
         'openagenda_use_wkhtmltopdf',
         'openagenda_default_geolocation',
         'openagenda_contacts_node',
+        'agenda_identifier',
     )
 );

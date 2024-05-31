@@ -6,14 +6,12 @@
         hash(
             'offset', $view_parameters.offset,
             'limit', $page_limit,
+            'class_id', array('event', 'private_organization', 'place'),
             'filter', $filters
         ))
      $search = fetch( ezfind, search, $search_hash )}
 
-{def $classes = array()}
-{if openpaini('MotoreRicerca', 'IncludiClassi', array())|count()}
-    {set $classes = fetch(class, list, hash(class_filter, openpaini('MotoreRicerca', 'IncludiClassi'), sort_by, array( 'name', true() )))}
-{/if}
+{def $classes = fetch(class, list, hash(class_filter, array('event', 'private_organization', 'place'), sort_by, array( 'name', true() )))}
 
 <div class="row">
     <div class="col-12 mt-5 pb-4 border-bottom">
@@ -51,7 +49,6 @@
                         </button>
                     </div>
                 </div>
-
                 <div class="pt-4 pt-lg-0">
                     <h6 class="text-uppercase">{'Sections'|i18n('agenda')}</h6>
                     <div class="mt-4">
@@ -60,7 +57,7 @@
                         {set $subtree = array('_openpa_agenda_agenda_container', '_openpa_agenda_associations', '_openpa_agenda_locations')}
                     {/if}
                     {foreach $subtree as $remote_suffix}
-                        {def $subtree_node = fetch(content, object, hash(remote_id, concat(site_identifier(), $remote_suffix))).main_node}
+                        {def $subtree_node = fetch(content, object, hash(remote_id, concat(agenda_identifier(), $remote_suffix))).main_node}
                         <div class="form-check custom-control custom-checkbox">
                             <input name="Subtree[]" id="subtree-{$subtree_node.node_id}" value={$subtree_node.node_id} {if $params.subtree|contains($subtree_node.node_id)}checked="checked"{/if} class="custom-control-input" type="checkbox" />
                             <label class="custom-control-label" for="subtree-{$subtree_node.node_id}">{$subtree_node.name|wash()} {if is_set($subtree_facets[$id])}<small>({$subtree_facets[$id]})</small>{/if}</label>
@@ -70,88 +67,17 @@
                     </div>
                 </div>
 
-                <div class="pt-4 pt-lg-5 d-none">
-                        {def $topics = fetch(content, object, hash(remote_id, 'topics'))
-                             $topic_list = tree_menu( hash( 'root_node_id', $topics.main_node_id, 'user_hash', false(), 'scope', 'side_menu'))
-                             $topic_list_children = $topic_list.children
-                             $already_displayed = array()
-                             $count = 0
-                             $max = 6
-                             $total = count($topic_list_children)
-                             $sub_count = 0}
-                    {if $topic_list_children|gt(0)}
-                    <h6 class="text-uppercase">{'Topics'|i18n('agenda')}</h6>
-                        {foreach $topic_list_children as $child}
-                            {if $params.topic|contains($child.item.node_id)}
-                                <div class="form-check custom-control custom-checkbox">
-                                    <input name="Topic[]" id="topic-{$child.item.node_id}" value={$child.item.node_id} checked="checked" class="custom-control-input" type="checkbox">
-                                    <label class="class="custom-control-label" for="topic-{$child.item.node_id}">{$child.item.name|wash()}  {if is_set($topic_facets[$child.item.node_id])}<small>({$topic_facets[$child.item.node_id]})</small>{/if}
-                                </div>
-                                {set $count = $count|inc()}
-                                {set $already_displayed = $already_displayed|append($child.item.node_id)}
-                            {/if}
-                        {/foreach}
-
-                        {if $count|lt($max)}
-                            {foreach $topic_list_children as $child}
-                                {if and($already_displayed|contains($child.item.node_id)|not(), is_set($topic_facets[$child.item.node_id]))}
-                                    <div class="form-check custom-control custom-checkbox">
-                                        <input name="Topic[]" id="topic-{$child.item.node_id}" value={$child.item.node_id} class="custom-control-input" type="checkbox">
-                                        <label class="class="custom-control-label" for="topic-{$child.item.node_id}">{$child.item.name|wash()}  {if is_set($topic_facets[$child.item.node_id])}<small>({$topic_facets[$child.item.node_id]})</small>{/if}
-                                    </div>
-                                    {set $count = $count|inc()}
-                                    {set $already_displayed = $already_displayed|append($child.item.node_id)}
-                                    {if $count|eq($max)}{break}{/if}
-                                {/if}
-                            {/foreach}
-                        {/if}
-
-                        {if $count|lt($max)}
-                            {set $sub_count = $max|sub($count)}
-                            {foreach $topic_list_children as $child max $sub_count}
-                                {if $already_displayed|contains($child.item.node_id)|not()}
-                                    <div class="form-check custom-control custom-checkbox">
-                                        <input name="Topic[]" id="topic-{$child.item.node_id}" value={$child.item.node_id} class="custom-control-input" type="checkbox">
-                                        <label class="class="custom-control-label" for="topic-{$child.item.node_id}">{$child.item.name|wash()}  {if is_set($topic_facets[$child.item.node_id])}<small>({$topic_facets[$child.item.node_id]})</small>{/if}
-                                    </div>
-                                    {set $count = $count|inc()}
-                                    {set $already_displayed = $already_displayed|append($child.item.node_id)}
-                                {/if}
-                            {/foreach}
-                        {/if}
-
-                        {if $count|lt($total)}
-                            <a href="#more-topics" data-toggle="collapse" aria-expanded="false" aria-controls="more-topics">
-                                {display_icon('it-more-items', 'svg', 'icon icon-primary right')}
-                            </a>
-                            <div class="collapse" id="more-topics">
-                            {foreach $topic_list_children as $child}
-                                {if $already_displayed|contains($child.item.node_id)|not()}
-                                    <div class="form-check custom-control custom-checkbox">
-                                        <input name="Topic[]" id="topic-{$child.item.node_id}" value={$child.item.node_id} class="custom-control-input" type="checkbox">
-                                        <label class="class="custom-control-label" for="topic-{$child.item.node_id}">{$child.item.name|wash()}  {if is_set($topic_facets[$child.item.node_id])}<small>({$topic_facets[$child.item.node_id]})</small>{/if}
-                                    </div>
-                                {/if}
-                            {/foreach}
-                            </div>
-                        {/if}
-
-
-                        {undef $topics $topic_list $count $max $total $already_displayed $sub_count}
-                </div>
-                {/if}
-
-                {if count($classes)}
-                    <div class="pt-4 pt-lg-5 d-none">
-                        <h6 class="text-uppercase">{'Content type'|i18n('agenda')}</h3>
-                        {foreach $classes as $class}
-                            <div class="form-check custom-control custom-checkbox">
-                                <input name="Class[]" id="class-{$class.id}" value={$class.id|wash()} {if $params.class|contains($class.id)}checked="checked"{/if} class="custom-control-input" type="checkbox">
-                                <label class="class="custom-control-label" for="class-{$class.id}">{$class.name|wash()} {if is_set($class_facets[$class.id])}<small>({$class_facets[$class.id]})</small>{/if}</label>
-                            </div>
-                        {/foreach}
-                    </div>
-                {/if}
+{*                {if count($classes)}*}
+{*                    <div class="pt-4 pt-lg-5">*}
+{*                        <h6 class="text-uppercase">{'Content type'|i18n('agenda')}</h3>*}
+{*                        {foreach $classes as $class}*}
+{*                            <div class="form-check custom-control custom-checkbox">*}
+{*                                <input name="Class[]" id="class-{$class.id}" value={$class.id|wash()} {if $params.class|contains($class.id)}checked="checked"{/if} class="custom-control-input" type="checkbox">*}
+{*                                <label class="class="custom-control-label" for="class-{$class.id}">{$class.name|wash()} {if is_set($class_facets[$class.id])}<small>({$class_facets[$class.id]})</small>{/if}</label>*}
+{*                            </div>*}
+{*                        {/foreach}*}
+{*                    </div>*}
+{*                {/if}*}
 
                 <div class="pt-4 pt-lg-5">
                     <button type="submit" class="btn btn-primary">

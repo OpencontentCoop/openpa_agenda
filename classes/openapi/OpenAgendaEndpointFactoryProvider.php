@@ -106,6 +106,12 @@ class OpenAgendaEndpointFactoryProvider extends EndpointFactoryProvider
                 'collection' => new OperationFactoryCollection([
                     (new OperationFactory\ContentObject\CreateOperationFactory()),
                     (new OperationFactory\ContentObject\FilteredSearchOperationFactory()),
+                ]),
+                'item' => new OperationFactoryCollection([
+                    (new OperationFactory\ContentObject\EmbedReadOperationFactory()),
+                    (new OperationFactory\ContentObject\UpdateOperationFactory()),
+                    (new OperationFactory\ContentObject\MergePatchOperationFactory()),
+                    (new OperationFactory\ContentObject\DeleteOperationFactory()),
                 ])
             ],
         ];
