@@ -20,7 +20,7 @@
         {/section}
         {section name=UnvalidatedCustomRules loop=$validation.custom_rules show=$validation.custom_rules}
             {if is_set($:item.identifier)}
-                <li><a href="#" data-invalid_identifier="{$:item.identifier|wash}">{$:item.text|wash}</a></li>
+                <li><a href="#" data-invalid_identifier="{$:item.identifier|wash}">{$:item.text}</a></li>
             {else}
                 <li>{$:item.text}</li>
             {/if}
