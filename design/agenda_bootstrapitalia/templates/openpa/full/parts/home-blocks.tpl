@@ -37,7 +37,7 @@
 {if is_collaboration_enabled()}
     {if $has_latest_program}
         {def $download_url = concat( '/content/download/', $has_latest_program.contentobject_id, '/', $has_latest_program.data_map['file'].id,'/version/', $has_latest_program.data_map['file'].version , '/file/', $has_latest_program.data_map['file'].content.original_filename|urlencode )}
-        <div class="col" style="max-width:50%">
+        <div class="col-xs-12 col-md-4">
             <div class="card-wrapper card-space pb-2">
                 <div class="card card-bg card-big rounded shadow no-after bg-success m-0">
                     <div class="card-body p-3">
@@ -56,7 +56,7 @@
             </div>
         </div>
     {/if}
-    <div class="col" style="max-width:50%">
+    <div class="col-xs-12 col-md-4">
         <div class="card-wrapper card-space pb-2">
             <div class="card card-bg card-big rounded shadow no-after bg-secondary m-0">
                 <div class="card-body p-3">
@@ -75,12 +75,12 @@
         </div>
     </div>
     {if is_auto_registration_enabled()}
-    <div class="col" style="max-width:50%">
+    <div class="col-xs-12 col-md-4">
         <div class="card-wrapper card-space pb-2">
             <div class="card card-bg card-big rounded shadow no-after bg-danger m-0">
                 <div class="card-body p-3">
                     <h5 class="card-title mb-0">
-                        <a class="stretched-link text-white text-decoration-none" href="{'agenda/info/faq/'|ezurl(no)}">{"Are you an organization?"|i18n('agenda')}</a>
+                        <a class="stretched-link text-white text-decoration-none" href="{'agenda/register_associazione'|ezurl(no)}">{"Are you an organization?"|i18n('agenda')}</a>
                     </h5>
                     <p class="card-text text-white  text-sans-serif pt-0">
                         {if agenda_root()|has_attribute('testo_partecipa_associazioni')}
@@ -98,7 +98,7 @@
 
 {elseif $has_latest_program}
 
-    <div class="col-md-6 col-lg-4 offset-md-6 offset-lg-8">
+    <div class="col-md-6 col-lg-4">
         <div class="card-wrapper card-space">
             <div class="card card-bg card-big rounded shadow no-after bg-success">
                 <div class="card-body p-3">
