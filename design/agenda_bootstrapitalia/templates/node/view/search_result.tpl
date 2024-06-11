@@ -8,13 +8,11 @@
 
 <div data-object_id="{$node.contentobject_id}" class="card h-100 card-teaser {$node|access_style} p-3 position-relative overflow-hidden rounded border {$view_variation}">
     <div class="card-body{if $node|has_attribute('image')} pr-3 pe-3{/if}">
-        {if $show_icon}
-            {if $openpa.content_icon.context_icon}
-                <div class="etichetta mb-2">
-                    {display_icon($openpa.content_icon.context_icon.icon_text, 'svg', 'icon')}
-                    {include uri='design:openpa/card/parts/icon_label.tpl' fallback=$openpa.content_icon.context_icon.full_label}
-                </div>
-            {/if}
+        {if $openpa.content_icon.class_icon}
+            <div class="etichetta mb-2">
+                {display_icon($openpa.content_icon.class_icon.icon_text, 'svg', 'icon')}
+                {include uri='design:openpa/card/parts/icon_label.tpl' fallback=$node.class_name}
+            </div>
         {/if}
 
         {if $node|has_attribute('time_interval')}
