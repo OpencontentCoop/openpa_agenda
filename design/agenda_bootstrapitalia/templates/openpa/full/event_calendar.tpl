@@ -47,7 +47,7 @@
                     {/if}
                 {/foreach}
             {/if}
-            {if count($views)|eq(0)}
+            {if or(count($views)|eq(0), $views[0]|eq('default'))}
                 {set $views = array('grid','geo','agenda')}
             {/if}
 
