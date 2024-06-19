@@ -15,6 +15,7 @@ class AgendaRootClassConnector extends ClassConnector
         'agenda' => 'Calendario',
         'grid' => 'Griglia',
         'geo' => 'Mappa',
+        'default' => 'Griglia-Mappa-Calendario',
     ];
 
     public function __construct(eZContentClass $class, $helper)
@@ -43,6 +44,7 @@ class AgendaRootClassConnector extends ClassConnector
         $options['fields']['main_calendar_agenda_view']['optionLabels'] = array_values($this->agendaViews);
         $options['fields']['main_calendar_agenda_view']['hideNone'] = true;
         $options['fields']['main_calendar_views']['optionLabels'] = array_values($this->calendarViews);
+        $options['fields']['main_calendar_views']['hideNone'] = true;
         return $options;
     }
     protected function getSplitAttributeCategoriesLayout()

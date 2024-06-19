@@ -17,7 +17,7 @@
             "default",
             hash(
                 "remote_url", "",
-                "query", "classes [private_organization]",
+                "query", "classes [private_organization] sort [name=>asc]",
                 "show_grid", "1",
                 "show_map", "1",
                 "show_search", "1",

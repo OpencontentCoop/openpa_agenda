@@ -568,7 +568,7 @@ class OpenPAAgenda
             if ($cli) {
                 $cli->warning("$index/$count Restore contact points to " . $privateOrganization->attribute('name'));
             }
-            self::restoreOrganizationContactPoints($privateOrganization, $cli, $skipExisting);
+            self::restoreOrganizationContactPoints($privateOrganization, $skipExisting);
         }
     }
 

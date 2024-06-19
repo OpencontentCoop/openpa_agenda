@@ -1,7 +1,7 @@
 {ezpagedata_set( 'has_container', true() )}
 
 {def $social_pagedata = social_pagedata()}
-{if $social_pagedata.banner_path}
+{if and($social_pagedata.banner_path, $social_pagedata.banner_title|ne(''))}
 <div class="it-hero-wrapper it-overlay it-bottom-overlapping-content it-hero-small-size">
     <div class="img-responsive-wrapper">
         <div class="img-responsive">
@@ -78,7 +78,7 @@
                     {/if}
                 {/foreach}
             {/if}
-            {if count($views)|eq(0)}
+            {if or(count($views)|eq(0), $views[0]|eq('default'))}
                 {set $views = array('grid','geo','agenda')}
             {/if}
             {include
