@@ -40,7 +40,7 @@
   {/foreach}
 {/if}
 
-<div class="it-header-slim-wrapper{if current_theme_has_variation('light_center')} theme-light{/if}">
+<div class="it-header-slim-wrapper{if current_theme_has_variation('light_slim')} theme-light{/if}">
     <div class="container">
         <div class="row">
             <div class="col-12">
