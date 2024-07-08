@@ -237,6 +237,7 @@ class OpenAgendaPublishEventLinkWebHookTrigger implements OCWebHookTriggerInterf
                 'virtual_takes_place_in' => $place,
                 'virtual_image' => $image,
                 'virtual_has_offer' => $offer,
+                'cost_notes' => $data['cost_notes']['content'] ?? '',
             ];
         }
         return [
