@@ -117,6 +117,7 @@
             plugin.markers.clearLayers();
             plugin.closeSelectWidow();
             let selectionValue;
+            let doCreate = false;
             plugin.selectorWrapper.find('option:selected').each(function () {
                 let selection = $(this);
                 selectionValue = selection.val();
@@ -142,10 +143,15 @@
 
                     }, 100)
                 }
+                if (selection.data('create_new')){
+                    doCreate = true;
+                }
             });
-            if (plugin.markers.getLayers().length > 0) {
+            if (plugin.markers.getLayers().length > 0 || doCreate) {
                 plugin.editWindow.hide();
-                plugin.map.fitBounds(plugin.markers.getBounds());
+                if (plugin.markers.getLayers().length > 0) {
+                    plugin.map.fitBounds(plugin.markers.getBounds());
+                }
                 plugin.disableAddMarkerOnClick();
                 plugin.showMapContainer();
             } else if (selectionValue === 'no_relation') {

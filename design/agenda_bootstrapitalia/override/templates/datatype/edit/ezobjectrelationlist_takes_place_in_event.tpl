@@ -55,7 +55,7 @@
             {/if}
 
             <optgroup data-new_place_select label="{'Your own'|i18n('add_place_gui')}">
-                <option value="" style="font-weight:bold">+ {'Create new'|i18n('opendata_forms')}</option>
+                <option value="no_relation" data-create_new="1" style="font-weight:bold">+ {'Create new'|i18n('opendata_forms')}</option>
                 {if $private_places.totalCount|gt(0)}
                     {foreach $private_places.searchHits as $private_place}
                         {foreach $languages as $language}
