@@ -151,8 +151,10 @@
                 plugin.editWindow.hide();
                 if (plugin.markers.getLayers().length > 0) {
                     plugin.map.fitBounds(plugin.markers.getBounds());
+                    plugin.disableAddMarkerOnClick();
+                } else if (doCreate) {
+                    plugin.enableAddMarkerOnClick();
                 }
-                plugin.disableAddMarkerOnClick();
                 plugin.showMapContainer();
             } else if (selectionValue === 'no_relation') {
                 plugin.editWindow.hide();
