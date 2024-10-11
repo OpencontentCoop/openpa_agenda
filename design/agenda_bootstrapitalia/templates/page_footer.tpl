@@ -4,7 +4,18 @@
             <section>
                 <div class="row clearfix">
                     <div class="col-sm-12">
-                        {include uri='design:logo.tpl'}
+                        {if $pagedata.homepage|has_attribute('footer_logo')}
+                            <div class="it-brand-wrapper">
+                                <a href="{'/'|ezurl(no)}"
+                                   title="{ezini('SiteSettings','SiteName')}">
+                                    <img class="icon" style="width: auto !important;"
+                                         alt="{ezini('SiteSettings','SiteName')}"
+                                         src="{$pagedata.homepage|attribute('footer_logo').content['header_logo'].full_path|ezroot(no,full)}" />
+                                </a>
+                            </div>
+                        {else}
+                            {include uri='design:logo.tpl'}
+                        {/if}
                     </div>
                 </div>
             </section>
