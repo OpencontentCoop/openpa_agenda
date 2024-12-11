@@ -71,9 +71,12 @@
         {/if}
     {/foreach}
     {undef $events}
-
+    {def $show_calendar = true()}
+    {if and(is_set($view_context), $view_context|eq('full_attributes_simple'))}
+        {set $show_calendar = false()}
+    {/if}
     {def $q = concat("classes [",agenda_event_class_identifier(),"] and sub_event_of.id = ", $attribute.contentobject_id, " and subtree [", calendar_node_id(), "] and state in [moderation.skipped,moderation.accepted] sort [time_interval=>asc]")}
-    {if api_search(concat($q, ' limit 1')).totalCount|gt(0)}
+    {if and($show_calendar, api_search(concat($q, ' limit 1')).totalCount|gt(0))}
     {include
         uri='design:parts/agenda.tpl'
         exclude=array('what')
@@ -90,4 +93,5 @@
     {include uri='design:parts/views.tpl' views=array('grid','geo','agenda') view_style='pb-4'}
     {/if}
     {undef $q}
+
 </div>
