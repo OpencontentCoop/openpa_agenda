@@ -4,23 +4,51 @@ class OpenPAAgendaEventCollectionIndexPlugin implements ezfIndexPlugin
 {
     private static $key = 'extra_event_collection_i';
 
+    private static $patched = [];
+
     public function modify(eZContentObject $contentObject, &$docList)
     {
-        $dataMap = $contentObject->dataMap();
-        if (isset($dataMap['sub_event_of']) && $dataMap['sub_event_of']->hasContent()) {
-            $objects = OpenPABase::fetchObjects(explode('-', $dataMap['sub_event_of']->toString()));
-            foreach ($objects as $object) {
-                $this->patchEventAsCollection($object);
-            }
-        }
         if ($contentObject->attribute('class_identifier') === 'event') {
-            $reverseRelationsCount = $contentObject->reverseRelatedObjectCount(
-                false,
-                eZContentClassAttribute::classAttributeIDByIdentifier('event/sub_event_of'),
-                [
-                    'AllRelations' => eZContentFunctionCollection::contentobjectRelationTypeMask(['attribute']),
-                ]
+            $dataMap = $contentObject->dataMap();
+            $states = OpenPABase::initStateGroup(
+                OpenPAAgenda::$stateGroupIdentifier,
+                OpenPAAgenda::$stateIdentifiers
             );
+            $skipped = (int)$states['moderation.skipped']->attribute('id');
+            $accepted = (int)$states['moderation.accepted']->attribute('id');
+
+
+            if (isset($dataMap['sub_event_of']) && $dataMap['sub_event_of']->hasContent()) {
+                $objects = OpenPABase::fetchObjects(explode('-', $dataMap['sub_event_of']->toString()));
+                $isAccepted = in_array($skipped, $contentObject->stateIDArray()) || in_array($accepted, $contentObject->stateIDArray());
+                foreach ($objects as $object) {
+                    if ($isAccepted){
+                        $this->patchEventAsCollection($object);
+                    } else {
+                        eZSearch::addObject($object);
+                    }
+                }
+            }
+
+            $toContentobjectId = (int)$contentObject->attribute('id');
+            $contentClassAttributeId = (int)eZContentClassAttribute::classAttributeIDByIdentifier('event/sub_event_of');
+            $query = "SELECT COUNT( outer_object.id ) AS count
+                FROM ezcontentobject outer_object, ezcontentobject inner_object, ezcontentobject_link outer_link
+                INNER JOIN ezcontentobject_link inner_link ON outer_link.id = inner_link.id
+                WHERE outer_object.id = outer_link.from_contentobject_id
+                    AND outer_object.status = 1
+                    AND inner_object.id = inner_link.from_contentobject_id
+                    AND inner_object.status = 1
+                    AND inner_link.to_contentobject_id = $toContentobjectId
+                    AND inner_link.from_contentobject_version = inner_object.current_version
+                    AND inner_link.contentclassattribute_id = $contentClassAttributeId
+                    AND ( inner_link.relation_type & 8 ) <> 0
+                    AND inner_object.id IN (
+                        SELECT contentobject_id
+                            FROM ezcobj_state_link
+                            WHERE contentobject_state_id in ($skipped,$accepted)
+                    )";
+            $reverseRelationsCount = eZDB::instance()->arrayQuery($query)[0]['count'] ?? 0;
             $version = $contentObject->currentVersion();
             if ($version === false) {
                 return;
@@ -45,6 +73,9 @@ class OpenPAAgendaEventCollectionIndexPlugin implements ezfIndexPlugin
 
     private function patchEventAsCollection(eZContentObject $contentObject): void
     {
+        if (isset(self::$patched[$contentObject->attribute('id')])) {
+            return;
+        }
         $version = $contentObject->currentVersion();
         if ($version === false) {
             return;
@@ -86,6 +117,9 @@ class OpenPAAgendaEventCollectionIndexPlugin implements ezfIndexPlugin
                     'application/json',
                     'OpenAgenda'
                 );
+                eZDebug::writeDebug('Patch object ' . $contentObject->attribute('id'), __METHOD__ . ' tries ' . $tries);
+                self::$patched[$contentObject->attribute('id')] = true;
+                break;
             } catch (\ezfSolrException $e) {
                 $doRetry = false;
                 $errorMessage = $e->getMessage();
@@ -103,7 +137,6 @@ class OpenPAAgendaEventCollectionIndexPlugin implements ezfIndexPlugin
                 eZDebug::writeError($errorMessage);
             }
         }
-        eZDebug::writeDebug('Patch object ' . $contentObject->attribute('id'), __METHOD__ . ' tries ' . $tries);
     }
 
 }
