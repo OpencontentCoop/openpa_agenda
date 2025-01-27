@@ -208,15 +208,15 @@
                                         <h3 class="h5 no_toc">{$node.data_map[$attribute].contentclass_attribute_name|wash()}</h3>
                                     {/if}
 
-                                    <div class="mb-2 {if $identifier|eq('description')}text-serif{/if}">
+                                    <div class="mb-3 {if $identifier|eq('description')}text-serif{/if}">
                                     {attribute_view_gui attribute=$node.data_map[$attribute]
                                                         view_context=full_attributes
                                                         image_class=medium
                                                         context_class=$node.class_identifier
                                                         relation_view='banner'
                                                         relation_has_wrapper=false()
-                                                        show_link=true()
-                                                        hide_title=true()
+                                                        show_link=cond($node.data_map[$attribute].data_type_string|eq('eztags'), false(), true())
+                                                        hide_title=cond(openpaini('OpenpaAgenda', 'OrganizationPrivateAttributes', array())|contains($attribute), false(), true())
                                                         tag_view="chip-lg mr-2 me-2"}
                                     </div>
                                 {elseif $attribute|eq('image')}
