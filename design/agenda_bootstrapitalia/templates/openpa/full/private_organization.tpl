@@ -52,9 +52,15 @@
                             {/if}
                         </form>
                     {else}
+                        {if openpaini('OpenpaAgenda', 'OrganizationPrivateAttributes', array())|count()|eq(0)}
                         <a class="btn btn-warning btn-icon" href="{concat('content/edit/',$node.contentobject_id, '/f')|ezurl('no')}">
                             {display_icon('it-pencil', 'svg', 'icon icon-white')}   <span>{'Edit'|i18n('agenda/dashboard')}</span>
                         </a>
+                        {else}
+                        <a class="btn btn-warning btn-icon" href="{concat('editorialstuff/edit/associazione/',$node.contentobject_id)|ezurl('no')}">
+                            {display_icon('it-pencil', 'svg', 'icon icon-white')}   <span>{'Edit'|i18n('agenda/dashboard')}</span>
+                        </a>
+                        {/if}
                     {/if}
                 </div>
             {/if}
@@ -113,6 +119,11 @@
     'has_online_contact_point', array('has_online_contact_point'),
     'more_information', array('more_information', 'foundation_date', 'attachments', 'has_private_org_activity_type', 'private_organization_category', 'legal_status_code')
 )}
+
+{if openpaini('OpenpaAgenda', 'OrganizationPrivateAttributes', array())|count()|gt(0)}
+    {def $more_information = $static_structure.more_information|merge(openpaini('OpenpaAgenda', 'OrganizationPrivateAttributes', array()))|unique()}
+    {set $static_structure = $static_structure|merge(hash('more_information',$more_information))}
+{/if}
 
 {def $static_structure_has_content = array()}
 {def $static_structure_has_content_count = 0}
@@ -196,9 +207,8 @@
                                     {if $attribute|ne($identifier)}
                                         <h3 class="h5 no_toc">{$node.data_map[$attribute].contentclass_attribute_name|wash()}</h3>
                                     {/if}
-                                    {if $identifier|eq('description')}
-                                        <div class="text-serif">
-                                    {/if}
+
+                                    <div class="mb-2 {if $identifier|eq('description')}text-serif{/if}">
                                     {attribute_view_gui attribute=$node.data_map[$attribute]
                                                         view_context=full_attributes
                                                         image_class=medium
@@ -208,9 +218,7 @@
                                                         show_link=true()
                                                         hide_title=true()
                                                         tag_view="chip-lg mr-2 me-2"}
-                                    {if $identifier|eq('description')}
-                                        </div>
-                                    {/if}
+                                    </div>
                                 {elseif $attribute|eq('image')}
                                     {def $images = array()}
                                     {if $node|has_attribute('image')}

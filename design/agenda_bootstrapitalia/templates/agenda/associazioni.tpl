@@ -1,5 +1,9 @@
 {ezpagedata_set( 'has_container', true() )}
 
+{def $subtree = ''}
+{def $sort = 'sort [name=>asc]'}
+{if $node}
+    {set $subtree = concat('subtree [', $node.node_id, '] ')}
 <section class="container">
     <div class="row">
         <div class="col-lg-8 px-lg-4 py-lg-2">
@@ -8,6 +12,7 @@
         </div>
     </div>
 </section>
+{/if}
 
 <div class="section section-muted section-inset-shadow p-4">
     {def $blocks = array(
@@ -17,7 +22,7 @@
             "default",
             hash(
                 "remote_url", "",
-                "query", "classes [private_organization] sort [name=>asc]",
+                "query", concat($subtree, " classes [private_organization] ", $sort),
                 "show_grid", "1",
                 "show_map", "1",
                 "show_search", "1",

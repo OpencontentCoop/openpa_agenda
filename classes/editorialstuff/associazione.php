@@ -44,6 +44,17 @@ class Associazione extends OCEditorialStuffPostDefault implements OCEditorialStu
             }
         }
 
+        $access = $currentUser->hasAccessTo('agenda', 'config');
+        if (!empty(OpenPAINI::variable('OpenpaAgenda', 'OrganizationPrivateAttributes', []))
+            && $access['accessWord'] == 'yes'
+        ) {
+            $tabs[] = [
+                'identifier' => 'settings',
+                'name' => ezpI18n::tr('openpa_agenda', 'Settings'),
+                'template_uri' => "design:{$templatePath}/parts/settings.tpl",
+            ];
+        }
+
         $tabs[] = [
             'identifier' => 'history',
             'name' => ezpI18n::tr('openpa_agenda', 'History'),

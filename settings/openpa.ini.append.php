@@ -10,6 +10,8 @@ UseAlternativeLogo=disabled
 #ForceFooterLogoUrl=
 #ForceBannerUrl=
 
+OrganizationPrivateAttributes[]
+
 [OpenpaAgendaPushSettings]
 AvailableEndpoint[]
 
