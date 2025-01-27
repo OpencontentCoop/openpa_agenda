@@ -32,11 +32,10 @@
             {if $validation.processed}
                 {if $validation.attributes|count|gt(0)}
                     <div class="alert alert-danger">
-                        <ul>
-                            {foreach $validation.attributes as $attribute}
-                                <li>{$attribute.name}: {$attribute.description}</li>
-                            {/foreach}
-                        </ul>
+                        {"Input did not validate"|i18n("design/standard/user")}
+                        {foreach $validation.attributes as $validation_attribute}
+                            {if $validation_attribute.identifier|eq('password_lifetime')}<p>{$validation_attribute.description}</p>{/if}
+                        {/foreach}
                     </div>
                 {/if}
             {/if}
@@ -48,17 +47,23 @@
                     {def $class_attribute = $attribute.contentclass_attribute}
 
                     {if $class_attribute.is_required}
+                        {def $error = false()}
+                        {foreach $validation.attributes as $validation_attribute}
+                            {if $validation_attribute.identifier|eq($attribute.contentclass_attribute_identifier)}{set $error = $validation_attribute.description}{/if}
+                        {/foreach}
                         <div id="edit-{$class_attribute.identifier}" class="card card-big card-bg rounded no-after anchor-offset row p-3 mb-4 ezcca-edit-datatype-{$attribute.data_type_string} ezcca-edit-{$class_attribute.identifier}">
                             <h5{if $attribute.has_validation_error} class="text-error"{/if}>
+                                {if $error}<span class="badge badge-danger">{$error}</span>{/if}
                                 {first_set( $class_attribute.nameList[$content_language], $class_attribute.name )|wash}*
                             </h5>
                             {if $class_attribute.description} <small class="form-text text-muted mb-1">{first_set( $class_attribute.descriptionList[$content_language], $class_attribute.description)|wash}</small>{/if}
-                            {attribute_edit_gui attribute_base=$attribute_base attribute=$attribute view_parameters=$view_parameters html_class='form-control'}
+                            {attribute_edit_gui attribute_base=$attribute_base attribute=$attribute view_parameters=$view_parameters html_class='form-control' validation=$validation}
                             <input type="hidden" name="ContentObjectAttribute_id[]" value="{$attribute.id}"/>
                         </div>
                         {if $class_attribute.data_type_string|eq('ocrecaptcha')}
                             {set $bypass_captcha = true()}
                         {/if}
+                        {undef $error}
                     {else}
                         <input type="hidden" name="ContentObjectAttribute_id[]" value="{$attribute.id}"/>
                     {/if}
@@ -132,6 +137,10 @@
         function disableButtons() {
             document.getElementById('PublishButton').disabled = true;
             document.getElementById('CancelButton').disabled = true;
+            window.setTimeout(function () {
+                document.getElementById('PublishButton').disabled = false;
+                document.getElementById('CancelButton').disabled = false;
+            }, 10);
         }
     </script>
 {/literal}
