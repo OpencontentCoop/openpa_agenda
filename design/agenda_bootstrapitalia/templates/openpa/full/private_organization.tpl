@@ -80,7 +80,8 @@
                 $current_topics|count(),
                 $node|has_attribute('has_private_org_activity_type'),
                 $node|has_attribute('private_organization_category'),
-                $node|has_attribute('legal_status_code')
+                $node|has_attribute('legal_status_code'),
+                $node|has_attribute('runts_number')
             )}
             <div class="mt-4 mb-4">
                 {if $current_topics|count()}
@@ -100,6 +101,10 @@
                 {if $node|has_attribute('legal_status_code')}
                     <h6 class="mb-0{if $current_topics|count()} mt-1{/if}"><small>{$node|attribute('legal_status_code').contentclass_attribute_name}</small></h6>
                     {attribute_view_gui attribute=$node|attribute('legal_status_code')}
+                {/if}
+                {if $node|has_attribute('runts_number')}
+                    <h6 class="mb-0{if $current_topics|count()} mt-1{/if}"><small>{$node|attribute('runts_number').contentclass_attribute_name}</small></h6>
+                    {attribute_view_gui attribute=$node|attribute('runts_number')}
                 {/if}
             </div>
             {/if}
