@@ -10,7 +10,7 @@ class PrivateOrganizationSettingsClassConnector extends ClassConnector
     public function getFieldConnectors()
     {
         if ($this->fieldConnectors === null) {
-            $settingsAttributes = OpenPAINI::variable('OpenpaAgenda', 'OrganizationPrivateAttributes', []);
+            $settingsAttributes = OpenPAINI::variable('OpenpaAgenda', 'OrganizationPrivateEditAttributes', []);
             /** @var \eZContentClassAttribute[] $classDataMap */
             $classDataMap = $this->class->dataMap();
             foreach ($classDataMap as $identifier => $attribute) {
