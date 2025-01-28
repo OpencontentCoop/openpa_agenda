@@ -11,6 +11,7 @@ UseAlternativeLogo=disabled
 #ForceBannerUrl=
 
 OrganizationPrivateAttributes[]
+OrganizationPrivateAttributesEdit[]
 
 [OpenpaAgendaPushSettings]
 AvailableEndpoint[]
