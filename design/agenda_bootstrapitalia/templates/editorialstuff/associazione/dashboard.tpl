@@ -27,6 +27,10 @@
                href="{concat('editorialstuff/add/',$factory_identifier)|ezurl(no)}">
                 <i class="fa fa-plus mr-2"></i> {$factory_configuration.CreationButtonText|wash()|i18n('agenda/dashboard')}
             </a>
+            <a class="btn btn-info rounded-0 text-white"
+               href="{concat('exportas/csv/',$factory_configuration.ClassIdentifier, '/1')|ezurl(no)}">
+                <i class="fa fa-download mr-2"></i> CSV
+            </a>
         </div>
     {/if}
 
