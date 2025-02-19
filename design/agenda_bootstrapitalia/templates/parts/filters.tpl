@@ -8,10 +8,10 @@
             <span class="chip-label">{'All'|i18n('agenda')}</span>
         </a>
         {if $add_time_buttons}
-            <a href="#" style="display:none" class="time-button chip chip-lg no-minwith" href="#" data-value="today"><span class="chip-label">{'Today'|i18n('agenda')}</span></a>
-            <a href="#" style="display:none" class="time-button chip chip-lg no-minwith" href="#" data-value="weekend"><span class="chip-label">{'This weekend'|i18n('agenda')}</span></a>
-            <a href="#" style="display:none" class="time-button chip chip-lg no-minwith" href="#" data-value="next 7 days"><span class="chip-label">{'Next 7 days'|i18n('agenda')}</span></a>
-            <a href="#" style="display:none" class="time-button chip chip-lg no-minwith" href="#" data-value="next 30 days"><span class="chip-label">{'Next 30 days'|i18n('agenda')}</span></a>
+            <a href="#" style="display:none" class="time-button chip chip-lg no-minwith" data-value="today"><span class="chip-label">{'Today'|i18n('agenda')}</span></a>
+            <a href="#" style="display:none" class="time-button chip chip-lg no-minwith" data-value="weekend"><span class="chip-label">{'This weekend'|i18n('agenda')}</span></a>
+            <a href="#" style="display:none" class="time-button chip chip-lg no-minwith" data-value="next 7 days"><span class="chip-label">{'Next 7 days'|i18n('agenda')}</span></a>
+            <a href="#" style="display:none" class="time-button chip chip-lg no-minwith" data-value="next 30 days"><span class="chip-label">{'Next 30 days'|i18n('agenda')}</span></a>
         {/if}
         {if $use_search_text}
             <a class="search-query chip chip-lg no-minwith align-top">

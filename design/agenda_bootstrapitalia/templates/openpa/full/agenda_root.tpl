@@ -81,6 +81,7 @@
             {if or(count($views)|eq(0), $views[0]|eq('default'))}
                 {set $views = array('grid','geo','agenda')}
             {/if}
+
             {include
                 uri='design:parts/agenda.tpl'
                 add_time_buttons=true()
@@ -89,7 +90,6 @@
                 base_query=concat('classes [',agenda_event_class_identifier(),'] and subtree [', calendar_node_id(), '] and state in [moderation.skipped,moderation.accepted] sort [time_interval=>asc] ', cond($agenda_query_custom|count()|gt(0), ' and ', false()), $agenda_query_custom|implode(' and '))
                 style='bg-white rounded-top py-3 px-5'
             }
-
         </div>
     </div>
 </section>
@@ -97,3 +97,19 @@
 
 {include uri='design:parts/views.tpl' views=$views}
 
+
+{if $node|has_attribute('organization_next_events')}
+    {def $organizations = array()}
+    {foreach $node|attribute('organization_next_events').content.relation_list as $item}
+        {set $organizations = $organizations|append(fetch(content, node, hash(node_id, $item.node_id)))}
+    {/foreach}
+    {if count($organizations)}
+        {def $title= false()}
+        {if $node|has_attribute('organization_next_events_label')}
+            {set $title = $node|attribute('organization_next_events_label').content}
+        {/if}
+        {include uri='design:openpa/full/parts/home-calendars.tpl' organizations=$organizations title=$title}
+        {undef $title}
+    {/if}
+    {undef $organizations}
+{/if}
