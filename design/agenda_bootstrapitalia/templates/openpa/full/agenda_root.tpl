@@ -101,7 +101,7 @@
 {if $node|has_attribute('organization_next_events')}
     {def $organizations = array()}
     {foreach $node|attribute('organization_next_events').content.relation_list as $item}
-        {set $organizations = $organizations|append(fetch(content, node, hash(node_id, $item.node_id)))}
+        {set $organizations = $organizations|append($item.contentobject_id)}
     {/foreach}
     {if count($organizations)}
         {def $title= false()}
