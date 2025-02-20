@@ -2,7 +2,7 @@
     <div class="row mt-4 mb-5">
 
         {if $title}
-            <div class="col-12"><h2>{$title|wash()}</h2></div>
+            <div class="col-12 my-2 mb-5"><h2>{$title|wash()}</h2></div>
         {/if}
 
         <div class="col">
@@ -29,7 +29,7 @@
     {{if totalCount > 0}}
         {{for searchHits}}
         <div class="col-md-6 col-lg-4 px-lg-3 pb-lg-3">
-            {{:~i18n(extradata, 'view')}}
+            {{include tmpl="#tpl-event"/}}
         </div>
         {{/for}}
     {{else}}
