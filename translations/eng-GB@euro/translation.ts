@@ -5,7 +5,7 @@
     <name>agenda</name>
     <message>
       <source>Sponsored by</source>
-      <translation>Supported by</translation>
+      <translation>Sponsored by</translation>
     </message>
     <message>
       <source>Comments</source>
@@ -256,7 +256,7 @@
     </message>
     <message>
       <source>External Users</source>
-      <translation>External users</translation>
+      <translation>External Users</translation>
     </message>
     <message>
       <source>Search</source>
@@ -276,7 +276,7 @@
     </message>
     <message>
       <source>Export to CSV</source>
-      <translation>Export in CSV</translation>
+      <translation>Export to CSV</translation>
     </message>
     <message>
       <source>Add %classname</source>
@@ -371,7 +371,7 @@
     </message>
     <message>
       <source>Image library</source>
-      <translation>Library</translation>
+      <translation>Image Library</translation>
     </message>
     <message>
       <source>Create new event</source>
@@ -421,7 +421,7 @@
     </message>
     <message>
       <source>Cancel</source>
-      <translation>Undo</translation>
+      <translation>Cancel</translation>
     </message>
   </context>
   <context>
@@ -543,7 +543,7 @@
     </message>
     <message>
       <source>Cancel</source>
-      <translation>Undo</translation>
+      <translation>Cancel</translation>
     </message>
     <message>
       <source>Confirm us that you are not a robot</source>
@@ -585,7 +585,7 @@
     </message>
     <message>
       <source>History</source>
-      <translation>Timeline</translation>
+      <translation>History</translation>
     </message>
     <message>
       <source>Flyer</source>
@@ -624,7 +624,7 @@
     </message>
     <message>
       <source>Period</source>
-      <translation>Time of year</translation>
+      <translation>Period</translation>
     </message>
     <message>
       <source>Hours</source>
@@ -734,11 +734,11 @@
     <name>agenda/place</name>
     <message>
       <source>Nowhere</source>
-      <translation>No location</translation>
+      <translation>No place or venue</translation>
     </message>
     <message>
       <source>Select place</source>
-      <translation>Select location</translation>
+      <translation>Select place or venue</translation>
     </message>
     <message>
       <source>Editor choice</source>
@@ -754,11 +754,11 @@
     </message>
     <message>
       <source>Add your own place</source>
-      <translation>Create a new location</translation>
+      <translation>Create a new place or venue</translation>
     </message>
     <message>
       <source>A place already exists with similar geolocation</source>
-      <translation>A location with a similar geolocation already exists</translation>
+      <translation>A place with a similar geolocation already exists</translation>
     </message>
     <message>
       <source>Detect position</source>
@@ -782,7 +782,7 @@
     </message>
     <message>
       <source>Store place</source>
-      <translation>Save location</translation>
+      <translation>Save place</translation>
     </message>
     <message>
       <source>Store mine and ignore existent</source>
@@ -790,7 +790,7 @@
     </message>
     <message>
       <source>Select existent place</source>
-      <translation>Select existing location</translation>
+      <translation>Select existing place</translation>
     </message>
   </context>
   <context>
