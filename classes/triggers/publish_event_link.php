@@ -29,11 +29,59 @@ class OpenAgendaPublishEventLinkWebHookTrigger implements OCWebHookTriggerInterf
 
     public function useFilter()
     {
-        return false;
+        $query = "select-fields [metadata.id=>metadata.name] classes [private_organization] sort [name=>asc] limit 500";
+        $searchUri = "/opendata/api/content/search/";
+        \eZURI::transformURI($searchUri);
+        $dataSource = $searchUri . '?q=' . $query;
+
+        $schema = [
+            'schema' => [
+                'title' => "Seleziona una o più organizzazioni",
+                'type' => 'array',
+                'enum' => [],
+            ],
+            'options' => [
+                'helper' => "Il webhook viene eseguito solo se il contenuto è relazionato alle organizzazioni selezionate",
+                'name' => 'organization',
+                'label' => 'Organizzazione',
+                'dataSource' => $dataSource,
+                'multiple' => true,
+                'type' => 'checkbox',
+                'sort' => false,
+            ],
+        ];
+
+        return json_encode($schema);
     }
 
     public function isValidPayload($payload, $filters)
     {
+        if (empty($filters)) {
+            return true;
+        }
+
+        $filters = json_decode($filters, true);
+        $allowedOrganizationIds = array_map(
+            'intval',
+            $filters
+        );
+
+        if (is_numeric($payload)) {
+            eZContentObject::clearCache();
+            $contentObject = eZContentObject::fetch((int)$payload);
+            if ($contentObject instanceof eZContentObject) {
+                $dataMap = $contentObject->dataMap();
+                if (isset($dataMap['organizer'])) {
+                    $organizationIds = array_map(
+                        'intval',
+                        explode('-', $dataMap['organizer']->toString())
+                    );
+                    $isAllowed = array_intersect($allowedOrganizationIds, $organizationIds);
+                    return !empty($isAllowed);
+                }
+            }
+        }
+
         return true;
     }
 
