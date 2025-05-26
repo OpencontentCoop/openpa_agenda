@@ -59,7 +59,7 @@
                             });
                         }
                     );
-                    map.scrollWheelZoom.disable();                    
+                    map.scrollWheelZoom.disable();
                 }
             };
 
@@ -113,8 +113,8 @@
                 }
             };
 
-            var loadCalendarResults = function (response, query, appendResults, view) {                
-                refreshCalendar(view, response);                
+            var loadCalendarResults = function (response, query, appendResults, view) {
+                refreshCalendar(view, response);
             };
 
             var loadListResults = function (response, query, appendResults, view) {
@@ -130,7 +130,8 @@
                     if (response.nextPageQuery) {
                         var loadMore = $($.templates("#tpl-load-other").render({}));
                         loadMore.find('a').bind('click', function (e) {
-                            view.appendSearch(response.nextPageQuery);
+                            let nextQuery = query.split(' offset ')[0] + ' offset ' + response.nextPageQuery.split(' offset ')[1]
+                            view.appendSearch(nextQuery);
                             loadMore.remove();
                             view.container.append(spinner);
                             e.preventDefault();
@@ -144,22 +145,22 @@
 
             var data = $(this.element).data('opendataSearchView');
             if (!data) {
-                $(this.element).opendataSearchView({                    
+                $(this.element).opendataSearchView({
                     query: $.opendataTools.settings('base_query'),
                     onInit: function (view) {
                         initMap();
                         $.opendataTools.settings('currentAgendaView', '#list');
                         $('body').on('shown.bs.tab', function (e) {
-                            if ($(e.target).parents('aside').hasClass('agenda-views')) {                            
-                                $.opendataTools.settings('currentAgendaView', $(e.target).attr('href'));                               
+                            if ($(e.target).parents('aside').hasClass('agenda-views')) {
+                                $.opendataTools.settings('currentAgendaView', $(e.target).attr('href'));
                                 if ($.opendataTools.settings('currentAgendaView') === '#geo') {
                                     $.opendataTools.refreshMap();
                                 }
-                                if ($.opendataTools.settings('currentAgendaView') === '#agenda') {                                                                        
-                                    $('.widget[data-filter="date"]').addClass('hide');                                    
+                                if ($.opendataTools.settings('currentAgendaView') === '#agenda') {
+                                    $('.widget[data-filter="date"]').addClass('hide');
                                 } else {
                                     $('.widget[data-filter="date"]').removeClass('hide');
-                                }                                
+                                }
                                 view.doSearch();
                             }
                         });
@@ -167,7 +168,7 @@
                     onBeforeSearch: function (query, view) {
                         view.container.html(spinner);
                     },
-                    onLoadResults: function (response, query, appendResults, view) {                                                
+                    onLoadResults: function (response, query, appendResults, view) {
                         if ($.opendataTools.settings('currentAgendaView') === '#list') {
                             loadListResults(response, query, appendResults, view);
                         } else if ($.opendataTools.settings('currentAgendaView') === '#geo') {
@@ -193,7 +194,7 @@
     };
 
 })(jQuery, window, document);
-$(document).ready(function () {    
+$(document).ready(function () {
     $.opendataTools.settings('onError', function(errorCode,errorMessage,jqXHR){
         console.log(errorMessage + ' (error: '+errorCode+')');
     });

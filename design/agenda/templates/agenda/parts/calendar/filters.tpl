@@ -15,6 +15,13 @@
     </div>
   </aside>
 
+  <aside class="widget agenda-filters" data-filter="iniziativa" style="display: none">
+    <h4>{'Event collection'|i18n('agenda')}</h4>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#" data-value="all">{'All event collections'|i18n('agenda')}</a></li>
+    </ul>
+  </aside>
+
   <aside class="widget agenda-filters" data-filter="date">
     <h4>{'When?'|i18n('agenda')}</h4>
     <div class="datepicker" id="datepicker" style="display: none"></div>
@@ -55,10 +62,4 @@
     </ul>
   </aside>
 
-  <aside class="widget agenda-filters" data-filter="iniziativa" style="display: none">
-    <h4>{'Event collection '|i18n('agenda')}</h4>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#" data-value="all">{'All event collections'|i18n('agenda')}</a></li>
-    </ul>
-  </aside>
 </div>
