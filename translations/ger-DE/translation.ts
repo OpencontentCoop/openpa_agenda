@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.1" language="de">
   <context>
     <name>agenda</name>
     <message>
@@ -523,7 +523,7 @@
     </message>
     <message>
       <source>To register an organization, you must click on the button and fill out the required info. After our operators have checked your info, you can use the credentials you've chosen to log in and post new events.</source>
-      <translation type="unfinished"/>
+      <translation></translation>
     </message>
     <message>
       <source>Register an organization</source>
