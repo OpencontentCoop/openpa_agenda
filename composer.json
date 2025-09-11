@@ -2,14 +2,17 @@
     "name": "opencontent/openpa_agenda-ls",
     "description": "OpenContent OpenPA Agenda",
     "type": "ezpublish-legacy-extension",
-    "authors": [        
+    "authors": [
         {
             "name": "OpenContent",
             "homepage": "http://www.opencontent.it"
         }
     ],
-    "license": "GPL-2.0",    
-    "minimum-stability": "dev",    
+    "license": "GPL-2.0",
+    "minimum-stability": "dev",
+    "require": {
+        "opencontent/oceditorialstuff-ls": ">=2.6.0"
+    },
     "extra": {
         "ezpublish-legacy-extension-name": "openpa_agenda"
     }

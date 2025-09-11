@@ -1,6 +1,6 @@
 <?php
 
-class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuffPostInputActionInterface
+class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuffPostInputActionInterface, OCEditorialStuffPostInputActionPermissionInterface
 {
     public function onCreate()
     {
@@ -418,6 +418,18 @@ class AgendaItem extends OCEditorialStuffPostDefault implements OCEditorialStuff
                 $this->getObject()->store();
             }
         }
+    }
+
+    public function canExecuteAction($actionIdentifier, $actionParameters, eZModule $module = null): bool
+    {
+        switch ($actionIdentifier) {
+            case 'ActionCopy':
+                if (eZUser::currentUser()->id() == $this->getObject()->attribute('owner_id')) {
+                    return true;
+                }
+        }
+
+        return $this->getObject()->attribute('can_edit');
     }
 
 
