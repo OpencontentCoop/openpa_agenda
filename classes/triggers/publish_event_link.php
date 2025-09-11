@@ -1,11 +1,14 @@
 <?php
 
 use Opencontent\Opendata\Api\Values\Content;
+use GuzzleHttp\Client;
 
 class OpenAgendaPublishEventLinkWebHookTrigger implements OCWebHookTriggerInterface,
                                                           OCWebHookCustomPayloadSerializerInterface
 {
     const IDENTIFIER = 'openagenda_publish_event_link';
+
+    private static $needPushDescription = null;
 
     public function getIdentifier()
     {
@@ -108,16 +111,41 @@ class OpenAgendaPublishEventLinkWebHookTrigger implements OCWebHookTriggerInterf
         return '<b>Attenzione: il payload viene generato automaticamente: utilizzare il <em>default payload</em></b>';
     }
 
+    private static function needPushDescription(OCWebHook $webHook): bool
+    {
+        if (self::$needPushDescription === null) {
+            self::$needPushDescription = false;
+            try {
+                $client = new Client();
+                $headers = (array)json_decode($webHook->attribute('headers'), true);
+                $urlParsed = parse_url($webHook->attribute('url'));
+                $endpointUrl = "{$urlParsed['scheme']}://{$urlParsed['host']}/api/opendata/v2/classes/event_link";
+                $test = $client->request(
+                    'GET',
+                    $endpointUrl,
+                    [
+                        'timeout' => 5,
+                        'verify' => false,
+                        'headers' => $headers,
+                    ]
+                );
+                $eventLink = json_decode($test->getBody()->getContents(), true);
+                if ($eventLink) {
+                    $fields = array_column(($eventLink['fields'] ?? []), 'identifier');
+                    self::$needPushDescription = in_array('description', $fields);
+                }
+            } catch (Throwable $e) {
+                eZDebug::writeError($e->getMessage(), __METHOD__);
+            }
+        }
+
+        return self::$needPushDescription;
+    }
+
     private static function generatePayload(eZContentObject $contentObject, OCWebHook $webHook)
     {
         $headers = (array)json_decode($webHook->attribute('headers'), true);
-//        if (!isset($headers['Authorization'])){
-//            /** @var eZUser $user */
-//            $user = eZUser::fetchByName('admin');
-//            $headers['Authorization'] = "Bearer " . JWTManager::issueInternalJWTToken($user);
-//            $webHook->setAttribute('headers', json_encode($headers));
-//            $webHook->sync(['headers']);
-//        }
+
         $content = Content::createFromEzContentObject($contentObject);
         $contentObjectDataMap = $contentObject->dataMap();
         $payloadContent = [];
@@ -287,7 +315,11 @@ class OpenAgendaPublishEventLinkWebHookTrigger implements OCWebHookTriggerInterf
                 'virtual_has_offer' => $offer,
                 'cost_notes' => $data['cost_notes']['content'] ?? '',
             ];
+            if (self::needPushDescription($webHook)) {
+                $payloadContent[$language]['description'] = $data['description']['content'] ?? '';
+            }
         }
+
         return [
             'metadata' => [
                 'remoteId' => $content->metadata->remoteId,
