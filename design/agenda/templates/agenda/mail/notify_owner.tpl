@@ -1,7 +1,7 @@
 {def $social_pagedata = social_pagedata('agenda')}
 {if $is_comment}
 
-{set-block scope=root variable=subject}[{$social_pagedata.logo_title|strip_tags()}] {'Comment to'|i18n('agenda/mail')}  {$event.name|wash()}{/set-block}
+{set-block scope=root variable=subject}[{$social_pagedata.logo_title|strip_tags()}] {'Comment to'|i18n('agenda/mail')}  {$event.name}{/set-block}
 {set-block scope=root variable=content_type}text/html{/set-block}
 
 {def $message = concat('<em>', $post.object.name|wash(), '</em>')}
@@ -15,7 +15,7 @@
 
 
 {set-block scope=root variable=reply_to}{fetch(user,current_user).email}{/set-block}
-{set-block scope=root variable=subject}[{$social_pagedata.logo_title|strip_tags()}] {'Notify on'|i18n('agenda/mail')} {$post.object.name|wash()}{/set-block}
+{set-block scope=root variable=subject}[{$social_pagedata.logo_title|strip_tags()}] {'Notify on'|i18n('agenda/mail')} {$post.object.name}{/set-block}
 {set-block scope=root variable=content_type}text/html{/set-block}
 
 {def $name = concat('<a href="', $post.editorial_url|ezurl(no,full), '">', $post.object.name|wash(), '</a>')}
