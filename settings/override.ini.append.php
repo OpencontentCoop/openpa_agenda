@@ -149,4 +149,13 @@ Subdir=templates
 Match[class_identifier]=event
 Match[attribute_identifier]=about_target_audience
 
+
+[datatype_sub_event_of_event]
+Source=content/datatype/edit/ezobjectrelationlist.tpl
+MatchFile=datatype/edit/ezobjectrelationlist_sub_event_of.tpl
+Subdir=templates
+Match[class_identifier]=event
+Match[attribute_identifier]=sub_event_of
+
+
 */ ?>
