@@ -18,40 +18,40 @@
         {break}
     {/foreach}
 
-    <label>Aggiungi iniziativa</label>
+    <label>{'Add initiative'|i18n('agenda/iniziativa')}</label>
     <div class="form-inline" id="add-new-iniziativa">
         <div class="form-group">
-            <label for="new-iniziativa-titolo" class="hide">Titolo</label>
-            <input type="text" class="form-control" name="new-iniziativa-titolo" id="new-iniziativa-titolo" placeholder="Titolo">
+            <label for="new-iniziativa-titolo" class="hide">{'Title'|i18n('agenda/iniziativa')}</label>
+            <input type="text" class="form-control" name="new-iniziativa-titolo" id="new-iniziativa-titolo" placeholder="{'Title'|i18n('agenda/iniziativa')}">
         </div>
         <div class="form-group">
-            <label for="new-iniziativa-abstract" class="hide">Breve descrizione</label>
-            <input type="text" class="form-control" name="new-iniziativa-abstract" id="new-iniziativa-abstract" placeholder="Breve descrizione">
+            <label for="new-iniziativa-abstract" class="hide">{'Short description'|i18n('agenda/iniziativa')}</label>
+            <input type="text" class="form-control" name="new-iniziativa-abstract" id="new-iniziativa-abstract" placeholder="{'Short description'|i18n('agenda/iniziativa')}">
         </div>
         <button class="btn btn-info" type="button"><i class="fa fa-plus"></i> </button>
     </div>
 
     <hr />
 
-    <label>Seleziona iniziativa <i id="searchIniziativaSpinner" class="fa fa-circle-o-notch fa-spin" style="display: none"></i></label>
+    <label>{'Select initiative'|i18n('agenda/iniziativa')} <i id="searchIniziativaSpinner" class="fa fa-circle-o-notch fa-spin" style="display: none"></i></label>
     <div class="space">
         <div class="form-inline pull-right" id="search-iniziativa">
             <div class="form-group">
                 <label for="searchIniziativaByName" class="hide">{'Search by name ...'|i18n('agenda')}</label>
-                <input type="text" class="form-control" id="searchIniziativaByName" placeholder="{'Cerca'|i18n('agenda')}">
+                <input type="text" class="form-control" id="searchIniziativaByName" placeholder="{'Search by name ...'|i18n('agenda')}">
             </div>
             <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> </button>
             <button type="reset" class="btn btn-default" style="display: none;"><i class="fa fa-times"></i> </button>
         </div>
-        <span class="label label-default label-success searchIniziativaByUser" data-user_id="{fetch(user, current_user).contentobject_id}">Create da {fetch(user, current_user).contentobject.name|wash()}</span>
-        <span class="label label-default searchIniziativaByUser">Tutte</span>
+        <span class="label label-default label-success searchIniziativaByUser" data-user_id="{fetch(user, current_user).contentobject_id}">{'Creator'|i18n('agenda/iniziativa')} {fetch(user, current_user).contentobject.name|wash()}</span>
+        <span class="label label-default searchIniziativaByUser">{'All'|i18n('agenda/iniziativa')}</span>
     </div>
     <hr />
     <div class="row">
         <div class="col-md-12">
             <div class="list-group" id="current-{$attribute.id}"></div>
         </div>
-    </div>    
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="list-group" id="relations-{$attribute.id}"></div>
@@ -114,9 +114,9 @@
     {literal}
 
     var currentIniziativa = $(selectIniziativaSelector).val();
-    
+
     var selectIniziativa = function(id){
-        $(selectIniziativaSelector).val(id);        
+        $(selectIniziativaSelector).val(id);
         currentIniziativa = id;
         refreshCurrentIniziativa();
     };
@@ -132,27 +132,27 @@
         $(selectIniziativaSelector).val(0);
         $(currentIniziativaSelector).html('');
     }
-    
-    var refreshCurrentIniziativa = function(){        
+
+    var refreshCurrentIniziativa = function(){
         if (currentIniziativa){
             $('#searchIniziativaSpinner').show();
             $.opendataTools.findOne('id in ['+currentIniziativa+']', function(response){
-                var clearButton = $('<a class="pull-right btn btn-info" href="#" style="display:block;position:relative;z-index:10;margin:20px"><i class="fa fa-close"></i></a>');                
+                var clearButton = $('<a class="pull-right btn btn-info" href="#" style="display:block;position:relative;z-index:10;margin:20px"><i class="fa fa-close"></i></a>');
                 clearButton.on('click', function(e){
                     clearCurrentIniziativa();
                     e.preventDefault();
                 });
                 var renderedInizitiva = $(currentIniziativaSelector).html(renderIniziativa(response));
-                renderedInizitiva.find('a').addClass('active').css('cursor', 'none');                
+                renderedInizitiva.find('a').addClass('active').css('cursor', 'none');
                 $(currentIniziativaSelector).prepend(clearButton);
                 $('#searchIniziativaSpinner').hide();
             });
         }
     };
-    
+
     var searchForm = $('#search-iniziativa');
     var searchViewIniziativa = $(searchIniziativaSelector).opendataSearchView({
-        query: 'classes [iniziativa] sort [published=>desc] limit 5',        
+        query: 'classes [iniziativa] sort [published=>desc] limit 5',
         onBuildQuery: function(){
             if (currentIniziativa){
                 return "id != '"+currentIniziativa+"'";
@@ -188,7 +188,7 @@
                         e.preventDefault();
                     });
                     view.container.append(loadMore)
-                }            
+                }
             } else {
                 view.container.html($.templates("#tpl-list-empty").render({}));
             }

@@ -820,4 +820,31 @@
       <translation>Non ci sono dati per produrre il grafico</translation>
     </message>
   </context>
+    <context>
+        <name>agenda/iniziativa</name>
+        <message>
+            <source>Add initiative</source>
+            <translation>Aggiungi iniziativa</translation>
+        </message>
+        <message>
+            <source>Title</source>
+            <translation>Titolo</translation>
+        </message>
+        <message>
+            <source>Short description</source>
+            <translation>Breve descrizione</translation>
+        </message>
+        <message>
+            <source>Select initiative</source>
+            <translation>Seleziona iniziativa</translation>
+        </message>
+        <message>
+            <source>Creator</source>
+            <translation>Creata da</translation>
+        </message>
+        <message>
+            <source>All</source>
+            <translation>Tutte</translation>
+        </message>
+    </context>
 </TS>

@@ -820,4 +820,31 @@
       <translation type="unfinished"/>
     </message>
   </context>
+  <context>
+    <name>agenda/iniziativa</name>
+      <message>
+          <source>Add initiative</source>
+          <translation type="unfinished"/>
+      </message>
+      <message>
+          <source>Title</source>
+          <translation type="unfinished"/>
+      </message>
+      <message>
+          <source>Short description</source>
+          <translation type="unfinished"/>
+      </message>
+      <message>
+          <source>Select initiative</source>
+          <translation type="unfinished"/>
+      </message>
+      <message>
+          <source>Creator</source>
+          <translation type="unfinished"/>
+      </message>
+      <message>
+          <source>All</source>
+          <translation type="unfinished"/>
+      </message>
+  </context>
 </TS>
