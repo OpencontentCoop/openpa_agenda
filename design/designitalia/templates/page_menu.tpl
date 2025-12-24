@@ -26,15 +26,9 @@
   {if $current_user.is_logged_in|not()}
 
     <li>
-        {if is_login_enabled()}
-            <a href="#login">
-              {'Login'|i18n('design/standard/user')}
-            </a>
-        {else}
-            <a href="{'user/login'|ezurl(no)}">
-              {'Login'|i18n('design/standard/user')}
-            </a>
-        {/if}
+        <a href="{'user/login'|ezurl(no)}">
+            {'Login'|i18n('design/standard/user')}
+        </a>
     </li>
 
   {else}
