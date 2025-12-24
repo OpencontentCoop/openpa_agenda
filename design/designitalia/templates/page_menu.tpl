@@ -26,9 +26,15 @@
   {if $current_user.is_logged_in|not()}
 
     <li>
-      <a href="#login">
-          {'Accedi'|i18n('ocsocialdesign/menu')}
-      </a>
+        {if is_login_enabled()}
+            <a href="#login">
+              {'Login'|i18n('design/standard/user')}
+            </a>
+        {else}
+            <a href="{'user/login'|ezurl(no)}">
+              {'Login'|i18n('design/standard/user')}
+            </a>
+        {/if}
     </li>
 
   {else}
