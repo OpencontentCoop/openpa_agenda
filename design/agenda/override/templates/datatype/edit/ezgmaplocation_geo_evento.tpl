@@ -4,18 +4,20 @@
 {def $latitude  = $attribute.content.latitude|explode(',')|implode('.')
      $longitude = $attribute.content.longitude|explode(',')|implode('.')
      $contacts = openpapagedata().contacts}
-
-<div class="block float-break" data-osmap-attribute="{$attribute.id}" id="event-geo">
+<div class="block float-break" data-osmap-attribute="{$attribute.id}"
+     data-noresults="{'No search results...'|i18n('extension/ezfind/ajax-search')}"
+     data-search="{'Search'|i18n('design/ezwebin/pagelayout')}"
+     id="event-geo">
 
     <div id="map-{$attribute.id}" style="width: 100%; height: 300px; margin-top: 2px;"></div>
 
     <div class="block buttons float-break">
-        <button class="pull-right button btn btn-sm btn-danger" name="Reset" style="display: none">Annulla modifiche</button>
-        <button class="pull-right button btn btn-sm btn-info" name="MyLocation">Rileva posizione</button>
+        <button class="pull-right button btn btn-sm btn-danger" name="Reset" style="display: none" title="{'Restores location and address values to what it was on page load.'|i18n('extension/ezgmaplocation/datatype')}">{'Restore'|i18n('extension/ezgmaplocation/datatype')}</button>
+        <button class="pull-right button btn btn-sm btn-info" name="MyLocation" title="{'Gets your current position if your browser support GeoLocation and you grant this website access to it! Most accurate if you have a built in gps in your Internet device! Also note that you might still have to type in address manually!'|i18n('extension/ezgmaplocation/datatype')}">{'My current location'|i18n('extension/ezgmaplocation/datatype')}</button>
     </div>
     <div class="row">
         <div class="block address  col-md-12">
-            <label>Indirizzo</label>
+            <label>{'Address'|i18n('extension/ezgmaplocation/datatype')}</label>
             <input class="ezgml_new_address box form-control"
                    type="text"
                    name="{$attribute_base}_data_gmaplocation_address_{$attribute.id}"
@@ -29,7 +31,7 @@
     </div>
     <div class="row">
         <div class="element latitude col-md-6">
-            <label>Latitudine</label>
+            <label>{'Latitude'|i18n('extension/ezgmaplocation/datatype')}</label>
             <input class="ezgml_new_latitude box form-control"
                    type="text"
                    name="{$attribute_base}_data_gmaplocation_latitude_{$attribute.id}"
@@ -42,7 +44,7 @@
         </div>
 
         <div class="element longitude col-md-6">
-            <label>Longitudine</label>
+            <label>{'Longitude'|i18n('extension/ezgmaplocation/datatype')}</label>
             <input class="ezgml_new_longitude box form-control"
                    type="text"
                    name="{$attribute_base}_data_gmaplocation_longitude_{$attribute.id}"
