@@ -17,6 +17,7 @@
 
             <div class="point-list">
                 <div class="point-list-aside point-list-warning">
+                    <div class="point-month text-monospace">{recurrences_strtotime($event.start)|datetime( 'custom', '%Y' )}</div>
                     <div class="point-date text-monospace">{recurrences_strtotime($event.start)|datetime( 'custom', '%d' )}</div>
                     <div class="point-month text-monospace">{recurrences_strtotime($event.start)|datetime( 'custom', '%M' )}</div>
                 </div>
@@ -33,6 +34,7 @@
 
             <div class="point-list">
                 <div class="point-list-aside point-list-warning">
+                    <div class="point-month text-monospace">{recurrences_strtotime($event.end)|datetime( 'custom', '%Y' )}</div>
                     <div class="point-date text-monospace">{recurrences_strtotime($event.end)|datetime( 'custom', '%d' )}</div>
                     <div class="point-month text-monospace">{recurrences_strtotime($event.end)|datetime( 'custom', '%M' )}</div>
                 </div>
@@ -51,6 +53,7 @@
 
             <div class="point-list">
                 <div class="point-list-aside point-list-warning">
+                    <div class="point-month text-monospace">{recurrences_strtotime($event.start)|datetime( 'custom', '%Y' )}</div>
                     <div class="point-date text-monospace">{recurrences_strtotime($event.start)|datetime( 'custom', '%d' )}</div>
                     <div class="point-month text-monospace">{recurrences_strtotime($event.start)|datetime( 'custom', '%M' )}</div>
                 </div>
