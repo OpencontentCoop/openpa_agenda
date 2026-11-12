@@ -6,6 +6,8 @@ class OpenPAAgendaEventCollectionIndexPlugin implements ezfIndexPlugin
 
     private static $patched = [];
 
+    private static $refreshing = [];
+
     public function modify(eZContentObject $contentObject, &$docList)
     {
         if ($contentObject->attribute('class_identifier') === 'event') {
@@ -18,17 +20,22 @@ class OpenPAAgendaEventCollectionIndexPlugin implements ezfIndexPlugin
             $accepted = (int)$states['moderation.accepted']->attribute('id');
 
 
+            $currentParentIds = [];
             if (isset($dataMap['sub_event_of']) && $dataMap['sub_event_of']->hasContent()) {
-                $objects = OpenPABase::fetchObjects(explode('-', $dataMap['sub_event_of']->toString()));
+                $currentParentIds = array_map('intval', explode('-', $dataMap['sub_event_of']->toString()));
+                $objects = OpenPABase::fetchObjects($currentParentIds);
                 $isAccepted = in_array($skipped, $contentObject->stateIDArray()) || in_array($accepted, $contentObject->stateIDArray());
                 foreach ($objects as $object) {
                     if ($isAccepted){
                         $this->patchEventAsCollection($object);
                     } else {
+                        unset(self::$patched[$object->attribute('id')]);
                         eZSearch::addObject($object);
                     }
                 }
             }
+
+            $this->refreshRemovedParents($contentObject, $currentParentIds);
 
             $toContentobjectId = (int)$contentObject->attribute('id');
             $contentClassAttributeId = (int)eZContentClassAttribute::classAttributeIDByIdentifier('event/sub_event_of');
@@ -67,6 +74,67 @@ class OpenPAAgendaEventCollectionIndexPlugin implements ezfIndexPlugin
                         $docList[$languageCode]->addField(self::$key, $value);
                     }
                 }
+            }
+        }
+    }
+
+    /**
+     * patchEventAsCollection() può solo impostare il flag a 1: se un evento viene scollegato da un contenitore
+     * (sub_event_of cambiato o svuotato) il vecchio contenitore resterebbe marcato come tale in Solr per sempre
+     * e verrebbe nascosto dai calendari che escludono i contenitori (raw[extra_event_collection_i] = 0).
+     * Qui si individuano i contenitori presenti nella versione pubblicata precedente e non più in quella corrente
+     * e li si reindicizza, così il flag viene ricalcolato dalla query sulle relazioni correnti.
+     */
+    private function refreshRemovedParents(eZContentObject $contentObject, array $currentParentIds): void
+    {
+        $objectId = (int)$contentObject->attribute('id');
+        $currentVersion = (int)$contentObject->attribute('current_version');
+        $classAttributeId = (int)eZContentClassAttribute::classAttributeIDByIdentifier('event/sub_event_of');
+        if ($objectId === 0 || $currentVersion === 0 || $classAttributeId === 0) {
+            return;
+        }
+
+        $statusPublished = eZContentObjectVersion::STATUS_PUBLISHED;
+        $statusArchived = eZContentObjectVersion::STATUS_ARCHIVED;
+        $rows = eZDB::instance()->arrayQuery(
+            "SELECT DISTINCT link.to_contentobject_id AS id
+                FROM ezcontentobject_link link
+                WHERE link.from_contentobject_id = $objectId
+                    AND link.contentclassattribute_id = $classAttributeId
+                    AND ( link.relation_type & 8 ) <> 0
+                    AND link.from_contentobject_version = (
+                        SELECT MAX( version.version )
+                            FROM ezcontentobject_version version
+                            WHERE version.contentobject_id = $objectId
+                                AND version.version < $currentVersion
+                                AND version.status IN ($statusPublished,$statusArchived)
+                    )"
+        );
+
+        foreach ($rows as $row) {
+            $parentId = (int)$row['id'];
+            if (
+                $parentId === $objectId
+                || in_array($parentId, $currentParentIds, true)
+                || isset(self::$refreshing[$parentId])
+            ) {
+                continue;
+            }
+            $parent = eZContentObject::fetch($parentId);
+            if (!$parent instanceof eZContentObject) {
+                continue;
+            }
+            // evita cicli infiniti se due eventi si sono scollegati a vicenda
+            self::$refreshing[$parentId] = true;
+            unset(self::$patched[$parentId]);
+            try {
+                eZSearch::addObject($parent);
+                eZDebug::writeDebug(
+                    "Reindex ex collection $parentId after unlinking object $objectId",
+                    __METHOD__
+                );
+            } finally {
+                unset(self::$refreshing[$parentId]);
             }
         }
     }
