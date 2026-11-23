@@ -32,7 +32,7 @@
 
     {def $shared_places = hash('totalCount', 0)}
     {if count($all_used_places_id_list)}
-        {def $shared_places_query = concat("classes [place] subtree [",$parent_node_id,"] and state in [", $privacy_states['privacy.private'].id, "] and owner_id !in [", $owner_list|implode(','), "] and id in [", $all_used_places_id_list|implode(','), "] sort [name=>asc] limit 300")}
+        {def $shared_places_query = concat("classes [place] subtree [",$parent_node_id,"] and state in [", $privacy_states['privacy.private'].id, "] and owner_id != ", $owner_list|implode(' and owner_id != '), " and id in [", $all_used_places_id_list|implode(','), "] sort [name=>asc] limit 300")}
         {debug-log msg='shared_places_query' var=$shared_places_query}
         {set $shared_places = api_search($shared_places_query, 'content', true())}
         {debug-log msg='shared_places_count' var=$shared_places.totalCount}
